@@ -1,0 +1,13 @@
+{% block header %}
+	<header>
+		<a href="{{ path('app_page') }}">logo-ims</a>
+
+
+		{% if app.user %}
+			<a href="{{path('app_logout')}}">logout</a>
+		{% else %}
+			<a href="{{path('app_login')}}">login</a>
+			<a href="{{path('app_register')}}">register</a>
+		{% endif %}
+	</header>
+{% endblock %}

@@ -1,0 +1,16 @@
+{# templates/page/category_items.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Éléments de la catégorie
+	{{ category.getName() }}
+{% endblock %}
+
+{% block body %}
+	<h1>Éléments de la catégorie
+		{{ category.getName() }}</h1>
+	<ul>
+		{% for service in category.getServices() %}
+			<li>{{ service.getName() }}</li>
+		{% endfor %}
+	</ul>
+{% endblock %}
