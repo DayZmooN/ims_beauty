@@ -29,7 +29,7 @@ class Services
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $price = null;
 
-    #[ORM\ManyToMany(targetEntity: appointements::class, inversedBy: 'services')]
+    #[ORM\ManyToMany(targetEntity: Appointements::class, inversedBy: 'services')]
     private Collection $services;
 
     #[ORM\ManyToMany(targetEntity: Promotions::class, mappedBy: 'services')]
@@ -101,14 +101,14 @@ class Services
     }
 
     /**
-     * @return Collection<int, appointements>
+     * @return Collection<int, Appointements>
      */
     public function getServices(): Collection
     {
         return $this->services;
     }
 
-    public function addService(appointements $service): static
+    public function addService(Appointements $service): static
     {
         if (!$this->services->contains($service)) {
             $this->services->add($service);
@@ -117,7 +117,7 @@ class Services
         return $this;
     }
 
-    public function removeService(appointements $service): static
+    public function removeService(Appointements $service): static
     {
         $this->services->removeElement($service);
 
