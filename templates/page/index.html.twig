@@ -9,5 +9,16 @@
 	{% else %}
 		<p>Vous n'êtes pas connecté.</p>
 	{% endif %}
-
+	<h1>Catégories</h1>
+	<ul>
+		{% for category in categories %}
+			<li>
+				<a href="{{ path('category_list_services', {'id': category.id}) }}">
+					{{ category.name }}
+				</a>
+			</li>
+		{% else %}
+			<p>Aucune catégorie à afficher.</p>
+		{% endfor %}
+	</ul>
 {% endblock %}

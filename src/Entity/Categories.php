@@ -12,21 +12,21 @@ class Categories
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Name = null;
+    private ?string $name = null;
 
-    // #[ORM\OneToMany(mappedBy: 'Categories', targetEntity: services::class)]
-    private Collection $Categories;
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Services::class)]
+    private Collection $services;
 
     #[ORM\Column(length: 500)]
     private ?string $thumbnail = null;
 
     public function __construct()
     {
-        $this->Categories = new ArrayCollection();
+        $this->services = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -36,40 +36,39 @@ class Categories
 
     public function getName(): ?string
     {
-        return $this->Name;
+        return $this->name;
     }
 
-    public function setName(string $Name): static
+    public function setName(string $name): self
     {
-        $this->Name = $Name;
-
+        $this->name = $name;
         return $this;
     }
 
     /**
-     * @return Collection<int, services>
+     * @return Collection<int, Services>
      */
-    public function getCategories(): Collection
+    public function getServices(): Collection
     {
-        return $this->Categories;
+        return $this->services;
     }
 
-    public function addCategory(services $category): static
+    public function addService(Services $service): self
     {
-        if (!$this->Categories->contains($category)) {
-            $this->Categories->add($category);
-            $category->setCategories($this);
+        if (!$this->services->contains($service)) {
+            $this->services[] = $service;
+            $service->setCategory($this);
         }
 
         return $this;
     }
 
-    public function removeCategory(services $category): static
+    public function removeService(Services $service): self
     {
-        if ($this->Categories->removeElement($category)) {
+        if ($this->services->removeElement($service)) {
             // set the owning side to null (unless already changed)
-            if ($category->getCategories() === $this) {
-                $category->setCategories(null);
+            if ($service->getCategory() === $this) {
+                $service->setCategory(null);
             }
         }
 
@@ -81,10 +80,9 @@ class Categories
         return $this->thumbnail;
     }
 
-    public function setThumbnail(string $thumbnail): static
+    public function setThumbnail(string $thumbnail): self
     {
         $this->thumbnail = $thumbnail;
-
         return $this;
     }
 }

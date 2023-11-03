@@ -35,9 +35,10 @@ class Services
     #[ORM\ManyToMany(targetEntity: Promotions::class, mappedBy: 'services')]
     private Collection $promotions;
 
-    #[ORM\ManyToOne(inversedBy: 'Categories')]
-    private ?Categories $Categories = null;
 
+    #[ORM\ManyToOne(targetEntity: Categories::class, inversedBy: 'services')]
+    #[ORM\JoinColumn(name: "categories_id", referencedColumnName: "id")]
+    private ?Categories $category = null;
     #[ORM\Column(length: 500, nullable: true)]
     private ?string $thumbnail = null;
 
@@ -151,14 +152,14 @@ class Services
         return $this;
     }
 
-    public function getCategories(): ?Categories
+    public function getCategory(): ?Categories
     {
-        return $this->Categories;
+        return $this->category;
     }
 
-    public function setCategories(?Categories $Categories): static
+    public function setCategory(?Categories $category): self
     {
-        $this->Categories = $Categories;
+        $this->category = $category;
 
         return $this;
     }
