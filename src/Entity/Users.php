@@ -48,7 +48,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?int $LoyaltyPoints = null;
 
-    #[ORM\OneToMany(mappedBy: 'users', targetEntity: appointements::class)]
+    #[ORM\OneToMany(mappedBy: 'users', targetEntity: Appointements::class)]
     private Collection $user;
 
     #[ORM\OneToMany(mappedBy: 'users', targetEntity: Notifications::class)]
@@ -198,14 +198,14 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, appointements>
+     * @return Collection<int, Appointements>
      */
     public function getUser(): Collection
     {
         return $this->user;
     }
 
-    public function addUser(appointements $user): static
+    public function addUser(Appointements $user): static
     {
         if (!$this->user->contains($user)) {
             $this->user->add($user);
@@ -215,7 +215,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeUser(appointements $user): static
+    public function removeUser(Appointements $user): static
     {
         if ($this->user->removeElement($user)) {
             // set the owning side to null (unless already changed)
