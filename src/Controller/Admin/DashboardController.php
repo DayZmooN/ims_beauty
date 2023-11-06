@@ -65,7 +65,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Categories', 'fas fa-folder', Categories::class);
         yield MenuItem::linkToCrud('Notification', 'fas fa-envelope', Notifications::class);
         yield MenuItem::linkToCrud('Promtions', 'fa-brands fa-shopify', Promotions::class);
-        yield MenuItem::linkToRoute('Page Acceuille', 'fas fa-home', $this->generateUrl('app_page'));
+        yield MenuItem::linkToRoute('Page Acceuille', 'fas fa-home', 'app_page');
     }
     public function configureActions(): Actions
     {
