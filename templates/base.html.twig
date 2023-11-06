@@ -7,7 +7,9 @@
 			{% endblock %}
 		</title>
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-		<link rel="stylesheet" href="{{ asset('asset/css/style.css') }}"> {% block stylesheets %}{% endblock %}
+		{% block stylesheets %}
+		<link rel="stylesheet" href="{{ asset('asset/css/style.css') }}">
+		{% endblock %}
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	</head>
@@ -17,6 +19,7 @@
 		{% block body %}{% endblock %}
 		{% include './components/footer.html.twig' %}
 
-		{% block javascripts %}{% endblock %}
+		{% block javascripts %}
+		{% endblock %}
 	</body>
 </html>

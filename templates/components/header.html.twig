@@ -1,13 +1,33 @@
 {% block header %}
 	<header>
-		<a href="{{ path('app_page') }}">logo-ims</a>
+		<a href="{{ path('app_page') }}">
+			<img src="{{ asset('asset/media/logo/LogoWhiteText.svg') }}" alt="">
+		</a>
 
-
-		{% if app.user %}
+		<div class="nav-menu">
+			<nav>
+				<ul>
+					<li><a href="">Accueil</a></li>
+					<li><a href="">Nos Soins</a></li>
+					<li><a href="">Nos Tarifs</a></li>
+					<li><a href="">À Propos</a></li>
+					<li><a href="">Contact</a></li>
+				</ul>
+			</nav>
+			<figure>
+			{% if app.user %}
+				<a href="{{path('app_logout')}}"><img src="{{ asset('asset/media/icons/UserF.svg') }}" alt=""></a>
+			{% else %}
+				<a href="{{path('app_login')}}"><img src="{{ asset('asset/media/icons/UserF.svg') }}" alt=""></a>
+			{% endif %}
+				<a href=""><img src="{{ asset('asset/media/icons/shopIcon.svg') }}" alt=""></a>
+			</figure>
+		</div>
+		{# {% if app.user %}
 			<a href="{{path('app_logout')}}">logout</a>
 		{% else %}
 			<a href="{{path('app_login')}}">login</a>
 			<a href="{{path('app_register')}}">register</a>
-		{% endif %}
+		{% endif %} #}
 	</header>
 {% endblock %}
