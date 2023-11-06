@@ -19,6 +19,7 @@ security:
             lazy: true
             provider: app_user_provider
             custom_authenticator: App\Security\UsersAuthenticator
+            access_denied_url: 'app_page'
             logout:
                 path: app_logout
                 # where to redirect after logout
@@ -29,6 +30,7 @@ security:
                 lifetime: 604800
                 path: /
                 always_remember_me: true
+                
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
