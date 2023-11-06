@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Services de la catégorie
+	{{ category.name }}
+{% endblock %}
+
+{% block body %}
+	<h1>Services de la catégorie
+		{{ category.name }}</h1>
+	<ul>
+		{% for service in services %}
+			<li>
+				<a href="{{ path('service_detail', {'id': service.id}) }}">
+					{{ service.name }}
+				</a>
+				{# Assurez-vous que 'name' et 'id' sont les attributs corrects dans votre entité de service #}
+			</li>
+		{% else %}
+			<p>Aucun service à afficher pour cette catégorie.</p>
+		{% endfor %}
+	</ul>
+{% endblock %}

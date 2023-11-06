@@ -1,0 +1,21 @@
+{# templates/services.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Service:
+	{{ service.name }}
+{% endblock %}
+
+{% block body %}
+	<h1>{{ service.name }}</h1>
+
+	<div>
+		<p>Description:
+			{{ service.description }}</p>
+		<p>Prix:
+			{{ service.price }}</p>
+		<!-- ajoutez d'autres détails du service comme vous le souhaitez -->
+	</div>
+
+	<a href="{{ path('category_list_services', {'id': service.category.id}) }}">Retour aux services de la catégorie</a>
+{% endblock %}
