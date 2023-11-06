@@ -81,3 +81,13 @@ main{
   padding: 50px;
   height: 80vh;
 }
+
+input{
+  padding: 10px;
+  background-color: $secondary-WhiteChocolate;
+  color: $default-grey;
+  outline: transparent;
+  border: none;
+  font-size: 0.75rem;
+  font-family: $lighterText;
+}

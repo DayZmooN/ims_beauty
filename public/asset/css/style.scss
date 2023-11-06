@@ -277,16 +277,6 @@ footer {
         border: 1px solid $Cinereous;
         border-radius: $radius-5;
 
-        &>input{
-            padding: 10px;
-            background-color: $secondary-WhiteChocolate;
-            color: $default-grey;
-            outline: transparent;
-            border: none;
-            font-size: 0.75rem;
-            font-family: $lighterText;
-        }
-
         &>.remember-check {
             display: flex;
             gap: 5px;
@@ -325,6 +315,60 @@ footer {
                 }
             }
         }
+    }
+}
+
+//? -------- REGISTER -------- //
+.register{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    width: 50%;
+    
+    &>h1 {
+        color: $Cinereous;
+    }
+
+    &>.form-registration{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-width: 650px;
+        width: 100%;
+        padding: 50px;
+        gap: 50px;
+        border: 1px solid $Cinereous;
+        border-radius: $radius-5;
+
+        .name-register,.user-info{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-right: 10px;
+        }
+        input{
+            width: 100%;
+        }
+        div{
+            margin: 10px 0;
+        }
+        button{
+            background-color: $Khaki;
+            color: $primary-Alabaster;
+            border-radius: $radius-5;
+            padding: 15px 25px;
+
+            &:hover{
+                background-color: $accent-BrownShadow;
+                color: $secondary-WhiteChocolate;
+            }
+        }
+
     }
 }
 //~ ------------ ADMIN DASHBOARD ------------ //

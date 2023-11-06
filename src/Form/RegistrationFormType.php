@@ -22,42 +22,54 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('last_name', TextType::class, [
-                'label' => 'Nom',
+                'label' => false,
+                'attr' => ['placeholder' => 'Nom'],
             ])
             ->add('first_name', TextType::class, [
-                'label' => 'Prenom',
+                'label' => false,
+                'attr' => ['placeholder' => 'Prénom'],
             ])
             ->add('phone', TelType::class, [
-                'label' => 'numero de télephone',
+                'label' => false,
+                'attr' => ['placeholder' => 'Votre numero de téléphone'],
                 'required' => true,
                 // Autres options de configuration du champ TelType
             ])->add('date_of_bith', DateType::class, [
                 'widget' => 'single_text',
-                'label' => 'Date de naissance',
+                'label' => false,
+                'attr' => ['placeholder' => 'Votre date de Naissance'],
                 'required' => true
             ])
-            ->add('email', EmailType::class)
+            ->add('email', EmailType::class, [
+                'label' => false,
+                'attr' => ['placeholder' => 'Votre adresse email*'],
+            ])
             ->add('RGPDConsent', CheckboxType::class, [
+                'label' => 'J’acceptes les Termes & conditions d’utilisations',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
                         'message' => 'Vous devez accepter nos conditions.',
                     ]),
                 ],
-                'label' => 'J\'accepte que mes données personnelles soient collectées et utilisées dans le but de fournir les services demandés et de respecter les obligations légales en matière de protection des données.',
+                
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Mot de passe',
+                    'autocomplete' => 'new-password'
+                ],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Veuillez entrer un mot de passe',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => 'Votre mot de passe doit faire minimum {{ limit }} lettres',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),

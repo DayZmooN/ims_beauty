@@ -167,6 +167,16 @@ main {
   height: 80vh;
 }
 
+input {
+  padding: 10px;
+  background-color: #EEE3D7;
+  color: #9E9E9E;
+  outline: transparent;
+  border: none;
+  font-size: 0.75rem;
+  font-family: "Poppins-Light";
+}
+
 header {
   z-index: 1;
   display: flex;
@@ -396,15 +406,6 @@ footer > .copyrights > p {
   border: 1px solid #BFAE9F;
   border-radius: 5px;
 }
-.form-login > .form-connexion > input {
-  padding: 10px;
-  background-color: #EEE3D7;
-  color: #9E9E9E;
-  outline: transparent;
-  border: none;
-  font-size: 0.75rem;
-  font-family: "Poppins-Light";
-}
 .form-login > .form-connexion > .remember-check {
   display: flex;
   gap: 5px;
@@ -441,4 +442,52 @@ footer > .copyrights > p {
 }
 .form-login > .form-connexion > .button-links > .login-troubleshooting > a:hover {
   color: #937962;
+}
+
+.register {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  width: 50%;
+}
+.register > h1 {
+  color: #BFAE9F;
+}
+.register > .form-registration {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 650px;
+  width: 100%;
+  padding: 50px;
+  gap: 50px;
+  border: 1px solid #BFAE9F;
+  border-radius: 5px;
+}
+.register > .form-registration .name-register, .register > .form-registration .user-info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-right: 10px;
+}
+.register > .form-registration input {
+  width: 100%;
+}
+.register > .form-registration div {
+  margin: 10px 0;
+}
+.register > .form-registration button {
+  background-color: #BFAE9F;
+  color: #F5EFE8;
+  border-radius: 5px;
+  padding: 15px 25px;
+}
+.register > .form-registration button:hover {
+  background-color: #937962;
+  color: #EEE3D7;
 }/*# sourceMappingURL=style.css.map */

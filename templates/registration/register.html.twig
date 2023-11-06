@@ -1,28 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register
+{% block title %}Inscription
 {% endblock %}
 
 {% block body %}
 	{% for flash_error in app.flashes('verify_email_error') %}
-		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+		<p class="alert alert-danger" role="alert">{{ flash_error }}</p>
 	{% endfor %}
 
-	<h1>Register</h1>
+	<section class="register">
+		<h1>Inscrivez-vous</h1>
+		<div class="form-registration">
+			{{ form_errors(registrationForm) }}
 
-	{{ form_errors(registrationForm) }}
+			{{ form_start(registrationForm) }}
+			<div class="name-register">
+				{{ form_row(registrationForm.last_name) }}
+				{{ form_row(registrationForm.first_name) }}
+			</div>
+			{{ form_row(registrationForm.email) }}
+			<div class="user-info">
+				{{ form_row(registrationForm.phone) }}
+				{{ form_row(registrationForm.date_of_bith) }}
+			</div>
+			{{ form_row(registrationForm.plainPassword) }}
 
-	{{ form_start(registrationForm) }}
-	{{ form_row(registrationForm.last_name) }}
-	{{ form_row(registrationForm.first_name) }}
-	{{ form_row(registrationForm.phone) }}
-	{{ form_row(registrationForm.date_of_bith) }}
-	{{ form_row(registrationForm.email) }}
-	{{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-	{{ form_row(registrationForm.RGPDConsent) }}
+			{{ form_row(registrationForm.RGPDConsent) }}
 
-	<button type="submit" class="btn">Register</button>
-	{{ form_end(registrationForm) }}
+			<button type="submit" class="btn">
+				S'inscrire
+			</button>
+			{{ form_end(registrationForm) }}
+		</div>
+	</section>
+
 {% endblock %}
