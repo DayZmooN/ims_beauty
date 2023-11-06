@@ -8,18 +8,21 @@
 		</title>
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
 		{% block stylesheets %}
-		<link rel="stylesheet" href="{{ asset('asset/css/style.css') }}">
+			<link rel="stylesheet" href="{{ asset('asset/css/style.css') }}">
 		{% endblock %}
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 	</head>
 	<body>
 		{% include "./components/header.html.twig" %}
 
-		{% block body %}{% endblock %}
+		<main>
+			{% block body %}{% endblock %}
+		</main>
+
 		{% include './components/footer.html.twig' %}
 
 		{% block javascripts %}
+			<script src="{{asset('/asset/js/main.js')}}"></script>
 		{% endblock %}
 	</body>
 </html>

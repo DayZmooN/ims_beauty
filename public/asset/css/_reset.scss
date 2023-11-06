@@ -73,3 +73,11 @@ button {
   font-size: $textFont;
   font-size: 1.1rem;
 }
+
+main{
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 50px;
+  height: 80vh;
+}
