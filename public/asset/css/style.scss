@@ -376,3 +376,38 @@ footer {
 
 //~ ------------ USER DASHBOARD ------------ //
 //? -------- MAIN INTERFACE -------- //
+
+//~ ------------ ERROR 404 ------------ //
+//? -------- 404 -------- //
+.error404{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    gap: 25px;
+    h1{
+        color: $accent-BrownShadow;
+        font-size: 15rem;
+        &>span{
+            color: $PaleSilver;
+        }
+    }
+    h2{
+        font-family: $textFont;
+        font-size: 1.125rem;
+    }
+    p{
+        font-size: 1rem;
+    }
+    button{
+        background-color: $Khaki;
+        color: $primary-Alabaster;
+        border-radius: $radius-5;
+        padding: 15px 25px;
+
+        &:hover{
+            background-color: $accent-BrownShadow;
+            color: $secondary-WhiteChocolate;
+        }
+    }
+}

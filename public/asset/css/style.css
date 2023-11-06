@@ -490,4 +490,36 @@ footer > .copyrights > p {
 .register > .form-registration button:hover {
   background-color: #937962;
   color: #EEE3D7;
+}
+
+.error404 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  gap: 25px;
+}
+.error404 h1 {
+  color: #937962;
+  font-size: 15rem;
+}
+.error404 h1 > span {
+  color: #BFAE9F;
+}
+.error404 h2 {
+  font-family: "Poppins";
+  font-size: 1.125rem;
+}
+.error404 p {
+  font-size: 1rem;
+}
+.error404 button {
+  background-color: #BFAE9F;
+  color: #F5EFE8;
+  border-radius: 5px;
+  padding: 15px 25px;
+}
+.error404 button:hover {
+  background-color: #937962;
+  color: #EEE3D7;
 }/*# sourceMappingURL=style.css.map */
