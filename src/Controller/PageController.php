@@ -29,12 +29,12 @@ class PageController extends AbstractController
         ]);
     }
     #[Route('/category/{id}/services', name: 'category_list_services')]
-    public function listServices(Categories $category, ServicesRepository $serviceRepository): Response
+    public function listServices(Categories $categories, ServicesRepository $serviceRepository): Response
     {
-        $services = $serviceRepository->findBy(['category' => $category]);
+        $services = $serviceRepository->findBy(['category' => $categories]);
 
         return $this->render('page/CategoryListeServices.html.twig', [
-            'category' => $category,
+            'category' => $categories,
             'services' => $services,
         ]);
     }

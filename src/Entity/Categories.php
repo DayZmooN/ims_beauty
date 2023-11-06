@@ -5,6 +5,9 @@ namespace App\Entity;
 use App\Repository\CategoriesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
+
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CategoriesRepository::class)]
@@ -14,6 +17,7 @@ class Categories
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private ?int $id = null;
+
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
@@ -85,4 +89,8 @@ class Categories
         $this->thumbnail = $thumbnail;
         return $this;
     }
+    /**
+     * @Assert\Image() // Assurez-vous que vous avez bien la validation d'image
+     */
+    private ?File $imageFile = null;
 }
