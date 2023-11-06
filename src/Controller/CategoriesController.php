@@ -16,6 +16,7 @@ class CategoriesController extends AbstractController
         // Assurez-vous que votre entité Service est configurée correctement pour permettre cette opération
         return $this->render('page/services.html.twig', [
             'service' => $service,
+
         ]);
     }
 }

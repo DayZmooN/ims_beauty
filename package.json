@@ -1,0 +1,7 @@
+{
+  "devDependencies": {
+    "sass": "^1.69.5",
+    "webpack-notifier": "^1.15.0"
+  }
+ 
+}

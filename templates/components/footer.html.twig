@@ -1,1 +1,7 @@
-<footer></footer>
+{# partials/footer.html.twig #}
+
+<footer>
+	{% for category in categories %}
+		<a href="{{ path('category_list_services', {'id': category.id}) }}">{{ category.name }}</a>
+	{% endfor %}
+</footer>
