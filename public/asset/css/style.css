@@ -1,3 +1,444 @@
-* {
+/* * Logo Font - Brown Sugar */
+@font-face {
+  font-family: "Brown Sugar";
+  src: url(../fonts/BrownSugar/BrownSugar.ttf);
+}
+/* * Title Fonts */
+@font-face {
+  font-family: "Alex Brush";
+  src: url(../fonts/AlexBrush-Regular.ttf);
+}
+/* * Bonus Font */
+@font-face {
+  font-family: "Marcellus";
+  src: url(../fonts/Marcellus-Regular.ttf);
+}
+/* * Text Content Font */
+@font-face {
+  font-family: "Poppins-Black";
+  src: url(../fonts/Poppins/Poppins-Black.ttf);
+}
+@font-face {
+  font-family: "Poppins-BlackItalic";
+  src: url(../fonts/Poppins/Poppins-BlackItalic.ttf);
+}
+@font-face {
+  font-family: "Poppins-Bold";
+  src: url(../fonts/Poppins/Poppins-Bold.ttf);
+}
+@font-face {
+  font-family: "Poppins-BoldItalic";
+  src: url(../fonts/Poppins/Poppins-BoldItalic.ttf);
+}
+@font-face {
+  font-family: "Poppins-BoldX";
+  src: url(../fonts/Poppins/Poppins-ExtraBold.ttf);
+}
+@font-face {
+  font-family: "Poppins-BoldXitalic";
+  src: url(../fonts/Poppins/Poppins-ExtraBoldItalic.ttf);
+}
+@font-face {
+  font-family: "Poppins-LightX";
+  src: url(../fonts/Poppins/Poppins-ExtraLight.ttf);
+}
+@font-face {
+  font-family: "Poppins-LightXItalic";
+  src: url(../fonts/Poppins/Poppins-ExtraLightItalic.ttf);
+}
+@font-face {
+  font-family: "Poppins-Italic";
+  src: url(../fonts/Poppins/Poppins-Italic.ttf);
+}
+@font-face {
+  font-family: "Poppins-Light";
+  src: url(../fonts/Poppins/Poppins-Light.ttf);
+}
+@font-face {
+  font-family: "Poppins-LightItalic";
+  src: url(../fonts/Poppins/Poppins-LightItalic.ttf);
+}
+@font-face {
+  font-family: "Poppins-Medium";
+  src: url(../fonts/Poppins/Poppins-Medium.ttf);
+}
+@font-face {
+  font-family: "Poppins-MediumItalic";
+  src: url(../fonts/Poppins/Poppins-MediumItalic.ttf);
+}
+@font-face {
+  font-family: "Poppins";
+  src: url(../fonts/Poppins/Poppins-Regular.ttf);
+}
+@font-face {
+  font-family: "Poppins-SemiBold";
+  src: url(../fonts/Poppins/Poppins-SemiBold.ttf);
+}
+@font-face {
+  font-family: "Poppins-SemiBoldItalic";
+  src: url(../fonts/Poppins/Poppins-SemiBoldItalic.ttf);
+}
+@font-face {
+  font-family: "Poppins-Thin";
+  src: url(../fonts/Poppins/Poppins-Thin.ttf);
+}
+@font-face {
+  font-family: "Poppins-ThinItalic";
+  src: url(../fonts/Poppins/Poppins-ThinItalic.ttf);
+}
+*,
+*::before,
+*::after {
   margin: 0;
+  padding: 0;
+}
+
+body {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  line-height: 1.6rem;
+  min-height: 100vh;
+  background-color: #F8F8F8;
+}
+
+img {
+  display: inline-block;
+  max-width: 100%;
+}
+
+a,
+p,
+ul,
+li,
+label {
+  text-decoration: none;
+  list-style: none;
+  font-family: "Poppins-Light";
+  font-size: 1rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #4D4D4D;
+  font-family: "Alex Brush";
+}
+
+h1 {
+  font-family: "Brown Sugar";
+  font-size: 2.6rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.6rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.375rem;
+}
+
+h6 {
+  font-size: 1.25rem;
+}
+
+button {
+  outline: transparent;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: "Poppins";
+  font-size: 1.1rem;
+}
+
+main {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 50px;
+  height: 80vh;
+}
+
+header {
+  z-index: 1;
+  display: flex;
+  position: sticky;
+  top: 0;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  background-color: #4D4D4D;
+  color: #F8F8F8;
+}
+header > .nav-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+}
+header > .nav-menu > nav > ul {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 15px;
+}
+header > .nav-menu > nav > ul > li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  padding: 0 10px;
+  cursor: pointer;
+}
+header > .nav-menu > nav > ul > li::before {
+  content: "";
+  display: block;
+  opacity: 0;
+  width: 16px;
+  height: 16px;
+  margin: 0 5px;
+  background-image: url("../media/icons/deco/laurel.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: background-image 0.3s;
+}
+header > .nav-menu > nav > ul > li:hover {
+  background-color: #BFAE9F;
+}
+header > .nav-menu > nav > ul > li:hover::before {
+  opacity: 1;
+}
+header > .nav-menu > nav > ul > li > a {
+  color: #F8F8F8;
+  font-family: "Marcellus";
+  line-height: 100px;
+}
+header > .nav-menu > nav > ul > li > a:hover {
+  color: #4D4D4D;
+}
+@media screen and (max-width: 800px) {
+  header > .nav-menu > nav > ul {
+    display: none;
+    justify-content: center;
+  }
+}
+header > .nav-menu > figure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  width: 100px;
+  gap: 10px;
+  padding: 0 10px;
+}
+header > .nav-menu > figure > a > img {
+  height: 35px;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 5px 10px;
+  gap: 5px;
+  margin-top: auto;
+  background-color: #4D4D4D;
+  color: #F8F8F8;
+}
+footer > div.salon-infos {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  text-align: center;
+  width: 100%;
+}
+footer > div.salon-infos > .map-infos {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  width: 80%;
+}
+footer > div.salon-infos > .map-infos > div.categories-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 15px;
+}
+footer > div.salon-infos > .map-infos > div.categories-links > .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #BFAE9F;
+}
+footer > div.salon-infos > .map-infos > div.categories-links > .title > img {
+  width: 50px;
+}
+footer > div.salon-infos > .map-infos > div.categories-links > .title > h3 {
+  font-family: "Marcellus";
+  color: #F8F8F8;
+  font-size: 1.3rem;
+}
+footer > div.salon-infos > .map-infos > div.categories-links > li {
+  list-style: disc;
+}
+footer > div.salon-infos > .map-infos > div.categories-links > li > a {
+  color: #F8F8F8;
+  font-family: "Poppins-LightX";
+  font-size: 0.875rem;
+}
+footer > div.salon-infos > .map-infos > div.categories-links > li > a:hover {
+  color: #BFAE9F;
+}
+footer > div.salon-infos > .map-infos > div.schedule {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px;
+}
+footer > div.salon-infos > .map-infos > div.schedule > .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #BFAE9F;
+}
+footer > div.salon-infos > .map-infos > div.schedule > .title > img {
+  width: 50px;
+}
+footer > div.salon-infos > .map-infos > div.schedule > .title > h3 {
+  font-family: "Marcellus";
+  color: #F8F8F8;
+  font-size: 1.3rem;
+}
+footer > div.salon-infos > .map-infos > div.schedule > div > .schedule-days {
+  font-family: "Marcellus";
+  font-size: 0.875rem;
+}
+footer > div.salon-infos > .map-infos > div.schedule > div > .schedule-hours {
+  font-family: "Marcellus";
+  font-size: 0.875rem;
+  color: #EEE3D7;
+}
+footer > div.salon-infos > div.contact-socials {
+  display: flex;
+  width: 275px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+footer > div.salon-infos > div.contact-socials > figure > .footer-logo {
+  width: 100px;
+}
+footer > div.salon-infos > div.contact-socials > figcaption {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+footer > div.salon-infos > div.contact-socials > figcaption > .catchphrase {
+  font-family: "Marcellus";
+  font-size: 0.625rem;
+}
+footer > div.salon-infos > div.contact-socials > figcaption > .footer-contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+footer > div.salon-infos > div.contact-socials > figcaption > .footer-contact > figcaption > p {
+  font-family: "Poppins-Light";
+  font-size: 0.75rem;
+}
+footer > .copyrights > p {
+  font-size: 0.5rem;
+  text-align: center;
+  line-height: normal;
+}
+
+.form-login {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+}
+.form-login > h1 {
+  color: #BFAE9F;
+}
+.form-login > .form-connexion {
+  display: flex;
+  flex-direction: column;
+  width: 650px;
+  width: 100%;
+  padding: 50px;
+  gap: 10px;
+  border: 1px solid #BFAE9F;
+  border-radius: 5px;
+}
+.form-login > .form-connexion > input {
+  padding: 10px;
+  background-color: #EEE3D7;
+  color: #9E9E9E;
+  outline: transparent;
+  border: none;
+  font-size: 0.75rem;
+  font-family: "Poppins-Light";
+}
+.form-login > .form-connexion > .remember-check {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.form-login > .form-connexion > .remember-check > label {
+  font-size: 0.75rem;
+  font-family: "Poppins-Light";
+}
+.form-login > .form-connexion > .error-login {
+  color: #AB4545;
+}
+.form-login > .form-connexion > .button-links {
+  display: flex;
+  gap: 10px;
+}
+.form-login > .form-connexion > .button-links button {
+  background-color: #BFAE9F;
+  color: #F5EFE8;
+  border-radius: 5px;
+  padding: 15px 25px;
+}
+.form-login > .form-connexion > .button-links button:hover {
+  background-color: #937962;
+  color: #EEE3D7;
+}
+.form-login > .form-connexion > .button-links > .login-troubleshooting {
+  display: flex;
+  flex-direction: column;
+}
+.form-login > .form-connexion > .button-links > .login-troubleshooting > a {
+  font-size: 0.75rem;
+  color: #9E9E9E;
+}
+.form-login > .form-connexion > .button-links > .login-troubleshooting > a:hover {
+  color: #937962;
 }/*# sourceMappingURL=style.css.map */

@@ -1,5 +1,71 @@
 <footer>
-	{% for category in categories %}
-		<a href="{{ path('category_list_services', {'id': category.id}) }}">{{ category.name }}</a>
-	{% endfor %}
+	<div class="salon-infos">
+		<div class="contact-socials">
+			<figure>
+				<img class="footer-logo" src="{{asset('asset/media/logo/LogoWhiteText.svg')}}" alt="">
+			</figure>
+			<figcaption>
+				<p class="catchphrase">Éveillez votre beauté; révélez votre éclat.</p>
+				<figure class="footer-contact">
+					<img src="{{asset('asset/media/icons/contactLocation.svg')}}" alt="">
+					<figcaption>
+						<p>135 Avenue de Macon
+							<br>
+							01440 VIRIAT</p>
+					</figcaption>
+				</figure>
+				<figure class="footer-contact">
+					<img src="{{asset('asset/media/icons/contactPhone.svg')}}" alt="">
+					<figcaption>
+						<p>07 56 88 15 08</p>
+					</figcaption>
+				</figure>
+				<figure class="socials">
+					<a href="">
+						<img src="{{asset('asset/media/icons/socialInstagram.svg')}}" alt=""></a>
+					<a href="mailto:someone@example.com">
+						<img src="{{asset('asset/media/icons/contactMail.svg')}}" alt=""></a>
+					<a href="">
+						<img src="{{asset('asset/media/icons/socialFacebook.svg')}}" alt=""></a>
+				</figure>
+			</figcaption>
+		</div>
+
+		<div class="map-infos">
+			<div class="categories-links">
+				<div class="title">
+					<img src="{{asset('asset/media/icons/deco/candle-leaf.svg')}}" alt="">
+					<h3>Nos Soins</h3>
+				</div>
+
+				{% for category in categories %}
+					<li>
+						<a href="{{ path('category_list_services', {'id': category.id}) }}">
+							{{ category.name }}
+						</a>
+					</li>
+				{% endfor %}
+			</div>
+
+			<div class="schedule">
+				<div class="title">
+					<img src="{{asset('asset/media/icons/deco/agenda.svg')}}" alt="">
+					<h3>Horaires</h3>
+				</div>
+				<div>
+					<p class="schedule-days">Lundi - vendredi</p>
+					<p class="schedule-hours">08:30 - 19:00</p>
+					<p class="schedule-days">Samedi</p>
+					<p class="schedule-hours">08:30 - 19:00</p>
+					<p class="schedule-days">Dimanche</p>
+					<p class="schedule-hours">Fermé</p>
+				</div>
+			</div>
+			{# Insérer ici component card réduction #}
+		</div>
+	</div>
+	<div class="copyrights">
+		<p>Mentions Légales | Politique de cookies (UE) | CGV</p>
+		<p>© 2023 - Copyright 2023 |IMS Beauty - Institut de Beauté - Viriat - Design Coding & Référencement par A. & K. devs</p>
+	</div>
 </footer>
