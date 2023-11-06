@@ -117,7 +117,6 @@ label {
   text-decoration: none;
   list-style: none;
   font-family: "Poppins-Light";
-  color: #4D4D4D;
   font-size: 1rem;
 }
 
@@ -231,4 +230,136 @@ header > .nav-menu > figure {
 }
 header > .nav-menu > figure > a > img {
   height: 35px;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 350px;
+  padding: 5px 10px;
+  gap: 5px;
+  margin-top: auto;
+  background-color: #4D4D4D;
+  color: #F8F8F8;
+}
+footer > div.salon-infos {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  text-align: center;
+  width: 100%;
+}
+footer > div.salon-infos > .map-infos {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  width: 80%;
+}
+footer > div.salon-infos > .map-infos > div.categories-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 15px;
+}
+footer > div.salon-infos > .map-infos > div.categories-links > .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #BFAE9F;
+}
+footer > div.salon-infos > .map-infos > div.categories-links > .title > img {
+  width: 50px;
+}
+footer > div.salon-infos > .map-infos > div.categories-links > .title > h3 {
+  font-family: "Marcellus";
+  color: #F8F8F8;
+  font-size: 1.3rem;
+}
+footer > div.salon-infos > .map-infos > div.categories-links > li {
+  list-style: disc;
+}
+footer > div.salon-infos > .map-infos > div.categories-links > li > a {
+  color: #F8F8F8;
+  font-family: "Poppins-LightX";
+  font-size: 0.875rem;
+}
+footer > div.salon-infos > .map-infos > div.categories-links > li > a:hover {
+  color: #BFAE9F;
+}
+footer > div.salon-infos > .map-infos > div.schedule {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px;
+}
+footer > div.salon-infos > .map-infos > div.schedule > .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #BFAE9F;
+}
+footer > div.salon-infos > .map-infos > div.schedule > .title > img {
+  width: 50px;
+}
+footer > div.salon-infos > .map-infos > div.schedule > .title > h3 {
+  font-family: "Marcellus";
+  color: #F8F8F8;
+  font-size: 1.3rem;
+}
+footer > div.salon-infos > .map-infos > div.schedule > div > .schedule-days {
+  font-family: "Marcellus";
+  font-size: 0.875rem;
+}
+footer > div.salon-infos > .map-infos > div.schedule > div > .schedule-hours {
+  font-family: "Marcellus";
+  font-size: 0.875rem;
+  color: #EEE3D7;
+}
+footer > div.salon-infos > div.contact-socials {
+  display: flex;
+  width: 275px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+footer > div.salon-infos > div.contact-socials > figure > .footer-logo {
+  width: 100px;
+}
+footer > div.salon-infos > div.contact-socials > figcaption {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+footer > div.salon-infos > div.contact-socials > figcaption > .catchphrase {
+  font-family: "Marcellus";
+  font-size: 0.625rem;
+}
+footer > div.salon-infos > div.contact-socials > figcaption > .footer-contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+footer > div.salon-infos > div.contact-socials > figcaption > .footer-contact > figcaption > p {
+  font-family: "Poppins-Light";
+  font-size: 0.75rem;
+}
+footer > .copyrights > p {
+  font-size: 0.5rem;
+  text-align: center;
+  line-height: normal;
 }/*# sourceMappingURL=style.css.map */
