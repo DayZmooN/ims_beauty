@@ -1,2 +1,16 @@
 {% extends 'base.html.twig' %}
-{% block body %}{% endblock %}
+{% block body %}
+<section class="dashboard-controller">
+    {% if user is not null %}
+        <h1>Bienvenue, {{ user.firstname }} !</h1>
+    {% endif %}
+</section>
+
+<section class="dashboard-appoitments">
+
+</section>
+
+<section class="dashboard-settings">
+
+</section>
+{% endblock %}

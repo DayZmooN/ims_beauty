@@ -5,18 +5,32 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Services de la catégorie
-		{{ category.name }}</h1>
-	<ul>
-		{% for service in services %}
-			<li>
-				<a href="{{ path('service_detail', {'id': service.id}) }}">
-					{{ service.name }}
-				</a>
-				{# Assurez-vous que 'name' et 'id' sont les attributs corrects dans votre entité de service #}
-			</li>
-		{% else %}
-			<p>Aucun service à afficher pour cette catégorie.</p>
-		{% endfor %}
-	</ul>
+{# Insérer ici le header de page #}
+<section class="category-row">
+	<aside class="category-details-aside">
+		<div class="services-liste-container">
+			<div class="category-title">
+				<h1>{{ category.name }}</h1>
+			</div>
+			<div class="category-services">
+				<ul>
+					{% for service in services %}
+						<li>
+							<a href="{{ path('service_detail', {'id': service.id}) }}">
+								{{ service.name }}
+							</a>
+						</li>
+					{% else %}
+						<p>Aucun service à afficher pour cette catégorie.</p>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+
+		{# Insérer ici aussi la carte de réduction #}
+	</aside>
+
+	<section class="service-detail">
+	</section>
+</section>
 {% endblock %}

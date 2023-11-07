@@ -128,6 +128,8 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-family: "Brown Sugar";
   font-size: 2.6rem;
+  line-height: normal;
+  font-weight: normal;
 }
 
 h2 {
@@ -163,8 +165,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  padding: 50px;
+  justify-content: center;
   height: 80vh;
 }
 
@@ -384,6 +385,104 @@ footer > .copyrights > p {
   font-size: 0.5rem;
   text-align: center;
   line-height: normal;
+}
+
+.category-row {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+.category-row > .category-details-aside {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  max-width: 350px;
+  padding: 25px;
+  background-color: #F5EFE8;
+}
+.category-row > .category-details-aside > .services-liste-container {
+  display: flex;
+  padding: 25px 15px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  align-self: stretch;
+  border-radius: 5px;
+}
+.category-row > .category-details-aside > .services-liste-container > .category-title {
+  width: 100%;
+  padding: 15px 0;
+  border-radius: 5px 5px 0 0;
+  background-color: #937962;
+  border-bottom: 1px solid #BFAE9F;
+}
+.category-row > .category-details-aside > .services-liste-container > .category-title > h1 {
+  color: #F5EFE8;
+}
+.category-row > .category-details-aside > .services-liste-container > .category-services {
+  overflow-y: scroll;
+  width: 100%;
+  max-height: 300px;
+  border-radius: 0 0 5px 5px;
+  border: 1px solid #BFAE9F;
+  border-top: none;
+  scrollbar-color: #EEE3D7 #BFAE9F;
+  scrollbar-width: thin;
+}
+.category-row > .category-details-aside > .services-liste-container > .category-services > ul > li {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 25px 0;
+  border-bottom: 1px solid #BFAE9F;
+}
+.category-row > .category-details-aside > .services-liste-container > .category-services > ul > li::before {
+  content: "";
+  display: inline-block;
+  opacity: 0;
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  background-image: url("../media/icons/deco/leaf-solid.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: opacity 0.3s;
+}
+.category-row > .category-details-aside > .services-liste-container > .category-services > ul > li:hover {
+  background-color: #BFAE9F;
+}
+.category-row > .category-details-aside > .services-liste-container > .category-services > ul > li:hover::before {
+  opacity: 1;
+}
+.category-row > .category-details-aside > .services-liste-container > .category-services > ul > li:hover > a {
+  color: #F5EFE8;
+}
+.category-row > .category-details-aside > .services-liste-container > .category-services > ul > li > a {
+  display: inline-block;
+  margin-left: 5px;
+  color: #937962;
+}
+.category-row > .category-details-aside > .services-liste-container > .category-services::-webkit-scrollbar {
+  width: 12px;
+}
+.category-row > .category-details-aside > .services-liste-container > .category-services::-webkit-scrollbar-track {
+  background: #BFAE9F;
+  border-radius: 5px;
+}
+.category-row > .category-details-aside > .services-liste-container > .category-services::-webkit-scrollbar-thumb {
+  background: #EEE3D7;
+  border-radius: 5px;
+}
+.category-row > .category-details-aside > .services-liste-container > .category-services::-webkit-scrollbar-thumb:hover {
+  background: #dfcab3;
+}
+.category-row > .service-detail {
+  width: 100%;
+  height: 100%;
+  background: #9E9E9E;
 }
 
 .form-login {
