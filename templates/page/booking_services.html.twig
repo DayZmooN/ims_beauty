@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Services de la catégorie {{ category.name }}{% endblock %}
+
+{% block body %}
+	<h1>Services de la catégorie {{ category.name }}</h1>
+	<div id="services-container">
+		{% for service in services %}
+			<div class="service-entry" data-service-id="{{ service.id }}">
+				<div class="service-name" onclick="toggleServiceDetail({{ service.id }})">
+					<h1>{{ service.name }} </h1>
+				</div>
+				<div id="service-detail-{{ service.id }}" class="service-detail" style="display: none;">
+					<h2>{{ service.price }}</h2>
+					<p>{{ service.description }}</p>
+					<span>{{service.duration }}</span>
+				</div>
+			</div>
+		{% else %}
+			<p>Aucun service à afficher pour cette catégorie.</p>
+		{% endfor %}
+	</div>
+
+	{# Placez ce script à la fin de votre fichier Twig ou dans un fichier JavaScript externe #}
+	<script>
+		function toggleServiceDetail(serviceId) {
+			// Cache toutes les descriptions de service
+			document.querySelectorAll('.service-detail').forEach(function(detail) {
+				detail.style.display = 'none';
+			});
+
+			// Affiche la description du service cliqué
+			var detailToDisplay = document.getElementById('service-detail-' + serviceId);
+			if (detailToDisplay) {
+				detailToDisplay.style.display = 'block';
+			}
+		}
+	</script>
+{% endblock %}

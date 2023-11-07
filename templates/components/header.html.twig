@@ -7,16 +7,16 @@
 		<div class="nav-menu">
 			<nav>
 				<ul>
-					<li><a href="">Accueil</a></li>
-					<li><a href="">Nos Soins</a></li>
-					<li><a href="">Nos Tarifs</a></li>
-					<li><a href="">À Propos</a></li>
-					<li><a href="">Contact</a></li>
+					<li><a href="{{ path('app_page') }}""">Accueil</a></li>
+					<li><a href="{{ path('app_categories') }}">Nos Soins</a></li>
+					<li><a href="{{ path('app_our_prices') }}">Nos Tarifs</a></li>
+					<li><a href="{{ path('app_about_us') }} ">À Propos</a></li>
+					<li><a href="{{ path('app_contact_us') }}">Contact</a></li>
 				</ul>
 			</nav>
 			<figure>
 			{% if app.user %}
-				<a href="{{path('app_logout')}}"><img src="{{ asset('asset/media/icons/UserF.svg') }}" alt=""></a>
+				<a href="{{path('app_dashboard')}}"><img src="{{ asset('asset/media/icons/UserF.svg') }}" alt=""></a>
 			{% else %}
 				<a href="{{path('app_login')}}"><img src="{{ asset('asset/media/icons/UserF.svg') }}" alt=""></a>
 			{% endif %}

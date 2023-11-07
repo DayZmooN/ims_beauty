@@ -92,5 +92,8 @@ class Categories
     /**
      * @Assert\Image() // Assurez-vous que vous avez bien la validation d'image
      */
-    private ?File $imageFile = null;
+    public function __toString()
+    {
+        return $this->name; // ou tout autre champ que vous souhaitez utiliser comme représentation en chaîne
+    }
 }

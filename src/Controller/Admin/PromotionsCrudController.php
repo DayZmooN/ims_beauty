@@ -12,6 +12,7 @@ class PromotionsCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
+
         return Promotions::class;
     }
 

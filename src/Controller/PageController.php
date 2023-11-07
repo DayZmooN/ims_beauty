@@ -28,14 +28,19 @@ class PageController extends AbstractController
             'categories' => $categories,
         ]);
     }
-    #[Route('/category/{id}/services', name: 'category_list_services')]
-    public function listServices(Categories $categories, ServicesRepository $serviceRepository): Response
-    {
-        $services = $serviceRepository->findBy(['category' => $categories]);
+    // #[Route('/category/{id}/services', name: 'category_list_services')]
+    // public function listServices(Categories $categories, ServicesRepository $serviceRepository): Response
+    // {
+    //     $services = $serviceRepository->findBy(['category' => $categories]);
 
-        return $this->render('page/CategoryListeServices.html.twig', [
-            'category' => $categories,
-            'services' => $services,
-        ]);
-    }
+    //     return $this->render('page/CategoryListeServices.html.twig', [
+    //         'category' => $categories,
+    //         'services' => $services,
+    //     ]);
+    // }
+    // #[Route('/Nos-Soins', name: 'heal')]
+    // public function heal(): Response
+    // {
+    //     return $this->render('service.html.twig');
+    // }
 }
