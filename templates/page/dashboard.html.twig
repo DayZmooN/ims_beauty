@@ -1,16 +1,18 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 <section class="dashboard-controller">
-    {% if user is not null %}
-        <h1>Bienvenue, {{ user.firstname }} !</h1>
+    {% if app.user %}
+        <h1>Bienvenue, {{ app.user.firstname }} !</h1>
+    {% else %}
+        <h1>Bienvenue sur le tableau de bord !</h1>
     {% endif %}
 </section>
 
-<section class="dashboard-appoitments">
-
+<section class="dashboard-appointments">
+    {# Contenu des rendez-vous #}
 </section>
 
 <section class="dashboard-settings">
-
+    {# Contenu des paramètres #}
 </section>
 {% endblock %}
