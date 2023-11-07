@@ -4,250 +4,247 @@
 //~ ------------HEADER & FOOTER------------ //
 //? -------- HEADER -------- //
 header {
-    z-index: 1;
+  z-index: 1;
+  display: flex;
+  position: sticky;
+  top: 0;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  background-color: $light-Black;
+  color: $default-White;
+
+  & > .nav-menu {
     display: flex;
-    position: sticky;
-    top: 0;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100px;
-    background-color: $light-Black;
-    color: $default-White;
+    align-self: stretch;
 
-    &>.nav-menu {
+    & > nav > ul {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      gap: 15px;
+
+      & > li {
         display: flex;
-        justify-content: center;
         align-items: center;
-        align-self: stretch;
+        justify-content: center;
+        height: 100px;
+        padding: 0 10px;
+        cursor: pointer;
 
-        &>nav>ul {
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            gap: 15px;
-
-            &>li {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                height: 100px;
-                padding: 0 10px;
-                cursor: pointer;
-
-                &::before {
-                    content: '';
-                    display: block;
-                    opacity: 0;
-                    width: 16px;
-                    height: 16px;
-                    margin: 0 5px;
-                    background-image: url('../media/icons/deco/laurel.svg');
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    transition: background-image 0.3s;
-                }
-
-                &:hover {
-                    background-color: $Khaki;
-
-                    &::before {
-                        opacity: 1;
-                    }
-                }
-
-                &>a {
-                    color: $default-White;
-                    font-family: $bonusFont;
-                    line-height: 100px;
-
-                    &:hover {
-                        color: $light-Black;
-                    }
-                }
-            }
-
-            @media screen and (max-width: 800px) {
-                display: none;
-                justify-content: center;
-              }
+        &::before {
+          content: "";
+          display: block;
+          opacity: 0;
+          width: 16px;
+          height: 16px;
+          margin: 0 5px;
+          background-image: url("../media/icons/deco/laurel.svg");
+          background-size: cover;
+          background-repeat: no-repeat;
+          transition: background-image 0.3s;
         }
 
-        &>figure {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            align-self: stretch;
-            width: 100px;
-            gap: 10px;
-            padding: 0 10px;
+        &:hover {
+          background-color: $Khaki;
 
-            &>a>img {
-                height: 35px;
-            }
+          &::before {
+            opacity: 1;
+          }
         }
+
+        & > a {
+          color: $default-White;
+          font-family: $bonusFont;
+          line-height: 100px;
+
+          &:hover {
+            color: $light-Black;
+          }
+        }
+      }
+
+      @media screen and (max-width: 800px) {
+        display: none;
+        justify-content: center;
+      }
     }
+
+    & > figure {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-self: stretch;
+      width: 100px;
+      gap: 10px;
+      padding: 0 10px;
+
+      & > a > img {
+        height: 35px;
+      }
+    }
+  }
 }
 
 //? -------- FOOTER -------- //
 footer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 5px 10px;
+  gap: 5px;
+  margin-top: auto;
+  background-color: $light-Black;
+  color: $default-White;
+
+  & > div.salon-infos {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    text-align: center;
     width: 100%;
-    padding: 5px 10px;
-    gap: 5px;
-    margin-top: auto;
-    background-color: $light-Black;
-    color: $default-White;
 
-    &>div.salon-infos {
+    & > .map-infos {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-evenly;
+      width: 80%;
+
+      & > div.categories-links {
         display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 15px;
+
+        & > .title {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          padding: 10px;
+          border-bottom: 1px solid $Khaki;
+
+          & > img {
+            width: 50px;
+          }
+
+          & > h3 {
+            font-family: $bonusFont;
+            color: $default-White;
+            font-size: 1.3rem;
+          }
+        }
+
+        & > li {
+          list-style: disc;
+
+          & > a {
+            color: $default-White;
+            font-family: $extraLight;
+            font-size: 0.875rem;
+
+            &:hover {
+              color: $Khaki;
+            }
+          }
+        }
+      }
+
+      & > div.schedule {
+        display: flex;
+        flex-direction: column;
         align-items: center;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        text-align: center;
-        width: 100%;
+        justify-content: center;
+        gap: 10px;
+        padding: 15px;
 
-        &>.map-infos {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            align-items: flex-start;
-            justify-content: space-evenly;
-            width: 80%;
+        & > .title {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          padding: 10px;
+          border-bottom: 1px solid $Khaki;
 
-            &>div.categories-links {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-                padding: 15px;
+          & > img {
+            width: 50px;
+          }
 
-                &>.title {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 10px;
-                    padding: 10px;
-                    border-bottom: 1px solid $Khaki;
-
-                    &>img {
-                        width: 50px;
-                    }
-
-                    &>h3 {
-                        font-family: $bonusFont;
-                        color: $default-White;
-                        font-size: 1.3rem;
-                    }
-                }
-
-                &>li {
-                    list-style: disc;
-
-                    &>a {
-                        color: $default-White;
-                        font-family: $extraLight;
-                        font-size: 0.875rem;
-
-                        &:hover {
-                            color: $Khaki;
-                        }
-                    }
-                }
-
-            }
-
-            &>div.schedule {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 10px;
-                padding: 15px;
-
-                &>.title {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 10px;
-                    padding: 10px;
-                    border-bottom: 1px solid $Khaki;
-
-                    &>img {
-                        width: 50px;
-                    }
-
-                    &>h3 {
-                        font-family: $bonusFont;
-                        color: $default-White;
-                        font-size: 1.3rem;
-                    }
-                }
-
-                &>div {
-                    &>.schedule-days {
-                        font-family: $bonusFont;
-                        font-size: 0.875rem;
-                    }
-
-                    &>.schedule-hours {
-                        font-family: $bonusFont;
-                        font-size: 0.875rem;
-                        color: $secondary-WhiteChocolate;
-                    }
-                }
-            }
+          & > h3 {
+            font-family: $bonusFont;
+            color: $default-White;
+            font-size: 1.3rem;
+          }
         }
 
-        &>div.contact-socials {
-            display: flex;
-            width: 275px;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
+        & > div {
+          & > .schedule-days {
+            font-family: $bonusFont;
+            font-size: 0.875rem;
+          }
 
-            &>figure>.footer-logo {
-                width: 100px;
-            }
-
-            &>figcaption {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 10px;
-
-                &>.catchphrase {
-                    font-family: $bonusFont;
-                    font-size: 0.625rem;
-                }
-
-                &>.footer-contact {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 10px;
-
-                    &>figcaption>p {
-                        font-family: $lighterText;
-                        font-size: 0.75rem;
-                    }
-                }
-            }
+          & > .schedule-hours {
+            font-family: $bonusFont;
+            font-size: 0.875rem;
+            color: $secondary-WhiteChocolate;
+          }
         }
-
-
+      }
     }
 
-    &>.copyrights {
-        &>p {
-            font-size: 0.5rem;
-            text-align: center;
-            line-height: normal;
+    & > div.contact-socials {
+      display: flex;
+      width: 275px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+
+      & > figure > .footer-logo {
+        width: 100px;
+      }
+
+      & > figcaption {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        & > .catchphrase {
+          font-family: $bonusFont;
+          font-size: 0.625rem;
         }
+
+        & > .footer-contact {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+
+          & > figcaption > p {
+            font-family: $lighterText;
+            font-size: 0.75rem;
+          }
+        }
+      }
     }
+  }
+
+  & > .copyrights {
+    & > p {
+      font-size: 0.5rem;
+      text-align: center;
+      line-height: normal;
+    }
+  }
 }
 
 //~ ------------ HOMEPAGE ------------ //
@@ -255,232 +252,232 @@ footer {
 
 //~ ------------ SERVICES & RDV ------------ //
 //? -------- SERVICE DETAILS -------- //
-.category-row{
+.category-row {
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  & > .category-details-aside {
     display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    max-width: 350px;
+    padding: 25px;
+    background-color: $primary-Alabaster;
+
+    & > .services-liste-container {
+      display: flex;
+      padding: 25px 15px;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      align-self: stretch;
+      border-radius: $radius-5;
+
+      & > .category-title {
+        width: 100%;
+        padding: 15px 0;
+        border-radius: 5px 5px 0 0;
+        background-color: $accent-BrownShadow;
+        border-bottom: 1px solid $Khaki;
+        & > h1 {
+          color: $primary-Alabaster;
+        }
+      }
+
+      & > .category-services {
+        overflow-y: scroll;
+        width: 100%;
+        max-height: 300px;
+        border-radius: 0 0 5px 5px;
+        border: 1px solid $Khaki;
+        border-top: none;
+        scrollbar-color: $secondary-WhiteChocolate $Cinereous;
+        scrollbar-width: thin;
+
+        & > ul > li {
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          padding: 25px 0;
+          border-bottom: 1px solid $Khaki;
+          &::before {
+            content: "";
+            display: inline-block;
+            opacity: 0;
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+            background-image: url("../media/icons/deco/leaf-solid.svg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            transition: opacity 0.3s;
+          }
+          &:hover {
+            background-color: $Cinereous;
+            &::before {
+              opacity: 1;
+            }
+            & > a {
+              color: $primary-Alabaster;
+            }
+          }
+          & > a {
+            display: inline-block;
+            margin-left: 5px;
+            color: $accent-BrownShadow;
+          }
+        }
+
+        &::-webkit-scrollbar {
+          width: 12px;
+        }
+
+        &::-webkit-scrollbar-track {
+          background: $Cinereous;
+          border-radius: $radius-5;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: $secondary-WhiteChocolate;
+          border-radius: $radius-5;
+
+          &:hover {
+            background: darken($secondary-WhiteChocolate, 10%);
+          }
+        }
+      }
+    }
+  }
+
+  & > .service-detail {
     width: 100%;
     height: 100%;
-
-    & > .category-details-aside {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        width: 100%;
-        max-width: 350px;
-        padding: 25px;
-        background-color: $primary-Alabaster;
-
-        & > .services-liste-container{
-            display: flex;
-            padding: 25px 15px;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            align-self: stretch;
-            border-radius: $radius-5;
-
-            & > .category-title{
-                width: 100%;
-                padding: 15px 0;
-                border-radius: 5px 5px 0 0;
-                background-color: $accent-BrownShadow;
-                border-bottom: 1px solid $Khaki;
-                & > h1{
-                    color: $primary-Alabaster;
-                }
-            }
-
-            & > .category-services{
-                overflow-y: scroll;
-                width: 100%;
-                max-height: 300px;
-                border-radius: 0 0 5px 5px;
-                border: 1px solid $Khaki;
-                border-top: none;
-                scrollbar-color: $secondary-WhiteChocolate $Cinereous;
-                scrollbar-width: thin;
-
-                & > ul > li {
-                    position: relative;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    cursor: pointer;
-                    padding: 25px 0;
-                    border-bottom: 1px solid $Khaki;
-                    &::before {
-                        content: '';
-                        display: inline-block;
-                        opacity: 0;
-                        width: 16px;
-                        height: 16px;
-                        margin-right: 5px;
-                        background-image: url('../media/icons/deco/leaf-solid.svg');
-                        background-size: cover;
-                        background-repeat: no-repeat;
-                        transition: opacity 0.3s;
-                    }
-                    &:hover {
-                        background-color: $Cinereous;
-                        &::before {
-                            opacity: 1;
-                        }
-                        & > a {
-                            color: $primary-Alabaster;
-                        }
-                    }
-                    & > a {
-                        display: inline-block;
-                        margin-left: 5px;
-                        color: $accent-BrownShadow;
-                    }
-                }
-
-                &::-webkit-scrollbar {
-                    width: 12px;
-                }
-            
-                &::-webkit-scrollbar-track {
-                    background: $Cinereous;
-                    border-radius: $radius-5;
-                }
-            
-                &::-webkit-scrollbar-thumb {
-                    background: $secondary-WhiteChocolate;
-                    border-radius: $radius-5;
-            
-                    &:hover {
-                        background: darken($secondary-WhiteChocolate, 10%);
-                    }
-                }
-            }
-        }
-    }
-    
-    & > .service-detail{
-        width: 100%;
-        height: 100%;
-        background: $default-grey;
-    }
+    background: $default-grey;
+  }
 }
 
 //~ ------------ CONNECTION ------------ //
 //? -------- LOGIN -------- //
-.form-login{
+.form-login {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+
+  & > h1 {
+    color: $Cinereous;
+  }
+
+  & > .form-connexion {
     display: flex;
     flex-direction: column;
-    align-self: center;
-    align-items: center;
-    justify-content: center;
-    gap: 25px;
+    width: 650px;
+    width: 100%;
+    padding: 50px;
+    gap: 10px;
+    border: 1px solid $Cinereous;
+    border-radius: $radius-5;
 
-    &>h1 {
-        color: $Cinereous;
+    & > .remember-check {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      & > label {
+        font-size: 0.75rem;
+        font-family: $lighterText;
+      }
     }
+    & > .error-login {
+      color: $error-Red;
+    }
+    & > .button-links {
+      display: flex;
+      gap: 10px;
+      button {
+        background-color: $Khaki;
+        color: $primary-Alabaster;
+        border-radius: $radius-5;
+        padding: 15px 25px;
 
-    &>.form-connexion{
+        &:hover {
+          background-color: $accent-BrownShadow;
+          color: $secondary-WhiteChocolate;
+        }
+      }
+      & > .login-troubleshooting {
         display: flex;
         flex-direction: column;
-        width: 650px;
-        width: 100%;
-        padding: 50px;
-        gap: 10px;
-        border: 1px solid $Cinereous;
-        border-radius: $radius-5;
-
-        &>.remember-check {
-            display: flex;
-            gap: 5px;
-            align-items: center;
-            &>label{
-                font-size: 0.75rem;
-                font-family: $lighterText;                
-            }
+        & > a {
+          font-size: 0.75rem;
+          color: $default-grey;
+          &:hover {
+            color: $accent-BrownShadow;
+          }
         }
-        &>.error-login{
-            color: $error-Red;
-        }
-        &>.button-links{
-            display: flex;
-            gap: 10px;
-            button{
-                background-color: $Khaki;
-                color: $primary-Alabaster;
-                border-radius: $radius-5;
-                padding: 15px 25px;
-
-                &:hover{
-                    background-color: $accent-BrownShadow;
-                    color: $secondary-WhiteChocolate;
-                }
-            }
-            &>.login-troubleshooting{
-                display: flex;
-                flex-direction: column;
-                &>a{
-                    font-size: 0.75rem;
-                    color: $default-grey;
-                    &:hover{
-                        color: $accent-BrownShadow;
-                    }
-                }
-            }
-        }
+      }
     }
+  }
 }
 
 //? -------- REGISTER -------- //
-.register{
+.register {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  width: 50%;
+
+  & > h1 {
+    color: $Cinereous;
+  }
+
+  & > .form-registration {
     display: flex;
     flex-direction: column;
-    align-self: center;
     align-items: center;
     justify-content: center;
-    gap: 25px;
-    width: 50%;
-    
-    &>h1 {
-        color: $Cinereous;
+    max-width: 650px;
+    width: 100%;
+    padding: 50px;
+    gap: 50px;
+    border: 1px solid $Cinereous;
+    border-radius: $radius-5;
+
+    .name-register,
+    .user-info {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-right: 10px;
     }
-
-    &>.form-registration{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        max-width: 650px;
-        width: 100%;
-        padding: 50px;
-        gap: 50px;
-        border: 1px solid $Cinereous;
-        border-radius: $radius-5;
-
-        .name-register,.user-info{
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-right: 10px;
-        }
-        input{
-            width: 100%;
-        }
-        div{
-            margin: 10px 0;
-        }
-        button{
-            background-color: $Khaki;
-            color: $primary-Alabaster;
-            border-radius: $radius-5;
-            padding: 15px 25px;
-
-            &:hover{
-                background-color: $accent-BrownShadow;
-                color: $secondary-WhiteChocolate;
-            }
-        }
-
+    input {
+      width: 100%;
     }
-} 
+    div {
+      margin: 10px 0;
+    }
+    button {
+      background-color: $Khaki;
+      color: $primary-Alabaster;
+      border-radius: $radius-5;
+      padding: 15px 25px;
+
+      &:hover {
+        background-color: $accent-BrownShadow;
+        color: $secondary-WhiteChocolate;
+      }
+    }
+  }
+}
 //~ ------------ ADMIN DASHBOARD ------------ //
 //? -------- MAIN INTERFACE -------- //
 
@@ -489,35 +486,35 @@ footer {
 
 //~ ------------ ERROR 404 ------------ //
 //? -------- 404 -------- //
-.error404{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    align-self: center;
-    gap: 25px;
-    h1{
-        color: $accent-BrownShadow;
-        font-size: 15rem;
-        &>span{
-            color: $PaleSilver;
-        }
+.error404 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  gap: 25px;
+  h1 {
+    color: $accent-BrownShadow;
+    font-size: 15rem;
+    & > span {
+      color: $PaleSilver;
     }
-    h2{
-        font-family: $textFont;
-        font-size: 1.125rem;
-    }
-    p{
-        font-size: 1rem;
-    }
-    button{
-        background-color: $Khaki;
-        color: $primary-Alabaster;
-        border-radius: $radius-5;
-        padding: 15px 25px;
+  }
+  h2 {
+    font-family: $textFont;
+    font-size: 1.125rem;
+  }
+  p {
+    font-size: 1rem;
+  }
+  button {
+    background-color: $Khaki;
+    color: $primary-Alabaster;
+    border-radius: $radius-5;
+    padding: 15px 25px;
 
-        &:hover{
-            background-color: $accent-BrownShadow;
-            color: $secondary-WhiteChocolate;
-        }
+    &:hover {
+      background-color: $accent-BrownShadow;
+      color: $secondary-WhiteChocolate;
     }
+  }
 }
