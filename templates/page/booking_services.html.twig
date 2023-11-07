@@ -12,7 +12,7 @@
             <div class="category-services">
                 <ul>
                     {% for service in services %}
-                        <li class="service-name" onclick="toggleServiceDetail({{ service.id }})">
+                        <li class="service-name" id="service-name-{{ service.id }}" data-service-id="{{ service.id }}">
                             {{ service.name }}
                         </li>
                     {% else %}
@@ -24,31 +24,25 @@
         {# Insérer ici aussi la carte de réduction #}
     </aside>
 
-    <section class="service-detail">
+    <section class="service-details">
         {% for service in services %}
-            <div id="service-detail-{{ service.id }}" class="service-detail-content" style="display: none;">
-                <h2>{{ service.price }}</h2>
-                <p>{{ service.description }}</p>
-                <span>{{ service.duration }}</span>
+            <div id="service-detail-{{ service.id }}" class="service-detail-content">
+                <figure class="service-thumbnail">
+                    <img src="{{asset('asset/media/epilation-brow-banner.webp')}}" alt="">
+                </figure>
+                <div class="service-info">
+                    <div class="service-name-price">
+                        <h2>{{ service.name }}</h2>
+                        <p>{{ service.price }} €</p>
+                    </div>
+                    <p>{{ service.description }}</p>
+                    <p>Durée : {{ service.duration }}</p>
+                </div>
+                {% include "./components/button-animated.html.twig" %}
             </div>
         {% else %}
-            <p>Aucun service à afficher pour cette catégorie.</p>
+            <p>Ce service n'a pas encore de description rédiger.</p>
         {% endfor %}
     </section>
 </section>
-
-<script>
-    function toggleServiceDetail(serviceId) {
-        // Cache toutes les descriptions de service
-        document.querySelectorAll('.service-detail-content').forEach(function(detail) {
-            detail.style.display = 'none';
-        });
-
-        // Affiche la description du service cliqué
-        var detailToDisplay = document.getElementById('service-detail-' + serviceId);
-        if (detailToDisplay) {
-            detailToDisplay.style.display = 'block';
-        }
-    }
-</script>
 {% endblock %}
