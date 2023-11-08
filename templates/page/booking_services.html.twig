@@ -38,7 +38,7 @@
                     <p>{{ service.description }}</p>
                     <p>Durée : {{ service.duration }}</p>
                 </div>
-                {% include "./components/button-animated.html.twig" %}
+                {% include "./components/button-animated.html.twig" with {'text' : 'Réservez', 'image': 'lotus.svg', 'link': '#'} %}
             </div>
         {% else %}
             <p>Ce service n'a pas encore de description rédiger.</p>

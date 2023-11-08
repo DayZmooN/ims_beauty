@@ -250,6 +250,62 @@ footer {
 //~ ------------ HOMEPAGE ------------ //
 //? -------- HERO -------- //
 
+//~ ------------ CATEGORIES ------------ //
+//? -------- CATEGORIES -------- //
+.category-cards{
+    padding: 25px;
+    .card-container{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+
+        &>.category-card{
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            max-width: 300px;
+            min-height: 500px;
+            border-radius: $radius-5;
+            border: 1px solid $Cinereous;
+            .category-thumbnail{
+                background: url('../media/deco/flower-bg-deco.svg') top / contain no-repeat;
+                padding: 25px;
+                width: 254px;
+                &>img{
+                    width: 160px;
+                    height: 160px;
+                    border-radius: 100%;
+                    background-color: $accent-BrownShadow;
+                    padding: 5px;
+                }
+                &>figcaption>h3{
+                    color: $Cinereous;
+                    text-decoration: underline;
+                }
+            }
+
+            .card-desc{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 15px;
+                padding: 15px;
+
+                &>p{
+                    color: $light-Black;
+                }
+            }
+        }
+    }
+}
+
 //~ ------------ SERVICES & RDV ------------ //
 //? -------- SERVICE DETAILS -------- //
 .category-row {
@@ -604,7 +660,7 @@ footer {
 //~ ------------ COMPONENTS ------------ //
 //? -------- ANIMATED BUTTON -------- //
 
-.btn {
+.animated-btn {
     position: relative;
     color: $light-Black;
     width: 150px;
