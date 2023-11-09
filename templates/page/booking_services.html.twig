@@ -30,11 +30,26 @@
                 <h2>{{ service.price }}</h2>
                 <p>{{ service.description }}</p>
                 <span>{{ service.duration }}</span>
+                <a href="{{path('cart_add', {id: service.id}) }}">Ajouter</a>
             </div>
         {% else %}
             <p>Aucun service à afficher pour cette catégorie.</p>
         {% endfor %}
-    </section>
+          <h2>Choisissez votre créneau horaire</h2>
+         {# {{ form_start(appointmentForm) }}
+{{ form_widget(appointmentForm.DateTime) }}
+{{ form_end(appointmentForm) }} #}
+{# {% for slot in availableSlots %}
+    <div>
+        <p>Créneau disponible : {{ slot.date | date('d M Y H:i') }}</p>
+    </div>
+{% endfor %} #}
+
+  {# Intégration de Google Agenda #}
+ 
+  {# <iframe src="https://calendar.google.com/calendar/embed?src=eb4ac0e920b14d60786c94f71092fdcbd873e34be3814d00d3fbcd8cd737f844@group.calendar.google.com&ctz=Europe%2FParis" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+
+    </section> #}
 </section>
 
 <script>
@@ -50,5 +65,47 @@
             detailToDisplay.style.display = 'block';
         }
     }
+function handleClientLoad() {
+  // Chargez la bibliothèque 'client:auth2'
+  gapi.load('client:auth2', initClient);
+}
+
+function initClient() {
+  // Initialisation du client OAuth2
+  gapi.client.init({
+    apiKey: 'AIzaSyAJOE5ji9Sz-bj7ksBG8kWV9BXc1y_wk7E',
+    clientId: '207164739117-trp0er85ho9ggk8dqnpd1e3jjl1pk5hb.apps.googleusercontent.com',
+    discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"],
+    scope: 'https://www.googleapis.com/auth/calendar'
+  }).then(function () {
+    // Écoutez l'état de connexion
+    gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+    // Gérez l'état de connexion initial
+    updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+  });
+}
+
+function updateSigninStatus(isSignedIn) {
+  if (isSignedIn) {
+    // L'utilisateur est connecté, vous pouvez créer des événements
+  } else {
+    // L'utilisateur n'est pas connecté, affichez le bouton de connexion
+  }
+}
+
+function handleSignInClick(event) {
+  gapi.auth2.getAuthInstance().signIn();
+}
+
+function handleSignOutClick(event) {
+  gapi.auth2.getAuthInstance().signOut();
+}
+
+// Dans votre HTML, ajoutez un bouton de connexion qui appelle handleSignInClick
+
+
 </script>
+<script src="https://apis.google.com/js/api.js"></script>
+
 {% endblock %}

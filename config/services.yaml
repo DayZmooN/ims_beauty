@@ -1,31 +1,56 @@
 # This file is the entry point to configure your own services.
 # Files in the packages/ subdirectory configure your dependencies.
 
-# Put parameters here that don't need to change on each machine where the app is deployed
-# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+        google_api_key: 'AIzaSyAJOE5ji9Sz-bj7ksBG8kWV9BXc1y_wk7E'
 
 services:
-    # default configuration for services in *this* file
+    # Make sure GuzzleHttp\ClientInterface is properly aliased to GuzzleHttp\Client
+    GuzzleHttp\ClientInterface: '@GuzzleHttp\Client'
+
+    # Default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
-    # makes classes in src/ available to be used as services
-    # this creates a service per class whose id is the fully-qualified class name
+    # Makes classes in src/ available to be used as services
+    # This creates a service per class whose id is the fully-qualified class name
     App\:
-        resource: '../src/'
-        exclude:
-            - '../src/DependencyInjection/'
-            - '../src/Entity/'
-            - '../src/Kernel.php'
+        resource: '../src/*'
+        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    App\Service\GoogleClientService:
+        arguments:
+            $credentialsPath: '%env(GOOGLE_APPLICATION_CREDENTIALS)%'
 
-    # config/services.yaml
+    App\Service\GoogleCalendarService:
+        arguments:
+            $googleClientService: '@App\Service\GoogleClientService'
+            $calendarId: '%env(GOOGLE_CALENDAR_ID)%'
+            $googleApiKey: '%google_api_key%'
 
+    # Autres définitions de services...
+
+    # Configuration du GlobalTemplateVariablesSubscriber
     App\Controller\GlobalTemplateVariablesSubscriber:
         tags:
-            - { name: kernel.event_subscriber }
+            - { name: 'kernel.event_subscriber' }
 
+    GuzzleHttp\Client:
+        class: GuzzleHttp\Client
+
+# Vous pourriez ne pas avoir besoin de ces lignes si vous configurez déjà le client dans GoogleClientService
+# Google_Client:
+#     class: Google_Client
+#     calls:
+#         - [setAuthConfig, ['%env(GOOGLE_APPLICATION_CREDENTIALS)%']]
+#         - [addScope, ['https://www.googleapis.com/auth/calendar']]
+#         - [setAccessType, ['offline']]
+#         - [setPrompt, ['select_account consent']]
+
+# Configuration du service Google Calendar
+# Vous pourriez ne pas avoir besoin de définir ce service s'il est entièrement géré dans GoogleCalendarService
+# Google_Service_Calendar:
+#     class: Google_Service_Calendar
+#     arguments:
+#         - '@Google_Client'

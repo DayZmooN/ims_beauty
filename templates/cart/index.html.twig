@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Panier{% endblock %}
+
+{% block body %}
+<section class="shopping-cart">
+    <h1>Mon Panier</h1>
+    {% if services is not empty %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nom du service</th>
+                    <th>Description</th>
+                    <th>Prix</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for service in services %}
+                    <tr>
+                        <td>{{ service.name }}</td>
+                        <td>{{ service.description }}</td>
+                        <td>{{ service.price }}</td>
+                        <td>
+                            <a href="{{ path('cart_remove', {'id': service.id}) }}" class="btn btn-danger">Retirer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+        <div class="checkout">
+            <a href="{{ path('cart_checkout') }}" class="btn btn-primary">Procéder au rendez-vous</a>
+        </div>
+    {% else %}
+        <p>Votre panier est vide.</p>
+    {% endif %}
+</section>
+{% endblock %}

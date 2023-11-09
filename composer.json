@@ -11,13 +11,16 @@
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.16",
         "easycorp/easyadmin-bundle": "^4.8",
+        "google/apiclient": "^2.0",
+        "google/auth": "*",
+        "guzzlehttp/guzzle": "*",
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpdoc-parser": "^1.24",
         "symfony/asset": "6.3.*",
         "symfony/console": "6.3.*",
         "symfony/doctrine-messenger": "6.3.*",
         "symfony/dotenv": "6.3.*",
-        "symfony/expression-language": "6.3.*",
+        "symfony/expression-language": "*",
         "symfony/flex": "^2",
         "symfony/form": "6.3.*",
         "symfony/framework-bundle": "6.3.*",
@@ -70,7 +73,8 @@
         "symfony/polyfill-php80": "*",
         "symfony/polyfill-php81": "*"
     },
-    "scripts": {
+    "scripts": {        
+        "pre-autoload-dump": "Google\\Task\\Composer::cleanup",
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
@@ -81,6 +85,7 @@
         "post-update-cmd": [
             "@auto-scripts"
         ]
+
     },
     "conflict": {
         "symfony/symfony": "*"
@@ -88,7 +93,11 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "6.3.*"
+            "require": "6.3.*",
+            "google/apiclient-services": [
+                "Calendar"
+                
+            ]
         }
     },
     "require-dev": {

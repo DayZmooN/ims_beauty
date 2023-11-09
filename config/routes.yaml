@@ -3,3 +3,13 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+# routes.yaml
+category_list_services:
+    path: /category/{id}/services
+    controller: 'App\Controller\BookingServicesController::listServices'
+    requirements:
+        id: \d+
+    defaults:
+        controller: 'App\Controller\BookingServicesController::listServices'
+        googleApiKey: 'AIzaSyAJOE5ji9Sz-bj7ksBG8kWV9BXc1y_wk7E' # Remplacez par votre clé API Google réelle

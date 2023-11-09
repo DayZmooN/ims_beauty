@@ -1,0 +1,9 @@
+services:
+    Google_Client:
+        class: Google_Client
+        calls:
+            - [setDeveloperKey, ['%env(GOOGLE_API_KEY)%']]
+            - [setClientId, ['%env(GOOGLE_CLIENT_ID)%']]
+            - [setClientSecret, ['%env(GOOGLE_CLIENT_SECRET)%']]
+            - [setAuthConfig, ['%kernel.project_dir%/config/google_credentials.json']] # Chemin vers votre fichier JSON de service
+            - [setScopes, [['https://www.googleapis.com/auth/calendar']]] # Ajoutez les autorisations nécessaires ici
