@@ -621,7 +621,8 @@ footer > .copyrights > p {
   justify-content: space-evenly;
   gap: 15px;
 }
-.contact-form > .contact-container > .form-container > form > input, .contact-form > .contact-container > .form-container > form textarea {
+.contact-form > .contact-container > .form-container > form > input,
+.contact-form > .contact-container > .form-container > form textarea {
   border-radius: 5px;
   background-color: transparent;
   color: #F5EFE8;
@@ -634,7 +635,8 @@ footer > .copyrights > p {
   letter-spacing: 2.4px;
   font-size: 1rem;
 }
-.contact-form > .contact-container > .form-container > form > input::placeholder, .contact-form > .contact-container > .form-container > form textarea::placeholder {
+.contact-form > .contact-container > .form-container > form > input::placeholder,
+.contact-form > .contact-container > .form-container > form textarea::placeholder {
   color: #F8F8F8;
   text-transform: uppercase;
   letter-spacing: 2.4px;
@@ -714,7 +716,7 @@ footer > .copyrights > p {
 .category-row > .category-details-aside {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 80vh;
   width: 100%;
   max-width: 350px;
   padding: 25px;
@@ -963,6 +965,61 @@ footer > .copyrights > p {
 .register > .form-registration button:hover {
   background-color: #937962;
   color: #EEE3D7;
+}
+
+.dashboard {
+  width: 100%;
+  min-height: 80vh;
+  background-color: #EEE3D7;
+}
+.dashboard .welcome-dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 25px;
+  height: 170px;
+}
+.dashboard .welcome-dashboard > h1 {
+  font-family: "Marcellus";
+  color: #4D4D4D;
+}
+.dashboard .welcome-dashboard > h1 > span {
+  color: #937962;
+}
+.dashboard .welcome-dashboard .user-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.dashboard .welcome-dashboard .user-menu .menu a {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: #F5EFE8;
+  color: #4D4D4D;
+  border-radius: 5rem;
+  padding: 0.5rem;
+  padding-right: 2rem;
+}
+.dashboard .welcome-dashboard .user-menu .menu a img {
+  padding: 0.5rem;
+  margin: 0 0.5rem 0 0;
+  width: 24px;
+  height: 24px;
+  background-color: #F8F8F8;
+  border-radius: 5rem;
+}
+.dashboard .welcome-dashboard .user-menu .menu a:hover {
+  background: rgba(147, 121, 98, 0.8588235294);
+  color: #F5EFE8;
+  transition: all 0.5s ease-out;
+}
+.dashboard .welcome-dashboard .user-menu .first-link a {
+  background-color: #937962;
+  color: #F5EFE8;
+  min-width: 160px;
+  border-radius: 5rem;
 }
 
 .error404 {

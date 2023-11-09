@@ -351,8 +351,10 @@ footer {
     }
 }
 
+
 //~ ------------ HOMEPAGE ------------ //
-//? -------- HERO -------- //
+
+
 
 //~ ------------ ABOUT US ------------ //
 //? -------- MAIN -------- //
@@ -445,6 +447,7 @@ footer {
     }
 }
 
+
 //? -------- CONTACT FORM -------- //
 .contact-form {
     text-align: center;
@@ -458,23 +461,25 @@ footer {
         justify-content: space-evenly;
         padding: 25px;
 
-        &>.contact-info{
+        &>.contact-info {
             display: flex;
             flex-direction: column;
             max-width: 800px;
             width: 100%;
             gap: 25px;
-            &>h2{
+
+            &>h2 {
                 text-decoration: underline;
             }
 
-            &>.info-container{
+            &>.info-container {
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
                 width: 100%;
                 text-align: left;
-                &>figure{
+
+                &>figure {
                     width: 100%;
                     display: flex;
                     flex-direction: row;
@@ -483,17 +488,20 @@ footer {
                     padding: 10px;
                     border-radius: 0 25px 25px 0;
                     background-color: $secondary-WhiteChocolate;
-                    &>img{
+
+                    &>img {
                         background-color: $Cinereous;
                         padding: 10px;
                         border-radius: $radius-15;
                     }
-                    &>figcaption{
-                        &>p:first-child{
+
+                    &>figcaption {
+                        &>p:first-child {
                             color: $Cinereous;
-                        }    
+                        }
                     }
-                    &:nth-child(2n){
+
+                    &:nth-child(2n) {
                         background-color: $primary-Alabaster;
                     }
                 }
@@ -506,18 +514,22 @@ footer {
             padding: 25px;
             border-radius: 0 25px 25px 0;
             background-color: $Khaki;
+
             &>form {
                 display: flex;
                 flex-direction: column;
                 justify-content: space-evenly;
                 gap: 15px;
-                &>input,textarea{
+
+                &>input,
+                textarea {
                     border-radius: $radius-5;
                     background-color: transparent;
                     color: $primary-Alabaster;
                     font-family: $extraLight;
                     border-bottom: 1px solid $accent-BrownShadow;
-                    &::placeholder{
+
+                    &::placeholder {
                         color: $default-White;
                         text-transform: uppercase;
                         letter-spacing: 2.4px;
@@ -525,12 +537,13 @@ footer {
                     }
                 }
 
-                &>button{
+                &>button {
                     border: 1px solid $accent-BrownShadow;
                     padding: 15px;
                     border-radius: $radius-15;
                     color: $accent-BrownShadow;
-                    &:hover{
+
+                    &:hover {
                         background-color: $accent-BrownShadow;
                         border-color: $secondary-WhiteChocolate;
                         color: $secondary-WhiteChocolate;
@@ -541,8 +554,8 @@ footer {
     }
 }
 
+
 //~ ------------ CATEGORIES ------------ //
-//? -------- CATEGORIES -------- //
 .category-cards {
     padding: 25px;
 
@@ -605,8 +618,8 @@ footer {
     }
 }
 
+
 //~ ------------ SERVICES & RDV ------------ //
-//? -------- SERVICE DETAILS -------- //
 .category-row {
     display: flex;
     width: 100%;
@@ -615,7 +628,7 @@ footer {
     &>.category-details-aside {
         display: flex;
         flex-direction: column;
-        height: 100%;
+        height: 80vh;
         width: 100%;
         max-width: 350px;
         padding: 25px;
@@ -787,6 +800,7 @@ footer {
     }
 }
 
+
 //~ ------------ CONNECTION ------------ //
 //? -------- LOGIN -------- //
 .form-login {
@@ -917,13 +931,71 @@ footer {
 }
 
 //~ ------------ ADMIN DASHBOARD ------------ //
-//? -------- MAIN INTERFACE -------- //
-
 //~ ------------ USER DASHBOARD ------------ //
-//? -------- MAIN INTERFACE -------- //
+
+.dashboard {
+    width: 100%;
+    min-height: 80vh;
+    background-color: $secondary-WhiteChocolate;
+
+    .welcome-dashboard {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 25px;
+        height: 170px;
+        &>h1 {
+            font-family: $bonusFont;
+            color: $light-Black;
+
+            &>span {
+                color: $accent-BrownShadow;
+            }
+        }
+
+        .user-menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+
+            .menu a {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                background: $primary-Alabaster;
+                color: $light-Black;
+                border-radius: 5rem;
+                padding: 0.5rem;
+                padding-right: 2rem;
+
+                img {
+                    padding: 0.5rem;
+                    margin: 0 0.5rem 0 0;
+                    width: 24px;
+                    height: 24px;
+                    background-color: $default-White;
+                    border-radius: 5rem;
+                }
+
+                &:hover {
+                    background: #937962db;
+                    color: $primary-Alabaster;
+                    transition: all 0.5s ease-out;
+                }
+            }
+
+            .first-link a {
+                background-color: $accent-BrownShadow;
+                color: $primary-Alabaster;
+                min-width: 160px;
+                border-radius: 5rem;
+            }
+        }
+    }
+}
 
 //~ ------------ ERROR 404 ------------ //
-//? -------- 404 -------- //
 .error404 {
     display: flex;
     align-items: center;

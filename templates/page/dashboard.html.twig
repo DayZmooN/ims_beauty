@@ -1,18 +1,34 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-<section class="dashboard-controller">
-    {% if app.user %}
-        <h1>Bienvenue, {{ app.user.firstname }} !</h1>
-    {% else %}
-        <h1>Bienvenue sur le tableau de bord !</h1>
-    {% endif %}
-</section>
+<section class="dashboard">
+		<section class="welcome-dashboard">
+			<h1>Bienvenue,
+				<span>{{ app.user.firstname }}</span>
+				!</h1>
 
-<section class="dashboard-appointments">
-    {# Contenu des rendez-vous #}
-</section>
+			<div class="user-menu">
+				<div class="menu first-link">
+					<a href="#my-appointments">
+						<img src="{{asset('asset/media/icons/calendar.svg')}}" alt="Mes Rendez-vous">
+						<p>Mes Rendez-vous</p>
+					</a>
+				</div>
+				<div class="menu">
+					<a href="#settings">
+						<img src="{{asset('asset/media/icons/settings.svg')}}" alt="Paramètres">
+						<p>Paramètres</p>
+					</a>
+				</div>
+			</div>
+		</section>
 
-<section class="dashboard-settings">
-    {# Contenu des paramètres #}
+		<section id="my-appointments">
+			
+		</section>
+
+        <section id="settings">
+			
+		</section>
+		
 </section>
 {% endblock %}
