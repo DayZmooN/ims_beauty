@@ -26,6 +26,7 @@ img {
 
 a,
 p,
+q,
 ul,
 li,
 label {
@@ -86,7 +87,7 @@ main{
   min-height: 80vh;
 }
 
-input{
+input,textarea{
   padding: 10px;
   background-color: $secondary-WhiteChocolate;
   color: $default-grey;

@@ -38,7 +38,12 @@
                     <p>{{ service.description }}</p>
                     <p>Durée : {{ service.duration }}</p>
                 </div>
-                {% include "./components/button-animated.html.twig" with {'text' : 'Réservez', 'image': 'lotus.svg', 'link': '#'} %}
+                <div class="animated-btn btn-two">
+					<a href="#">
+						<span>Réservez</span>
+						<img src="{{asset('asset/media/icons/deco/lotus.svg')}}" alt="">
+					</a>
+				</div>
             </div>
         {% else %}
             <p>Ce service n'a pas encore de description rédiger.</p>
