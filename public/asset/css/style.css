@@ -1021,6 +1021,49 @@ footer > .copyrights > p {
   min-width: 160px;
   border-radius: 5rem;
 }
+.dashboard #my-appointments {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 25px;
+  border-radius: 15px;
+}
+.dashboard .upcoming-app, .dashboard .past-app {
+  background-color: #F5EFE8;
+  padding: 15px;
+  border-radius: 15px;
+}
+.dashboard .appointment {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 300px;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #BFAE9F;
+}
+.dashboard .appointment > figure {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  align-items: center;
+  border-radius: 5px;
+  padding: 5px;
+}
+.dashboard .appointment > figure > img {
+  background-color: #937962;
+  padding: 5px;
+  border-radius: 180px;
+}
+.dashboard .appointment > figure:nth-child(1) {
+  background-color: #BFAE9F;
+}
+.dashboard .appointment > figure:nth-child(2) {
+  background-color: #EEE3D7;
+}
+.dashboard .appointment > figure > figcaption > p > span {
+  font-family: "Poppins";
+}
 
 .error404 {
   display: flex;

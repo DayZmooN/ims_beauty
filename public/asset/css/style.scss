@@ -993,6 +993,56 @@ footer {
             }
         }
     }
+
+    #my-appointments{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 25px;
+        border-radius: $radius-15;
+    }
+    .upcoming-app,.past-app{
+        background-color: $primary-Alabaster;
+        padding: 15px;
+        border-radius: $radius-15;
+    }
+    .appointment{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        width: 300px;
+        padding: 15px;
+        border-radius: $radius-5;
+        border: 1px solid $Khaki;
+        &>figure{
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            align-items: center;
+            border-radius: $radius-5;
+            padding: 5px;
+
+            &>img{
+                background-color: $accent-BrownShadow;
+                padding: 5px;
+                border-radius: $radius-180;
+            }
+            &:nth-child(1){
+                background-color: $PaleSilver;
+            }
+            &:nth-child(2){
+                background-color: $secondary-WhiteChocolate;
+            }
+
+            &>figcaption{
+                &>p{
+                    &>span{
+                        font-family: $textFont;
+                    }
+                }
+            }
+        }
+    }
 }
 
 //~ ------------ ERROR 404 ------------ //
