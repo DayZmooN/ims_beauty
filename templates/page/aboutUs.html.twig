@@ -1,20 +1,86 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AboutUsController!{% endblock %}
+{% block title %}IMS Beauty
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<section class="about-us-presentation">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+		<figure>
+			<img src="{{asset('asset/media/white-lights-banner.webp')}}" alt="">
+			<figcaption>
+				<a href="#"><img src="{{asset('/asset/media/icons/socialInstagram.svg')}}" alt="" class="icons"></a>
+				<a href="#"><img src="{{asset('/asset/media/icons/contactMail.svg')}}" alt="" class="icons"></a>
+				<a href="#"><img src="{{asset('/asset/media/icons/socialFacebook.svg')}}" alt="" class="icons"></a>
+			</figcaption>
+		</figure>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp/www/ims_beauty/src/Controller/AboutUsController.php'|file_link(0) }}">src/Controller/AboutUsController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp/www/ims_beauty/templates/about_us/index.html.twig'|file_link(0) }}">templates/about_us/index.html.twig</a></code></li>
-    </ul>
-</div>
+		<div class="presentation">
+			<h1>IMS Beauty</h1>
+			<blockquote>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium repudiandae quaerat, veniam nam nemo perspiciatis?</blockquote>
+
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur ea aperiam ullam quos perspiciatis necessitatibus asperiores, obcaecati aliquid molestiae voluptates quam quisquam illo iste harum, enim inventore aliquam fugiat labore a culpa delectus error nostrum minus! Modi nostrum facilis laborum repudiandae culpa quos atque consequatur laudantium iste nisi quaerat earum, a quasi fugit. Animi reprehenderit ab dignissimos vero deserunt. Debitis praesentium veritatis, accusamus ut aperiam dicta tempora inventore ratione voluptas nesciunt vel totam adipisci culpa ad expedita consequatur perferendis officiis commodi cum temporibus. Corrupti eos sunt quia ipsa qui suscipit, ea reiciendis quasi consectetur incidunt laudantium repellat sit doloremque aliquam!</p>
+
+			<div class="redirection-buttons" id="contact">
+				<div class="animated-btn btn-two">
+					<a href="{{ path('app_categories') }}">
+						<span>Nos Soins</span>
+						<img src="{{asset('asset/media/icons/deco/lotus.svg')}}" alt="">
+					</a>
+				</div>
+				<div class="animated-btn btn-two">
+					<a href="{{ path('app_our_prices') }}">
+						<span>Nos Tarifs</span>
+						<img src="{{asset('asset/media/icons/deco/lotus.svg')}}" alt="">
+					</a>
+				</div>
+			</div>
+		</div>
+
+	</section>
+	<section class="contact-form">
+		<div class="contact-container">
+			<div class="contact-info">
+				<h2>Nous Contactez</h2>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta aperiam quisquam suscipit? Id, eveniet voluptatum?</p>
+
+				<div class="info-container">
+					<figure class="contact-element">
+						<img src="{{asset('asset/media/icons/contactMail.svg')}}" alt="" class="icons">
+						<figcaption>
+							<p>Notre mail</p>
+							<p>ImsBeauty@imsbeauty.com</p>
+						</figcaption>
+					</figure>
+					<figure class="contact-element">
+						<img src="{{asset('asset/media/icons/contactLocation.svg')}}" alt="" class="icons">
+						<figcaption>
+							<p>Où nous trouver ?</p>
+							<p>ImsBeauty@imsbeauty.com</p>
+						</figcaption>
+					</figure>
+					<figure class="contact-element">
+						<img src="{{asset('asset/media/icons/contactPhone.svg')}}" alt="" class="icons">
+						<figcaption>
+							<p>Notre numéro</p>
+							<p>ImsBeauty@imsbeauty.com</p>
+						</figcaption>
+					</figure>
+				</div>
+
+			</div>
+			<div class="form-container">
+				<form action="#">
+					<input type="text" placeholder="Votre prénom">
+					<input type="text" placeholder="Votre email">
+					<input type="text" placeholder="Votre numéro">
+					<textarea name="contact-message" id="contact-message" cols="10" rows="10" placeholder="Votre message"></textarea>
+					<button type="submit">Envoyer</button>
+				</form>
+			</div>
+            <div class="contact-map">
+            
+            </div>
+		</div>
+	</section>
 {% endblock %}
