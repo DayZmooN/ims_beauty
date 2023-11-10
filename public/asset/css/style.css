@@ -1028,7 +1028,8 @@ footer > .copyrights > p {
   padding: 25px;
   border-radius: 15px;
 }
-.dashboard .upcoming-app, .dashboard .past-app {
+.dashboard .upcoming-app,
+.dashboard .past-app {
   background-color: #F5EFE8;
   padding: 15px;
   border-radius: 15px;
