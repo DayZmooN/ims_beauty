@@ -22,7 +22,7 @@ class Appointements
     private ?\DateTimeInterface $DateTime = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $Status = null;
+    private ?string $Status = 'en attente';
 
     #[ORM\ManyToOne(inversedBy: 'user')]
     private ?Users $users = null;

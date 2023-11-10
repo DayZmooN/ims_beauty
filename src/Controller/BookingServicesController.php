@@ -27,6 +27,31 @@ class BookingServicesController extends AbstractController
     {
         $this->calendarService = $calendarService;
     }
+
+
+
+
+
+
+    #[Route('/category/{id}/services', name: 'category_list_services')]
+    public function listServices(Categories $categories, ServicesRepository $serviceRepository): Response
+    {
+        $services = $serviceRepository->findBy(['category' => $categories]);
+
+        return $this->render('page/booking_services.html.twig', [
+            'category' => $categories,
+            'services' => $services,
+        ]);
+    }
+
+
+
+
+
+
+
+
+
     // public function createEvent(): Response
     // {
     //     // Ici, vous utiliseriez des informations de la requête ou du formulaire pour créer l'événement.
@@ -56,27 +81,6 @@ class BookingServicesController extends AbstractController
     // }
 
 
-
-
-    #[Route('/booking/services', name: 'app_booking_services')]
-    public function index(): Response
-    {
-        return $this->render('booking_services/booking_services.html.twig', [
-            'controller_name' => 'BookingServicesController',
-        ]);
-    }
-
-
-    #[Route('/category/{id}/services', name: 'category_list_services')]
-    public function listServices(Categories $categories, ServicesRepository $serviceRepository): Response
-    {
-        $services = $serviceRepository->findBy(['category' => $categories]);
-
-        return $this->render('page/booking_services.html.twig', [
-            'category' => $categories,
-            'services' => $services,
-        ]);
-    }
     //pour google agenda 
     // #[Route('/category/{id}/services', name: 'category_list_services')]
     // public function listServices(Request $request, Categories $category, ServicesRepository $serviceRepository, GoogleClientService $googleClientService): Response
@@ -153,27 +157,4 @@ class BookingServicesController extends AbstractController
     //     ]);
     // }
 
-    #[Route('/book/appointment', name: 'book_appointment')]
-    public function bookAppointment(Request $request): Response
-    {
-        $form = $this->createForm(AvailabilityType::class);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            // Traitement des données du formulaire
-            $data = $form->getData();
-
-            // Reste du code de traitement
-
-            // Rendre la vue avec le formulaire
-            return $this->render('booking_services.html.twig', [
-                'form' => $form->createView(),
-            ]);
-        }
-
-        // Rendre la vue initiale avec le formulaire
-        return $this->render('booking_services.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
 }
