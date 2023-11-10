@@ -39,7 +39,7 @@
                     <p>Durée : {{ service.duration }}</p>
                 </div>
                 <div class="animated-btn btn-two">
-					<a href="#">
+					<a href="{{path('cart_add', {id: service.id}) }}">
 						<span>Réservez</span>
 						<img src="{{asset('asset/media/icons/deco/lotus.svg')}}" alt="">
 					</a>
