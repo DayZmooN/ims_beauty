@@ -361,7 +361,7 @@ footer {
   flex-wrap: wrap;
   justify-content: space-evenly;
   width: 100%;
-  padding: 25px;
+  padding: 25px 0;
   border-bottom: 1px solid $Cinereous;
 
   & > figure {
@@ -550,6 +550,17 @@ footer {
         }
       }
     }
+  }
+}
+//? -------- CONTACT MAP -------- //
+.map-location{
+  width: 100%;
+  &>#map-aboutus{
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+     filter: grayscale(100%);
   }
 }
 

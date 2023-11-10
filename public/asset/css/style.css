@@ -485,7 +485,7 @@ footer > .copyrights > p {
   flex-wrap: wrap;
   justify-content: space-evenly;
   width: 100%;
-  padding: 25px;
+  padding: 25px 0;
   border-bottom: 1px solid #BFAE9F;
 }
 .about-us-presentation > figure {
@@ -652,6 +652,16 @@ footer > .copyrights > p {
   background-color: #937962;
   border-color: #EEE3D7;
   color: #EEE3D7;
+}
+
+.map-location {
+  width: 100%;
+}
+.map-location > #map-aboutus {
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: grayscale(100%);
 }
 
 .category-cards {
