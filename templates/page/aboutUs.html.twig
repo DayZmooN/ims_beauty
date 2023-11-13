@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+{% include './components/page-header.html.twig' with {'page_name': page_name, 'breadcrumbs': breadcrumbs} %}
 	<section class="about-us-presentation">
 
 		<figure>
@@ -21,7 +22,7 @@
 
 			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur ea aperiam ullam quos perspiciatis necessitatibus asperiores, obcaecati aliquid molestiae voluptates quam quisquam illo iste harum, enim inventore aliquam fugiat labore a culpa delectus error nostrum minus! Modi nostrum facilis laborum repudiandae culpa quos atque consequatur laudantium iste nisi quaerat earum, a quasi fugit. Animi reprehenderit ab dignissimos vero deserunt. Debitis praesentium veritatis, accusamus ut aperiam dicta tempora inventore ratione voluptas nesciunt vel totam adipisci culpa ad expedita consequatur perferendis officiis commodi cum temporibus. Corrupti eos sunt quia ipsa qui suscipit, ea reiciendis quasi consectetur incidunt laudantium repellat sit doloremque aliquam!</p>
 
-			<div class="redirection-buttons" id="contact">
+			<div class="redirection-buttons">
 				<div class="animated-btn btn-two">
 					<a href="{{ path('app_categories') }}">
 						<span>Nos Soins</span>
@@ -39,7 +40,7 @@
 
 	</section>
 	{% include "./components/insta-feed.html.twig" %}
-	<section class="contact-form">
+	<section class="contact-form" id="contact">
 		<div class="contact-container">
 			<div class="contact-info">
 				<h2>Nous Contactez</h2>

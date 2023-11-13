@@ -3,6 +3,7 @@
 {% block title %}Liste des catégories{% endblock %}
 
 {% block body %}
+{% include './components/page-header.html.twig' with {'page_name': page_name, 'breadcrumbs': breadcrumbs} %}
 <section class="category-cards">
 	<div class="card-container">
 			{% for category in categories %}	

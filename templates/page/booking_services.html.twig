@@ -3,6 +3,7 @@
 {% block title %}Services de la catégorie {{ category.name }}{% endblock %}
 
 {% block body %}
+{% include './components/page-header.html.twig' with {'page_name': page_name, 'breadcrumbs': breadcrumbs} %}
 <section class="category-row">
     <aside class="category-details-aside">
         <div class="services-liste-container">
