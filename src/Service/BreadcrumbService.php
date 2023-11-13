@@ -29,23 +29,42 @@ class BreadcrumbService
         $breadcrumbs = [];
     
         // Always include the homepage link
-        $breadcrumbs['Accueil'] = $this->router->generate('app_page');
+        $breadcrumbs[] = [
+            'label' => 'Accueil',
+            'url' => $this->router->generate('app_page'),
+        ];
     
         // Add breadcrumb for the current page
         if ($route === 'app_about_us') {
-            $breadcrumbs['À Propos'] = null; // No link for the current page
+            $breadcrumbs[] = [
+                'label' => 'À Propos',
+                'url' => '', // Add the URL for this page
+            ];
         } elseif ($route === 'app_categories') {
-            $breadcrumbs['Nos Soins'] = null; // No link for the current page
+            $breadcrumbs[] = [
+                'label' => 'Nos Soins',
+                'url' => '', // Add the URL for this page
+            ];
         } elseif ($route === 'app_our_prices') {
-            $breadcrumbs['Nos Tarifs'] = null; // No link for the current page
+            $breadcrumbs[] = [
+                'label' => 'Nos Tarifs',
+                'url' => '', // Add the URL for this page
+            ];
         } elseif ($route === 'app_services' && isset($routeParams['categoryId'])) {
             $categoryName = $this->getCategoryName($routeParams['categoryId']);
-            $breadcrumbs['Nos Soins'] = $this->router->generate('app_categories'); // Link to categories/soins page
-            $breadcrumbs[$categoryName] = null; // No link for the current category
+            $breadcrumbs[] = [
+                'label' => 'Nos Soins',
+                'url' => $this->router->generate('app_categories'), // URL for the "Nos Soins" page
+            ];
+            $breadcrumbs[] = [
+                'label' => $categoryName,
+                'url' => '', // Add the URL for this page
+            ];
         }
     
         return $breadcrumbs;
     }
+    
     
     
     public function getCategoryName($categoryId)

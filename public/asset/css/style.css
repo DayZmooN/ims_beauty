@@ -480,6 +480,46 @@ footer > .copyrights > p {
   line-height: normal;
 }
 
+.page-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 250px;
+  background: url("../media/deco/massagewoman.svg") bottom left/contain no-repeat, url("../media/deco/flower-bg-flipped.svg") top right/auto no-repeat;
+  background-color: #4D4D4D;
+}
+.page-header > h1 {
+  color: #C9BEB9;
+}
+.page-header > ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.page-header > ul > li {
+  color: #C9BEB9;
+}
+.page-header > ul > li > a {
+  color: #BFAE9F;
+}
+.page-header > ul > li > a:hover {
+  color: #978178;
+}
+.page-header > ul > li > a.last-link {
+  color: #C9BEB9;
+  pointer-events: none; /* Disable link functionality for the last link */
+}
+@media (max-width: 768px) {
+  .page-header {
+    /* Adjust the background size and position for smaller screens */
+    background-size: 150px;
+  }
+}
+
 .about-us-presentation {
   display: flex;
   flex-direction: row-reverse;
@@ -487,7 +527,7 @@ footer > .copyrights > p {
   justify-content: space-evenly;
   width: 100%;
   padding: 25px 0;
-  border-bottom: 1px solid #BFAE9F;
+  border-bottom: 1px solid #978178;
 }
 .about-us-presentation > figure {
   position: relative;
@@ -535,7 +575,7 @@ footer > .copyrights > p {
 }
 .about-us-presentation .presentation > blockquote:before, .about-us-presentation .presentation > blockquote:after {
   position: absolute;
-  color: #BFAE9F;
+  color: #978178;
   font-size: 8rem;
 }
 .about-us-presentation .presentation > blockquote:before {
@@ -599,12 +639,12 @@ footer > .copyrights > p {
   background-color: #EEE3D7;
 }
 .contact-form > .contact-container > .contact-info > .info-container > figure > img {
-  background-color: #BFAE9F;
+  background-color: #978178;
   padding: 10px;
   border-radius: 15px;
 }
 .contact-form > .contact-container > .contact-info > .info-container > figure > figcaption > p:first-child {
-  color: #BFAE9F;
+  color: #978178;
 }
 .contact-form > .contact-container > .contact-info > .info-container > figure:nth-child(2n) {
   background-color: #F5EFE8;
@@ -686,7 +726,7 @@ footer > .copyrights > p {
   max-width: 300px;
   min-height: 500px;
   border-radius: 5px;
-  border: 1px solid #BFAE9F;
+  border: 1px solid #978178;
 }
 .category-cards .card-container > .category-card .category-thumbnail {
   background: url("../media/deco/flower-bg-deco.svg") top/contain no-repeat;
@@ -701,7 +741,7 @@ footer > .copyrights > p {
   padding: 5px;
 }
 .category-cards .card-container > .category-card .category-thumbnail > figcaption > h3 {
-  color: #BFAE9F;
+  color: #978178;
   text-decoration: underline;
 }
 .category-cards .card-container > .category-card .card-desc {
@@ -759,7 +799,7 @@ footer > .copyrights > p {
   border-radius: 0 0 5px 5px;
   border: 1px solid #BFAE9F;
   border-top: none;
-  scrollbar-color: #EEE3D7 #BFAE9F;
+  scrollbar-color: #EEE3D7 #978178;
   scrollbar-width: thin;
 }
 .category-row > .category-details-aside > .services-liste-container > .category-services > ul > li {
@@ -785,7 +825,7 @@ footer > .copyrights > p {
   transition: opacity 0.3s;
 }
 .category-row > .category-details-aside > .services-liste-container > .category-services > ul > li:hover, .category-row > .category-details-aside > .services-liste-container > .category-services > ul > li.active {
-  background-color: #BFAE9F;
+  background-color: #978178;
   border-bottom: 1px solid #EEE3D7;
   color: #EEE3D7;
 }
@@ -796,7 +836,7 @@ footer > .copyrights > p {
   width: 12px;
 }
 .category-row > .category-details-aside > .services-liste-container > .category-services::-webkit-scrollbar-track {
-  background: #BFAE9F;
+  background: #978178;
   border-radius: 5px;
 }
 .category-row > .category-details-aside > .services-liste-container > .category-services::-webkit-scrollbar-thumb {
@@ -808,7 +848,7 @@ footer > .copyrights > p {
 }
 .category-row > .service-details {
   overflow-y: scroll;
-  scrollbar-color: #EEE3D7 #BFAE9F;
+  scrollbar-color: #EEE3D7 #978178;
   scrollbar-width: thin;
   width: 100%;
   height: 100%;
@@ -819,7 +859,7 @@ footer > .copyrights > p {
   width: 12px;
 }
 .category-row > .service-details::-webkit-scrollbar-track {
-  background: #BFAE9F;
+  background: #978178;
   border-radius: 5px;
 }
 .category-row > .service-details::-webkit-scrollbar-thumb {
@@ -850,7 +890,7 @@ footer > .copyrights > p {
   align-items: center;
   padding: 15px;
   border-radius: 5px;
-  background-color: #BFAE9F;
+  background-color: #978178;
   color: #F5EFE8;
 }
 .category-row > .service-details > .service-detail-content > .service-info > .service-name-price > h2 {
@@ -879,7 +919,7 @@ footer > .copyrights > p {
   gap: 25px;
 }
 .form-login > h1 {
-  color: #BFAE9F;
+  color: #978178;
 }
 .form-login > .form-connexion {
   display: flex;
@@ -888,7 +928,7 @@ footer > .copyrights > p {
   width: 100%;
   padding: 50px;
   gap: 10px;
-  border: 1px solid #BFAE9F;
+  border: 1px solid #978178;
   border-radius: 5px;
 }
 .form-login > .form-connexion > .remember-check {
@@ -939,7 +979,7 @@ footer > .copyrights > p {
   width: 50%;
 }
 .register > h1 {
-  color: #BFAE9F;
+  color: #978178;
 }
 .register > .form-registration {
   display: flex;
@@ -950,7 +990,7 @@ footer > .copyrights > p {
   width: 100%;
   padding: 50px;
   gap: 50px;
-  border: 1px solid #BFAE9F;
+  border: 1px solid #978178;
   border-radius: 5px;
 }
 .register > .form-registration .name-register,
@@ -1068,7 +1108,7 @@ footer > .copyrights > p {
   border-radius: 180px;
 }
 .dashboard .appointment > figure:nth-child(1) {
-  background-color: #BFAE9F;
+  background-color: #C9BEB9;
 }
 .dashboard .appointment > figure:nth-child(2) {
   background-color: #EEE3D7;
@@ -1143,7 +1183,7 @@ footer > .copyrights > p {
   font-size: 15rem;
 }
 .error404 h1 > span {
-  color: #BFAE9F;
+  color: #C9BEB9;
 }
 .error404 h2 {
   font-family: "Poppins";

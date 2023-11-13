@@ -351,6 +351,51 @@ footer {
   }
 }
 
+//? -------- SUB HEADER -------- //
+.page-header{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 250px;
+  background: url("../media/deco/massagewoman.svg") bottom left / contain no-repeat,
+        url("../media/deco/flower-bg-flipped.svg") top right / auto no-repeat;
+  background-color: $light-Black;
+
+  &> h1 {
+    color: $PaleSilver;
+  }
+
+  &> ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+
+    &>li{
+      color: $PaleSilver;
+      &>a{
+      color: $Khaki;
+      &:hover{
+        color: $Cinereous;
+      }
+
+      &.last-link {
+        color: $PaleSilver;
+        pointer-events: none; /* Disable link functionality for the last link */
+      }
+    }
+    }
+    
+  }
+
+  @media (max-width: 768px) {
+    /* Adjust the background size and position for smaller screens */
+    background-size: 150px;
+  }
+}
 //~ ------------ HOMEPAGE ------------ //
 
 //~ ------------ ABOUT US ------------ //
