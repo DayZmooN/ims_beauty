@@ -1,4 +1,10 @@
 <div class="page-header">
     <h2>{{ page_name }}</h2>
-    <a>{{ breadcrumbs }}</a>
+    <ul>
+    {% for label, link in breadcrumbs %}
+        <li><a href="{{ link }}">{{ label }}</a></li>
+    {% endfor %}
+</ul>
+
+    {# <a>{{ breadcrumbs }}</a> #}
 </div>
