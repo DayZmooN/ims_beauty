@@ -1138,6 +1138,8 @@ footer > .copyrights > p {
 }
 
 .dashboard {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   min-height: 80vh;
   background-color: #EEE3D7;
@@ -1235,17 +1237,13 @@ footer > .copyrights > p {
   font-family: "Poppins";
 }
 .dashboard #settings {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 50px;
+  align-self: center;
 }
 .dashboard #settings > form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: 15px;
+  max-width: 800px;
   border-radius: 15px;
   padding: 50px;
   background-color: #F5EFE8;
@@ -1266,6 +1264,9 @@ footer > .copyrights > p {
 .dashboard #settings > form > figure > figcaption > input, .dashboard #settings > form > .user-names > figure > figcaption > input {
   background-color: transparent;
   color: #1E1E1E;
+}
+.dashboard #settings > form > .settings-buttons {
+  align-self: center;
 }
 .dashboard #settings > form > .settings-buttons > button {
   padding: 15px;

@@ -1126,6 +1126,8 @@ footer {
 //~ ------------ USER DASHBOARD ------------ //
 
 .dashboard {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   min-height: 80vh;
   background-color: $secondary-WhiteChocolate;
@@ -1245,17 +1247,12 @@ footer {
 
   //? -------- SETTINGS -------- //
   #settings {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 50px;
-
+    align-self: center;
     &>form {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
       gap: 15px;
+      max-width: 800px;
       border-radius: $radius-15;
       padding: 50px;
       background-color: $primary-Alabaster;
@@ -1285,6 +1282,7 @@ footer {
       }
 
       &>.settings-buttons {
+        align-self: center;
         &>button {
           padding: 15px;
           border-radius: $radius-5;
