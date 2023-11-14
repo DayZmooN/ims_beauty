@@ -1172,13 +1172,13 @@ footer {
         }
 
         &:hover {
-          background: #937962db;
+          background: #978178db;
           color: $primary-Alabaster;
           transition: all 0.5s ease-out;
         }
       }
 
-      .first-link a {
+      .active a {
         background-color: $accent-BrownShadow;
         color: $primary-Alabaster;
         min-width: 160px;
@@ -1191,8 +1191,6 @@ footer {
   #my-appointments {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    padding: 25px;
     border-radius: $radius-15;
   }
 
@@ -1200,6 +1198,7 @@ footer {
   .past-app {
     background-color: $primary-Alabaster;
     padding: 15px;
+    margin: 25px;
     border-radius: $radius-15;
   }
 

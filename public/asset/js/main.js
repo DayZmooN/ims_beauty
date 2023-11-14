@@ -102,3 +102,44 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+//DASHBOARD 
+document.addEventListener('DOMContentLoaded', function () {
+    // Function to show/hide appointments and settings and toggle the active class
+    function toggleSections(showAppointments, showSettings) {
+        const appointmentsSection = document.getElementById('my-appointments');
+        const settingsSection = document.getElementById('settings');
+        const showAppointmentsLink = document.getElementById('show-appointments');
+        const showSettingsLink = document.getElementById('show-settings');
+
+        if (showAppointments) {
+            appointmentsSection.style.display = 'block';
+            settingsSection.style.display = 'none';
+            showAppointmentsLink.parentElement.classList.add('active');
+            showSettingsLink.parentElement.classList.remove('active');
+        } else {
+            appointmentsSection.style.display = 'none';
+            settingsSection.style.display = 'block';
+            showAppointmentsLink.parentElement.classList.remove('active');
+            showSettingsLink.parentElement.classList.add('active');
+        }
+    }
+
+    // Initial state: show appointments, hide settings, set first link as active
+    toggleSections(true, false);
+
+    // Attach click events to links
+    const showAppointmentsLink = document.getElementById('show-appointments');
+    const showSettingsLink = document.getElementById('show-settings');
+
+    showAppointmentsLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        toggleSections(true, false);
+    });
+
+    showSettingsLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        toggleSections(false, true);
+    });
+});
+

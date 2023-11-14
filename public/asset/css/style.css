@@ -1181,11 +1181,11 @@ footer > .copyrights > p {
   border-radius: 5rem;
 }
 .dashboard .welcome-dashboard .user-menu .menu a:hover {
-  background: rgba(147, 121, 98, 0.8588235294);
+  background: rgba(151, 129, 120, 0.8588235294);
   color: #F5EFE8;
   transition: all 0.5s ease-out;
 }
-.dashboard .welcome-dashboard .user-menu .first-link a {
+.dashboard .welcome-dashboard .user-menu .active a {
   background-color: #937962;
   color: #F5EFE8;
   min-width: 160px;
@@ -1194,14 +1194,13 @@ footer > .copyrights > p {
 .dashboard #my-appointments {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  padding: 25px;
   border-radius: 15px;
 }
 .dashboard .upcoming-app,
 .dashboard .past-app {
   background-color: #F5EFE8;
   padding: 15px;
+  margin: 25px;
   border-radius: 15px;
 }
 .dashboard .appointment {
