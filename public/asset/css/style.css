@@ -184,9 +184,50 @@ input, textarea {
   border-radius: 5px;
 }
 
+.alt-animated-btn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.alt-animated-btn:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #978178;
+  z-index: 1;
+}
+.alt-animated-btn:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #978178;
+  transform: rotate(50deg);
+  z-index: 0;
+}
+.alt-animated-btn > a > img {
+  width: 35px;
+  height: 35px;
+}
+
+.alt-animated-btn:hover::after {
+  animation: rotatecw 2s linear infinite;
+}
+
+.alt-animated-btn:hover::before {
+  animation: rotateccw 3s linear infinite;
+}
+
 .animated-btn {
   position: relative;
-  color: #4D4D4D;
+  color: #978178;
   width: 150px;
   height: 40px;
   line-height: 40px;
@@ -203,7 +244,7 @@ input, textarea {
   z-index: 2;
 }
 .animated-btn span {
-  color: #4D4D4D;
+  color: #978178;
   font-family: "Marcellus";
   font-size: 1rem;
   opacity: 1;
@@ -222,14 +263,13 @@ input, textarea {
 .animated-btn::before, .animated-btn::after {
   content: "";
   position: absolute;
-  transition: all 0.3s;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: 1;
   transition: all 0.3s;
-  border: 1px solid #4D4D4D;
+  border: 1px solid #978178;
 }
 
 .btn-two:hover::after {
@@ -267,6 +307,7 @@ input, textarea {
   }
 }
 .icons:hover {
+  cursor: pointer;
   transform: scale(1.1);
 }
 
@@ -511,7 +552,8 @@ footer > .copyrights > p {
 }
 .page-header > ul > li > a.last-link {
   color: #C9BEB9;
-  pointer-events: none; /* Disable link functionality for the last link */
+  pointer-events: none;
+  /* Disable link functionality for the last link */
 }
 @media (max-width: 768px) {
   .page-header {
@@ -706,7 +748,13 @@ footer > .copyrights > p {
 }
 
 .category-cards {
-  padding: 25px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  padding: 25px 0;
 }
 .category-cards .card-container {
   display: flex;
@@ -908,6 +956,77 @@ footer > .copyrights > p {
 .category-row > .service-details > .service-detail-content > .service-info > .btn {
   position: absolute;
   bottom: 0;
+}
+
+.tarifs {
+  width: 100%;
+}
+.tarifs .tarif-category {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 25px;
+}
+.tarifs .tarif-category:nth-child(odd) {
+  background-color: #F5EFE8;
+}
+.tarifs .tarif-category:nth-child(even) {
+  background-color: #EEE3D7;
+}
+.tarifs .tarif-category .category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px;
+  border-bottom: 1px dashed #C9BEB9;
+  cursor: pointer;
+}
+.tarifs .tarif-category .category-header .category-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+.tarifs .tarif-category .category-header .category-title > img {
+  filter: invert(80%) sepia(6%) saturate(372%) hue-rotate(334deg) brightness(96%) contrast(91%);
+}
+.tarifs .tarif-category .services-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.tarifs .tarif-category .service-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  width: 500px;
+  min-height: 100px;
+  border: 1px solid #BFAE9F;
+  border-radius: 5px;
+  background: url("../media/deco/flower-bg-flipped.svg") top right/contain no-repeat, url("../media/deco/textured-bg.webp") center center/cover no-repeat;
+}
+.tarifs .tarif-category .service-card .service-details {
+  max-width: 150px;
+  color: #978178;
+}
+.tarifs .tarif-category .service-card .service-details > h4 {
+  color: #937962;
+}
+.tarifs .tarif-category .service-card .service-details > p {
+  font-size: 0.75rem;
+  line-height: normal;
+}
+.tarifs .tarif-category .service-card > span {
+  font-family: "Poppins-Bold";
+}
+@media screen and (max-width: 580px) {
+  .tarifs .tarif-category .service-card .icon-desktop {
+    display: none;
+  }
 }
 
 .form-login {

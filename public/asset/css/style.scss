@@ -2,9 +2,56 @@
 
 //& -------------------- COMPONENTS -------------------- //
 //~ ------------ ANIMATED BUTTON ------------ //
+
+//ALT ANIMATION - ICON ONLY
+.alt-animated-btn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 1px solid $Cinereous;
+    z-index: 1;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 1px solid $Cinereous;
+    transform: rotate(50deg);
+    z-index: 0;
+  }
+
+  &>a>img {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+.alt-animated-btn:hover::after {
+  animation: rotatecw 2s linear infinite;
+}
+
+.alt-animated-btn:hover::before {
+  animation: rotateccw 3s linear infinite;
+}
+
+//DEFAULT BTN ANIMATION - TEXT + ICON
 .animated-btn {
   position: relative;
-  color: $light-Black;
+  color: $Cinereous;
   width: 150px;
   height: 40px;
   line-height: 40px;
@@ -22,7 +69,7 @@
   }
 
   span {
-    color: $light-Black;
+    color: $Cinereous;
     font-family: $bonusFont;
     font-size: 1rem;
     opacity: 1;
@@ -46,14 +93,13 @@
   &::after {
     content: "";
     position: absolute;
-    transition: all 0.3s;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: 1;
     transition: all 0.3s;
-    border: 1px solid $light-Black;
+    border: 1px solid $Cinereous;
   }
 }
 
@@ -98,6 +144,7 @@
 
 //~ ------------ ANIMATED ICONS ------------ //
 .icons:hover {
+  cursor: pointer;
   transform: scale(1.1);
 }
 
@@ -352,7 +399,7 @@ footer {
 }
 
 //? -------- SUB HEADER -------- //
-.page-header{
+.page-header {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -360,35 +407,38 @@ footer {
   width: 100%;
   height: 250px;
   background: url("../media/deco/massagewoman.svg") bottom left / contain no-repeat,
-        url("../media/deco/flower-bg-flipped.svg") top right / auto no-repeat;
+    url("../media/deco/flower-bg-flipped.svg") top right / auto no-repeat;
   background-color: $light-Black;
 
-  &> h1 {
+  &>h1 {
     color: $PaleSilver;
   }
 
-  &> ul {
+  &>ul {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 15px;
 
-    &>li{
+    &>li {
       color: $PaleSilver;
-      &>a{
-      color: $Khaki;
-      &:hover{
-        color: $Cinereous;
-      }
 
-      &.last-link {
-        color: $PaleSilver;
-        pointer-events: none; /* Disable link functionality for the last link */
+      &>a {
+        color: $Khaki;
+
+        &:hover {
+          color: $Cinereous;
+        }
+
+        &.last-link {
+          color: $PaleSilver;
+          pointer-events: none;
+          /* Disable link functionality for the last link */
+        }
       }
     }
-    }
-    
+
   }
 
   @media (max-width: 768px) {
@@ -396,6 +446,7 @@ footer {
     background-size: 150px;
   }
 }
+
 //~ ------------ HOMEPAGE ------------ //
 
 //~ ------------ ABOUT US ------------ //
@@ -611,7 +662,13 @@ footer {
 
 //~ ------------ CATEGORIES ------------ //
 .category-cards {
-  padding: 25px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  padding: 25px 0;
 
   .card-container {
     display: flex;
@@ -847,6 +904,89 @@ footer {
         &>.btn {
           position: absolute;
           bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+//~ ------------ TARIFS & BOOKING ------------ //
+.tarifs {
+  width: 100%;
+
+  .tarif-category {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 25px;
+
+    &:nth-child(odd) {
+      background-color: $primary-Alabaster;
+    }
+
+    &:nth-child(even) {
+      background-color: $secondary-WhiteChocolate;
+    }
+
+    .category-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px;
+      border-bottom: 1px dashed $PaleSilver;
+      cursor: pointer;
+
+      .category-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+
+        &>img {
+          filter: invert(80%) sepia(6%) saturate(372%) hue-rotate(334deg) brightness(96%) contrast(91%);
+        }
+      }
+    }
+
+    .services-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .service-card {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      width: 500px;
+      min-height: 100px;
+      border: 1px solid $Khaki;
+      border-radius: 5px;
+      background: url('../media/deco/flower-bg-flipped.svg') top right / contain no-repeat, url('../media/deco/textured-bg.webp') center center / cover no-repeat;
+
+      .service-details {
+        max-width: 150px;
+        color: $Cinereous;
+        &>h4 {
+          color: $accent-BrownShadow;
+        }
+        &>p {
+          font-size: .75rem;
+          line-height: normal;
+        }
+      }
+
+      &>span {
+        font-family: $bolderText;
+      }
+
+      @media screen and (max-width: 580px) {
+        .icon-desktop{
+          display: none;
         }
       }
     }
@@ -1126,17 +1266,19 @@ footer {
         gap: 15px;
       }
 
-      &>figure, &>.user-names>figure{
+      &>figure,
+      &>.user-names>figure {
         display: flex;
         border-radius: $radius-15;
         border: 1px solid $accent-BrownShadow;
         padding: 10px;
-        
-        &>img{
+
+        &>img {
           filter: invert(51%) sepia(35%) saturate(320%) hue-rotate(346deg) brightness(88%) contrast(87%);
         }
-        &>figcaption{
-          &>input{
+
+        &>figcaption {
+          &>input {
             background-color: transparent;
             color: $default-Black;
           }
