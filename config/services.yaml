@@ -22,7 +22,7 @@ services:
     App\Service\GoogleClientService:
         arguments:
             $credentialsPath: '%env(GOOGLE_APPLICATION_CREDENTIALS)%'
-
+            $apiKey: '%google_api_key%'
     App\Service\GoogleCalendarService:
         arguments:
             $googleClientService: '@App\Service\GoogleClientService'

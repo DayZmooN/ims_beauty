@@ -3,19 +3,19 @@
 namespace App\Service;
 
 use Google_Client;
-use App\Service\GoogleCalendarService;
-use Google_Service_Calendar;
-
 
 class GoogleClientService
 {
     private $client;
 
-    public function __construct(string $credentialsPath)
+    public function __construct(string $credentialsPath, string $apiKey)
     {
         $this->client = new Google_Client();
         $this->client->setAuthConfig($credentialsPath);
         $this->client->setScopes(['https://www.googleapis.com/auth/calendar']);
+
+        // Ajoutez cette ligne pour inclure la clé API
+        $this->client->setDeveloperKey($apiKey);
     }
 
     public function getClient(): Google_Client
