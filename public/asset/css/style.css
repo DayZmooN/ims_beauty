@@ -102,6 +102,7 @@ body {
   scroll-behavior: smooth;
   line-height: 1.6rem;
   min-height: 100vh;
+  transition: all 0.3s;
   background-color: #F8F8F8;
 }
 
@@ -632,6 +633,29 @@ footer > .copyrights > p {
   color: #937962;
 }
 
+.homepage-soins {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 25px;
+  padding: 25px 0;
+  width: 100%;
+  background-color: #F5EFE8;
+}
+.homepage-soins > a {
+  max-width: 250px;
+  font-family: "Marcellus";
+  color: #937962;
+  padding: 15px 30px;
+  border: 1px solid #937962;
+}
+.homepage-soins > a:hover {
+  background-color: #937962;
+  color: #F5EFE8;
+}
+
 .about-us-presentation {
   display: flex;
   flex-direction: row-reverse;
@@ -826,7 +850,8 @@ footer > .copyrights > p {
   gap: 25px;
   padding: 25px 0;
 }
-.category-cards .card-container {
+
+.card-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -834,7 +859,8 @@ footer > .copyrights > p {
   align-items: center;
   gap: 15px;
 }
-.category-cards .card-container > .category-card {
+
+.category-card {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -845,24 +871,25 @@ footer > .copyrights > p {
   min-height: 500px;
   border-radius: 5px;
   border: 1px solid #978178;
+  background-color: #F8F8F8;
 }
-.category-cards .card-container > .category-card .category-thumbnail {
+.category-card .category-thumbnail {
   background: url("../media/deco/flower-bg-deco.svg") top/contain no-repeat;
   padding: 20px;
   width: 258px;
 }
-.category-cards .card-container > .category-card .category-thumbnail > img {
+.category-card .category-thumbnail > img {
   width: 160px;
   height: 160px;
   border-radius: 100%;
   background-color: #937962;
   padding: 5px;
 }
-.category-cards .card-container > .category-card .category-thumbnail > figcaption > h3 {
+.category-card .category-thumbnail > figcaption > h3 {
   color: #978178;
   text-decoration: underline;
 }
-.category-cards .card-container > .category-card .card-desc {
+.category-card .card-desc {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -870,10 +897,10 @@ footer > .copyrights > p {
   gap: 15px;
   padding: 15px;
 }
-.category-cards .card-container > .category-card .card-desc > p {
+.category-card .card-desc > p {
   color: #4D4D4D;
 }
-.category-cards .card-container > .category-card:hover {
+.category-card:hover {
   transform: scale(1.01);
 }
 

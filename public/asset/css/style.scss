@@ -529,6 +529,30 @@ footer {
   }
 }
 
+.homepage-soins{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 25px;
+  padding: 25px 0;
+  width: 100%;
+  background-color: $primary-Alabaster;
+
+  &>a{
+    max-width: 250px;
+    font-family: $bonusFont;
+    color: $accent-BrownShadow;
+    padding: 15px 30px;
+    border: 1px solid $accent-BrownShadow;
+    &:hover{
+      background-color: $accent-BrownShadow;
+      color: $primary-Alabaster;
+    }
+  }
+}
+
 //~ ------------ ABOUT US ------------ //
 //? -------- MAIN -------- //
 .about-us-presentation {
@@ -749,63 +773,64 @@ footer {
   align-items: center;
   gap: 25px;
   padding: 25px 0;
+}
 
-  .card-container {
+.card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.category-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  max-width: 300px;
+  min-height: 500px;
+  border-radius: $radius-5;
+  border: 1px solid $Cinereous;
+  background-color: $default-White;
+
+  .category-thumbnail {
+    background: url("../media/deco/flower-bg-deco.svg") top / contain no-repeat;
+    padding: 20px;
+    width: 258px;
+
+    &>img {
+      width: 160px;
+      height: 160px;
+      border-radius: 100%;
+      background-color: $accent-BrownShadow;
+      padding: 5px;
+    }
+
+    &>figcaption>h3 {
+      color: $Cinereous;
+      text-decoration: underline;
+    }
+  }
+
+  .card-desc {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 15px;
+    padding: 15px;
 
-    &>.category-card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      text-align: center;
-      max-width: 300px;
-      min-height: 500px;
-      border-radius: $radius-5;
-      border: 1px solid $Cinereous;
-
-      .category-thumbnail {
-        background: url("../media/deco/flower-bg-deco.svg") top / contain no-repeat;
-        padding: 20px;
-        width: 258px;
-
-        &>img {
-          width: 160px;
-          height: 160px;
-          border-radius: 100%;
-          background-color: $accent-BrownShadow;
-          padding: 5px;
-        }
-
-        &>figcaption>h3 {
-          color: $Cinereous;
-          text-decoration: underline;
-        }
-      }
-
-      .card-desc {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 15px;
-        padding: 15px;
-
-        &>p {
-          color: $light-Black;
-        }
-      }
-
-      &:hover {
-        transform: scale(1.01);
-      }
+    &>p {
+      color: $light-Black;
     }
+  }
+
+  &:hover {
+    transform: scale(1.01);
   }
 }
 
