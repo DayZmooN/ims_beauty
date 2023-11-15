@@ -111,6 +111,7 @@ class CartController extends AbstractController
 
 
 
+
     // private function getAvailableTimeSlots($selectedMonth = null)
     // {
     //     $googleCalendarSlots = $this->googleCalendarService->getAvailableSlotsGoogle();

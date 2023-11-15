@@ -2,7 +2,7 @@
 # Files in the packages/ subdirectory configure your dependencies.
 
 parameters:
-    google_api_key: 'AIzaSyAJOE5ji9Sz-bj7ksBG8kWV9BXc1y_wk7E'
+    # google_api_key: 'AIzaSyAJOE5ji9Sz-bj7ksBG8kWV9BXc1y_wk7E'
 
 services:
     # Default configuration for services in *this* file
@@ -25,12 +25,17 @@ services:
     App\Service\GoogleClientService:
         arguments:
             $credentialsPath: '%env(GOOGLE_APPLICATION_CREDENTIALS)%'
-            $apiKey: '%google_api_key%'
+
     App\Service\GoogleCalendarService:
         arguments:
             $googleClientService: '@App\Service\GoogleClientService'
             $calendarId: '%env(GOOGLE_CALENDAR_ID)%'
-            $googleApiKey: '%google_api_key%'
+            # Supprimez cette ligne car vous ne l'utilisez plus
+            # $googleApiKey: '%env(GOOGLE_API_KEY)%'
+
+
+            # Vous pourriez ne pas avoir besoin de passer la clé API ici
+            # $googleApiKey: '%google_api_key%'
 
     # Other service definitions...
 

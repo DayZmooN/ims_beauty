@@ -16,15 +16,13 @@ class GoogleCalendarService
     private $client;
     private $calendarId;
     private $googleClientService;
-    private $googleApiKey;
+    // private $googleApiKey;
 
-    public function __construct(GoogleClientService $googleClientService, string $calendarId, string $googleApiKey)
+    public function __construct(GoogleClientService $googleClientService, string $calendarId)
     {
         $this->googleClientService = $googleClientService;
-        $this->calendarId = $calendarId;
-        $this->googleApiKey = $googleApiKey;
-
         $this->client = $this->googleClientService->getClient();
+        $this->calendarId = $calendarId;
 
         // Configurez le client Guzzle avec l'option RequestOptions::VERIFY pour désactiver la vérification SSL
         $this->client->setHttpClient(new Client([
@@ -57,10 +55,24 @@ class GoogleCalendarService
             $slotDateTime = new DateTime($slot);
             $availableSlotsFormatted[] = $slotDateTime->format('Y-m-d H:i:s');
         }
+        try {
+            $events = $service->events->listEvents($this->calendarId, $optParams);
+            // ... le reste du code ...
+        } catch (Exception $e) {
+            // Journaliser l'erreur et/ou la renvoyer
+            error_log($e->getMessage());
+            return []; // ou gérer l'erreur comme vous le souhaitez
+        }
+
         return $availableSlotsFormatted;
 
 
-        return $availableSlots;
+        // return $availableSlots;
+    }
+    public function getAuthUrl()
+    {
+        $client = $this->googleClientService->getClient();
+        return $client->createAuthUrl();
     }
 
     private function calculateAvailableSlots($events)

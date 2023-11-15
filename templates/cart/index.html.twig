@@ -86,7 +86,9 @@
     <div class="alert alert-success">
         {{ flashMessage }}
     </div>
+   
 {% endfor %}
+
 
 {% for flashMessage in app.flashes('error') %}
     <div class="alert alert-danger">
@@ -95,6 +97,7 @@
 {% endfor %}
 
     {% endif %}
+
 </section>
 
 {% endblock %}
