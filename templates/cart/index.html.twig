@@ -65,7 +65,9 @@
                                                    value="{{ slot }}" required>
                                             <label for="google_slot_{{ item.service.id }}_{{ loop.index }}">{{ slot }}</label>
                                         </div>
+                                      
                                     {% endfor %}
+                                      <a href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger">Retirer</a>
                                 </div>
                             {% endif %}
                             </td>
