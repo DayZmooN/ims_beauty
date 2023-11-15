@@ -5,6 +5,29 @@ controllers:
     type: attribute
 
 # routes.yaml
+a-propos:
+    path: /a-propos
+    controller: 'App\Controller\AboutUsController::index'
+
+accueil:
+    path: /
+    controller: 'App\Controller\PageController::index'
+
+soins:
+    path: /soins
+    controller: 'App\Controller\CategoriesController::index'
+
+soin_details:
+    path: /nos-soins/{categoryId}  # Use the same parameter name as in the URL
+    controller: 'App\Controller\SoinsController::category'
+    requirements:
+        categoryId: '\d+'
+
+tarifs:
+    path: /tarifs
+    controller: 'App\Controller\OurPricesController::index'
+
+
 category_list_services:
     path: /category/{id}/services
     controller: 'App\Controller\BookingServicesController::listServices'

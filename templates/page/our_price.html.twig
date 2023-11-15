@@ -1,20 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello OurPricesController!{% endblock %}
+{% block title %}Nos Tarifs
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp/www/ims_beauty/src/Controller/OurPricesController.php'|file_link(0) }}">src/Controller/OurPricesController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp/www/ims_beauty/templates/our_prices/index.html.twig'|file_link(0) }}">templates/our_prices/index.html.twig</a></code></li>
-    </ul>
-</div>
+	{% include './components/page-header.html.twig' with {'page_name': page_name, 'breadcrumbs': breadcrumbs} %}
+	<section class="tarifs">
+		{% for category in categories %}
+            <div class="tarif-category">
+                <div class="category-header" data-category-id="{{ loop.index }}" onclick="toggleServices('{{ loop.index }}')">
+                    <div class="category-title">
+                        <img src="{{asset('asset/media/icons/deco/laurel.svg')}}" alt="">
+                        <h2>{{ category.name }}</h2>
+                    </div>
+                    <img src="{{asset('asset/media/icons/navigator/minus.svg')}}" alt="" id="icon-{{ loop.index }}" class="icons">
+                </div>
+                
+				<div id="services-{{ loop.index }}" class="services-container">
+                {% for service in category.services %}
+                    <div class="service-card">
+                        <img src="{{asset('asset/media/icons/deco/massage-stones.svg')}}" alt="" class="icon-desktop">
+                        <div class="service-details">
+                                <h4>{{ service.name }}</h4>
+                                <h6>({{ service.duration }})</h6>
+                            <p>{{ service.description }}</p> 
+                        </div>
+                        <span>{{ service.price }}€</span>
+                        <div class="alt-animated-btn">
+                            <a href="">
+                                <img src="{{asset('asset/media/icons/shopAdd.svg')}}" alt="">
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+				</div>
+            </div>
+        {% endfor %}
+	</section>
 {% endblock %}

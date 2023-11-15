@@ -4,14 +4,15 @@
 {% endblock %}
 
 {% block body %}
+{% include './components/page-header.html.twig' with {'page_name': page_name, 'breadcrumbs': breadcrumbs} %}
 	<section class="about-us-presentation">
 
 		<figure>
 			<img src="{{asset('asset/media/white-lights-banner.webp')}}" alt="">
 			<figcaption>
-				<a href="#"><img src="{{asset('/asset/media/icons/socialInstagram.svg')}}" alt="" class="icons"></a>
-				<a href="#"><img src="{{asset('/asset/media/icons/contactMail.svg')}}" alt="" class="icons"></a>
-				<a href="#"><img src="{{asset('/asset/media/icons/socialFacebook.svg')}}" alt="" class="icons"></a>
+				<a href="https://www.instagram.com/imsbeauty01/" target="_blank"><img src="{{asset('/asset/media/icons/socialInstagram.svg')}}" alt="" class="icons"></a>
+				<a href="mailto:someone@example.com"><img src="{{asset('/asset/media/icons/contactMail.svg')}}" alt="" class="icons"></a>
+				<a href="https://www.facebook.com/imsbeauty01/" target="_blank"><img src="{{asset('/asset/media/icons/socialFacebook.svg')}}" alt="" class="icons"></a>
 			</figcaption>
 		</figure>
 
@@ -21,7 +22,7 @@
 
 			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur ea aperiam ullam quos perspiciatis necessitatibus asperiores, obcaecati aliquid molestiae voluptates quam quisquam illo iste harum, enim inventore aliquam fugiat labore a culpa delectus error nostrum minus! Modi nostrum facilis laborum repudiandae culpa quos atque consequatur laudantium iste nisi quaerat earum, a quasi fugit. Animi reprehenderit ab dignissimos vero deserunt. Debitis praesentium veritatis, accusamus ut aperiam dicta tempora inventore ratione voluptas nesciunt vel totam adipisci culpa ad expedita consequatur perferendis officiis commodi cum temporibus. Corrupti eos sunt quia ipsa qui suscipit, ea reiciendis quasi consectetur incidunt laudantium repellat sit doloremque aliquam!</p>
 
-			<div class="redirection-buttons" id="contact">
+			<div class="redirection-buttons">
 				<div class="animated-btn btn-two">
 					<a href="{{ path('app_categories') }}">
 						<span>Nos Soins</span>
@@ -38,7 +39,8 @@
 		</div>
 
 	</section>
-	<section class="contact-form">
+	{% include "./components/insta-feed.html.twig" %}
+	<section class="contact-form" id="contact">
 		<div class="contact-container">
 			<div class="contact-info">
 				<h2>Nous Contactez</h2>
@@ -56,21 +58,21 @@
 						<img src="{{asset('asset/media/icons/contactLocation.svg')}}" alt="" class="icons">
 						<figcaption>
 							<p>Où nous trouver ?</p>
-							<p>ImsBeauty@imsbeauty.com</p>
+							<p>135 Avenue de Macon - 01440 VIRIAT</p>
 						</figcaption>
 					</figure>
 					<figure class="contact-element">
 						<img src="{{asset('asset/media/icons/contactPhone.svg')}}" alt="" class="icons">
 						<figcaption>
 							<p>Notre numéro</p>
-							<p>ImsBeauty@imsbeauty.com</p>
+							<p>07 56 88 15 08</p>
 						</figcaption>
 					</figure>
 				</div>
 
 			</div>
 			<div class="form-container">
-				<form action="#">
+				<form action="" method="post">
 					<input type="text" placeholder="Votre prénom">
 					<input type="text" placeholder="Votre email">
 					<input type="text" placeholder="Votre numéro">
@@ -82,5 +84,8 @@
             
             </div>
 		</div>
+	</section>
+	<section class="map-location">
+		<iframe id="map-aboutus" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2760.9057954274667!2d5.21462837676053!3d46.21232898321194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f35229299dfef1%3A0xc856e6b53d1e1e0e!2s135%20Av.%20de%20M%C3%A2con%2C%2001000%20Viriat!5e0!3m2!1sen!2sfr!4v1699610459607!5m2!1sen!2sfr" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 	</section>
 {% endblock %}

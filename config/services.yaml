@@ -2,12 +2,9 @@
 # Files in the packages/ subdirectory configure your dependencies.
 
 parameters:
-        google_api_key: 'AIzaSyAJOE5ji9Sz-bj7ksBG8kWV9BXc1y_wk7E'
+    google_api_key: 'AIzaSyAJOE5ji9Sz-bj7ksBG8kWV9BXc1y_wk7E'
 
 services:
-    # Make sure GuzzleHttp\ClientInterface is properly aliased to GuzzleHttp\Client
-    GuzzleHttp\ClientInterface: '@GuzzleHttp\Client'
-
     # Default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
@@ -19,6 +16,12 @@ services:
         resource: '../src/*'
         exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
 
+    App\Service\BreadcrumbService:
+        arguments:
+            $router: '@router'
+            $requestStack: '@request_stack'
+            $entityManager: '@doctrine.orm.entity_manager'
+
     App\Service\GoogleClientService:
         arguments:
             $credentialsPath: '%env(GOOGLE_APPLICATION_CREDENTIALS)%'
@@ -29,13 +32,14 @@ services:
             $calendarId: '%env(GOOGLE_CALENDAR_ID)%'
             $googleApiKey: '%google_api_key%'
 
-    # Autres définitions de services...
+    # Other service definitions...
 
-    # Configuration du GlobalTemplateVariablesSubscriber
     App\Controller\GlobalTemplateVariablesSubscriber:
         tags:
             - { name: 'kernel.event_subscriber' }
 
+    # Ensure GuzzleHttp\ClientInterface is properly aliased to GuzzleHttp\Client
+    GuzzleHttp\ClientInterface: '@GuzzleHttp\Client'
     GuzzleHttp\Client:
         class: GuzzleHttp\Client
 
