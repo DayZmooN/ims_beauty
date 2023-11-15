@@ -766,12 +766,7 @@ footer {
 
 //~ ------------ CATEGORIES ------------ //
 .category-cards {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
+  width: 95%;
   padding: 25px 0;
 }
 
