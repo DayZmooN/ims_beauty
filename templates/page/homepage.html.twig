@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<section class="homepage-CTA">
+		<figure class="CTA-banner">
+			<img src="{{asset('asset/media/skincare-banner.webp')}}" alt="">
+			<img src="{{asset('asset/media/deco/flower-bg-deco.svg')}}" alt="" class="banner-deco">
+		</figure>
+
+		<div class="cta-ims">
+			<figure class="logo-cta">
+				<img src="{{asset('asset/media/logo/logoKhakiText.svg')}}" alt="">
+				<figcaption>
+					<p>Eveillez votre beauté, révélez votre éclat.</p>
+				</figcaption>
+			</figure>
+			<figure class="adress-cta">
+				<img src="{{asset('asset/media/icons/contactLocation.svg')}}" alt="">
+				<figcaption>
+					<p>135 Avenue de Macon - 01440 VIRIAT</p>
+				</figcaption>
+			</figure>
+			<div class="animated-btn btn-two">
+				<a href="">
+					<span>Réservez maintenant</span>
+					<img src="{{asset('asset/media/icons/deco/lotus.svg')}}" alt="">
+				</a>
+			</div>
+		</div>
+	</section>
+
+{% endblock %}

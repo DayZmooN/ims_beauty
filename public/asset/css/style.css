@@ -125,7 +125,6 @@ label {
 h1, h2, h3, h4, h5, h6 {
   color: #4D4D4D;
   font-family: "Alex Brush";
-  line-height: normal;
   font-weight: normal;
   font-style: normal;
 }
@@ -230,7 +229,6 @@ input, textarea {
   color: #978178;
   width: 150px;
   height: 40px;
-  line-height: 40px;
   padding: 10px;
   transition: all 0.3s;
 }
@@ -269,6 +267,7 @@ input, textarea {
   height: 100%;
   z-index: 1;
   transition: all 0.3s;
+  border-radius: 1px;
   border: 1px solid #978178;
 }
 
@@ -560,6 +559,77 @@ footer > .copyrights > p {
     /* Adjust the background size and position for smaller screens */
     background-size: 150px;
   }
+}
+
+.homepage-CTA {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  background: url("../media/deco/textured-bg.webp") center center/cover no-repeat;
+}
+.homepage-CTA .CTA-banner {
+  position: relative;
+  overflow: hidden;
+  max-width: 615px;
+  width: 100%;
+  padding: 10px;
+  padding-bottom: 0;
+  border-radius: 360px 360px 0 0;
+  background-color: #937962;
+}
+.homepage-CTA .CTA-banner > img {
+  width: 100%;
+  height: 680px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  opacity: 75%;
+  border-radius: 360px 360px 0 0;
+}
+.homepage-CTA .CTA-banner .banner-deco {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: 40%;
+}
+.homepage-CTA .cta-ims {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  max-width: 850px;
+  width: 100%;
+  padding: 25px;
+  text-align: center;
+}
+.homepage-CTA .cta-ims .logo-cta > img {
+  width: 200px;
+}
+.homepage-CTA .cta-ims .logo-cta > figcaption > p {
+  font-size: 0.7rem;
+  font-family: "Marcellus";
+  color: #937962;
+}
+.homepage-CTA .cta-ims .adress-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 15px;
+}
+.homepage-CTA .cta-ims .adress-cta > img {
+  filter: invert(50%) sepia(12%) saturate(884%) hue-rotate(346deg) brightness(94%) contrast(88%);
+}
+.homepage-CTA .cta-ims .adress-cta > figcaption > p {
+  font-size: 0.8rem;
+  font-family: "Marcellus";
+  color: #937962;
 }
 
 .about-us-presentation {
