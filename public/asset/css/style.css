@@ -130,6 +130,16 @@ h1, h2, h3, h4, h5, h6 {
   font-style: normal;
 }
 
+::-moz-selection {
+  background: #BFAE9F; /* Background color of the selection */
+  color: #F5EFE8; /* Color of the text during selection */
+}
+
+::selection {
+  background: #BFAE9F; /* Background color of the selection */
+  color: #F5EFE8; /* Color of the text during selection */
+}
+
 h1 {
   font-family: "Brown Sugar";
   font-size: 2.6rem;
