@@ -2,7 +2,7 @@
 {% block body %}
 	<section class="homepage-CTA">
 		<figure class="CTA-banner">
-			<img src="{{asset('asset/media/skincare-banner.webp')}}" alt="">
+			<img src="{{asset('asset/media/banners/skincare-banner.webp')}}" alt="">
 			<img src="{{asset('asset/media/deco/flower-bg-deco.svg')}}" alt="" class="banner-deco">
 		</figure>
 
@@ -38,7 +38,7 @@
             {% if loop.index <= 4 %}
                 <div class="category-card">
                     <figure class="category-thumbnail">
-                        <img src="{{ asset('asset/media/epilation-brow-banner.webp') }}" alt="">
+                        <img src="{{ asset('asset/media/banners/' ~ category.thumbnail) }}" alt="" class="category-banner">
                         <figcaption>
                             <h3>{{ category.name }}</h3>
                         </figcaption>

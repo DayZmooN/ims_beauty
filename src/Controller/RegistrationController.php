@@ -27,7 +27,7 @@ class RegistrationController extends AbstractController
         $this->emailVerifier = $emailVerifier;
     }
 
-    #[Route('/register', name: 'app_register')]
+    #[Route('/inscription', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UsersAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
         $user = new Users();
@@ -55,7 +55,7 @@ class RegistrationController extends AbstractController
                     ->from(new Address('ims-beauty@gmail.com', 'IMS Beauty'))
                     ->to($user->getEmail())
                     ->subject('Please Confirm your Email')
-                    ->htmlTemplate('registration/confirmation_email.html.twig')
+                    ->htmlTemplate('security/confirmation_email.html.twig')
             );
             // do anything else you need here, like send an email
 
@@ -66,7 +66,7 @@ class RegistrationController extends AbstractController
             );
         }
 
-        return $this->render('registration/register.html.twig', [
+        return $this->render('security/inscription.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }

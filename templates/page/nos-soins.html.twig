@@ -9,7 +9,7 @@
 			{% for category in categories %}	
 				<div class="category-card">
 					<figure class="category-thumbnail">
-						<img src="{{asset('asset/media/epilation-brow-banner.webp')}}" alt="">
+						<img src="{{ asset('asset/media/banners/' ~ category.thumbnail) }}" alt="" class="category-banner">
 						<figcaption>
 							<h3>{{ category.name }}</h3>
 						</figcaption>

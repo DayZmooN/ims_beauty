@@ -23,8 +23,8 @@ class CategoriesCrudController extends AbstractCrudController
                 ->onlyOnIndex(),
             TextField::new('name'),
             ImageField::new('thumbnail')
-                ->setBasePath('uploads/')
-                ->setUploadDir('public/uploads'),
+                ->setBasePath('asset/media/banners')
+                ->setUploadDir('public/asset/media/banners'),
         ];
     }
 }

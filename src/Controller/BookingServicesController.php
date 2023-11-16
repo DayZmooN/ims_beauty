@@ -28,11 +28,6 @@ class BookingServicesController extends AbstractController
         $this->calendarService = $calendarService;
     }
 
-
-
-
-
-
     #[Route('/category/{id}/services', name: 'category_list_services')]
     public function listServices(Categories $categories, ServicesRepository $serviceRepository): Response
     {
@@ -43,13 +38,6 @@ class BookingServicesController extends AbstractController
             'services' => $services,
         ]);
     }
-
-
-
-
-
-
-
 
 
     // public function createEvent(): Response

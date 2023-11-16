@@ -390,12 +390,23 @@ footer {
   }
 
   &>.copyrights {
-    &>p {
+
+    &>p
+    {
+    &>a {
+      color: $default-White;
       font-size: 0.5rem;
       text-align: center;
       line-height: normal;
+      &:hover{
+        color: $Khaki;
+      }
     }
+    font-size: 0.5rem;
+    text-align: center;
+    line-height: normal;
   }
+}
 }
 
 //? -------- SUB HEADER -------- //
@@ -475,7 +486,7 @@ footer {
       border-radius: 360px 360px 0 0;
     }
 
-    .banner-deco{
+    .banner-deco {
       position: absolute;
       top: 0;
       left: 0;
@@ -485,7 +496,7 @@ footer {
     }
   }
 
-  .cta-ims{
+  .cta-ims {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -496,12 +507,13 @@ footer {
     padding: 25px;
     text-align: center;
 
-    .logo-cta{
-      &>img{
+    .logo-cta {
+      &>img {
         width: 200px;
       }
-      &>figcaption{
-        &>p{
+
+      &>figcaption {
+        &>p {
           font-size: .7rem;
           font-family: $bonusFont;
           color: $accent-BrownShadow;
@@ -509,17 +521,19 @@ footer {
       }
     }
 
-    .adress-cta{
+    .adress-cta {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 5px;
       padding: 15px;
-      &>img{
+
+      &>img {
         filter: invert(50%) sepia(12%) saturate(884%) hue-rotate(346deg) brightness(94%) contrast(88%);
       }
-      &>figcaption{
-        &>p{
+
+      &>figcaption {
+        &>p {
           font-size: .8rem;
           font-family: $bonusFont;
           color: $accent-BrownShadow;
@@ -529,7 +543,7 @@ footer {
   }
 }
 
-.homepage-soins{
+.homepage-soins {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -540,13 +554,14 @@ footer {
   width: 100%;
   background-color: $primary-Alabaster;
 
-  &>a{
+  &>a {
     max-width: 250px;
     font-family: $bonusFont;
     color: $accent-BrownShadow;
     padding: 15px 30px;
     border: 1px solid $accent-BrownShadow;
-    &:hover{
+
+    &:hover {
       background-color: $accent-BrownShadow;
       color: $primary-Alabaster;
     }
@@ -801,6 +816,7 @@ footer {
       width: 160px;
       height: 160px;
       border-radius: 100%;
+      object-fit: cover;
       background-color: $accent-BrownShadow;
       padding: 5px;
     }

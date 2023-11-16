@@ -531,6 +531,15 @@ footer > .copyrights > p {
   text-align: center;
   line-height: normal;
 }
+footer > .copyrights > p > a {
+  color: #F8F8F8;
+  font-size: 0.5rem;
+  text-align: center;
+  line-height: normal;
+}
+footer > .copyrights > p > a:hover {
+  color: #BFAE9F;
+}
 
 .page-header {
   display: flex;
@@ -888,6 +897,8 @@ footer > .copyrights > p {
   width: 160px;
   height: 160px;
   border-radius: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
   background-color: #937962;
   padding: 5px;
 }
