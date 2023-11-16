@@ -1204,7 +1204,6 @@ footer {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
   width: 100%;
   padding: 0 5px;
 
@@ -1234,6 +1233,7 @@ footer {
       display: flex;
       gap: 5px;
       align-items: center;
+      width: 90%;
 
       &>label {
         font-size: 0.75rem;
@@ -1488,10 +1488,11 @@ footer {
   //? -------- SETTINGS -------- //
   #settings {
     display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
     .form-container {
       display: flex;
       flex-direction: column;
@@ -1520,13 +1521,16 @@ footer {
         border-radius: $radius-5;
         border: 1px solid $accent-BrownShadow;
         background-color: transparent;
-        &:hover{
+
+        &:hover {
           background-color: #eee3d798;
         }
-        &>img{
+
+        &>img {
           filter: invert(51%) sepia(35%) saturate(320%) hue-rotate(346deg) brightness(88%) contrast(87%);
         }
-        &>figcaption>input{
+
+        &>figcaption>input {
           background-color: transparent;
           color: $default-Black;
         }
