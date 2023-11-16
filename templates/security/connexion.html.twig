@@ -1,15 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Connectez-vous !{% endblock %}
 
 {% block body %}
 <form method="post" class="form-login">
-    {# {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %} #}
-
     <h1>Connectez-vous</h1>
     <div class="form-connexion">
         <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" placeholder="Votre adresse email*" required autofocus>

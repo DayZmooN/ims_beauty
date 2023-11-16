@@ -185,7 +185,7 @@ main {
 }
 
 input, textarea {
-  padding: 10px;
+  padding: 10px 5px;
   background-color: #EEE3D7;
   color: #9E9E9E;
   outline: transparent;
@@ -381,7 +381,7 @@ header > .nav-menu > nav > ul > li > a {
 header > .nav-menu > nav > ul > li > a:hover {
   color: #4D4D4D;
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 850px) {
   header > .nav-menu > nav > ul {
     display: none;
     justify-content: center;
@@ -407,6 +407,7 @@ footer {
   display: flex;
   flex-direction: column;
   width: 100%;
+  padding-top: 15px;
   margin-top: auto;
   background-color: #4D4D4D;
   color: #F8F8F8;
@@ -595,7 +596,9 @@ footer > .copyrights > p > a:hover {
   position: relative;
   overflow: hidden;
   max-width: 615px;
-  width: 100%;
+  max-height: 680px;
+  width: 60vw;
+  height: 60vw;
   padding: 10px;
   padding-bottom: 0;
   border-radius: 360px 360px 0 0;
@@ -603,7 +606,7 @@ footer > .copyrights > p > a:hover {
 }
 .homepage-CTA .CTA-banner > img {
   width: 100%;
-  height: 680px;
+  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: center;
@@ -616,7 +619,7 @@ footer > .copyrights > p > a:hover {
   top: 0;
   left: 0;
   width: auto;
-  height: 40%;
+  height: 50%;
 }
 .homepage-CTA .cta-ims {
   display: flex;
@@ -676,6 +679,12 @@ footer > .copyrights > p > a:hover {
   color: #F5EFE8;
 }
 
+@media screen and (max-width: 850px) {
+  .homepage-CTA .CTA-banner {
+    width: 80vw;
+    height: 80vw;
+  }
+}
 .about-us-presentation {
   display: flex;
   flex-direction: row-reverse;
@@ -687,8 +696,10 @@ footer > .copyrights > p > a:hover {
 }
 .about-us-presentation > figure {
   position: relative;
-  width: 500px;
-  height: 500px;
+  width: 40vw;
+  height: 40vw;
+  max-width: 500px;
+  max-height: 500px;
   padding: 15px;
   border-radius: 100%;
   background-color: #937962;
@@ -697,15 +708,21 @@ footer > .copyrights > p > a:hover {
   width: 100%;
   height: 100%;
   border-radius: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .about-us-presentation > figure > figcaption {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   bottom: 0;
   left: 50%;
   transform: translate(-50%);
   width: -moz-fit-content;
   width: fit-content;
-  padding: 25px;
+  max-width: 150px;
+  padding: 15px;
   border-radius: 180px;
   background-color: #937962;
 }
@@ -748,6 +765,7 @@ footer > .copyrights > p > a:hover {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  align-items: center;
   align-self: stretch;
   padding: 15px;
   border-radius: 25px;
@@ -758,13 +776,14 @@ footer > .copyrights > p > a:hover {
 .contact-form {
   text-align: center;
   width: 100%;
-  padding: 25px;
   background: url("../media/deco/textured-bg.webp") center center/cover no-repeat;
 }
 .contact-form > .contact-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  align-items: center;
+  gap: 25px;
   padding: 25px;
 }
 .contact-form > .contact-container > .contact-info {
@@ -861,6 +880,34 @@ footer > .copyrights > p > a:hover {
   filter: grayscale(100%);
 }
 
+@media screen and (max-width: 850px) {
+  .about-us-presentation > figure {
+    width: 100vw;
+    height: 100vw;
+    min-width: 100px;
+    min-height: 100px;
+  }
+  .about-us-presentation > figure > figcaption {
+    width: 150px;
+    height: 50px;
+    padding: 10px;
+  }
+  .about-us-presentation > figure > figcaption > a > .icons {
+    width: 35px;
+  }
+  .about-us-presentation .presentation > blockquote {
+    width: 80%;
+  }
+  .about-us-presentation .presentation .redirection-buttons {
+    height: 200px;
+  }
+  .eui-widget-title::before,
+  .eui-widget-title::after,
+  .es-widget-title::before,
+  .es-widget-title::after {
+    display: none !important;
+  }
+}
 .category-cards {
   width: 95%;
   padding: 25px 0;
@@ -923,6 +970,7 @@ footer > .copyrights > p > a:hover {
 
 .category-row {
   display: flex;
+  flex-direction: row;
   width: 100%;
   height: 100%;
 }
@@ -1146,23 +1194,31 @@ footer > .copyrights > p > a:hover {
 .form-login {
   display: flex;
   flex-direction: column;
-  align-self: center;
   align-items: center;
   justify-content: center;
-  gap: 25px;
+  text-align: center;
+  width: 100%;
+  padding: 0 5px;
 }
 .form-login > h1 {
   color: #978178;
+  padding: 15px 5px;
 }
 .form-login > .form-connexion {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  width: 650px;
-  width: 100%;
+  justify-content: center;
+  align-items: center;
+  max-width: 650px;
+  width: 90%;
   padding: 50px;
   gap: 10px;
   border: 1px solid #978178;
   border-radius: 5px;
+}
+.form-login > .form-connexion > input {
+  width: 90%;
 }
 .form-login > .form-connexion > .remember-check {
   display: flex;
@@ -1178,6 +1234,9 @@ footer > .copyrights > p > a:hover {
 }
 .form-login > .form-connexion > .button-links {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
 }
 .form-login > .form-connexion > .button-links button {
@@ -1202,6 +1261,12 @@ footer > .copyrights > p > a:hover {
   color: #937962;
 }
 
+@media screen and (max-width: 400px) {
+  .form-login > .form-connexion {
+    padding: 50px 0;
+    width: 90%;
+  }
+}
 .register {
   display: flex;
   flex-direction: column;

@@ -29,7 +29,7 @@
         {% for service in services %}
             <div id="service-detail-{{ service.id }}" class="service-detail-content">
                 <figure class="service-thumbnail">
-                    <img src="{{asset('asset/media/epilation-brow-banner.webp')}}" alt="">
+                    <img src="{{ asset('asset/media/banners/' ~ category.thumbnail) }}" alt="">
                 </figure>
                 <div class="service-info">
                     <div class="service-name-price">

@@ -216,7 +216,7 @@ header {
         }
       }
 
-      @media screen and (max-width: 800px) {
+      @media screen and (max-width: 850px) {
         display: none;
         justify-content: center;
       }
@@ -247,6 +247,7 @@ footer {
   display: flex;
   flex-direction: column;
   width: 100%;
+  padding-top: 15px;
   margin-top: auto;
   background-color: $light-Black;
   color: $default-White;
@@ -391,22 +392,23 @@ footer {
 
   &>.copyrights {
 
-    &>p
-    {
-    &>a {
-      color: $default-White;
+    &>p {
+      &>a {
+        color: $default-White;
+        font-size: 0.5rem;
+        text-align: center;
+        line-height: normal;
+
+        &:hover {
+          color: $Khaki;
+        }
+      }
+
       font-size: 0.5rem;
       text-align: center;
       line-height: normal;
-      &:hover{
-        color: $Khaki;
-      }
     }
-    font-size: 0.5rem;
-    text-align: center;
-    line-height: normal;
   }
-}
 }
 
 //? -------- SUB HEADER -------- //
@@ -471,7 +473,9 @@ footer {
     position: relative;
     overflow: hidden;
     max-width: 615px;
-    width: 100%;
+    max-height: 680px;
+    width: 60vw;
+    height: 60vw;
     padding: 10px;
     padding-bottom: 0;
     border-radius: 360px 360px 0 0;
@@ -479,7 +483,7 @@ footer {
 
     &>img {
       width: 100%;
-      height: 680px;
+      height: 100%;
       object-fit: cover;
       object-position: center;
       opacity: 75%;
@@ -491,8 +495,7 @@ footer {
       top: 0;
       left: 0;
       width: auto;
-      height: 40%;
-
+      height: 50%;
     }
   }
 
@@ -568,6 +571,15 @@ footer {
   }
 }
 
+@media screen and (max-width: 850px) {
+  .homepage-CTA {
+    .CTA-banner {
+      width: 80vw;
+      height: 80vw;
+    }
+  }
+}
+
 //~ ------------ ABOUT US ------------ //
 //? -------- MAIN -------- //
 .about-us-presentation {
@@ -581,8 +593,10 @@ footer {
 
   &>figure {
     position: relative;
-    width: 500px;
-    height: 500px;
+    width: 40vw;
+    height: 40vw;
+    max-width: 500px;
+    max-height: 500px;
     padding: 15px;
     border-radius: 100%;
     background-color: $accent-BrownShadow;
@@ -591,15 +605,20 @@ footer {
       width: 100%;
       height: 100%;
       border-radius: 100%;
+      object-fit: cover;
     }
 
     &>figcaption {
       position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       bottom: 0;
       left: 50%;
       transform: translate(-50%);
       width: fit-content;
-      padding: 25px;
+      max-width: 150px;
+      padding: 15px;
       border-radius: $radius-180;
       background-color: $accent-BrownShadow;
 
@@ -650,6 +669,7 @@ footer {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-evenly;
+      align-items: center;
       align-self: stretch;
       padding: 15px;
       border-radius: 25px;
@@ -658,19 +678,22 @@ footer {
       background-color: $primary-Alabaster;
     }
   }
+
+
 }
 
 //? -------- CONTACT FORM -------- //
 .contact-form {
   text-align: center;
   width: 100%;
-  padding: 25px;
   background: url("../media/deco/textured-bg.webp") center center / cover no-repeat;
 
   &>.contact-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    align-items: center;
+    gap: 25px;
     padding: 25px;
 
     &>.contact-info {
@@ -779,6 +802,45 @@ footer {
   }
 }
 
+@media screen and (max-width: 850px) {
+  .about-us-presentation {
+    &>figure {
+      width: 100vw;
+      height: 100vw;
+      min-width: 100px;
+      min-height: 100px;
+
+      &>figcaption {
+        width: 150px;
+        height: 50px;
+        padding: 10px;
+
+        &>a>.icons {
+          width: 35px;
+        }
+      }
+    }
+
+    .presentation {
+      &>blockquote {
+        width: 80%;
+      }
+
+      .redirection-buttons {
+        height: 200px;
+      }
+    }
+  }
+
+  .eui-widget-title::before,
+  .eui-widget-title::after,
+  .es-widget-title::before,
+  .es-widget-title::after {
+    display: none !important;
+  }
+
+}
+
 //~ ------------ CATEGORIES ------------ //
 .category-cards {
   width: 95%;
@@ -848,6 +910,7 @@ footer {
 //~ ------------ SERVICES & RDV ------------ //
 .category-row {
   display: flex;
+  flex-direction: row;
   width: 100%;
   height: 100%;
 
@@ -1117,24 +1180,33 @@ footer {
 .form-login {
   display: flex;
   flex-direction: column;
-  align-self: center;
   align-items: center;
   justify-content: center;
-  gap: 25px;
+  text-align: center;
+  width: 100%;
+  padding: 0 5px;
 
   &>h1 {
     color: $Cinereous;
+    padding: 15px 5px;
   }
 
   &>.form-connexion {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    width: 650px;
-    width: 100%;
+    justify-content: center;
+    align-items: center;
+    max-width: 650px;
+    width: 90%;
     padding: 50px;
     gap: 10px;
     border: 1px solid $Cinereous;
     border-radius: $radius-5;
+
+    &>input {
+      width: 90%;
+    }
 
     &>.remember-check {
       display: flex;
@@ -1153,6 +1225,9 @@ footer {
 
     &>.button-links {
       display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
       gap: 10px;
 
       button {
@@ -1180,6 +1255,15 @@ footer {
           }
         }
       }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .form-login {
+    &>.form-connexion {
+      padding: 50px 0;
+      width: 90%;
     }
   }
 }
