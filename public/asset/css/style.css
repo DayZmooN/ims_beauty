@@ -1344,7 +1344,9 @@ footer > .copyrights > p > a:hover {
   flex-direction: column;
   justify-content: space-between;
   padding: 25px;
-  height: 170px;
+  gap: 50px;
+  min-height: 170px;
+  height: 100%;
 }
 .dashboard .welcome-dashboard > h1 {
   font-family: "Marcellus";
@@ -1395,17 +1397,29 @@ footer > .copyrights > p > a:hover {
 }
 .dashboard .upcoming-app,
 .dashboard .past-app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 15px;
   background-color: #F5EFE8;
   padding: 15px;
   margin: 25px;
   border-radius: 15px;
 }
+.dashboard .app-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+}
 .dashboard .appointment {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  width: 300px;
-  padding: 15px;
+  max-width: 300px;
+  width: 100%;
+  padding: 5px;
   border-radius: 5px;
   border: 1px solid #BFAE9F;
 }
@@ -1432,56 +1446,80 @@ footer > .copyrights > p > a:hover {
   font-family: "Poppins";
 }
 .dashboard #settings {
-  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 }
-.dashboard #settings > form {
+.dashboard #settings .form-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   gap: 15px;
+  padding: 50px 0;
   max-width: 800px;
+  width: 100%;
   border-radius: 15px;
-  padding: 50px;
   background-color: #F5EFE8;
 }
-.dashboard #settings > form > .user-names {
+.dashboard #settings .form-container .user-names {
   display: flex;
-  gap: 15px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
-.dashboard #settings > form > figure, .dashboard #settings > form > .user-names > figure {
+.dashboard #settings .form-container .form-input {
   display: flex;
-  border-radius: 15px;
+  gap: 10px;
+  padding: 5px;
+  border-radius: 5px;
   border: 1px solid #937962;
-  padding: 10px;
+  background-color: transparent;
 }
-.dashboard #settings > form > figure > img, .dashboard #settings > form > .user-names > figure > img {
+.dashboard #settings .form-container .form-input:hover {
+  background-color: rgba(238, 227, 215, 0.5960784314);
+}
+.dashboard #settings .form-container .form-input > img {
   filter: invert(51%) sepia(35%) saturate(320%) hue-rotate(346deg) brightness(88%) contrast(87%);
 }
-.dashboard #settings > form > figure > figcaption > input, .dashboard #settings > form > .user-names > figure > figcaption > input {
+.dashboard #settings .form-container .form-input > figcaption > input {
   background-color: transparent;
   color: #1E1E1E;
 }
-.dashboard #settings > form > .settings-buttons {
-  align-self: center;
+.dashboard #settings .form-container .long-input {
+  max-width: 300px;
+  width: 80%;
 }
-.dashboard #settings > form > .settings-buttons > button {
+.dashboard #settings .form-container > .settings-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.dashboard #settings .form-container > .settings-buttons > button {
   padding: 15px;
   border-radius: 5px;
 }
-.dashboard #settings > form > .settings-buttons > button:hover {
+.dashboard #settings .form-container > .settings-buttons > button:hover {
   color: #F5EFE8;
 }
-.dashboard #settings > form > .settings-buttons .update-btn {
+.dashboard #settings .form-container > .settings-buttons .update-btn {
   border: 1px solid #5E995D;
   color: #5E995D;
 }
-.dashboard #settings > form > .settings-buttons .update-btn:hover {
+.dashboard #settings .form-container > .settings-buttons .update-btn:hover {
   background-color: #5E995D;
 }
-.dashboard #settings > form > .settings-buttons .delete-btn {
+.dashboard #settings .form-container > .settings-buttons .delete-btn {
   border: 1px solid #AB4545;
   color: #AB4545;
 }
-.dashboard #settings > form > .settings-buttons .delete-btn:hover {
+.dashboard #settings .form-container > .settings-buttons .delete-btn:hover {
   background-color: #AB4545;
 }
 

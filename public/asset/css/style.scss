@@ -1089,21 +1089,22 @@ footer {
         }
 
         @media screen and (max-width: 850px) {
-          .service-name-price{
+          .service-name-price {
             &>h2 {
               font-weight: 400;
               font-size: 1.5rem;
             }
-  
+
             &>p {
               font-weight: 600;
               font-size: 1.5rem;
             }
           }
-          &>p{
+
+          &>p {
             font-size: .9rem;
           }
-      }
+        }
       }
     }
   }
@@ -1361,7 +1362,9 @@ footer {
     flex-direction: column;
     justify-content: space-between;
     padding: 25px;
-    height: 170px;
+    gap: 50px;
+    min-height: 170px;
+    height: 100%;
 
     &>h1 {
       font-family: $bonusFont;
@@ -1422,18 +1425,31 @@ footer {
 
   .upcoming-app,
   .past-app {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 15px;
     background-color: $primary-Alabaster;
     padding: 15px;
     margin: 25px;
     border-radius: $radius-15;
   }
 
+  .app-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
   .appointment {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    width: 300px;
-    padding: 15px;
+    max-width: 300px;
+    width: 100%;
+    padding: 5px;
     border-radius: $radius-5;
     border: 1px solid $Khaki;
 
@@ -1471,43 +1487,62 @@ footer {
 
   //? -------- SETTINGS -------- //
   #settings {
-    align-self: center;
-
-    &>form {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+    .form-container {
       display: flex;
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
       gap: 15px;
+      padding: 50px 0;
       max-width: 800px;
+      width: 100%;
       border-radius: $radius-15;
-      padding: 50px;
       background-color: $primary-Alabaster;
 
-      &>.user-names {
+      .user-names {
         display: flex;
-        gap: 15px;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
       }
 
-      &>figure,
-      &>.user-names>figure {
+      .form-input {
         display: flex;
-        border-radius: $radius-15;
+        gap: 10px;
+        padding: 5px;
+        border-radius: $radius-5;
         border: 1px solid $accent-BrownShadow;
-        padding: 10px;
-
-        &>img {
+        background-color: transparent;
+        &:hover{
+          background-color: #eee3d798;
+        }
+        &>img{
           filter: invert(51%) sepia(35%) saturate(320%) hue-rotate(346deg) brightness(88%) contrast(87%);
         }
-
-        &>figcaption {
-          &>input {
-            background-color: transparent;
-            color: $default-Black;
-          }
+        &>figcaption>input{
+          background-color: transparent;
+          color: $default-Black;
         }
+      }
+
+      .long-input {
+        max-width: 300px;
+        width: 80%;
       }
 
       &>.settings-buttons {
-        align-self: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
 
         &>button {
           padding: 15px;

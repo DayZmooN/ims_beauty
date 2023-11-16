@@ -113,13 +113,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const showSettingsLink = document.getElementById('show-settings');
 
         if (showAppointments) {
-            appointmentsSection.style.display = 'block';
+            appointmentsSection.style.display = 'flex';
             settingsSection.style.display = 'none';
             showAppointmentsLink.parentElement.classList.add('active');
             showSettingsLink.parentElement.classList.remove('active');
         } else {
             appointmentsSection.style.display = 'none';
-            settingsSection.style.display = 'block';
+            settingsSection.style.display = 'flex';
             showAppointmentsLink.parentElement.classList.remove('active');
             showSettingsLink.parentElement.classList.add('active');
         }
