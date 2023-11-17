@@ -61,47 +61,73 @@
 		</section>
 
 		<section id="settings">
-			<form action="#" class="form-container">
+			<form action="#" class="form-container" id="update-user-form">
 				<div class="user-names">
 					<figure class="form-input">
 						<img src="{{ asset('asset/media/icons/deco/lotus.svg') }}" alt="">
 						<figcaption>
-							<input type="text" placeholder="Nom">
+							<input type="text" placeholder="Nom" name="last_name" value="{{ user.getLastName() }}">
 						</figcaption>
 					</figure>
 					<figure class="form-input">
 						<img src="{{ asset('asset/media/icons/deco/lotus.svg') }}" alt="">
 						<figcaption>
-							<input type="text" placeholder="Prénom">
+							<input type="text" placeholder="Prénom" name="first_name" value="{{ user.getFirstName() }}">
 						</figcaption>
 					</figure>
 				</div>
-				
+
 				<figure class="form-input long-input">
 					<img src="{{ asset('asset/media/icons/contactPhone.svg') }}" alt="">
 					<figcaption>
-						<input type="text" placeholder="Mobile">
+						<input type="text" placeholder="Mobile" name="phone" value="{{ user.getPhone() }}">
 					</figcaption>
 				</figure>
 				<figure class="form-input long-input">
 					<img src="{{ asset('asset/media/icons/contactMail.svg') }}" alt="">
 					<figcaption>
-						<input type="text" placeholder="Email">
+						<input type="text" placeholder="Email" name="email" value="{{ user.getEmail() }}">
 					</figcaption>
 				</figure>
 				<figure class="form-input long-input">
 					<img src="{{ asset('asset/media/icons/calendar.svg') }}" alt="">
 					<figcaption>
-						<input type="date">
+						<input type="date" name="date_of_birth" value="{{ user.getDateOfBith()|date('Y-m-d') }}">
 					</figcaption>
 				</figure>
 
 				<div class="settings-buttons">
-					<button class="update-btn">Modifier mes donées</button>
+					<button type="submit" class="update-btn" id="update-user-button">Modifier mes données</button>
 					<button class="delete-btn">Supprimer mon compte</button>
 				</div>
 			</form>
 		</section>
+		<!-- Add this script block at the bottom of your Twig template -->
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+			document.getElementById("update-user-button").addEventListener("click", function () { // Gather form data
+			var formData = new FormData(document.getElementById("update-user-form"));
 
+			// Send an AJAX POST request to update user data
+			fetch("{{ path('update_user_data') }}", {
+			method: "POST",
+			body: formData
+			}).then(function (response) {
+			if (! response.ok) {
+			throw new Error("Network response was not ok");
+			}
+			return response.json(); // Parse JSON response
+			}).then(function (data) { // Handle success, e.g., display a success message
+			alert("Data updated successfully!");
+
+			// Update the heading with the new user name
+			var userHeading = document.querySelector(".welcome-dashboard h1 span");
+			userHeading.textContent = data.user_data.first_name; // Update with the new first name
+			}).catch(function (error) { // Handle error, e.g., display an error message
+			alert("Error updating data: " + error.message);
+			});
+			});
+			});
+		</script>
 	</section>
 {% endblock %}
