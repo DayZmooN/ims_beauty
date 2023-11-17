@@ -102,7 +102,7 @@
 				</div>
 			</form>
 		</section>
-		<!-- Add this script block at the bottom of your Twig template -->
+	{% include './flash_messages/flash_messages.html.twig' %}
 		<script>
 			document.addEventListener("DOMContentLoaded", function () {
 			document.getElementById("update-user-button").addEventListener("click", function () { // Gather form data
@@ -118,15 +118,21 @@
 			}
 			return response.json(); // Parse JSON response
 			}).then(function (data) { // Handle success, e.g., display a success message
-			alert("Data updated successfully!");
+			// Display success flash message
+            var successAlert = document.querySelector(".alert-success");
+            successAlert.style.display = "block";
+            successAlert.textContent = data.message;
 
 			// Update the heading with the new user name
 			var userHeading = document.querySelector(".welcome-dashboard h1 span");
 			userHeading.textContent = data.user_data.first_name; // Update with the new first name
-			}).catch(function (error) { // Handle error, e.g., display an error message
-			alert("Error updating data: " + error.message);
-			});
-			});
+			}).catch(function (error) { 
+				// Handle error, e.g., display an error message
+                var errorAlert = document.querySelector(".alert-danger");
+                errorAlert.style.display = "block";
+                errorAlert.textContent = "Error updating data: " + error.message;
+					});
+				});
 			});
 		</script>
 	</section>

@@ -28,6 +28,7 @@ class DashboardController extends AbstractController
     public function updateUserData(Request $request, EntityManagerInterface $entityManager): JsonResponse
     {
         // Get the currently logged-in user
+        /** @var \App\Entity\Users $user */
         $user = $this->getUser();
 
         if (!$user) {
@@ -47,6 +48,9 @@ class DashboardController extends AbstractController
 
             // Persist the changes to the database
             $entityManager->flush();
+
+            // Add success flash message
+            $this->addFlash('success', 'User data updated successfully!');
 
             // Return a JSON response with the updated user data
             $userData = [
