@@ -1079,8 +1079,18 @@ footer {
           }
         }
 
+        .description-service{
+          font-size: .85rem;
+          max-width: 800px;
+        }
+
         p {
           font-size: 1.125rem;
+          padding-bottom: 15px;
+          &>span{
+            font-family: $textFont;
+            color: $accent-BrownShadow;
+          }
         }
 
         &>.btn {
@@ -1441,6 +1451,7 @@ footer {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 15px;
+    width: 90%;
   }
 
   .appointment {

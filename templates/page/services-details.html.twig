@@ -36,8 +36,15 @@
                         <h2>{{ service.name }}</h2>
                         <p>{{ service.price }} €</p>
                     </div>
-                    <p>{{ service.description }}</p>
-                    <p>Durée : {{ service.duration }}</p>
+                    <p class="description-service">
+                        {{ service.description
+                            |replace({'<div>': '', '</div>': '', '<br>': 'PLACEHOLDER_BR', '<br/>': 'PLACEHOLDER_BR'})
+                            |escape('html')
+                            |replace({'PLACEHOLDER_BR': '<br>'})
+                            |raw 
+                        }}
+                    </p>
+                    <p>Durée : <span>{{ service.duration }}</span></p>
                 </div>
                 <div class="animated-btn btn-two">
 					<a href="{{path('cart_add', {id: service.id}) }}">

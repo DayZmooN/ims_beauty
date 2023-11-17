@@ -102,7 +102,6 @@ body {
   scroll-behavior: smooth;
   line-height: 1.6rem;
   min-height: 100vh;
-  transition: all 0.3s;
   background-color: #F8F8F8;
 }
 
@@ -193,6 +192,15 @@ input, textarea {
   font-size: 0.75rem;
   font-family: "Poppins-Light";
   border-radius: 5px;
+}
+
+/* Change checkbox color */
+input[type=checkbox] {
+  accent-color: #BFAE9F; /* Your preferred color */
+}
+
+input[type=date]::-webkit-calendar-picker-indicator {
+  filter: invert(51%) sepia(24%) saturate(499%) hue-rotate(347deg) brightness(90%) contrast(79%);
 }
 
 .alt-animated-btn {
@@ -1115,8 +1123,17 @@ footer > .copyrights > p > a:hover {
   font-weight: 600;
   font-size: 2.1rem;
 }
+.category-row > .service-details > .service-detail-content > .service-info .description-service {
+  font-size: 0.85rem;
+  max-width: 800px;
+}
 .category-row > .service-details > .service-detail-content > .service-info p {
   font-size: 1.125rem;
+  padding-bottom: 15px;
+}
+.category-row > .service-details > .service-detail-content > .service-info p > span {
+  font-family: "Poppins";
+  color: #937962;
 }
 .category-row > .service-details > .service-detail-content > .service-info > .btn {
   position: absolute;
@@ -1412,6 +1429,7 @@ footer > .copyrights > p > a:hover {
   flex-direction: row;
   flex-wrap: wrap;
   gap: 15px;
+  width: 90%;
 }
 .dashboard .appointment {
   display: flex;
