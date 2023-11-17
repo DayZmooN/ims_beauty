@@ -367,6 +367,9 @@ input[type=date]::-webkit-calendar-picker-indicator {
   color: #937962;
   font-size: 3rem;
 }
+.promotion-box .content-border > p {
+  color: #4D4D4D;
+}
 
 header {
   z-index: 999;
