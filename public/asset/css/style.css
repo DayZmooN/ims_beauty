@@ -330,6 +330,44 @@ input[type=date]::-webkit-calendar-picker-indicator {
   transform: scale(1.1);
 }
 
+.promotion-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  max-width: 600px;
+  width: 100%;
+  height: 240px;
+  margin: 15px 0;
+  overflow: hidden;
+  border-radius: 5px;
+  background: url("../media/promo-bg.webp") center center/cover no-repeat;
+}
+.promotion-box .background-image {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.promotion-box .content-border {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+  width: 90%;
+  height: 80%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #F5EFE8;
+}
+.promotion-box .content-border > span {
+  font-family: "Alex Brush";
+  color: #937962;
+  font-size: 3rem;
+}
+
 header {
   z-index: 999;
   display: flex;

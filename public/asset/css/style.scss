@@ -148,6 +148,48 @@
   transform: scale(1.1);
 }
 
+//~ ------------ ANIMATED ICONS ------------ //
+.promotion-box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  max-width: 600px;
+  width: 100%;
+  height: 240px;
+  margin: 15px 0;
+  overflow: hidden;
+  border-radius: $radius-5;
+  background: url('../media/promo-bg.webp') center center / cover no-repeat;
+
+  .background-image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .content-border{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+    width: 90%;
+    height: 80%;
+    padding: 10px;
+    border-radius: $radius-5;
+    border: 1px solid $primary-Alabaster;
+
+    &>span{
+      font-family: $titleFont;
+      color: $accent-BrownShadow;
+      font-size: 3rem;
+    }
+
+  }
+}
+
 //& -------------------- STYLING -------------------- //
 //~ ------------HEADER & FOOTER------------ //
 //? -------- HEADER -------- //
