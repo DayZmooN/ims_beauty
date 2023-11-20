@@ -204,6 +204,10 @@ input[type=checkbox] {
   accent-color: #BFAE9F; /* Your preferred color */
 }
 
+input[type=radio] {
+  accent-color: #BFAE9F; /* Your preferred color */
+}
+
 input[type=date]::-webkit-calendar-picker-indicator {
   filter: invert(51%) sepia(24%) saturate(499%) hue-rotate(347deg) brightness(90%) contrast(79%);
 }
@@ -1644,7 +1648,7 @@ footer > .copyrights > p > a:hover {
   justify-content: space-between;
   gap: 15px;
   max-width: 1200px;
-  width: 100%;
+  width: 90%;
   padding: 25px;
   border: 1px solid #937962;
   border-radius: 15px;
@@ -1677,6 +1681,10 @@ footer > .copyrights > p > a:hover {
   border-bottom: 1px solid #978178;
 }
 .cart-page > form .services-container .service-info .info p {
+  white-space: nowrap; /* Prevents the text from wrapping to the next line */
+  overflow: hidden; /* Hides the overflow text */
+  text-overflow: ellipsis;
+  width: 130px;
   font-size: 0.8rem;
 }
 .cart-page > form .services-container .service-info .info span {
@@ -1696,13 +1704,10 @@ footer > .copyrights > p > a:hover {
 .cart-page > form .calendar-options {
   display: flex;
   gap: 15px;
-  width: 100%;
-  height: 350px;
-  padding: 15px;
-  overflow-y: scroll;
-  scrollbar-color: #EEE3D7 #978178;
-  scrollbar-width: thin;
-  background-color: #F5EFE8;
+  width: 95%;
+  min-height: 350px;
+  height: 100%;
+  padding: 15px 0;
 }
 .cart-page > form .calendar-options h4 {
   display: block;
@@ -1710,29 +1715,35 @@ footer > .copyrights > p > a:hover {
   margin: 15px 0;
   border-bottom: 1px solid #978178;
 }
-.cart-page > form .calendar-options::-webkit-scrollbar {
+.cart-page > form .calendar-options .calendar-container {
+  overflow-y: scroll;
+  scrollbar-color: #EEE3D7 #978178;
+  scrollbar-width: thin;
+}
+.cart-page > form .calendar-options .calendar-container::-webkit-scrollbar {
   width: 12px;
 }
-.cart-page > form .calendar-options::-webkit-scrollbar-track {
+.cart-page > form .calendar-options .calendar-container::-webkit-scrollbar-track {
   background: #978178;
   border-radius: 5px;
 }
-.cart-page > form .calendar-options::-webkit-scrollbar-thumb {
+.cart-page > form .calendar-options .calendar-container::-webkit-scrollbar-thumb {
   background: #EEE3D7;
   border-radius: 5px;
 }
-.cart-page > form .calendar-options::-webkit-scrollbar-thumb:hover {
+.cart-page > form .calendar-options .calendar-container::-webkit-scrollbar-thumb:hover {
   background: #dfcab3;
 }
 .cart-page > form .calendar-options .months {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 15px;
   margin-bottom: 20px;
 }
 .cart-page > form .calendar-options .months .month {
-  padding: 10px;
+  padding: 10px 5px;
   border: 1px solid #937962;
   border-radius: 15px;
   cursor: pointer;
@@ -1743,8 +1754,9 @@ footer > .copyrights > p > a:hover {
 }
 .cart-page > form .calendar-options .week {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: flex-start;
+  flex-wrap: wrap;
   gap: 25px;
 }
 .cart-page > form .calendar-options .week .day-slots .day {
@@ -1752,8 +1764,9 @@ footer > .copyrights > p > a:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   border-radius: 5px;
-  padding: 10px;
+  padding: 10px 5px;
   border-bottom: 1px solid #937962;
 }
 .cart-page > form .calendar-options .week .day-slots .available-slots {
@@ -1762,12 +1775,19 @@ footer > .copyrights > p > a:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 15px;
+  gap: 25px;
 }
 .cart-page > form .calendar-options .week .day-slots .available-slots .slot {
   padding: 5px;
   background-color: #EEE3D7;
   border-radius: 5px;
+}
+@media screen and (max-width: 500px) {
+  .cart-page > form .calendar-options .months, .cart-page > form .calendar-options .week {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .error404 {

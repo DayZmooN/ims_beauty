@@ -1701,7 +1701,7 @@ footer {
     justify-content: space-between;
     gap: 15px;
     max-width: 1200px;
-    width: 100%;
+    width: 90%;
     padding: 25px;
     border: 1px solid $accent-BrownShadow;
     border-radius: $radius-15;
@@ -1737,6 +1737,10 @@ footer {
 
         .info {
           p {
+            white-space: nowrap; /* Prevents the text from wrapping to the next line */
+            overflow: hidden; /* Hides the overflow text */
+            text-overflow: ellipsis;
+            width: 130px;
             font-size: .8rem;
           }
           span {
@@ -1762,13 +1766,10 @@ footer {
     .calendar-options {
       display: flex;
       gap: 15px;
-      width: 100%;
-      height: 350px;
-      padding: 15px;
-      overflow-y: scroll;
-      scrollbar-color: $secondary-WhiteChocolate $Cinereous;
-      scrollbar-width: thin;
-      background-color: $primary-Alabaster;
+      width: 95%;
+      min-height: 350px;
+      height: 100%;
+      padding: 15px 0;
 
       h4 {
         display: block;
@@ -1776,21 +1777,27 @@ footer {
         margin: 15px 0;
         border-bottom: 1px solid $Cinereous;
       }
-      &::-webkit-scrollbar {
-        width: 12px;
-      }
-  
-      &::-webkit-scrollbar-track {
-        background: $Cinereous;
-        border-radius: $radius-5;
-      }
-  
-      &::-webkit-scrollbar-thumb {
-        background: $secondary-WhiteChocolate;
-        border-radius: $radius-5;
-  
-        &:hover {
-          background: darken($secondary-WhiteChocolate, 10%);
+
+      .calendar-container{
+        overflow-y: scroll;
+        scrollbar-color: $secondary-WhiteChocolate $Cinereous;
+        scrollbar-width: thin;
+        &::-webkit-scrollbar {
+          width: 12px;
+        }
+    
+        &::-webkit-scrollbar-track {
+          background: $Cinereous;
+          border-radius: $radius-5;
+        }
+    
+        &::-webkit-scrollbar-thumb {
+          background: $secondary-WhiteChocolate;
+          border-radius: $radius-5;
+    
+          &:hover {
+            background: darken($secondary-WhiteChocolate, 10%);
+          }
         }
       }
 
@@ -1798,11 +1805,12 @@ footer {
         display: flex;
         flex-direction: row;
         justify-content: center;
+        flex-wrap: wrap;
         gap: 15px;
         margin-bottom: 20px;
 
         .month{
-          padding: 10px;
+          padding: 10px 5px;
           border: 1px solid $accent-BrownShadow;
           border-radius: $radius-15;
           cursor: pointer;
@@ -1815,8 +1823,9 @@ footer {
 
       .week{
         display: flex;
-        justify-content: space-evenly;
+        justify-content: center;
         align-items: flex-start;
+        flex-wrap: wrap;
         gap: 25px;
 
         .day-slots{
@@ -1825,8 +1834,9 @@ footer {
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            flex-wrap: wrap;
             border-radius: $radius-5;
-            padding: 10px;
+            padding: 10px 5px;
             border-bottom: 1px solid $accent-BrownShadow;
           }
 
@@ -1836,7 +1846,7 @@ footer {
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 15px;
+            gap: 25px;
 
             .slot{
               padding: 5px;
@@ -1845,6 +1855,14 @@ footer {
             }
 
           }
+        }
+      }
+
+      @media screen and (max-width: 500px) {
+        .months,.week{
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
         }
       }
     }

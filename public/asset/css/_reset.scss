@@ -106,10 +106,12 @@ input,textarea{
   border-radius: $radius-5;
 }
 
-
-
 /* Change checkbox color */
 input[type="checkbox"] {
+  accent-color: $Khaki; /* Your preferred color */
+}
+
+input[type="radio"] {
   accent-color: $Khaki; /* Your preferred color */
 }
 
