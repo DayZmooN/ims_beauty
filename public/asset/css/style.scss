@@ -149,7 +149,7 @@
 }
 
 //~ ------------ PROMO DIV ------------ //
-.promotion-box{
+.promotion-box {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -162,13 +162,13 @@
   border-radius: $radius-5;
   background: url('../media/promo-bg.webp') center center / cover no-repeat;
 
-  .background-image{
+  .background-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 
-  .content-border{
+  .content-border {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -181,22 +181,30 @@
     border-radius: $radius-5;
     border: 1px solid $primary-Alabaster;
 
-    &>span{
+    &>span {
       font-family: $titleFont;
       color: $accent-BrownShadow;
       font-size: 3rem;
     }
-    &>p{
+
+    &>p {
       color: $light-Black;
     }
 
   }
 }
 
+//~ ------------ FLASH MESSAGES ------------ //
+
 /* Flash message fade out animation */
 @keyframes fadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
 }
 
 .alert {
@@ -208,8 +216,10 @@
   border-radius: $radius-15;
   color: $accent-BrownShadow;
   padding: 15px;
-  animation: fadeOut ease 8s; /* Adjust the duration as needed */
-  animation-fill-mode: forwards; /* Keeps the element in the state of the last keyframe when the animation completes */
+  animation: fadeOut ease 8s;
+  /* Adjust the duration as needed */
+  animation-fill-mode: forwards;
+  /* Keeps the element in the state of the last keyframe when the animation completes */
 }
 
 
@@ -1144,7 +1154,7 @@ footer {
           }
         }
 
-        .description-service{
+        .description-service {
           font-size: .85rem;
           max-width: 800px;
         }
@@ -1152,7 +1162,8 @@ footer {
         p {
           font-size: 1.125rem;
           padding-bottom: 15px;
-          &>span{
+
+          &>span {
             font-family: $textFont;
             color: $accent-BrownShadow;
           }
@@ -1690,6 +1701,54 @@ footer {
     &:hover {
       background-color: $accent-BrownShadow;
       color: $secondary-WhiteChocolate;
+    }
+  }
+}
+
+//~ ------------MENTION LEGALES ------------ //
+.mentions-legales {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  gap: 25px;
+  margin: 25px 0;
+  padding: 25px;
+  max-width: 1200px;
+  width: 100%;
+  border: 1px solid $Khaki;
+  border-radius: $radius-15;
+
+  p,a{
+    font-size: .8rem;
+  }
+
+  a{
+    color: $Cinereous;
+  }
+
+  .website {
+
+    .contact-info {
+      padding: 15px;
+
+      &>figure {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+
+        &>img {
+          filter: invert(55%) sepia(8%) saturate(838%) hue-rotate(332deg) brightness(94%) contrast(83%);
+          height: 20px;
+        }
+        &>figcaption{
+          &>p,a{
+            color: $accent-BrownShadow;
+          }
+        }
+      }
     }
   }
 }

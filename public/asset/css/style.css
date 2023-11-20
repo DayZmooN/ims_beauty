@@ -393,8 +393,10 @@ input[type=date]::-webkit-calendar-picker-indicator {
   border-radius: 15px;
   color: #937962;
   padding: 15px;
-  animation: fadeOut ease 8s; /* Adjust the duration as needed */
-  animation-fill-mode: forwards; /* Keeps the element in the state of the last keyframe when the animation completes */
+  animation: fadeOut ease 8s;
+  /* Adjust the duration as needed */
+  animation-fill-mode: forwards;
+  /* Keeps the element in the state of the last keyframe when the animation completes */
 }
 
 header {
@@ -1638,4 +1640,41 @@ footer > .copyrights > p > a:hover {
 .error404 button:hover {
   background-color: #937962;
   color: #EEE3D7;
+}
+
+.mentions-legales {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  gap: 25px;
+  margin: 25px 0;
+  padding: 25px;
+  max-width: 1200px;
+  width: 100%;
+  border: 1px solid #BFAE9F;
+  border-radius: 15px;
+}
+.mentions-legales p, .mentions-legales a {
+  font-size: 0.8rem;
+}
+.mentions-legales a {
+  color: #978178;
+}
+.mentions-legales .website .contact-info {
+  padding: 15px;
+}
+.mentions-legales .website .contact-info > figure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.mentions-legales .website .contact-info > figure > img {
+  filter: invert(55%) sepia(8%) saturate(838%) hue-rotate(332deg) brightness(94%) contrast(83%);
+  height: 20px;
+}
+.mentions-legales .website .contact-info > figure > figcaption > p, .mentions-legales .website .contact-info > figure > figcaption a {
+  color: #937962;
 }/*# sourceMappingURL=style.css.map */
