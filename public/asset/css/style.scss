@@ -1760,9 +1760,93 @@ footer {
     }
 
     .calendar-options {
+      display: flex;
+      gap: 15px;
       width: 100%;
       height: 350px;
+      padding: 15px;
+      overflow-y: scroll;
+      scrollbar-color: $secondary-WhiteChocolate $Cinereous;
+      scrollbar-width: thin;
       background-color: $primary-Alabaster;
+
+      h4 {
+        display: block;
+        width: 90%;
+        margin: 15px 0;
+        border-bottom: 1px solid $Cinereous;
+      }
+      &::-webkit-scrollbar {
+        width: 12px;
+      }
+  
+      &::-webkit-scrollbar-track {
+        background: $Cinereous;
+        border-radius: $radius-5;
+      }
+  
+      &::-webkit-scrollbar-thumb {
+        background: $secondary-WhiteChocolate;
+        border-radius: $radius-5;
+  
+        &:hover {
+          background: darken($secondary-WhiteChocolate, 10%);
+        }
+      }
+
+      .months{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 20px;
+
+        .month{
+          padding: 10px;
+          border: 1px solid $accent-BrownShadow;
+          border-radius: $radius-15;
+          cursor: pointer;
+          &:hover{
+            background-color: $accent-BrownShadow;
+            color: $primary-Alabaster;
+          }
+        }
+      }
+
+      .week{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        gap: 25px;
+
+        .day-slots{
+          .day{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: $radius-5;
+            padding: 10px;
+            border-bottom: 1px solid $accent-BrownShadow;
+          }
+
+          .available-slots{
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+
+            .slot{
+              padding: 5px;
+              background-color: $secondary-WhiteChocolate;
+              border-radius: $radius-5;
+            }
+
+          }
+        }
+      }
     }
   }
 }
