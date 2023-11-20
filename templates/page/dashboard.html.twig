@@ -120,8 +120,22 @@
 			}).then(function (data) { // Handle success, e.g., display a success message
 			// Display success flash message
             var successAlert = document.querySelector(".alert-success");
+            if (successAlert) {
             successAlert.style.display = "block";
             successAlert.textContent = data.message;
+            setTimeout(() => {
+                successAlert.style.opacity = '0'; // Trigger fade out
+            }, 5000); // Adjust the time as needed
+        }
+
+		var errorAlert = document.querySelector(".alert-danger");
+        if (errorAlert) {
+            errorAlert.style.display = "block";
+            errorAlert.textContent = "Error updating data: " + error.message;
+            setTimeout(() => {
+                errorAlert.style.opacity = '0'; // Trigger fade out
+            }, 5000); // Adjust the time as needed
+        }
 
 			// Update the heading with the new user name
 			var userHeading = document.querySelector(".welcome-dashboard h1 span");

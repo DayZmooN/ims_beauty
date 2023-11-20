@@ -18,7 +18,9 @@ body {
   min-height: 100vh;
   background-color: $default-White;
 }
-
+main{
+  position: relative;
+}
 img {
   display: inline-block;
   max-width: 100%;

@@ -105,6 +105,10 @@ body {
   background-color: #F8F8F8;
 }
 
+main {
+  position: relative;
+}
+
 img {
   display: inline-block;
   max-width: 100%;
@@ -369,6 +373,28 @@ input[type=date]::-webkit-calendar-picker-indicator {
 }
 .promotion-box .content-border > p {
   color: #4D4D4D;
+}
+
+/* Flash message fade out animation */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.alert {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  border: 1px solid #BFAE9F;
+  background-color: #F5EFE8;
+  border-radius: 15px;
+  color: #937962;
+  padding: 15px;
+  animation: fadeOut ease 8s; /* Adjust the duration as needed */
+  animation-fill-mode: forwards; /* Keeps the element in the state of the last keyframe when the animation completes */
 }
 
 header {
