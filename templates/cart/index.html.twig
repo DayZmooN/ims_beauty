@@ -118,7 +118,12 @@
 				<button type="submit" class="submit-button">Confirmer les Rendez-vous</button>
 			</form>
 		{% else %}
-			<p>Votre panier est vide.</p>
+			<form action="{{ path('app_cart') }}" method="POST">
+								<h1>Mon Panier</h1>
+				<div class="services-container">
+				<p>Votre panier est vide.</p>
+				</div>
+			</form>
 		{% endif %}
 	</section>
 	{% include './flash_messages/flash_messages.html.twig' %}
