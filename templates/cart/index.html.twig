@@ -1,44 +1,38 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<section class="shopping-cart">
+<section class="cart-page">
     {% if servicesWithForms is not empty %}
         <form action="{{ path('app_cart') }}" method="POST">
-            <div class="services-info">
-                <h2>Mon Panier</h2>
-                <div class="services-list">
-                    {% for item in servicesWithForms %}
-                        <div class="service-item" data-service-id="{{ item.service.id }}">
-                            <div class="service-info">
-                                <h3>{{ item.service.name }}</h3>
-                                <p>Description: {{ item.service.description }}</p>
-                                <p>Prix: {{ item.service.price }}</p>
+		<h1>Mon Panier</h1>
+            <div class="services-container">
+                {% for item in servicesWithForms %}
+                    <div class="service-item" data-service-id="{{ item.service.id }}">
+                        <div class="service-info">
+							<div class="info">
+								<p>{{ item.service.name }}</p>
+								<span>{{ item.service.price }}€</span>
+							</div>
+							<div class="buttons">
+								<a href="#" class="open-calendar">
+									<img src="{{asset('asset/media/icons/calendar.svg')}}" alt="" class="icons-button icons">
+								</a>
+								<a href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger remove-from-cart-link">
+									<img src="{{asset('asset/media/icons/shopRemove.svg')}}" alt="" class="icons-button icons">
+								</a>
+							</div>
+                    	</div>
+                        <div id="calendar-{{ item.service.id }}" class="calendar-options" style="display: none;">
+							<h6>Réserver:</h6>
+                            <!-- Calendar slots go here -->
+                            <div class="available-slots">
+                                <!-- Your existing slot structure -->
                             </div>
                         </div>
-                    {% endfor %}
-                </div>
+                    </div>
+                {% endfor %}
             </div>
-            <div class="calendar-options">
-                <h2>Réserver</h2>
-                <div class="slots-list">
-                    {% for item in servicesWithForms %}
-                        <div class="slot-item" data-service-id="{{ item.service.id }}">
-                            {% if googleCalendarSlots is not empty %}
-                                <div class="available-slots">
-                                    {% for slot in googleCalendarSlots %}
-                                        <div class="slot">
-                                            <input type="radio" id="google_slot_{{ item.service.id }}_{{ loop.index }}" name="selectedTimeSlot[{{ item.service.id }}]" value="{{ slot }}" required>
-                                            <label for="google_slot_{{ item.service.id }}_{{ loop.index }}">{{ slot }}</label>
-                                        </div>
-                                    {% endfor %}
-                                    <a href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger remove-from-cart-link">Retirer</a>
-                                </div>
-                            {% endif %}
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-            <button type="submit">Confirmer les Rendez-vous</button>
+			<button type="submit" class="submit-button">Confirmer les Rendez-vous</button>
         </form>
     {% else %}
         <p>Votre panier est vide.</p>
@@ -47,24 +41,43 @@
 {% include './flash_messages/flash_messages.html.twig' %}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // Event listener for opening calendar
+    document.querySelectorAll('.open-calendar').forEach(function(button) {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();  // Prevent event from bubbling up to parent elements
+            var serviceId = e.currentTarget.closest('.service-item').dataset.serviceId;
+            toggleCalendar(serviceId);
+        });
+    });
+
+    // Event listener for removing items from cart
     document.querySelectorAll('.remove-from-cart-link').forEach(function(link) {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             var url = e.currentTarget.href;
-            var serviceId = e.currentTarget.closest('tr').dataset.serviceId;
+            var serviceId = e.currentTarget.closest('.service-item').dataset.serviceId;
 
             handleAjaxRequest(url, { method: 'GET' }, function(data) {
                 if(data.success) {
-                    // Remove the corresponding row from the table
-                    var rowToRemove = document.querySelector('tr[data-service-id="' + serviceId + '"]');
-                    if (rowToRemove) {
-                        rowToRemove.remove();
+                    // Remove the corresponding service item
+                    var itemToRemove = document.querySelector('.service-item[data-service-id="' + serviceId + '"]');
+                    if (itemToRemove) {
+                        itemToRemove.remove();
                     }
-                    // Optionally, update other elements like cart total, item count, etc.
                 }
             });
         });
     });
 });
+
+function toggleCalendar(serviceId) {
+    var calendar = document.getElementById('calendar-' + serviceId);
+    if (calendar) {
+        calendar.style.display = calendar.style.display === 'none' ? 'block' : 'none';
+    }
+}
+
+
 </script>
 {% endblock %}

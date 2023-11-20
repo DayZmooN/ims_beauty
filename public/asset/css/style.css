@@ -388,16 +388,21 @@ input[type=date]::-webkit-calendar-picker-indicator {
   }
 }
 .flash-messages-container {
-  position: fixed; /* Fixed position */
+  position: fixed;
+  /* Fixed position */
   display: flex;
   flex-direction: column-reverse;
   align-items: flex-start;
   overflow: auto;
   gap: 5px;
-  bottom: 10px; /* Positioned at the bottom */
-  right: 15px; /* Positioned to the right */
-  z-index: 5; /* High z-index to ensure it's on top */
-  width: 300px; /* Adjust as needed */
+  bottom: 10px;
+  /* Positioned at the bottom */
+  right: 15px;
+  /* Positioned to the right */
+  z-index: 5;
+  /* High z-index to ensure it's on top */
+  width: 300px;
+  /* Adjust as needed */
   height: 50%;
 }
 
@@ -408,8 +413,10 @@ input[type=date]::-webkit-calendar-picker-indicator {
   color: #937962;
   font-family: "Poppins";
   padding: 15px;
-  margin-top: 10px; /* Spacing between messages */
-  animation: fadeOut ease 2s; /* Adjust the duration as needed */
+  margin-top: 10px;
+  /* Spacing between messages */
+  animation: fadeOut ease 2s;
+  /* Adjust the duration as needed */
   animation-fill-mode: forwards;
   animation-delay: 5s;
 }
@@ -1625,25 +1632,70 @@ footer > .copyrights > p > a:hover {
   background-color: #AB4545;
 }
 
-.shopping-cart {
+.cart-page {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
 }
-.shopping-cart .services-list {
+.cart-page > form {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  gap: 15px;
+  max-width: 1200px;
+  width: 100%;
+  padding: 25px;
+  border: 1px solid #937962;
+  border-radius: 15px;
 }
-.shopping-cart .service-item {
+.cart-page > form h1 {
+  display: block;
+  width: 100%;
+  padding: 15px 5px;
+  margin: 15px 0;
+  border-bottom: 1px solid #978178;
+}
+.cart-page > form .submit-button {
+  padding: 10px;
+  border: 1px solid #937962;
+  border-radius: 5px;
+  color: #937962;
+  font-family: "Poppins";
+  transition: all 3ms ease-in-out;
+}
+.cart-page > form .submit-button:hover {
+  background-color: #937962;
+  color: #F5EFE8;
+}
+.cart-page > form .services-container {
+  padding: 5px 15px;
+}
+.cart-page > form .services-container .service-info {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  border-bottom: 1px solid #978178;
 }
-.shopping-cart .service-info {
-  flex: 1;
-  padding-right: 20px; /* Spacing between columns */
+.cart-page > form .services-container .service-info .info p {
+  font-size: 0.8rem;
 }
-.shopping-cart .calendar-options {
-  flex: 1;
+.cart-page > form .services-container .service-info .info span {
+  font-size: 0.875rem;
+  color: #937962;
+  font-family: "Poppins-SemiBold";
+}
+.cart-page > form .services-container .buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+}
+.cart-page > form .services-container .buttons .icons-button {
+  filter: invert(55%) sepia(9%) saturate(664%) hue-rotate(332deg) brightness(94%) contrast(93%);
+}
+.cart-page > form .calendar-options {
+  width: 100%;
+  height: 350px;
+  background-color: #F5EFE8;
 }
 
 .error404 {
@@ -1692,7 +1744,8 @@ footer > .copyrights > p > a:hover {
   border: 1px solid #BFAE9F;
   border-radius: 15px;
 }
-.mentions-legales p, .mentions-legales a {
+.mentions-legales p,
+.mentions-legales a {
   font-size: 0.8rem;
 }
 .mentions-legales a {
@@ -1711,6 +1764,7 @@ footer > .copyrights > p > a:hover {
   filter: invert(55%) sepia(8%) saturate(838%) hue-rotate(332deg) brightness(94%) contrast(83%);
   height: 20px;
 }
-.mentions-legales .website .contact-info > figure > figcaption > p, .mentions-legales .website .contact-info > figure > figcaption a {
+.mentions-legales .website .contact-info > figure > figcaption > p,
+.mentions-legales .website .contact-info > figure > figcaption a {
   color: #937962;
 }/*# sourceMappingURL=style.css.map */
