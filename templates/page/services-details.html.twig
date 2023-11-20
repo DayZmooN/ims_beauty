@@ -99,29 +99,14 @@
 			}
 			});
 
-$(document).ready(function() {
-    $('.add-to-cart-link').click(function(e) {
-        e.preventDefault(); // Prevent the default link action
-        var url = $(this).attr('href'); // Get the href attribute
-
-        $.ajax({
-            url: url,
-            type: 'GET',
-            success: function(response) {
-                // Assuming the response contains a message and a success flag
-                var message = response.message;
-                var isSuccess = response.success;
-                var alertClass = isSuccess ? 'alert-success' : 'alert-danger';
-                var alertHtml = '<div class="alert ' + alertClass + '"><p>' + message + '</p></div>';
-                $('.flash-messages-container').html(alertHtml); // Display the flash message
-            },
-            error: function() {
-                var alertHtml = '<div class="alert alert-danger"><p>An error occurred while adding the item to the cart.</p></div>';
-                $('.flash-messages-container').html(alertHtml); // Display the error message
-            }
+			//flash messages
+			document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.add-to-cart-link').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            handleAjaxRequest(e.currentTarget.href, { method: 'GET' });
         });
     });
 });
-
 		</script>
 	{% endblock %}

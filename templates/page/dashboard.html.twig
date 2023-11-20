@@ -61,7 +61,7 @@
 		</section>
 
 		<section id="settings">
-			<form action="#" class="form-container" id="update-user-form">
+			<form action="{{ path('update_user_data') }}" method="POST" class="form-container" id="update-user-form">
 				<div class="user-names">
 					<figure class="form-input">
 						<img src="{{ asset('asset/media/icons/deco/lotus.svg') }}" alt="">
@@ -103,51 +103,22 @@
 			</form>
 		</section>
 	{% include './flash_messages/flash_messages.html.twig' %}
-		<script>
-			document.addEventListener("DOMContentLoaded", function () {
-			document.getElementById("update-user-button").addEventListener("click", function () { // Gather form data
-			var formData = new FormData(document.getElementById("update-user-form"));
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var updateButton = document.getElementById('update-user-button');
 
-			// Send an AJAX POST request to update user data
-			fetch("{{ path('update_user_data') }}", {
-			method: "POST",
-			body: formData
-			}).then(function (response) {
-			if (! response.ok) {
-			throw new Error("Network response was not ok");
-			}
-			return response.json(); // Parse JSON response
-			}).then(function (data) { // Handle success, e.g., display a success message
-			// Display success flash message
-            var successAlert = document.querySelector(".alert-success");
-            if (successAlert) {
-            successAlert.style.display = "block";
-            successAlert.textContent = data.message;
-            setTimeout(() => {
-                successAlert.style.opacity = '0'; // Trigger fade out
-            }, 5000); // Adjust the time as needed
-        }
+    updateButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        var formData = new FormData(document.getElementById('update-user-form'));
 
-		var errorAlert = document.querySelector(".alert-danger");
-        if (errorAlert) {
-            errorAlert.style.display = "block";
-            errorAlert.textContent = "Error updating data: " + error.message;
-            setTimeout(() => {
-                errorAlert.style.opacity = '0'; // Trigger fade out
-            }, 5000); // Adjust the time as needed
-        }
+        handleAjaxRequest('{{ path('update_user_data') }}', { method: 'POST', body: formData }, function(data) {
+            window.location.reload(); // Force reload regardless of the response
+        }, function(error) {
+            console.error("Update error:", error); // Error log
+        });
+    });
+});
+</script>
 
-			// Update the heading with the new user name
-			var userHeading = document.querySelector(".welcome-dashboard h1 span");
-			userHeading.textContent = data.user_data.first_name; // Update with the new first name
-			}).catch(function (error) { 
-				// Handle error, e.g., display an error message
-                var errorAlert = document.querySelector(".alert-danger");
-                errorAlert.style.display = "block";
-                errorAlert.textContent = "Error updating data: " + error.message;
-					});
-				});
-			});
-		</script>
 	</section>
 {% endblock %}

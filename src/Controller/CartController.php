@@ -230,20 +230,30 @@ class CartController extends AbstractController
 
     //route for add service 
     #[Route('/cart/add/{id}', name: 'cart_add')]
-    public function add(int $id, SessionInterface $session, Request $request): Response
-    {
-        $cart = $session->get('cart', []);
+public function add(int $id, SessionInterface $session, Request $request): Response
+{
+    $cart = $session->get('cart', []);
 
-        if (!in_array($id, $cart)) {
-            $cart[] = $id;
-        }
+    if (!in_array($id, $cart)) {
+        $cart[] = $id;
+    }
 
-        $session->set('cart', $cart);
+    $session->set('cart', $cart);
 
+    if ($request->isXmlHttpRequest()) {
+        // For AJAX request, return JSON response
+        return $this->json([
+            'success' => true,
+            'message' => 'Service ajouté au panier avec succès!'
+        ]);
+    } else {
+        // For regular request, redirect
         $this->addFlash('success', 'Service ajouté au panier avec succès!');
-
         return $this->redirect($request->headers->get('referer'));
     }
+    
+}
+
 
     // #[Route('/cart/checkout', name: 'cart_checkout')]
     // public function checkout(Request $request, SessionInterface $session, ServicesRepository $servicesRepository): Response
@@ -276,27 +286,28 @@ class CartController extends AbstractController
 
     // route for delete service
     #[Route('/cart/remove/{id}', name: 'cart_remove')]
-    public function remove($id, SessionInterface $session): Response
-    {
-        // Récupérez le panier de la session
-        $cart = $session->get('cart', []);
+public function remove($id, SessionInterface $session, Request $request): Response
+{
+    $cart = $session->get('cart', []);
 
-        // Trouvez l'index de l'élément dans le tableau
-        if (($key = array_search($id, $cart)) !== false) {
-            // Si l'article est dans le panier, retirez-le
-            unset($cart[$key]);
-        }
-
-        // Ré-indexez le tableau après la suppression
-        $cart = array_values($cart);
-
-        // Enregistrez le panier mis à jour dans la session
-        $session->set('cart', $cart);
-
-        // Ajoutez un message flash pour confirmer la suppression
-        $this->addFlash('success', 'Service retiré du panier avec succès.');
-
-        // Redirigez l'utilisateur vers la vue du panier
-        return $this->redirectToRoute('app_cart');
+    if (($key = array_search($id, $cart)) !== false) {
+        unset($cart[$key]);
     }
+
+    $session->set('cart', $cart);
+
+    if ($request->isXmlHttpRequest()) {
+        // For AJAX request, return JSON response
+        return $this->json([
+            'success' => true,
+            'message' => 'Service ajouté au panier avec succès!'
+        ]);
+    } else {
+        // For regular request, redirect
+        $this->addFlash('success', 'Service ajouté au panier avec succès!');
+        return $this->redirect($request->headers->get('referer'));
+    }
+    
+}
+
 }

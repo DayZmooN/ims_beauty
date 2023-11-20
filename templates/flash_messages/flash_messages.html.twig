@@ -1,3 +1,4 @@
+<div class="flash-messages-container">
 {% for flashMessage in app.flashes('success') %}
     <div class="alert alert-success">
         <p>{{ flashMessage }}</p>
@@ -9,3 +10,4 @@
         <p>{{ flashMessage }}</p>
     </div>
 {% endfor %}
+</div>

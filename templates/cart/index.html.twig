@@ -1,66 +1,75 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<section class="shopping-cart">
-    <h1>Mon Panier</h1>
-    {% if servicesWithForms is not empty %}
-        <form action="{{ path('app_cart') }}" method="POST">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Nom du service</th>
-                        <th>Description</th>
-                        <th>Prix</th>
-                        <th>Sélectionnez un créneau</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in servicesWithForms %}
-                        <tr>
-                            <td>{{ item.service.name }}</td>
-                            <td>{{ item.service.description }}</td>
-                            <td>{{ item.service.price }}</td>
-                            <td>
-                               {% if googleCalendarSlots is not empty %}
-                                <div class="available-slots">
-                                    <h3>Créneaux Disponibles (Google Agenda)</h3>
-                                    {% for slot in googleCalendarSlots %}
-                                        <div>
-                                            <input type="radio" id="google_slot_{{ item.service.id }}_{{ loop.index }}" 
-                                                   name="selectedTimeSlot[{{ item.service.id }}]" 
-                                                   value="{{ slot }}" required>
-                                            <label for="google_slot_{{ item.service.id }}_{{ loop.index }}">{{ slot }}</label>
-                                        </div>
-                                      
-                                    {% endfor %}
-                                      <a href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger">Retirer</a>
-                                </div>
-                            {% endif %}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-  
+	<section class="shopping-cart">
+		<h1>Mon Panier</h1>
+		{% if servicesWithForms is not empty %}
+			<form action="{{ path('app_cart') }}" method="POST">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Nom du service</th>
+							<th>Description</th>
+							<th>Prix</th>
+							<th>Sélectionnez un créneau</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for item in servicesWithForms %}
+							<tr data-service-id="{{ item.service.id }}">
+								<td>{{ item.service.name }}</td>
+								<td>{{ item.service.description }}</td>
+								<td>{{ item.service.price }}</td>
+								<td>
+									{% if googleCalendarSlots is not empty %}
+										<div class="available-slots">
+											<h3>Créneaux Disponibles (Google Agenda)</h3>
+											{% for slot in googleCalendarSlots %}
+												<div>
+													<input type="radio" id="google_slot_{{ item.service.id }}_{{ loop.index }}" name="selectedTimeSlot[{{ item.service.id }}]" value="{{ slot }}" required>
+													<label for="google_slot_{{ item.service.id }}_{{ loop.index }}">{{ slot }}</label>
+												</div>
 
-            <button type="submit">Confirmer les Rendez-vous</button>
-            
-        </form>
-    {% else %}
-        <p>Votre panier est vide.</p>
-        {% for flashMessage in app.flashes('success') %}
-    <div class="alert alert-success">
-        {{ flashMessage }}
-    </div>
-{% endfor %}
+											{% endfor %}
+											<a href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger remove-from-cart-link">Retirer</a>
+										</div>
+									{% endif %}
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
 
-{% for flashMessage in app.flashes('error') %}
-    <div class="alert alert-danger">
-        {{ flashMessage }}
-    </div>
-{% endfor %}
 
-    {% endif %}
-</section>
+				<button type="submit">Confirmer les Rendez-vous</button>
+
+			</form>
+		{% else %}
+			<p>Votre panier est vide.</p>
+		{% endif %}
+	</section>
+{% include './flash_messages/flash_messages.html.twig' %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.remove-from-cart-link').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            var url = e.currentTarget.href;
+            var serviceId = e.currentTarget.closest('tr').dataset.serviceId;
+
+            handleAjaxRequest(url, { method: 'GET' }, function(data) {
+                if(data.success) {
+                    // Remove the corresponding row from the table
+                    var rowToRemove = document.querySelector('tr[data-service-id="' + serviceId + '"]');
+                    if (rowToRemove) {
+                        rowToRemove.remove();
+                    }
+                    // Optionally, update other elements like cart total, item count, etc.
+                }
+            });
+        });
+    });
+});
+</script>
 
 {% endblock %}

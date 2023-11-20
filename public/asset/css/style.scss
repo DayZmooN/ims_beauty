@@ -211,19 +211,29 @@
   }
 }
 
+.flash-messages-container {
+  position: fixed; /* Fixed position */
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  overflow: auto;
+  gap: 5px;
+  bottom: 10px; /* Positioned at the bottom */
+  right: 15px; /* Positioned to the right */
+  z-index: 5; /* High z-index to ensure it's on top */
+  width: 300px; /* Adjust as needed */
+  height: 50%;
+}
+
 .alert {
-  position: fixed;
-  bottom: 10px;
-  right: 15px;
-  border: 1px solid $Khaki;
   background-color: $primary-Alabaster;
   border-radius: $radius-15;
   color: $accent-BrownShadow;
+  font-family: $textFont;
   padding: 15px;
-  animation: fadeOut ease 8s;
-  /* Adjust the duration as needed */
+  margin-top: 10px; /* Spacing between messages */
+  animation: fadeOut ease 8s; /* Adjust the duration as needed */
   animation-fill-mode: forwards;
-  /* Keeps the element in the state of the last keyframe when the animation completes */
 }
 
 
