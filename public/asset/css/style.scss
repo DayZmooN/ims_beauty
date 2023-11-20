@@ -34,10 +34,14 @@
     z-index: 0;
   }
 
-  &>a>img {
-    width: 35px;
-    height: 35px;
+  &>a{
+    z-index: 9;
+    &>img {
+      width: 35px;
+      height: 35px;
+    }    
   }
+
 }
 
 .alt-animated-btn:hover::after {
@@ -208,7 +212,7 @@
 }
 
 .alert {
-  position: absolute;
+  position: fixed;
   bottom: 10px;
   right: 15px;
   border: 1px solid $Khaki;

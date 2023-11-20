@@ -7,33 +7,58 @@
 	{% include './components/page-header.html.twig' with {'page_name': page_name, 'breadcrumbs': breadcrumbs} %}
 	<section class="tarifs">
 		{% for category in categories %}
-            <div class="tarif-category">
-                <div class="category-header" data-category-id="{{ loop.index }}" onclick="toggleServices('{{ loop.index }}')">
-                    <div class="category-title">
-                        <img src="{{asset('asset/media/icons/deco/laurel.svg')}}" alt="">
-                        <h2>{{ category.name }}</h2>
-                    </div>
-                    <img src="{{asset('asset/media/icons/navigator/minus.svg')}}" alt="" id="icon-{{ loop.index }}" class="icons">
-                </div>
-                
-				<div id="services-{{ loop.index }}" class="services-container">
-                {% for service in category.services %}
-                    <div class="service-card">
-                        <img src="{{asset('asset/media/icons/deco/massage-stones.svg')}}" alt="" class="icon-desktop">
-                        <div class="service-details">
-                                <h4>{{ service.name }}</h4>
-                                <h6>({{ service.duration }})</h6>
-                        </div>
-                        <span>{{ service.price }}€</span>
-                        <div class="alt-animated-btn">
-                            <a href="">
-                                <img src="{{asset('asset/media/icons/shopAdd.svg')}}" alt="">
-                            </a>
-                        </div>
-                    </div>
-                {% endfor %}
+			<div class="tarif-category">
+				<div class="category-header" data-category-id="{{ loop.index }}" onclick="toggleServices('{{ loop.index }}')">
+					<div class="category-title">
+						<img src="{{asset('asset/media/icons/deco/laurel.svg')}}" alt="">
+						<h2>{{ category.name }}</h2>
+					</div>
+					<img src="{{asset('asset/media/icons/navigator/minus.svg')}}" alt="" id="icon-{{ loop.index }}" class="icons">
 				</div>
-            </div>
-        {% endfor %}
+
+				<div id="services-{{ loop.index }}" class="services-container">
+					{% for service in category.services %}
+						<div class="service-card">
+							<img src="{{asset('asset/media/icons/deco/massage-stones.svg')}}" alt="" class="icon-desktop">
+							<div class="service-details">
+								<h4>{{ service.name }}</h4>
+								<h6>({{ service.duration }})</h6>
+							</div>
+							<span>{{ service.price }}€</span>
+							<div class="alt-animated-btn">
+								<a href="{{path('cart_add', {id: service.id}) }}" class="add-to-cart-link">
+									<img src="{{asset('asset/media/icons/shopAdd.svg')}}" alt="">
+								</a>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		{% endfor %}
 	</section>
+	{% include './flash_messages/flash_messages.html.twig' %}
+	<script>
+    $(document).ready(function () {
+        $('.add-to-cart-link').click(function (e) {
+            e.preventDefault(); // Prevent the default link action
+            var url = $(this).attr('href'); // Get the href attribute
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function (response) { // Assuming the response contains a message and a success flag
+                    var message = response.message;
+                    var isSuccess = response.success;
+                    var alertClass = isSuccess ? 'alert-success' : 'alert-danger';
+                    var alertHtml = '<div class="alert ' + alertClass + '"><p>' + message + '</p></div>';
+                    $('.flash-messages-container').html(alertHtml); // Display the flash message
+                },
+                error: function () {
+                    var alertHtml = '<div class="alert alert-danger"><p>An error occurred while adding the item to the cart.</p></div>';
+                    $('.flash-messages-container').html(alertHtml); // Display the error message
+                }
+            });
+        });
+    });
+	</script>
 {% endblock %}

@@ -67,16 +67,18 @@ class PageController extends AbstractController
     }
 
     #[Route('/nos-tarifs', name: 'app_our_prices')]
-    public function tarifs(BreadcrumbService $breadcrumbService, CategoriesRepository $categoryRepository): Response
+    public function tarifs(BreadcrumbService $breadcrumbService, CategoriesRepository $categoryRepository,ServicesRepository $servicesRepository): Response
     {
         $breadcrumbs = $breadcrumbService->getBreadcrumbs();
         $categories = $categoryRepository->findAll();
+        $services = $servicesRepository->findBy(['category' => $categories]);
 
         return $this->render('page/nos-tarifs.html.twig', [
             'controller_name' => 'OurPricesController',
             'breadcrumbs' => $breadcrumbs,
             'page_name' => 'Nos Tarifs',
             'categories' => $categories,
+            'services' => $services,
         ]);
     }
 

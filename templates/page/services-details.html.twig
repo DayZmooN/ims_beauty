@@ -59,7 +59,7 @@
 						</p>
 					</div>
 					<div class="animated-btn btn-two">
-						<a href="{{path('cart_add', {id: service.id}) }}">
+						<a href="{{path('cart_add', {id: service.id}) }}" class="add-to-cart-link">
 							<span>Réservez</span>
 							<img src="{{asset('asset/media/icons/deco/lotus.svg')}}" alt="">
 						</a>
@@ -68,51 +68,60 @@
 			{% else %}
 				<p>Ce service n'a pas encore de description rédiger.</p>
 			{% endfor %}
-			<h2>Choisissez votre créneau horaire</h2>
-
-
-			{# {{ form_start(appointmentForm) }}
-			{{ form_widget(appointmentForm.DateTime) }}
-			{{ form_end(appointmentForm) }} #}
-		{# {% for slot in availableSlots %}
-		    <div>
-		        <p>Créneau disponible : {{ slot.date | date('d M Y H:i') }}</p>
-		    </div>
-		{% endfor %} #}
-
-			{# Intégration de Google Agenda #}
-
-			{# <iframe src="https://calendar.google.com/calendar/embed?src=eb4ac0e920b14d60786c94f71092fdcbd873e34be3814d00d3fbcd8cd737f844@group.calendar.google.com&ctz=Europe%2FParis" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-			
-			    </section> #}
+			{% include './flash_messages/flash_messages.html.twig' %}
 		</section>
 		<script>
 			document.addEventListener('DOMContentLoaded', function () {
-const datetimePicker = document.querySelector('.datetimepicker');
+			const datetimePicker = document.querySelector('.datetimepicker');
 
-if (datetimePicker) {
-datetimePicker.addEventListener('change', function () {
-const selectedDate = new Date(this.value);
-const hoursSelect = this.querySelector('select[id$=_hour]'); // Modifier l'ID selon votre structure HTML
+			if (datetimePicker) {
+				datetimePicker.addEventListener('change', function () {
+				const selectedDate = new Date(this.value);
+				const hoursSelect = this.querySelector('select[id$=_hour]'); // Modifier l'ID selon votre structure HTML
 
-if (hoursSelect) {
-adjustTimeOptions(hoursSelect, selectedDate);
-}
+				if (hoursSelect) {
+					adjustTimeOptions(hoursSelect, selectedDate);
+				}
+				});
+			}
+
+			function adjustTimeOptions(hoursSelect, selectedDate) {
+			const hours = Array.from(hoursSelect.options).map(option => parseInt(option.value));
+
+			hours.forEach(hour => {
+			const option = hoursSelect.querySelector (`option[value="${hour}"]`);
+			if (hour < 8 || hour > 17 || (hour >= 12 && hour < 13.5)) {
+			option.disabled = true;
+			} else {
+			option.disabled = false;
+			}
+			});
+			}
+			});
+
+$(document).ready(function() {
+    $('.add-to-cart-link').click(function(e) {
+        e.preventDefault(); // Prevent the default link action
+        var url = $(this).attr('href'); // Get the href attribute
+
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function(response) {
+                // Assuming the response contains a message and a success flag
+                var message = response.message;
+                var isSuccess = response.success;
+                var alertClass = isSuccess ? 'alert-success' : 'alert-danger';
+                var alertHtml = '<div class="alert ' + alertClass + '"><p>' + message + '</p></div>';
+                $('.flash-messages-container').html(alertHtml); // Display the flash message
+            },
+            error: function() {
+                var alertHtml = '<div class="alert alert-danger"><p>An error occurred while adding the item to the cart.</p></div>';
+                $('.flash-messages-container').html(alertHtml); // Display the error message
+            }
+        });
+    });
 });
-}
 
-function adjustTimeOptions(hoursSelect, selectedDate) {
-const hours = Array.from(hoursSelect.options).map(option => parseInt(option.value));
-
-hours.forEach(hour => {
-const option = hoursSelect.querySelector (`option[value="${hour}"]`);
-if (hour < 8 || hour > 17 || (hour >= 12 && hour < 13.5)) {
-option.disabled = true;
-} else {
-option.disabled = false;
-}
-});
-}
-});
 		</script>
 	{% endblock %}

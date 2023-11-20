@@ -3,27 +3,6 @@
 {% block body %}
 <section class="shopping-cart">
     <h1>Mon Panier</h1>
-
-    <!-- Form for selecting a month -->
-    {# <form action="{{ path('app_cart') }}" method="get">
-        <select name="selectedMonth" onchange="this.form.submit()">
-            {% set currentMonthNumeric = "now"|date('m')|number_format(0, '', '') %}
-            {% set currentYear = "now"|date('Y') %}
-            {% for i in 0..11 %}
-                {% set adjustedMonth = currentMonthNumeric + i %}
-                {% set adjustedYear = currentYear %}
-                {% if adjustedMonth > 12 %}
-                    {% set adjustedMonth = adjustedMonth - 12 %}
-                    {% set adjustedYear = adjustedYear + 1 %}
-                {% endif %}
-                {% set monthDate = date(adjustedYear ~ '-' ~ adjustedMonth ~ '-01') %}
-                <option value="{{ monthDate.format('m') }}" {% if selectedMonth == monthDate.format('m') %} selected {% endif %}>
-                    {{ monthDate.format('F Y') }}
-                </option>
-            {% endfor %}
-        </select>
-    </form> #}
-
     {% if servicesWithForms is not empty %}
         <form action="{{ path('app_cart') }}" method="POST">
             <table class="table">
@@ -42,19 +21,6 @@
                             <td>{{ item.service.description }}</td>
                             <td>{{ item.service.price }}</td>
                             <td>
-                                {# {% for date, timeSlots in item.availableTimeSlots %}
-                                    <div class="date">
-                                        <strong>{{ date }}</strong>
-                                        <div class="time-slots">
-                                            {% for timeSlot in timeSlots %}
-                                                <input type="radio" id="slot_{{ item.service.id }}_{{ date }}_{{ timeSlot }}"
-                                                    name="selectedTimeSlot_{{ item.service.id }}" value="{{ date ~ ' ' ~ timeSlot }}">
-                                                <label for="slot_{{ item.service.id }}_{{ date }}_{{ timeSlot }}">{{ timeSlot }}</label>
-                                            {% endfor %}
-                                        </div>
-                                    </div>
-                                      <a href="cart_remove">remove</a>
-                                {% endfor %} #} 
                                {% if googleCalendarSlots is not empty %}
                                 <div class="available-slots">
                                     <h3>Créneaux Disponibles (Google Agenda)</h3>
