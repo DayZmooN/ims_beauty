@@ -233,8 +233,9 @@
   font-family: $textFont;
   padding: 15px;
   margin-top: 10px; /* Spacing between messages */
-  animation: fadeOut ease 8s; /* Adjust the duration as needed */
+  animation: fadeOut ease 2s; /* Adjust the duration as needed */
   animation-fill-mode: forwards;
+  animation-delay: 5s;
 }
 
 
@@ -1448,7 +1449,6 @@ footer {
   }
 }
 
-//~ ------------ ADMIN DASHBOARD ------------ //
 //~ ------------ USER DASHBOARD ------------ //
 
 .dashboard {
@@ -1679,6 +1679,32 @@ footer {
       }
     }
   }
+}
+
+//~ ------------ CART ------------ //
+.shopping-cart{
+  display: flex;
+  flex-wrap: wrap;
+
+  .services-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.service-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.service-info {
+    flex: 1;
+    padding-right: 20px; /* Spacing between columns */
+}
+
+.calendar-options {
+    flex: 1;
+}
 }
 
 //~ ------------ ERROR 404 ------------ //

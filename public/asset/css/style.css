@@ -409,8 +409,9 @@ input[type=date]::-webkit-calendar-picker-indicator {
   font-family: "Poppins";
   padding: 15px;
   margin-top: 10px; /* Spacing between messages */
-  animation: fadeOut ease 8s; /* Adjust the duration as needed */
+  animation: fadeOut ease 2s; /* Adjust the duration as needed */
   animation-fill-mode: forwards;
+  animation-delay: 5s;
 }
 
 header {
@@ -1622,6 +1623,27 @@ footer > .copyrights > p > a:hover {
 }
 .dashboard #settings .form-container > .settings-buttons .delete-btn:hover {
   background-color: #AB4545;
+}
+
+.shopping-cart {
+  display: flex;
+  flex-wrap: wrap;
+}
+.shopping-cart .services-list {
+  display: flex;
+  flex-direction: column;
+}
+.shopping-cart .service-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.shopping-cart .service-info {
+  flex: 1;
+  padding-right: 20px; /* Spacing between columns */
+}
+.shopping-cart .calendar-options {
+  flex: 1;
 }
 
 .error404 {

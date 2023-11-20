@@ -45,6 +45,6 @@ function handleAjaxRequest(url, options, onSuccess, onError) {
             alertHtml.style.opacity = '0'; // Trigger fade out
             setTimeout(function() {
                 alertHtml.remove();
-            }, 600); // Time for fade-out effect to complete
-        }, 5000);
+            }, 2000); // Time for fade-out effect to complete
+        }, 15000);
     }
