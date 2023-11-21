@@ -129,36 +129,36 @@
 	</section>
 	{% include './flash_messages/flash_messages.html.twig' %}
 	<script>
-		document.addEventListener('DOMContentLoaded', function () { // Event listener for opening calendar
-document.querySelectorAll('.open-calendar').forEach(function (button) {
-button.addEventListener('click', function (e) {
-e.preventDefault();
-e.stopPropagation(); // Prevent event from bubbling up to parent elements
-var serviceId = e.currentTarget.closest('.service-item').dataset.serviceId;
-toggleCalendar(serviceId);
-});
-});
-		}):
+	document.addEventListener('DOMContentLoaded', function () { // Event listener for opening calendar
+		document.querySelectorAll('.open-calendar').forEach(function (button) {
+			button.addEventListener('click', function (e) {
+			e.preventDefault();
+			e.stopPropagation(); // Prevent event from bubbling up to parent elements
+			var serviceId = e.currentTarget.closest('.service-item').dataset.serviceId;
+			toggleCalendar(serviceId);
+			});
+		});
+	});
 
 // Event listener for removing items from cart
 document.querySelectorAll('.remove-from-cart-link').forEach(function (link) {
-link.addEventListener('click', function (e) {
-e.preventDefault();
-var url = e.currentTarget.href;
-var serviceId = e.currentTarget.closest('.service-item').dataset.serviceId;
+	link.addEventListener('click', function (e) {
+		e.preventDefault();
+		var url = e.currentTarget.href;
+		var serviceId = e.currentTarget.closest('.service-item').dataset.serviceId;
 
-handleAjaxRequest(url, {
-method: 'GET'
-}, function (data) {
-if (data.success) { // Remove the corresponding service item
-var itemToRemove = document.querySelector('.service-item[data-service-id="' + serviceId + '"]');
-if (itemToRemove) {
-itemToRemove.remove();
-updateCartItemCount(-1); // Decrement cart count
-}
-}
-});
-});
+		handleAjaxRequest(url, {
+			method: 'GET'
+			}, function (data) {
+				if (data.success) { // Remove the corresponding service item
+					var itemToRemove = document.querySelector('.service-item[data-service-id="' + serviceId + '"]');
+					if (itemToRemove) {
+						itemToRemove.remove();
+						updateCartItemCount(-1); // Decrement cart count
+					}
+				}
+			});
+		});
 });
 
 function updateCartItemCount(change) {
