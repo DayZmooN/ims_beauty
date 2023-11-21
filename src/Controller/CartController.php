@@ -119,7 +119,7 @@ class CartController extends AbstractController
         }
 
         // Rendre la vue avec les données mises à jour
-        return $this->render('cart/index.html.twig', [
+        return $this->render('page/cart.html.twig', [
             'servicesWithForms' => $servicesWithForms,
             'googleCalendarSlots' => $googleCalendarSlots,
         ]);

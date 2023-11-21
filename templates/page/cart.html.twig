@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<section class="shopping-cart">
+    <h1>Mon Panier</h1>
+
+    {% if servicesWithForms is not empty %}
+        <form action="{{ path('app_cart') }}" method="POST">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nom du service</th>
+                        <th>Description</th>
+                        <th>Prix</th>
+                        <th>Sélectionnez un créneau</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in servicesWithForms %}
+                        <tr>
+                            <td>{{ item.service.name }}</td>
+                            <td>{{ item.service.description }}</td>
+                            <td>{{ item.service.price }}</td>
+                            <td data-service-duration="{{ item.service.duration }}">{{ item.service.duration }}</td>
+                            <td>   
+                                {% if googleCalendarSlots is not empty %}
+                                    <div class="available-slots">
+                                        <h3>Créneaux Disponibles (Google Agenda)</h3>
+                                        {% for slot in googleCalendarSlots %}
+                                            <div>
+                                                <input type="radio" id="google_slot_{{ item.service.id }}_{{ loop.index }}" 
+                                                       name="selectedTimeSlot[{{ item.service.id }}]" 
+                                                       value="{{ slot }}" required>
+                                                <label for="google_slot_{{ item.service.id }}_{{ loop.index }}">{{ slot }}</label>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <a href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger">Retirer</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <button type="submit">Confirmer les Rendez-vous</button>
+        </form>
+    {% else %}
+        <p>Votre panier est vide.</p>
+    {% endif %}
+</section>
+{% endblock %}
