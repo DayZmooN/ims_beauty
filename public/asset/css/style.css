@@ -1906,6 +1906,15 @@ footer > .copyrights > p > a:hover {
   color: #EEE3D7;
 }
 
+@media screen and (max-width: 750px) {
+  .error404 h1 {
+    font-size: 10rem;
+    line-height: 8rem;
+  }
+  .error404 h2 {
+    font-size: 1rem;
+  }
+}
 .mentions-legales {
   display: flex;
   flex-direction: column;
