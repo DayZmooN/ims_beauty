@@ -42,19 +42,3 @@ services:
     GuzzleHttp\ClientInterface: '@GuzzleHttp\Client'
     GuzzleHttp\Client:
         class: GuzzleHttp\Client
-
-# Vous pourriez ne pas avoir besoin de ces lignes si vous configurez déjà le client dans GoogleClientService
-# Google_Client:
-#     class: Google_Client
-#     calls:
-#         - [setAuthConfig, ['%env(GOOGLE_APPLICATION_CREDENTIALS)%']]
-#         - [addScope, ['https://www.googleapis.com/auth/calendar']]
-#         - [setAccessType, ['offline']]
-#         - [setPrompt, ['select_account consent']]
-
-# Configuration du service Google Calendar
-# Vous pourriez ne pas avoir besoin de définir ce service s'il est entièrement géré dans GoogleCalendarService
-# Google_Service_Calendar:
-#     class: Google_Service_Calendar
-#     arguments:
-#         - '@Google_Client'

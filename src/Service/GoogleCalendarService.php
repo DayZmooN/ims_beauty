@@ -62,6 +62,10 @@ class GoogleCalendarService
 
         return $availableSlots;
     }
+    private $workHours = [
+        'morning' => ['start' => '09:00', 'end' => '12:00'],
+        'afternoon' => ['start' => '14:00', 'end' => '18:00']
+    ];
 
     private function calculateAvailableSlots($events)
     {
