@@ -34,7 +34,7 @@
     z-index: 0;
   }
 
-  &>a>img {
+  & > a > img {
     width: 35px;
     height: 35px;
   }
@@ -163,20 +163,20 @@ header {
   background-color: $light-Black;
   color: $default-White;
 
-  &>.nav-menu {
+  & > .nav-menu {
     display: flex;
     justify-content: center;
     align-items: center;
     align-self: stretch;
     padding: 0 25px;
 
-    &>nav>ul {
+    & > nav > ul {
       display: flex;
       justify-content: space-evenly;
       align-items: center;
       gap: 15px;
 
-      &>li {
+      & > li {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -205,7 +205,7 @@ header {
           }
         }
 
-        &>a {
+        & > a {
           color: $default-White;
           font-family: $bonusFont;
           line-height: 100px;
@@ -222,7 +222,7 @@ header {
       }
     }
 
-    &>figure {
+    & > figure {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -231,13 +231,13 @@ header {
       gap: 10px;
       padding: 0 10px;
 
-      &>a>img {
+      & > a > img {
         height: 35px;
       }
     }
   }
 
-  &>a>img {
+  & > a > img {
     padding-left: 25px;
   }
 }
@@ -252,7 +252,7 @@ footer {
   background-color: $light-Black;
   color: $default-White;
 
-  &>div.salon-infos {
+  & > div.salon-infos {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -260,7 +260,7 @@ footer {
     text-align: center;
     width: 100%;
 
-    &>.map-infos {
+    & > .map-infos {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
@@ -268,14 +268,14 @@ footer {
       justify-content: space-evenly;
       width: 80%;
 
-      &>div.categories-links {
+      & > div.categories-links {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
         padding: 15px;
 
-        &>.title {
+        & > .title {
           display: flex;
           align-items: center;
           justify-content: center;
@@ -283,21 +283,21 @@ footer {
           padding: 10px;
           border-bottom: 1px solid $Khaki;
 
-          &>img {
+          & > img {
             width: 50px;
           }
 
-          &>h3 {
+          & > h3 {
             font-family: $bonusFont;
             color: $default-White;
             font-size: 1.3rem;
           }
         }
 
-        &>li {
+        & > li {
           list-style: disc;
 
-          &>a {
+          & > a {
             color: $default-White;
             font-family: $extraLight;
             font-size: 0.875rem;
@@ -309,7 +309,7 @@ footer {
         }
       }
 
-      &>div.schedule {
+      & > div.schedule {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -317,7 +317,7 @@ footer {
         gap: 10px;
         padding: 15px;
 
-        &>.title {
+        & > .title {
           display: flex;
           align-items: center;
           justify-content: center;
@@ -325,24 +325,24 @@ footer {
           padding: 10px;
           border-bottom: 1px solid $Khaki;
 
-          &>img {
+          & > img {
             width: 50px;
           }
 
-          &>h3 {
+          & > h3 {
             font-family: $bonusFont;
             color: $default-White;
             font-size: 1.3rem;
           }
         }
 
-        &>div {
-          &>.schedule-days {
+        & > div {
+          & > .schedule-days {
             font-family: $bonusFont;
             font-size: 0.875rem;
           }
 
-          &>.schedule-hours {
+          & > .schedule-hours {
             font-family: $bonusFont;
             font-size: 0.875rem;
             color: $secondary-WhiteChocolate;
@@ -351,7 +351,7 @@ footer {
       }
     }
 
-    &>div.contact-socials {
+    & > div.contact-socials {
       display: flex;
       width: 275px;
       flex-direction: column;
@@ -359,29 +359,29 @@ footer {
       align-items: center;
       gap: 10px;
 
-      &>figure>.footer-logo {
+      & > figure > .footer-logo {
         width: 100px;
       }
 
-      &>figcaption {
+      & > figcaption {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 10px;
 
-        &>.catchphrase {
+        & > .catchphrase {
           font-family: $bonusFont;
           font-size: 0.625rem;
         }
 
-        &>.footer-contact {
+        & > .footer-contact {
           display: flex;
           align-items: center;
           justify-content: center;
           gap: 10px;
 
-          &>figcaption>p {
+          & > figcaption > p {
             font-family: $lighterText;
             font-size: 0.75rem;
           }
@@ -390,10 +390,9 @@ footer {
     }
   }
 
-  &>.copyrights {
-
-    &>p {
-      &>a {
+  & > .copyrights {
+    & > p {
+      & > a {
         color: $default-White;
         font-size: 0.5rem;
         text-align: center;
@@ -420,25 +419,26 @@ footer {
   text-align: center;
   width: 100%;
   height: 250px;
-  background: url("../media/deco/massagewoman.svg") bottom left / contain no-repeat,
+  background: url("../media/deco/massagewoman.svg") bottom left / contain
+      no-repeat,
     url("../media/deco/flower-bg-flipped.svg") top right / auto no-repeat;
   background-color: $light-Black;
 
-  &>h1 {
+  & > h1 {
     color: $PaleSilver;
   }
 
-  &>ul {
+  & > ul {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 15px;
 
-    &>li {
+    & > li {
       color: $PaleSilver;
 
-      &>a {
+      & > a {
         color: $Khaki;
 
         &:hover {
@@ -468,7 +468,8 @@ footer {
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
-  background: url('../media/deco/textured-bg.webp') center center / cover no-repeat;
+  background: url("../media/deco/textured-bg.webp") center center / cover
+    no-repeat;
 
   .CTA-banner {
     position: relative;
@@ -482,7 +483,7 @@ footer {
     border-radius: 360px 360px 0 0;
     background-color: $accent-BrownShadow;
 
-    &>img {
+    & > img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -512,13 +513,13 @@ footer {
     text-align: center;
 
     .logo-cta {
-      &>img {
+      & > img {
         width: 200px;
       }
 
-      &>figcaption {
-        &>p {
-          font-size: .7rem;
+      & > figcaption {
+        & > p {
+          font-size: 0.7rem;
           font-family: $bonusFont;
           color: $accent-BrownShadow;
         }
@@ -532,13 +533,14 @@ footer {
       gap: 5px;
       padding: 15px;
 
-      &>img {
-        filter: invert(50%) sepia(12%) saturate(884%) hue-rotate(346deg) brightness(94%) contrast(88%);
+      & > img {
+        filter: invert(50%) sepia(12%) saturate(884%) hue-rotate(346deg)
+          brightness(94%) contrast(88%);
       }
 
-      &>figcaption {
-        &>p {
-          font-size: .8rem;
+      & > figcaption {
+        & > p {
+          font-size: 0.8rem;
           font-family: $bonusFont;
           color: $accent-BrownShadow;
         }
@@ -558,7 +560,7 @@ footer {
   width: 100%;
   background-color: $primary-Alabaster;
 
-  &>a {
+  & > a {
     max-width: 250px;
     font-family: $bonusFont;
     color: $accent-BrownShadow;
@@ -592,7 +594,7 @@ footer {
   padding: 25px 0;
   border-bottom: 1px solid $Cinereous;
 
-  &>figure {
+  & > figure {
     position: relative;
     width: 40vw;
     height: 40vw;
@@ -602,14 +604,14 @@ footer {
     border-radius: 100%;
     background-color: $accent-BrownShadow;
 
-    &>img {
+    & > img {
       width: 100%;
       height: 100%;
       border-radius: 100%;
       object-fit: cover;
     }
 
-    &>figcaption {
+    & > figcaption {
       position: absolute;
       display: flex;
       justify-content: center;
@@ -623,7 +625,7 @@ footer {
       border-radius: $radius-180;
       background-color: $accent-BrownShadow;
 
-      &>a>.icons {
+      & > a > .icons {
         width: 65px;
       }
     }
@@ -639,7 +641,7 @@ footer {
     max-width: 740px;
     width: 100%;
 
-    &>blockquote {
+    & > blockquote {
       position: relative;
       font-family: $titleFont;
       font-size: 2.5rem;
@@ -666,7 +668,7 @@ footer {
       }
     }
 
-    &>.redirection-buttons {
+    & > .redirection-buttons {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-evenly;
@@ -674,22 +676,22 @@ footer {
       align-self: stretch;
       padding: 15px;
       border-radius: 25px;
-      background: url("../media/deco/flower-bg-deco.svg") top left / contain no-repeat,
+      background: url("../media/deco/flower-bg-deco.svg") top left / contain
+          no-repeat,
         url("../media/deco/flower-bg-flipped.svg") top right / contain no-repeat;
       background-color: $primary-Alabaster;
     }
   }
-
-
 }
 
 //? -------- CONTACT FORM -------- //
 .contact-form {
   text-align: center;
   width: 100%;
-  background: url("../media/deco/textured-bg.webp") center center / cover no-repeat;
+  background: url("../media/deco/textured-bg.webp") center center / cover
+    no-repeat;
 
-  &>.contact-container {
+  & > .contact-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -697,25 +699,25 @@ footer {
     gap: 25px;
     padding: 25px;
 
-    &>.contact-info {
+    & > .contact-info {
       display: flex;
       flex-direction: column;
       max-width: 800px;
       width: 100%;
       gap: 25px;
 
-      &>h2 {
+      & > h2 {
         text-decoration: underline;
       }
 
-      &>.info-container {
+      & > .info-container {
         display: flex;
         flex-direction: column;
         gap: 10px;
         width: 100%;
         text-align: left;
 
-        &>figure {
+        & > figure {
           width: 100%;
           display: flex;
           flex-direction: row;
@@ -725,14 +727,14 @@ footer {
           border-radius: 0 25px 25px 0;
           background-color: $secondary-WhiteChocolate;
 
-          &>img {
+          & > img {
             background-color: $Cinereous;
             padding: 10px;
             border-radius: $radius-15;
           }
 
-          &>figcaption {
-            &>p:first-child {
+          & > figcaption {
+            & > p:first-child {
               color: $Cinereous;
             }
           }
@@ -744,20 +746,20 @@ footer {
       }
     }
 
-    &>.form-container {
+    & > .form-container {
       max-width: 650px;
       width: 100%;
       padding: 25px;
       border-radius: 0 25px 25px 0;
       background-color: $Khaki;
 
-      &>form {
+      & > form {
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
         gap: 15px;
 
-        &>input,
+        & > input,
         textarea {
           border-radius: $radius-5;
           background-color: transparent;
@@ -773,7 +775,7 @@ footer {
           }
         }
 
-        &>button {
+        & > button {
           border: 1px solid $accent-BrownShadow;
           padding: 15px;
           border-radius: $radius-15;
@@ -794,7 +796,7 @@ footer {
 .map-location {
   width: 100%;
 
-  &>#map-aboutus {
+  & > #map-aboutus {
     -webkit-filter: grayscale(100%);
     -moz-filter: grayscale(100%);
     -ms-filter: grayscale(100%);
@@ -805,25 +807,25 @@ footer {
 
 @media screen and (max-width: 850px) {
   .about-us-presentation {
-    &>figure {
+    & > figure {
       width: 100vw;
       height: 100vw;
       min-width: 100px;
       min-height: 100px;
 
-      &>figcaption {
+      & > figcaption {
         width: 150px;
         height: 50px;
         padding: 10px;
 
-        &>a>.icons {
+        & > a > .icons {
           width: 35px;
         }
       }
     }
 
     .presentation {
-      &>blockquote {
+      & > blockquote {
         width: 80%;
       }
 
@@ -839,7 +841,6 @@ footer {
   .es-widget-title::after {
     display: none !important;
   }
-
 }
 
 //~ ------------ CATEGORIES ------------ //
@@ -875,7 +876,7 @@ footer {
     padding: 20px;
     width: 258px;
 
-    &>img {
+    & > img {
       width: 160px;
       height: 160px;
       border-radius: 100%;
@@ -884,7 +885,7 @@ footer {
       padding: 5px;
     }
 
-    &>figcaption>h3 {
+    & > figcaption > h3 {
       color: $Cinereous;
       text-decoration: underline;
     }
@@ -898,7 +899,7 @@ footer {
     gap: 15px;
     padding: 15px;
 
-    &>p {
+    & > p {
       color: $light-Black;
     }
   }
@@ -916,7 +917,7 @@ footer {
   width: 100%;
   height: 100%;
 
-  &>.category-details-aside {
+  & > .category-details-aside {
     display: flex;
     flex-direction: column;
     height: 80vh;
@@ -925,7 +926,7 @@ footer {
     padding: 25px;
     background-color: $primary-Alabaster;
 
-    &>.services-liste-container {
+    & > .services-liste-container {
       display: flex;
       padding: 25px 15px;
       flex-direction: column;
@@ -934,19 +935,19 @@ footer {
       align-self: stretch;
       border-radius: $radius-5;
 
-      &>.category-title {
+      & > .category-title {
         width: 100%;
         padding: 15px 0;
         border-radius: 5px 5px 0 0;
         background-color: $accent-BrownShadow;
         border-bottom: 1px solid $Khaki;
 
-        &>h1 {
+        & > h1 {
           color: $primary-Alabaster;
         }
       }
 
-      &>.category-services {
+      & > .category-services {
         overflow-y: scroll;
         width: 100%;
         max-height: 300px;
@@ -956,7 +957,7 @@ footer {
         scrollbar-color: $secondary-WhiteChocolate $Cinereous;
         scrollbar-width: thin;
 
-        &>ul>li {
+        & > ul > li {
           position: relative;
           display: flex;
           justify-content: center;
@@ -1012,7 +1013,7 @@ footer {
     }
   }
 
-  &>.service-details {
+  & > .service-details {
     flex-grow: 1;
     overflow-y: scroll;
     scrollbar-color: $secondary-WhiteChocolate $Cinereous;
@@ -1040,9 +1041,9 @@ footer {
       }
     }
 
-    &>.service-detail-content {
-      &>.service-thumbnail {
-        &>img {
+    & > .service-detail-content {
+      & > .service-thumbnail {
+        & > img {
           height: 350px;
           width: 100%;
           border-radius: $radius-5;
@@ -1050,7 +1051,7 @@ footer {
         }
       }
 
-      &>.service-info {
+      & > .service-info {
         position: relative;
         display: flex;
         flex-direction: column;
@@ -1058,7 +1059,7 @@ footer {
         height: 100%;
         min-height: 200px;
 
-        &>.service-name-price {
+        & > .service-name-price {
           display: flex;
           justify-content: space-between;
           align-items: center;
@@ -1067,13 +1068,13 @@ footer {
           background-color: $Cinereous;
           color: $primary-Alabaster;
 
-          &>h2 {
+          & > h2 {
             color: $primary-Alabaster;
             font-weight: 400;
             font-size: 2.1rem;
           }
 
-          &>p {
+          & > p {
             font-weight: 600;
             font-size: 2.1rem;
           }
@@ -1083,33 +1084,32 @@ footer {
           font-size: 1.125rem;
         }
 
-        &>.btn {
+        & > .btn {
           position: absolute;
           bottom: 0;
         }
 
         @media screen and (max-width: 850px) {
           .service-name-price {
-            &>h2 {
+            & > h2 {
               font-weight: 400;
               font-size: 1.5rem;
             }
 
-            &>p {
+            & > p {
               font-weight: 600;
               font-size: 1.5rem;
             }
           }
 
-          &>p {
-            font-size: .9rem;
+          & > p {
+            font-size: 0.9rem;
           }
         }
       }
     }
   }
 }
-
 
 //~ ------------ TARIFS & BOOKING ------------ //
 .tarifs {
@@ -1143,8 +1143,9 @@ footer {
         justify-content: center;
         gap: 15px;
 
-        &>img {
-          filter: invert(80%) sepia(6%) saturate(372%) hue-rotate(334deg) brightness(96%) contrast(91%);
+        & > img {
+          filter: invert(80%) sepia(6%) saturate(372%) hue-rotate(334deg)
+            brightness(96%) contrast(91%);
         }
       }
     }
@@ -1167,24 +1168,25 @@ footer {
       min-height: 100px;
       border: 1px solid $Khaki;
       border-radius: 5px;
-      background: url("../media/deco/flower-bg-flipped.svg") top right / contain no-repeat,
+      background: url("../media/deco/flower-bg-flipped.svg") top right / contain
+          no-repeat,
         url("../media/deco/textured-bg.webp") center center / cover no-repeat;
 
       .service-details {
         max-width: 150px;
         color: $Cinereous;
 
-        &>h4 {
+        & > h4 {
           color: $accent-BrownShadow;
         }
 
-        &>p {
+        & > p {
           font-size: 0.75rem;
           line-height: normal;
         }
       }
 
-      &>span {
+      & > span {
         font-family: $bolderText;
       }
 
@@ -1207,12 +1209,12 @@ footer {
   width: 100%;
   padding: 0 5px;
 
-  &>h1 {
+  & > h1 {
     color: $Cinereous;
     padding: 15px 5px;
   }
 
-  &>.form-connexion {
+  & > .form-connexion {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -1225,27 +1227,27 @@ footer {
     border: 1px solid $Cinereous;
     border-radius: $radius-5;
 
-    &>input {
+    & > input {
       width: 90%;
     }
 
-    &>.remember-check {
+    & > .remember-check {
       display: flex;
       gap: 5px;
       align-items: center;
       width: 90%;
 
-      &>label {
+      & > label {
         font-size: 0.75rem;
         font-family: $lighterText;
       }
     }
 
-    &>.error-login {
+    & > .error-login {
       color: $error-Red;
     }
 
-    &>.button-links {
+    & > .button-links {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -1264,11 +1266,11 @@ footer {
         }
       }
 
-      &>.login-troubleshooting {
+      & > .login-troubleshooting {
         display: flex;
         flex-direction: column;
 
-        &>a {
+        & > a {
           font-size: 0.75rem;
           color: $default-grey;
 
@@ -1283,7 +1285,7 @@ footer {
 
 @media screen and (max-width: 400px) {
   .form-login {
-    &>.form-connexion {
+    & > .form-connexion {
       padding: 50px 0;
       width: 90%;
     }
@@ -1300,11 +1302,11 @@ footer {
   gap: 25px;
   width: 50%;
 
-  &>h1 {
+  & > h1 {
     color: $Cinereous;
   }
 
-  &>.form-registration {
+  & > .form-registration {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1366,11 +1368,11 @@ footer {
     min-height: 170px;
     height: 100%;
 
-    &>h1 {
+    & > h1 {
       font-family: $bonusFont;
       color: $light-Black;
 
-      &>span {
+      & > span {
         color: $accent-BrownShadow;
       }
     }
@@ -1453,7 +1455,7 @@ footer {
     border-radius: $radius-5;
     border: 1px solid $Khaki;
 
-    &>figure {
+    & > figure {
       display: flex;
       flex-direction: row;
       gap: 15px;
@@ -1461,7 +1463,7 @@ footer {
       border-radius: $radius-5;
       padding: 5px;
 
-      &>img {
+      & > img {
         background-color: $accent-BrownShadow;
         padding: 5px;
         border-radius: $radius-180;
@@ -1475,9 +1477,9 @@ footer {
         background-color: $secondary-WhiteChocolate;
       }
 
-      &>figcaption {
-        &>p {
-          &>span {
+      & > figcaption {
+        & > p {
+          & > span {
             font-family: $textFont;
           }
         }
@@ -1526,11 +1528,12 @@ footer {
           background-color: #eee3d798;
         }
 
-        &>img {
-          filter: invert(51%) sepia(35%) saturate(320%) hue-rotate(346deg) brightness(88%) contrast(87%);
+        & > img {
+          filter: invert(51%) sepia(35%) saturate(320%) hue-rotate(346deg)
+            brightness(88%) contrast(87%);
         }
 
-        &>figcaption>input {
+        & > figcaption > input {
           background-color: transparent;
           color: $default-Black;
         }
@@ -1541,14 +1544,14 @@ footer {
         width: 80%;
       }
 
-      &>.settings-buttons {
+      & > .settings-buttons {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
         gap: 10px;
 
-        &>button {
+        & > button {
           padding: 15px;
           border-radius: $radius-5;
 
@@ -1591,7 +1594,7 @@ footer {
     color: $accent-BrownShadow;
     font-size: 15rem;
 
-    &>span {
+    & > span {
       color: $PaleSilver;
     }
   }
