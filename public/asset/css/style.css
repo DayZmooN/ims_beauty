@@ -1449,7 +1449,7 @@ footer > .copyrights > p > a:hover {
   align-items: center;
   justify-content: center;
   gap: 25px;
-  width: 50%;
+  width: 100%;
 }
 .register > h1 {
   color: #978178;
@@ -1466,12 +1466,12 @@ footer > .copyrights > p > a:hover {
   border-radius: 5px;
   background: url("../media/deco/massage-flip.svg") bottom right/200px no-repeat;
 }
-.register > .form-registration .name-register,
-.register > .form-registration .user-info {
+.register > .form-registration .register {
   max-width: 550px;
   width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: 20px;
 }
@@ -1499,7 +1499,7 @@ footer > .copyrights > p > a:hover {
 }
 .register > .form-registration div {
   width: 250px;
-  height: 45px;
+  min-height: 45px;
 }
 .register > .form-registration div > input {
   width: 100%;
@@ -1515,6 +1515,15 @@ footer > .copyrights > p > a:hover {
   color: #EEE3D7;
 }
 
+@media screen and (max-width: 750px) {
+  .register {
+    width: 80%;
+  }
+  .register .register {
+    justify-content: center;
+    align-items: center;
+  }
+}
 .dashboard {
   display: flex;
   flex-direction: column;

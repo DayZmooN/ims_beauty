@@ -1461,7 +1461,7 @@ footer {
   align-items: center;
   justify-content: center;
   gap: 25px;
-  width: 50%;
+  width: 100%;
 
   &>h1 {
     color: $Cinereous;
@@ -1479,12 +1479,12 @@ footer {
     border-radius: $radius-5;
     background: url("../media/deco/massage-flip.svg") bottom right / 200px  no-repeat;
 
-    .name-register,
-    .user-info {
+    .register {
       max-width: 550px;
       width: 100%;
       display: flex;
       flex-direction: row;
+      justify-content: flex-start;
       flex-wrap: wrap;
       gap: 20px;
     }
@@ -1515,7 +1515,7 @@ footer {
     
     div {
       width: 250px;
-      height: 45px;
+      min-height: 45px;
       &>input {
         width: 100%;
       }
@@ -1534,7 +1534,16 @@ footer {
     }
   }
 }
+@media screen and (max-width: 750px) {
+  .register{
+    width: 80%;
 
+    .register{
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
 //~ ------------ USER DASHBOARD ------------ //
 
 .dashboard {
