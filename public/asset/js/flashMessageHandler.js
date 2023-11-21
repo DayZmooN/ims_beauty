@@ -33,6 +33,14 @@ function handleAjaxRequest(url, options, onSuccess, onError) {
         });
 }
 
+    function updateCartItemCount(change) {
+        var cartItemCountElement = document.querySelector('.cart-item-count');
+        if (cartItemCountElement) {
+            var currentCount = parseInt(cartItemCountElement.textContent) || 0;
+            var newCount = Math.max(currentCount + change, 0); // Ensure count doesn't go negative
+            cartItemCountElement.textContent = newCount > 0 ? newCount : '';
+        }
+    }
 
     function displayFlashMessage(message, isSuccess) {
         var alertClass = isSuccess ? 'alert-success' : 'alert-danger';

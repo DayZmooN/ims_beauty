@@ -10,7 +10,8 @@
 						<div class="service-item" data-service-id="{{ item.service.id }}">
 							<div class="service-info">
 								<div class="info">
-									<p>{{ item.service.name }} / Catégorie Name</p>
+									<p>{{ item.service.name }}
+										/ Catégorie Name</p>
 									<span>{{ item.service.price }}€</span>
 								</div>
 								<div class="buttons">
@@ -119,9 +120,9 @@
 			</form>
 		{% else %}
 			<form action="{{ path('app_cart') }}" method="POST">
-								<h1>Mon Panier</h1>
+				<h1>Mon Panier</h1>
 				<div class="services-container">
-				<p>Votre panier est vide.</p>
+					<p>Votre panier est vide.</p>
 				</div>
 			</form>
 		{% endif %}
@@ -137,6 +138,7 @@ var serviceId = e.currentTarget.closest('.service-item').dataset.serviceId;
 toggleCalendar(serviceId);
 });
 });
+		}):
 
 // Event listener for removing items from cart
 document.querySelectorAll('.remove-from-cart-link').forEach(function (link) {
@@ -152,12 +154,22 @@ if (data.success) { // Remove the corresponding service item
 var itemToRemove = document.querySelector('.service-item[data-service-id="' + serviceId + '"]');
 if (itemToRemove) {
 itemToRemove.remove();
+updateCartItemCount(-1); // Decrement cart count
 }
 }
 });
 });
 });
-});
+
+function updateCartItemCount(change) {
+var cartItemCountElement = document.querySelector('.cart-item-count');
+if (cartItemCountElement) {
+var currentCount = parseInt(cartItemCountElement.textContent) || 0;
+var newCount = Math.max(currentCount + change, 0); // Ensure count doesn't go negative
+cartItemCountElement.textContent = newCount > 0 ? newCount : '';
+}
+}
+
 
 function toggleCalendar(serviceId) {
 var calendar = document.getElementById('calendar-' + serviceId);
@@ -165,5 +177,5 @@ if (calendar) {
 calendar.style.display = calendar.style.display === 'none' ? 'block' : 'none';
 }
 }
-	</script>
-{% endblock %}
+</script>
+		{% endblock %}

@@ -37,19 +37,25 @@
 						</div>
 					</div>
 				{% endif %}
-				<a href="{{ path('app_cart') }}"><img src="{{ asset('asset/media/icons/shopIcon.svg') }}" alt=""></a>
+				<a href="{{ path('app_cart') }}">
+					<img src="{{ asset('asset/media/icons/shopIcon.svg') }}" alt="Cart">
+					{% set itemCount = app.session.get('cartItemCount', 0) %}
+					{% if itemCount > 0 %}
+						<span class="cart-item-count">{{ itemCount }}</span>
+					{% endif %}
+				</a>
 				<div class="user-dropdown responsive-menu">
-						<a href="#" class="menu-icon">
-							<img src="{{ asset('asset/media/icons/navigator/menu-icon.svg') }}" alt="Open Menu Icon">
-						</a>
-						<div class="dropdown-content">
-							<a href="{{ path('app_page') }}" "">Accueil</a>
-							<a href="{{ path('app_categories') }}">Nos Soins</a>
-							<a href="{{ path('app_our_prices') }}">Nos Tarifs</a>
-							<a href="{{ path('app_about_us') }} ">À Propos</a>
-							<a href="{{ path('app_about_us') }}#contact">Contact</a>
-						</div>
+					<a href="#" class="menu-icon">
+						<img src="{{ asset('asset/media/icons/navigator/menu-icon.svg') }}" alt="Open Menu Icon">
+					</a>
+					<div class="dropdown-content">
+						<a href="{{ path('app_page') }}" "">Accueil</a>
+						<a href="{{ path('app_categories') }}">Nos Soins</a>
+						<a href="{{ path('app_our_prices') }}">Nos Tarifs</a>
+						<a href="{{ path('app_about_us') }} ">À Propos</a>
+						<a href="{{ path('app_about_us') }}#contact">Contact</a>
 					</div>
+				</div>
 			</figure>
 		</div>
 	</header>
