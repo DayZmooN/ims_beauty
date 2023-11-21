@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "ims-beauty",
+  "private_key_id": "517898c88a90daa63b6ad7ca4c4f2280fd646241",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDT5FGBweNQZj2m\np2ggR8qGjpAkzFK92IiGkJK1g5Cj2CdNQyZfI/uPx8WJhFVRVYmBeIr6evxIVciN\n8Ytcxxy34eROIZJFCihBpr+GPooSt8ut/dNpolNldVlQsuwLdI4vD4DQK8bwcXRA\nSZGO64KxQtKAN9X2O+vL4wdGN+QC9aWf1mTYmJ776zbFYq0Iq86LfJb79gp+9ixa\n0GnEov1hRguOAm9VnBWjENMdLjlJsx3JikiqBKgw6jkgSKXHLhUxipWCMrDTa788\n+4SP2wzceCdPev/6I/KJzBSCcz3sbW1j/f/b+dNYxegYFsaNbUDoMBFx+vAKvey+\nKFDlj/8dAgMBAAECggEAIFu6b8KkfGN0sEXZ8q4L+WL9k8UJMLlH1ibvZJ1YIhFR\nJS0nR7m2wcUL/11wawiRRG6caLaN3t0M0NJtiihVFCbAxwa87+Kmdaopju5vhv6+\n8c30smnJ6xFR568/OVueGAU50nCRA6iLzIJ/olAIaBoQi+ia+ey6LGt58aj43tOO\nCeArl3DN3lhyrrpd05WWoVbYuUT6qplR8r7Lhw66TWkGZyi6F7ma2JgCXFuLVI5u\n0u/efWVxpCmQHV1JkEAOv9Kw9jD4MIY+i6+oHvJRvzxMVLMq+SsnBr7m8bSz9flO\nCBwS92dB94XU1+MLpgmv7rPhZghL/dy8r4rB1GHgqQKBgQDqCb0uQ3Po19RJvNwY\n07BqcJeMx4J/hxHyvbhR887PWnIULYXEvXhqLePViwhEFhSCu9AbSkVoFiqRjalJ\nHCmW4dl8DZgFj1X8G6wLWTco1k15YtcXkJhSGvsPUUvLQGwtFr8q4rkwBfijX5kH\nszhwi8MQFkvnrhGiG8K0ikfqSQKBgQDnxpCuJ5q8xl3k0wn58R+UZl2mLpnzgd1K\nvlI+/lvv3c3JkrvAE02V2ewDzyTB19EJm+PLxVxmWT7Wq/ehVWiFCqZEEQifeWfp\n2HaEqetfVQgdPMXIXbmJK+XELJC4Uzn9ziDe5hnYMboh6Jn/Gru3wCS+CWXWiWEL\nKNqWGviONQKBgQC+HDMkhX5+QfQcAeH3+N1xWQyCOv5ygVG/EQXM7HOuVBYe9euX\nqSFLfwN3z3xjclwu5kliIa7Holnp6lz9GndeLQ/xiUlYGtsJ86CJh2sbLRm55OQ8\nLCTPbUNLagpbjHVTGwsm1wz/SZpze5BfhOHv6lgFlVcLV4bTXCGJblqEoQKBgEV3\n+4dncXahUiUyp+vVPKzjHbCgiR42T1iGwOoGnRHA/lwrccC5SGjgv1/I53B+OjZS\nFi3OQsqedzoqovclPUWbEoiWPmpmHiI18hgDQfv55Yu12mYayXB2ytBItzu4HkqX\nTLziZN6q0Oo26GlQ3vDNU3XuJSrvVDnfDd0tyk/9AoGBAKosrxLmIs8olT/dLa8F\nJtkjyHngApyClb87oHuciUd7MoAqfS6JpNkIINoYS1DXU5l5tYo6a3AhzmkBFuWu\nJICdLIOnvLqi1xHDKAU94joO5lC2E1n6/GCX+8OjMHXH5GV1ewm4/EKOhWpPYiuK\nVw6nqxNodDw2vyAEGfQZVEeb\n-----END PRIVATE KEY-----\n",
+  "client_email": "ims-248@ims-beauty.iam.gserviceaccount.com",
+  "client_id": "115883496760232258233",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/ims-248%40ims-beauty.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
