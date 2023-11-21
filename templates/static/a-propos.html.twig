@@ -11,28 +11,28 @@
 		<div class="contact-container">
 			<div class="contact-info">
 				<h2>Nous Contactez</h2>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta aperiam quisquam suscipit? Id, eveniet voluptatum?</p>
+				<p>Pour toutes vos questions, n'hésitez pas à nous contacter. Nous sommes là pour vous aider.</p>
 
 				<div class="info-container">
 					<figure class="contact-element">
 						<img src="{{asset('asset/media/icons/contactMail.svg')}}" alt="" class="icons">
 						<figcaption>
 							<p>Notre mail</p>
-							<p>ImsBeauty@imsbeauty.com</p>
+							<p>{{aboutUs.email}}</p>
 						</figcaption>
 					</figure>
 					<figure class="contact-element">
 						<img src="{{asset('asset/media/icons/contactLocation.svg')}}" alt="" class="icons">
 						<figcaption>
 							<p>Où nous trouver ?</p>
-							<p>135 Avenue de Macon - 01440 VIRIAT</p>
+							<p>{{aboutUs.adress}}</p>
 						</figcaption>
 					</figure>
 					<figure class="contact-element">
 						<img src="{{asset('asset/media/icons/contactPhone.svg')}}" alt="" class="icons">
 						<figcaption>
 							<p>Notre numéro</p>
-							<p>07 56 88 15 08</p>
+							<p>{{aboutUs.phone}}</p>
 						</figcaption>
 					</figure>
 				</div>

@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Controller;
+
 use App\Entity\Categories;
+use App\Entity\AboutUs;
 use App\Repository\CategoriesRepository;
+use App\Repository\AboutUsRepository; // Import AboutUsRepository
 use App\Repository\ServicesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -10,26 +13,29 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\BreadcrumbService;
 
-
 class PageController extends AbstractController
 {
     private $categoriesRepository;
+    private $aboutUsRepository; // Add AboutUsRepository
     private $entityManager;
 
-    public function __construct(CategoriesRepository $categoriesRepository, EntityManagerInterface $entityManager)
+    public function __construct(CategoriesRepository $categoriesRepository, AboutUsRepository $aboutUsRepository, EntityManagerInterface $entityManager)
     {
         $this->categoriesRepository = $categoriesRepository;
+        $this->aboutUsRepository = $aboutUsRepository; // Initialize the AboutUsRepository
         $this->entityManager = $entityManager;
     }
 
     #[Route('/', name: 'app_page')]
-    public function homepage(): Response
+    public function homepage(AboutUsRepository $aboutUsRepository): Response
     {
         $categories = $this->categoriesRepository->findAll();
+        $aboutUs = $aboutUsRepository->findOneBy([]);
 
         return $this->render('page/homepage.html.twig', [
             'controller_name' => 'PageController',
             'categories' => $categories,
+            'aboutUs' => $aboutUs,
         ]);
     }
 
@@ -42,14 +48,16 @@ class PageController extends AbstractController
     }
 
     #[Route('/a-propos', name: 'app_about_us')]
-    public function aboutUs(BreadcrumbService $breadcrumbService): Response
+    public function aboutUs( AboutUsRepository $aboutUsRepository, BreadcrumbService $breadcrumbService): Response
     {
         $breadcrumbs = $breadcrumbService->getBreadcrumbs();
+        $aboutUs = $aboutUsRepository->findOneBy([]);
 
         return $this->render('/static/a-propos.html.twig', [
             'controller_name' => 'PageController',
             'breadcrumbs' => $breadcrumbs,
             'page_name' => 'À Propos',
+            'aboutUs' => $aboutUs,
         ]);
     }
 

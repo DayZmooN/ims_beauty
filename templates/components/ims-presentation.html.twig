@@ -1,7 +1,7 @@
 	<section class="about-us-presentation">
 
 		<figure>
-			<img src="{{asset('asset/media/white-lights-banner.webp')}}" alt="">
+			<img src="{{ asset('asset/media/banners/' ~ aboutUs.thumbnail) }}" alt="">
 			<figcaption>
 				<a href="https://www.instagram.com/imsbeauty01/" target="_blank"><img src="{{asset('/asset/media/icons/socialInstagram.svg')}}" alt="" class="icons"></a>
 				<a href="mailto:someone@example.com"><img src="{{asset('/asset/media/icons/contactMail.svg')}}" alt="" class="icons"></a>
@@ -10,10 +10,13 @@
 		</figure>
 
 		<div class="presentation">
-			<h1>IMS Beauty</h1>
-			<blockquote>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium repudiandae quaerat, veniam nam nemo perspiciatis?</blockquote>
-
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur ea aperiam ullam quos perspiciatis necessitatibus asperiores, obcaecati aliquid molestiae voluptates quam quisquam illo iste harum, enim inventore aliquam fugiat labore a culpa delectus error nostrum minus! Modi nostrum facilis laborum repudiandae culpa quos atque consequatur laudantium iste nisi quaerat earum, a quasi fugit. Animi reprehenderit ab dignissimos vero deserunt. Debitis praesentium veritatis, accusamus ut aperiam dicta tempora inventore ratione voluptas nesciunt vel totam adipisci culpa ad expedita consequatur perferendis officiis commodi cum temporibus. Corrupti eos sunt quia ipsa qui suscipit, ea reiciendis quasi consectetur incidunt laudantium repellat sit doloremque aliquam!</p>
+			<h1>{{ aboutUs.name}}</h1>
+			<blockquote>{{ aboutUs.quote}}</blockquote>
+			
+			<p>{{ aboutUs.description|replace({'<div>': '', '</div>': '', '<br>': 'PLACEHOLDER_BR', '<br/>': 'PLACEHOLDER_BR'})
+                            |escape('html')
+                            |replace({'PLACEHOLDER_BR': '<br>'})
+                            |raw  }}</p>
 
 			<div class="redirection-buttons">
 				<div class="animated-btn btn-two">
