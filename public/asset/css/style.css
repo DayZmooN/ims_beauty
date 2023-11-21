@@ -1110,6 +1110,10 @@ footer > .copyrights > p > a:hover {
 .category-card .card-desc > p {
   color: #4D4D4D;
 }
+.category-card .btn-two {
+  position: absolute;
+  bottom: 20px;
+}
 .category-card:hover {
   transform: scale(1.01);
 }

@@ -16,7 +16,7 @@
 			<figure class="adress-cta">
 				<img src="{{asset('asset/media/icons/contactLocation.svg')}}" alt="">
 				<figcaption>
-					<p>135 Avenue de Macon - 01440 VIRIAT</p>
+					<p>{{aboutUs.adress}}</p>
 				</figcaption>
 			</figure>
 			<div class="animated-btn btn-two">
@@ -45,7 +45,12 @@
                     </figure>
 
                     <div class="card-desc">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt vitae maxime facilis quibusdam ea quia eaque repellendus perferendis totam corrupti, asperiores exercitationem! Veritatis nulla maiores unde perspiciatis, eaque ratione, enim fuga ipsum vel laboriosam similique?</p>
+                        <p>{{ category.description
+                            |replace({'<div>': '', '</div>': '', '<br>': 'PLACEHOLDER_BR', '<br/>': 'PLACEHOLDER_BR'})
+                            |escape('html')
+                            |replace({'PLACEHOLDER_BR': '<br>'})
+                            |raw 
+                        }}</p>
 
                         <div class="animated-btn btn-two">
                             <a href="{{ path('category_list_services', {'id': category.id}) }}">

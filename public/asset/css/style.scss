@@ -1050,7 +1050,10 @@ footer {
       color: $light-Black;
     }
   }
-
+  .btn-two{
+    position: absolute;
+    bottom: 20px;
+  }
   &:hover {
     transform: scale(1.01);
   }
