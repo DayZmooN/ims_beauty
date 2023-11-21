@@ -484,7 +484,7 @@ header > .nav-menu > nav > ul > li > a {
 header > .nav-menu > nav > ul > li > a:hover {
   color: #4D4D4D;
 }
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 865px) {
   header > .nav-menu > nav > ul {
     display: none;
     justify-content: center;
@@ -531,6 +531,14 @@ header > .nav-menu > figure .user-dropdown .dropdown-content > a {
 header > .nav-menu > figure .user-dropdown .dropdown-content > a:hover {
   background-color: #F5EFE8;
   color: #4D4D4D;
+}
+header > .nav-menu > figure .responsive-menu {
+  display: none;
+}
+@media screen and (max-width: 865px) {
+  header > .nav-menu > figure .responsive-menu {
+    display: block;
+  }
 }
 header > a > img {
   padding-left: 25px;

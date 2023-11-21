@@ -304,7 +304,7 @@ header {
           }
         }
 
-        &>a {
+        &>a { 
           color: $default-White;
           font-family: $bonusFont;
           line-height: 100px;
@@ -315,7 +315,7 @@ header {
         }
       }
 
-      @media screen and (max-width: 850px) {
+      @media screen and (max-width: 865px) {
         display: none;
         justify-content: center;
       }
@@ -365,6 +365,16 @@ header {
               color: $light-Black;
             }
           }
+        }
+      }
+
+      .responsive-menu{
+        display: none;
+      }
+
+      @media screen and (max-width: 865px) {
+        .responsive-menu{
+          display: block;
         }
       }
     }
