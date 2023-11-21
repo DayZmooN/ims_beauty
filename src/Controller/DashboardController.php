@@ -50,7 +50,7 @@ class DashboardController extends AbstractController
             $entityManager->flush();
 
             // Add success flash message
-            $this->addFlash('success', 'User data updated successfully!');
+            $this->addFlash('success', 'Vos informations ont été changer avec succès !');
 
             // Return a JSON response with the updated user data
             $userData = [

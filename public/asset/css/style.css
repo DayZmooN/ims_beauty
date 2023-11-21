@@ -119,8 +119,7 @@ p,
 q,
 ul,
 li,
-label,
-span {
+label {
   text-decoration: none;
   list-style: none;
   font-family: "Poppins-Light";
@@ -500,8 +499,38 @@ header > .nav-menu > figure {
   gap: 10px;
   padding: 0 10px;
 }
-header > .nav-menu > figure > a > img {
+header > .nav-menu > figure a > img {
   height: 35px;
+}
+header > .nav-menu > figure .user-dropdown {
+  position: relative;
+  display: inline-block;
+}
+header > .nav-menu > figure .user-dropdown:hover .dropdown-content {
+  display: block;
+}
+header > .nav-menu > figure .user-dropdown .dropdown-content {
+  z-index: 1;
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4D4D4D;
+  border: 1px solid #BFAE9F;
+  border-radius: 5px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+header > .nav-menu > figure .user-dropdown .dropdown-content > a {
+  display: block;
+  font-family: "Marcellus";
+  color: #F5EFE8;
+  border-bottom: 1px solid #978178;
+  padding: 12px 16px;
+}
+header > .nav-menu > figure .user-dropdown .dropdown-content > a:hover {
+  background-color: #F5EFE8;
+  color: #4D4D4D;
 }
 header > a > img {
   padding-left: 25px;

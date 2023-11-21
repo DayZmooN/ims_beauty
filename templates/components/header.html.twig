@@ -7,7 +7,7 @@
 		<div class="nav-menu">
 			<nav>
 				<ul>
-					<li><a href="{{ path('app_page') }}""">Accueil</a></li>
+					<li><a href="{{ path('app_page') }}" "">Accueil</a></li>
 					<li><a href="{{ path('app_categories') }}">Nos Soins</a></li>
 					<li><a href="{{ path('app_our_prices') }}">Nos Tarifs</a></li>
 					<li><a href="{{ path('app_about_us') }} ">À Propos</a></li>
@@ -15,19 +15,51 @@
 				</ul>
 			</nav>
 			<figure>
-			{% if app.user %}
-				<a href="{{path('app_dashboard')}}"><img src="{{ asset('asset/media/icons/UserF.svg') }}" alt=""></a>
-			{% else %}
-				<a href="{{path('app_login')}}"><img src="{{ asset('asset/media/icons/UserF.svg') }}" alt=""></a>
-			{% endif %}
+				{% if app.user %}
+					<div class="user-dropdown">
+						<a href="{{path('app_dashboard')}}" class="user-icon">
+							<img src="{{ asset('asset/media/icons/UserF.svg') }}" alt="Page Utilisateur">
+						</a>
+						<div class="dropdown-content">
+							<a href="{{ path('app_dashboard') }}#my-appointments">Mes Rendez-vous</a>
+    						<a href="{{ path('app_dashboard') }}#settings">Paramètres</a>
+							<a href="{{path('app_logout')}}">Se Déconnecter</a>
+						</div>
+					</div>
+				{% else %}
+					<a href="{{path('app_login')}}">
+						<img src="{{ asset('asset/media/icons/UserF.svg') }}" alt="Page connexion">
+					</a>
+				{% endif %}
 				<a href="{{ path('app_cart') }}"><img src="{{ asset('asset/media/icons/shopIcon.svg') }}" alt=""></a>
 			</figure>
 		</div>
-		{# {% if app.user %}
-			<a href="{{path('app_logout')}}">logout</a>
-		{% else %}
-			<a href="{{path('app_login')}}">login</a>
-			<a href="{{path('app_register')}}">register</a>
-		{% endif %} #}
 	</header>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		// Handle user dropdown interaction
+	var userIcon = document.querySelector('.user-icon');
+	if (userIcon) {
+		userIcon.addEventListener('click', function(e) {
+			e.preventDefault();
+			var dropdownContent = this.nextElementSibling;
+			dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+		});
+	}
+
+	// Optionally, close the dropdown when clicking outside
+	window.addEventListener('click', function(e) {
+		if (!e.target.matches('.user-icon, .user-icon *')) {
+			var dropdowns = document.getElementsByClassName("dropdown-content");
+			for (var i = 0; i < dropdowns.length; i++) {
+				var openDropdown = dropdowns[i];
+				if (openDropdown.style.display === 'block') {
+					openDropdown.style.display = 'none';
+				}
+			}
+		}
+	});
+});
+</script>
 {% endblock %}

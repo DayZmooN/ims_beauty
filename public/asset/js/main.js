@@ -78,22 +78,40 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Initial state: show appointments, hide settings, set first link as active
-    toggleSections(true, false);
+    // Function to display the correct section based on URL hash
+    function displaySectionBasedOnHash() {
+        const hash = window.location.hash;
+        if (hash === '#my-appointments') {
+            toggleSections(true, false);
+        } else if (hash === '#settings') {
+            toggleSections(false, true);
+        } else {
+            // Default view
+            toggleSections(true, false);
+        }
+    }
 
-    // Attach click events to links
+    // Attach click events to internal navigation links
     const showAppointmentsLink = document.getElementById('show-appointments');
     const showSettingsLink = document.getElementById('show-settings');
 
-    if (showAppointmentsLink && showSettingsLink) {
+    if (showAppointmentsLink) {
         showAppointmentsLink.addEventListener('click', function (e) {
             e.preventDefault();
-            toggleSections(true, false);
-        });
-
-        showSettingsLink.addEventListener('click', function (e) {
-            e.preventDefault();
-            toggleSections(false, true);
+            window.location.hash = 'my-appointments';
         });
     }
+
+    if (showSettingsLink) {
+        showSettingsLink.addEventListener('click', function (e) {
+            e.preventDefault();
+            window.location.hash = 'settings';
+        });
+    }
+
+    // Display the correct section based on the URL hash when the page loads
+    displaySectionBasedOnHash();
+
+    // Update content when hash changes (e.g., when user clicks header links)
+    window.addEventListener('hashchange', displaySectionBasedOnHash);
 });

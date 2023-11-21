@@ -330,8 +330,42 @@ header {
       gap: 10px;
       padding: 0 10px;
 
-      &>a>img {
+      a>img {
         height: 35px;
+      }
+
+      .user-dropdown {
+        position: relative;
+        display: inline-block;
+        &:hover .dropdown-content{
+          display: block;
+        }
+      
+        .dropdown-content {
+          z-index: 1;
+          display: none;
+          position: absolute;
+          min-width: 160px;
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: $light-Black;
+          border: 1px solid $Khaki;
+          border-radius: $radius-5;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        
+          &>a {
+            display: block;
+            font-family: $bonusFont;
+            color: $primary-Alabaster;
+            border-bottom: 1px solid $Cinereous;
+            padding: 12px 16px;
+        
+            &:hover{
+              background-color: $primary-Alabaster;
+              color: $light-Black;
+            }
+          }
+        }
       }
     }
   }
