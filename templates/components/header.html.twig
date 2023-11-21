@@ -38,12 +38,9 @@
 					</div>
 				{% endif %}
 				<a href="{{ path('app_cart') }}">
-					<img src="{{ asset('asset/media/icons/shopIcon.svg') }}" alt="Cart">
-					{% set itemCount = app.session.get('cartItemCount', 0) %}
-					{% if itemCount > 0 %}
-						<span class="cart-item-count">{{ itemCount }}</span>
-					{% endif %}
-				</a>
+                    <img src="{{ asset('asset/media/icons/shopIcon.svg') }}" alt="Cart">
+                    <span class="cart-item-count">{{ app.session.get('cartItemCount', 0) }}</span>
+                </a>
 				<div class="user-dropdown responsive-menu">
 					<a href="#" class="menu-icon">
 						<img src="{{ asset('asset/media/icons/navigator/menu-icon.svg') }}" alt="Open Menu Icon">
