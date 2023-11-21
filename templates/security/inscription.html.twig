@@ -25,7 +25,9 @@
 			</div>
 			{{ form_row(registrationForm.plainPassword) }}
 
-			{{ form_row(registrationForm.RGPDConsent) }}
+			<div class="rgpd">
+				{{ form_row(registrationForm.RGPDConsent) }}
+			</div>
 
 			<button type="submit" class="btn">
 				S'inscrire

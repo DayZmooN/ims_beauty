@@ -1389,6 +1389,7 @@ footer > .copyrights > p > a:hover {
   gap: 10px;
   border: 1px solid #978178;
   border-radius: 5px;
+  background: url("../media/deco/massage-flip.svg") bottom right/150px no-repeat;
 }
 .form-login > .form-connexion > input {
   width: 90%;
@@ -1460,24 +1461,48 @@ footer > .copyrights > p > a:hover {
   justify-content: center;
   max-width: 650px;
   width: 100%;
-  padding: 50px;
-  gap: 50px;
+  padding: 50px 15px;
   border: 1px solid #978178;
   border-radius: 5px;
+  background: url("../media/deco/massage-flip.svg") bottom right/200px no-repeat;
 }
 .register > .form-registration .name-register,
 .register > .form-registration .user-info {
+  max-width: 550px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-right: 10px;
+  gap: 20px;
 }
-.register > .form-registration input {
+.register > .form-registration .rgpd {
   width: 100%;
 }
+.register > .form-registration .rgpd > div {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+.register > .form-registration .rgpd > div > input {
+  height: 18px;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.register > .form-registration .rgpd > div > label {
+  font-size: 0.8rem;
+  line-height: normal;
+  width: 100%;
+  text-align: left;
+}
 .register > .form-registration div {
-  margin: 10px 0;
+  width: 250px;
+  height: 45px;
+}
+.register > .form-registration div > input {
+  width: 100%;
 }
 .register > .form-registration button {
   background-color: #BFAE9F;

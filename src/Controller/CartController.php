@@ -102,7 +102,7 @@ class CartController extends AbstractController
             }
         }
 
-        return $this->render('cart/index.html.twig', [
+        return $this->render('page/cart.html.twig', [
             'servicesWithForms' => $servicesWithForms,
             'googleCalendarSlots' => $googleCalendarSlots,
             'cartItemCount' => count($cart), // Add this line

@@ -1386,6 +1386,7 @@ footer {
     gap: 10px;
     border: 1px solid $Cinereous;
     border-radius: $radius-5;
+    background: url("../media/deco/massage-flip.svg") bottom right / 150px  no-repeat;
 
     &>input {
       width: 90%;
@@ -1473,26 +1474,51 @@ footer {
     justify-content: center;
     max-width: 650px;
     width: 100%;
-    padding: 50px;
-    gap: 50px;
+    padding: 50px 15px;
     border: 1px solid $Cinereous;
     border-radius: $radius-5;
+    background: url("../media/deco/massage-flip.svg") bottom right / 200px  no-repeat;
 
     .name-register,
     .user-info {
+      max-width: 550px;
+      width: 100%;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-right: 10px;
+      gap: 20px;
     }
-
-    input {
+    .rgpd {
       width: 100%;
+    
+      & > div {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+    
+        & > input {
+          height: 18px;
+          width: fit-content;
+        }
+    
+        & > label {
+          font-size: 0.8rem;
+          line-height: normal;
+          width: 100%;
+          text-align: left;
+        }
+      }
     }
-
+    
     div {
-      margin: 10px 0;
+      width: 250px;
+      height: 45px;
+      &>input {
+        width: 100%;
+      }
     }
 
     button {
