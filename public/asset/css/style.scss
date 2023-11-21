@@ -54,7 +54,6 @@
   color: $Cinereous;
   width: 150px;
   height: 40px;
-  line-height: 40px;
   padding: 10px;
   transition: all 0.3s;
 
@@ -99,6 +98,7 @@
     height: 100%;
     z-index: 1;
     transition: all 0.3s;
+    border-radius: 1px;
     border: 1px solid $Cinereous;
   }
 }
@@ -216,7 +216,7 @@ header {
         }
       }
 
-      @media screen and (max-width: 800px) {
+      @media screen and (max-width: 850px) {
         display: none;
         justify-content: center;
       }
@@ -247,6 +247,7 @@ footer {
   display: flex;
   flex-direction: column;
   width: 100%;
+  padding-top: 15px;
   margin-top: auto;
   background-color: $light-Black;
   color: $default-White;
@@ -391,6 +392,17 @@ footer {
 
   & > .copyrights {
     & > p {
+      & > a {
+        color: $default-White;
+        font-size: 0.5rem;
+        text-align: center;
+        line-height: normal;
+
+        &:hover {
+          color: $Khaki;
+        }
+      }
+
       font-size: 0.5rem;
       text-align: center;
       line-height: normal;
@@ -404,6 +416,7 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   width: 100%;
   height: 250px;
   background: url("../media/deco/massagewoman.svg") bottom left / contain
@@ -448,6 +461,127 @@ footer {
 }
 
 //~ ------------ HOMEPAGE ------------ //
+.homepage-CTA {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  background: url("../media/deco/textured-bg.webp") center center / cover
+    no-repeat;
+
+  .CTA-banner {
+    position: relative;
+    overflow: hidden;
+    max-width: 615px;
+    max-height: 680px;
+    width: 60vw;
+    height: 60vw;
+    padding: 10px;
+    padding-bottom: 0;
+    border-radius: 360px 360px 0 0;
+    background-color: $accent-BrownShadow;
+
+    & > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 75%;
+      border-radius: 360px 360px 0 0;
+    }
+
+    .banner-deco {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: auto;
+      height: 50%;
+    }
+  }
+
+  .cta-ims {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    max-width: 850px;
+    width: 100%;
+    padding: 25px;
+    text-align: center;
+
+    .logo-cta {
+      & > img {
+        width: 200px;
+      }
+
+      & > figcaption {
+        & > p {
+          font-size: 0.7rem;
+          font-family: $bonusFont;
+          color: $accent-BrownShadow;
+        }
+      }
+    }
+
+    .adress-cta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      padding: 15px;
+
+      & > img {
+        filter: invert(50%) sepia(12%) saturate(884%) hue-rotate(346deg)
+          brightness(94%) contrast(88%);
+      }
+
+      & > figcaption {
+        & > p {
+          font-size: 0.8rem;
+          font-family: $bonusFont;
+          color: $accent-BrownShadow;
+        }
+      }
+    }
+  }
+}
+
+.homepage-soins {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 25px;
+  padding: 25px 0;
+  width: 100%;
+  background-color: $primary-Alabaster;
+
+  & > a {
+    max-width: 250px;
+    font-family: $bonusFont;
+    color: $accent-BrownShadow;
+    padding: 15px 30px;
+    border: 1px solid $accent-BrownShadow;
+
+    &:hover {
+      background-color: $accent-BrownShadow;
+      color: $primary-Alabaster;
+    }
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .homepage-CTA {
+    .CTA-banner {
+      width: 80vw;
+      height: 80vw;
+    }
+  }
+}
 
 //~ ------------ ABOUT US ------------ //
 //? -------- MAIN -------- //
@@ -462,8 +596,10 @@ footer {
 
   & > figure {
     position: relative;
-    width: 500px;
-    height: 500px;
+    width: 40vw;
+    height: 40vw;
+    max-width: 500px;
+    max-height: 500px;
     padding: 15px;
     border-radius: 100%;
     background-color: $accent-BrownShadow;
@@ -472,15 +608,20 @@ footer {
       width: 100%;
       height: 100%;
       border-radius: 100%;
+      object-fit: cover;
     }
 
     & > figcaption {
       position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       bottom: 0;
       left: 50%;
       transform: translate(-50%);
       width: fit-content;
-      padding: 25px;
+      max-width: 150px;
+      padding: 15px;
       border-radius: $radius-180;
       background-color: $accent-BrownShadow;
 
@@ -531,6 +672,7 @@ footer {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-evenly;
+      align-items: center;
       align-self: stretch;
       padding: 15px;
       border-radius: 25px;
@@ -546,7 +688,6 @@ footer {
 .contact-form {
   text-align: center;
   width: 100%;
-  padding: 25px;
   background: url("../media/deco/textured-bg.webp") center center / cover
     no-repeat;
 
@@ -554,6 +695,8 @@ footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    align-items: center;
+    gap: 25px;
     padding: 25px;
 
     & > .contact-info {
@@ -662,79 +805,115 @@ footer {
   }
 }
 
+@media screen and (max-width: 850px) {
+  .about-us-presentation {
+    & > figure {
+      width: 100vw;
+      height: 100vw;
+      min-width: 100px;
+      min-height: 100px;
+
+      & > figcaption {
+        width: 150px;
+        height: 50px;
+        padding: 10px;
+
+        & > a > .icons {
+          width: 35px;
+        }
+      }
+    }
+
+    .presentation {
+      & > blockquote {
+        width: 80%;
+      }
+
+      .redirection-buttons {
+        height: 200px;
+      }
+    }
+  }
+
+  .eui-widget-title::before,
+  .eui-widget-title::after,
+  .es-widget-title::before,
+  .es-widget-title::after {
+    display: none !important;
+  }
+}
+
 //~ ------------ CATEGORIES ------------ //
 .category-cards {
+  width: 95%;
+  padding: 25px 0;
+}
+
+.card-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 25px;
-  padding: 25px 0;
+  gap: 15px;
+}
 
-  .card-container {
+.category-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  max-width: 300px;
+  min-height: 500px;
+  border-radius: $radius-5;
+  border: 1px solid $Cinereous;
+  background-color: $default-White;
+
+  .category-thumbnail {
+    background: url("../media/deco/flower-bg-deco.svg") top / contain no-repeat;
+    padding: 20px;
+    width: 258px;
+
+    & > img {
+      width: 160px;
+      height: 160px;
+      border-radius: 100%;
+      object-fit: cover;
+      background-color: $accent-BrownShadow;
+      padding: 5px;
+    }
+
+    & > figcaption > h3 {
+      color: $Cinereous;
+      text-decoration: underline;
+    }
+  }
+
+  .card-desc {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 15px;
+    padding: 15px;
 
-    & > .category-card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      text-align: center;
-      max-width: 300px;
-      min-height: 500px;
-      border-radius: $radius-5;
-      border: 1px solid $Cinereous;
-
-      .category-thumbnail {
-        background: url("../media/deco/flower-bg-deco.svg") top / contain
-          no-repeat;
-        padding: 20px;
-        width: 258px;
-
-        & > img {
-          width: 160px;
-          height: 160px;
-          border-radius: 100%;
-          background-color: $accent-BrownShadow;
-          padding: 5px;
-        }
-
-        & > figcaption > h3 {
-          color: $Cinereous;
-          text-decoration: underline;
-        }
-      }
-
-      .card-desc {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 15px;
-        padding: 15px;
-
-        & > p {
-          color: $light-Black;
-        }
-      }
-
-      &:hover {
-        transform: scale(1.01);
-      }
+    & > p {
+      color: $light-Black;
     }
+  }
+
+  &:hover {
+    transform: scale(1.01);
   }
 }
 
 //~ ------------ SERVICES & RDV ------------ //
 .category-row {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   width: 100%;
   height: 100%;
 
@@ -835,10 +1014,11 @@ footer {
   }
 
   & > .service-details {
+    flex-grow: 1;
     overflow-y: scroll;
     scrollbar-color: $secondary-WhiteChocolate $Cinereous;
     scrollbar-width: thin;
-    width: 100%;
+    width: 60%;
     height: 100%;
     max-height: 685px;
     padding: 25px;
@@ -907,6 +1087,24 @@ footer {
         & > .btn {
           position: absolute;
           bottom: 0;
+        }
+
+        @media screen and (max-width: 850px) {
+          .service-name-price {
+            & > h2 {
+              font-weight: 400;
+              font-size: 1.5rem;
+            }
+
+            & > p {
+              font-weight: 600;
+              font-size: 1.5rem;
+            }
+          }
+
+          & > p {
+            font-size: 0.9rem;
+          }
         }
       }
     }
@@ -977,9 +1175,11 @@ footer {
       .service-details {
         max-width: 150px;
         color: $Cinereous;
+
         & > h4 {
           color: $accent-BrownShadow;
         }
+
         & > p {
           font-size: 0.75rem;
           line-height: normal;
@@ -1004,29 +1204,38 @@ footer {
 .form-login {
   display: flex;
   flex-direction: column;
-  align-self: center;
   align-items: center;
   justify-content: center;
-  gap: 25px;
+  width: 100%;
+  padding: 0 5px;
 
   & > h1 {
     color: $Cinereous;
+    padding: 15px 5px;
   }
 
   & > .form-connexion {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    width: 650px;
-    width: 100%;
+    justify-content: center;
+    align-items: center;
+    max-width: 650px;
+    width: 90%;
     padding: 50px;
     gap: 10px;
     border: 1px solid $Cinereous;
     border-radius: $radius-5;
 
+    & > input {
+      width: 90%;
+    }
+
     & > .remember-check {
       display: flex;
       gap: 5px;
       align-items: center;
+      width: 90%;
 
       & > label {
         font-size: 0.75rem;
@@ -1040,6 +1249,9 @@ footer {
 
     & > .button-links {
       display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
       gap: 10px;
 
       button {
@@ -1067,6 +1279,15 @@ footer {
           }
         }
       }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .form-login {
+    & > .form-connexion {
+      padding: 50px 0;
+      width: 90%;
     }
   }
 }
@@ -1143,7 +1364,9 @@ footer {
     flex-direction: column;
     justify-content: space-between;
     padding: 25px;
-    height: 170px;
+    gap: 50px;
+    min-height: 170px;
+    height: 100%;
 
     & > h1 {
       font-family: $bonusFont;
@@ -1204,18 +1427,31 @@ footer {
 
   .upcoming-app,
   .past-app {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 15px;
     background-color: $primary-Alabaster;
     padding: 15px;
     margin: 25px;
     border-radius: $radius-15;
   }
 
+  .app-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
   .appointment {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    width: 300px;
-    padding: 15px;
+    max-width: 300px;
+    width: 100%;
+    padding: 5px;
     border-radius: $radius-5;
     border: 1px solid $Khaki;
 
@@ -1253,43 +1489,68 @@ footer {
 
   //? -------- SETTINGS -------- //
   #settings {
-    align-self: center;
-    & > form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+    .form-container {
       display: flex;
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
       gap: 15px;
+      padding: 50px 0;
       max-width: 800px;
+      width: 100%;
       border-radius: $radius-15;
-      padding: 50px;
       background-color: $primary-Alabaster;
 
-      & > .user-names {
+      .user-names {
         display: flex;
-        gap: 15px;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
       }
 
-      & > figure,
-      & > .user-names > figure {
+      .form-input {
         display: flex;
-        border-radius: $radius-15;
+        gap: 10px;
+        padding: 5px;
+        border-radius: $radius-5;
         border: 1px solid $accent-BrownShadow;
-        padding: 10px;
+        background-color: transparent;
+
+        &:hover {
+          background-color: #eee3d798;
+        }
 
         & > img {
           filter: invert(51%) sepia(35%) saturate(320%) hue-rotate(346deg)
             brightness(88%) contrast(87%);
         }
 
-        & > figcaption {
-          & > input {
-            background-color: transparent;
-            color: $default-Black;
-          }
+        & > figcaption > input {
+          background-color: transparent;
+          color: $default-Black;
         }
       }
 
+      .long-input {
+        max-width: 300px;
+        width: 80%;
+      }
+
       & > .settings-buttons {
-        align-self: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
         & > button {
           padding: 15px;
           border-radius: $radius-5;

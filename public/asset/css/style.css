@@ -102,6 +102,7 @@ body {
   scroll-behavior: smooth;
   line-height: 1.6rem;
   min-height: 100vh;
+  transition: all 0.3s;
   background-color: #F8F8F8;
 }
 
@@ -125,14 +126,24 @@ label {
 h1, h2, h3, h4, h5, h6 {
   color: #4D4D4D;
   font-family: "Alex Brush";
-  line-height: normal;
   font-weight: normal;
   font-style: normal;
+}
+
+::-moz-selection {
+  background: #BFAE9F; /* Background color of the selection */
+  color: #F5EFE8; /* Color of the text during selection */
+}
+
+::selection {
+  background: #BFAE9F; /* Background color of the selection */
+  color: #F5EFE8; /* Color of the text during selection */
 }
 
 h1 {
   font-family: "Brown Sugar";
   font-size: 2.6rem;
+  line-height: 2.5rem;
 }
 
 h2 {
@@ -174,7 +185,7 @@ main {
 }
 
 input, textarea {
-  padding: 10px;
+  padding: 10px 5px;
   background-color: #EEE3D7;
   color: #9E9E9E;
   outline: transparent;
@@ -230,7 +241,6 @@ input, textarea {
   color: #978178;
   width: 150px;
   height: 40px;
-  line-height: 40px;
   padding: 10px;
   transition: all 0.3s;
 }
@@ -269,6 +279,7 @@ input, textarea {
   height: 100%;
   z-index: 1;
   transition: all 0.3s;
+  border-radius: 1px;
   border: 1px solid #978178;
 }
 
@@ -370,7 +381,7 @@ header > .nav-menu > nav > ul > li > a {
 header > .nav-menu > nav > ul > li > a:hover {
   color: #4D4D4D;
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 850px) {
   header > .nav-menu > nav > ul {
     display: none;
     justify-content: center;
@@ -396,6 +407,7 @@ footer {
   display: flex;
   flex-direction: column;
   width: 100%;
+  padding-top: 15px;
   margin-top: auto;
   background-color: #4D4D4D;
   color: #F8F8F8;
@@ -520,12 +532,22 @@ footer > .copyrights > p {
   text-align: center;
   line-height: normal;
 }
+footer > .copyrights > p > a {
+  color: #F8F8F8;
+  font-size: 0.5rem;
+  text-align: center;
+  line-height: normal;
+}
+footer > .copyrights > p > a:hover {
+  color: #BFAE9F;
+}
 
 .page-header {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   width: 100%;
   height: 250px;
   background: url("../media/deco/massagewoman.svg") bottom left/contain no-repeat, url("../media/deco/flower-bg-flipped.svg") top right/auto no-repeat;
@@ -562,6 +584,108 @@ footer > .copyrights > p {
   }
 }
 
+.homepage-CTA {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  background: url("../media/deco/textured-bg.webp") center center/cover no-repeat;
+}
+.homepage-CTA .CTA-banner {
+  position: relative;
+  overflow: hidden;
+  max-width: 615px;
+  max-height: 680px;
+  width: 60vw;
+  height: 60vw;
+  padding: 10px;
+  padding-bottom: 0;
+  border-radius: 360px 360px 0 0;
+  background-color: #937962;
+}
+.homepage-CTA .CTA-banner > img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  opacity: 75%;
+  border-radius: 360px 360px 0 0;
+}
+.homepage-CTA .CTA-banner .banner-deco {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: 50%;
+}
+.homepage-CTA .cta-ims {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  max-width: 850px;
+  width: 100%;
+  padding: 25px;
+  text-align: center;
+}
+.homepage-CTA .cta-ims .logo-cta > img {
+  width: 200px;
+}
+.homepage-CTA .cta-ims .logo-cta > figcaption > p {
+  font-size: 0.7rem;
+  font-family: "Marcellus";
+  color: #937962;
+}
+.homepage-CTA .cta-ims .adress-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 15px;
+}
+.homepage-CTA .cta-ims .adress-cta > img {
+  filter: invert(50%) sepia(12%) saturate(884%) hue-rotate(346deg) brightness(94%) contrast(88%);
+}
+.homepage-CTA .cta-ims .adress-cta > figcaption > p {
+  font-size: 0.8rem;
+  font-family: "Marcellus";
+  color: #937962;
+}
+
+.homepage-soins {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 25px;
+  padding: 25px 0;
+  width: 100%;
+  background-color: #F5EFE8;
+}
+.homepage-soins > a {
+  max-width: 250px;
+  font-family: "Marcellus";
+  color: #937962;
+  padding: 15px 30px;
+  border: 1px solid #937962;
+}
+.homepage-soins > a:hover {
+  background-color: #937962;
+  color: #F5EFE8;
+}
+
+@media screen and (max-width: 850px) {
+  .homepage-CTA .CTA-banner {
+    width: 80vw;
+    height: 80vw;
+  }
+}
 .about-us-presentation {
   display: flex;
   flex-direction: row-reverse;
@@ -573,8 +697,10 @@ footer > .copyrights > p {
 }
 .about-us-presentation > figure {
   position: relative;
-  width: 500px;
-  height: 500px;
+  width: 40vw;
+  height: 40vw;
+  max-width: 500px;
+  max-height: 500px;
   padding: 15px;
   border-radius: 100%;
   background-color: #937962;
@@ -583,15 +709,21 @@ footer > .copyrights > p {
   width: 100%;
   height: 100%;
   border-radius: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .about-us-presentation > figure > figcaption {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   bottom: 0;
   left: 50%;
   transform: translate(-50%);
   width: -moz-fit-content;
   width: fit-content;
-  padding: 25px;
+  max-width: 150px;
+  padding: 15px;
   border-radius: 180px;
   background-color: #937962;
 }
@@ -634,6 +766,7 @@ footer > .copyrights > p {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  align-items: center;
   align-self: stretch;
   padding: 15px;
   border-radius: 25px;
@@ -644,13 +777,14 @@ footer > .copyrights > p {
 .contact-form {
   text-align: center;
   width: 100%;
-  padding: 25px;
   background: url("../media/deco/textured-bg.webp") center center/cover no-repeat;
 }
 .contact-form > .contact-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  align-items: center;
+  gap: 25px;
   padding: 25px;
 }
 .contact-form > .contact-container > .contact-info {
@@ -747,16 +881,40 @@ footer > .copyrights > p {
   filter: grayscale(100%);
 }
 
+@media screen and (max-width: 850px) {
+  .about-us-presentation > figure {
+    width: 100vw;
+    height: 100vw;
+    min-width: 100px;
+    min-height: 100px;
+  }
+  .about-us-presentation > figure > figcaption {
+    width: 150px;
+    height: 50px;
+    padding: 10px;
+  }
+  .about-us-presentation > figure > figcaption > a > .icons {
+    width: 35px;
+  }
+  .about-us-presentation .presentation > blockquote {
+    width: 80%;
+  }
+  .about-us-presentation .presentation .redirection-buttons {
+    height: 200px;
+  }
+  .eui-widget-title::before,
+  .eui-widget-title::after,
+  .es-widget-title::before,
+  .es-widget-title::after {
+    display: none !important;
+  }
+}
 .category-cards {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
+  width: 95%;
   padding: 25px 0;
 }
-.category-cards .card-container {
+
+.card-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -764,7 +922,8 @@ footer > .copyrights > p {
   align-items: center;
   gap: 15px;
 }
-.category-cards .card-container > .category-card {
+
+.category-card {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -775,24 +934,27 @@ footer > .copyrights > p {
   min-height: 500px;
   border-radius: 5px;
   border: 1px solid #978178;
+  background-color: #F8F8F8;
 }
-.category-cards .card-container > .category-card .category-thumbnail {
+.category-card .category-thumbnail {
   background: url("../media/deco/flower-bg-deco.svg") top/contain no-repeat;
   padding: 20px;
   width: 258px;
 }
-.category-cards .card-container > .category-card .category-thumbnail > img {
+.category-card .category-thumbnail > img {
   width: 160px;
   height: 160px;
   border-radius: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
   background-color: #937962;
   padding: 5px;
 }
-.category-cards .card-container > .category-card .category-thumbnail > figcaption > h3 {
+.category-card .category-thumbnail > figcaption > h3 {
   color: #978178;
   text-decoration: underline;
 }
-.category-cards .card-container > .category-card .card-desc {
+.category-card .card-desc {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -800,15 +962,17 @@ footer > .copyrights > p {
   gap: 15px;
   padding: 15px;
 }
-.category-cards .card-container > .category-card .card-desc > p {
+.category-card .card-desc > p {
   color: #4D4D4D;
 }
-.category-cards .card-container > .category-card:hover {
+.category-card:hover {
   transform: scale(1.01);
 }
 
 .category-row {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   width: 100%;
   height: 100%;
 }
@@ -895,10 +1059,11 @@ footer > .copyrights > p {
   background: #dfcab3;
 }
 .category-row > .service-details {
+  flex-grow: 1;
   overflow-y: scroll;
   scrollbar-color: #EEE3D7 #978178;
   scrollbar-width: thin;
-  width: 100%;
+  width: 60%;
   height: 100%;
   max-height: 685px;
   padding: 25px;
@@ -956,6 +1121,19 @@ footer > .copyrights > p {
 .category-row > .service-details > .service-detail-content > .service-info > .btn {
   position: absolute;
   bottom: 0;
+}
+@media screen and (max-width: 850px) {
+  .category-row > .service-details > .service-detail-content > .service-info .service-name-price > h2 {
+    font-weight: 400;
+    font-size: 1.5rem;
+  }
+  .category-row > .service-details > .service-detail-content > .service-info .service-name-price > p {
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+  .category-row > .service-details > .service-detail-content > .service-info > p {
+    font-size: 0.9rem;
+  }
 }
 
 .tarifs {
@@ -1032,28 +1210,36 @@ footer > .copyrights > p {
 .form-login {
   display: flex;
   flex-direction: column;
-  align-self: center;
   align-items: center;
   justify-content: center;
-  gap: 25px;
+  width: 100%;
+  padding: 0 5px;
 }
 .form-login > h1 {
   color: #978178;
+  padding: 15px 5px;
 }
 .form-login > .form-connexion {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  width: 650px;
-  width: 100%;
+  justify-content: center;
+  align-items: center;
+  max-width: 650px;
+  width: 90%;
   padding: 50px;
   gap: 10px;
   border: 1px solid #978178;
   border-radius: 5px;
 }
+.form-login > .form-connexion > input {
+  width: 90%;
+}
 .form-login > .form-connexion > .remember-check {
   display: flex;
   gap: 5px;
   align-items: center;
+  width: 90%;
 }
 .form-login > .form-connexion > .remember-check > label {
   font-size: 0.75rem;
@@ -1064,6 +1250,9 @@ footer > .copyrights > p {
 }
 .form-login > .form-connexion > .button-links {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
 }
 .form-login > .form-connexion > .button-links button {
@@ -1088,6 +1277,12 @@ footer > .copyrights > p {
   color: #937962;
 }
 
+@media screen and (max-width: 400px) {
+  .form-login > .form-connexion {
+    padding: 50px 0;
+    width: 90%;
+  }
+}
 .register {
   display: flex;
   flex-direction: column;
@@ -1149,7 +1344,9 @@ footer > .copyrights > p {
   flex-direction: column;
   justify-content: space-between;
   padding: 25px;
-  height: 170px;
+  gap: 50px;
+  min-height: 170px;
+  height: 100%;
 }
 .dashboard .welcome-dashboard > h1 {
   font-family: "Marcellus";
@@ -1200,17 +1397,29 @@ footer > .copyrights > p {
 }
 .dashboard .upcoming-app,
 .dashboard .past-app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 15px;
   background-color: #F5EFE8;
   padding: 15px;
   margin: 25px;
   border-radius: 15px;
 }
+.dashboard .app-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+}
 .dashboard .appointment {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  width: 300px;
-  padding: 15px;
+  max-width: 300px;
+  width: 100%;
+  padding: 5px;
   border-radius: 5px;
   border: 1px solid #BFAE9F;
 }
@@ -1237,56 +1446,80 @@ footer > .copyrights > p {
   font-family: "Poppins";
 }
 .dashboard #settings {
-  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 }
-.dashboard #settings > form {
+.dashboard #settings .form-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   gap: 15px;
+  padding: 50px 0;
   max-width: 800px;
+  width: 100%;
   border-radius: 15px;
-  padding: 50px;
   background-color: #F5EFE8;
 }
-.dashboard #settings > form > .user-names {
+.dashboard #settings .form-container .user-names {
   display: flex;
-  gap: 15px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
-.dashboard #settings > form > figure, .dashboard #settings > form > .user-names > figure {
+.dashboard #settings .form-container .form-input {
   display: flex;
-  border-radius: 15px;
+  gap: 10px;
+  padding: 5px;
+  border-radius: 5px;
   border: 1px solid #937962;
-  padding: 10px;
+  background-color: transparent;
 }
-.dashboard #settings > form > figure > img, .dashboard #settings > form > .user-names > figure > img {
+.dashboard #settings .form-container .form-input:hover {
+  background-color: rgba(238, 227, 215, 0.5960784314);
+}
+.dashboard #settings .form-container .form-input > img {
   filter: invert(51%) sepia(35%) saturate(320%) hue-rotate(346deg) brightness(88%) contrast(87%);
 }
-.dashboard #settings > form > figure > figcaption > input, .dashboard #settings > form > .user-names > figure > figcaption > input {
+.dashboard #settings .form-container .form-input > figcaption > input {
   background-color: transparent;
   color: #1E1E1E;
 }
-.dashboard #settings > form > .settings-buttons {
-  align-self: center;
+.dashboard #settings .form-container .long-input {
+  max-width: 300px;
+  width: 80%;
 }
-.dashboard #settings > form > .settings-buttons > button {
+.dashboard #settings .form-container > .settings-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.dashboard #settings .form-container > .settings-buttons > button {
   padding: 15px;
   border-radius: 5px;
 }
-.dashboard #settings > form > .settings-buttons > button:hover {
+.dashboard #settings .form-container > .settings-buttons > button:hover {
   color: #F5EFE8;
 }
-.dashboard #settings > form > .settings-buttons .update-btn {
+.dashboard #settings .form-container > .settings-buttons .update-btn {
   border: 1px solid #5E995D;
   color: #5E995D;
 }
-.dashboard #settings > form > .settings-buttons .update-btn:hover {
+.dashboard #settings .form-container > .settings-buttons .update-btn:hover {
   background-color: #5E995D;
 }
-.dashboard #settings > form > .settings-buttons .delete-btn {
+.dashboard #settings .form-container > .settings-buttons .delete-btn {
   border: 1px solid #AB4545;
   color: #AB4545;
 }
-.dashboard #settings > form > .settings-buttons .delete-btn:hover {
+.dashboard #settings .form-container > .settings-buttons .delete-btn:hover {
   background-color: #AB4545;
 }
 

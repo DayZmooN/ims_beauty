@@ -14,6 +14,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use App\Service\GoogleCalendarService;
 use DateTime;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
 class CartController extends AbstractController
@@ -33,20 +35,26 @@ class CartController extends AbstractController
     #[Route('/cart', name: 'app_cart')]
     public function index(Request $request, SessionInterface $session, ServicesRepository $serviceRepository, EntityManagerInterface $entityManager, GoogleCalendarService $googleCalendarService): Response
     {
-        /** @var \App\Entity\Users $user */
+        // Récupération de l'utilisateur connecté
         $user = $this->security->getUser();
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }
+        /** @var \App\Entity\Users $user */
+
         $userName = $user->getFirstName() . ' ' . $user->getLastName();
         $userPhone = $user->getPhone();
         $cart = $session->get('cart', []);
-        $servicesWithForms = [];
+
+        // Récupération des créneaux disponibles dans Google Agenda
         $googleCalendarSlots = $googleCalendarService->getAvailableSlotsGoogle();
 
+        // Traitement du formulaire lorsqu'il est soumis
         if ($request->isMethod('POST')) {
             $selectedTimeSlotData = $request->request->all('selectedTimeSlot');
             $datesSelected = false;
+
+            // Vérification si au moins une date est sélectionnée
             foreach ($selectedTimeSlotData as $dateTimeString) {
                 $dateTime = new \DateTime($dateTimeString);
                 if (in_array($dateTime->format('Y-m-d H:i:s'), $googleCalendarSlots)) {
@@ -60,23 +68,32 @@ class CartController extends AbstractController
                     $service = $serviceRepository->find($serviceId);
                     $dateTime = new \DateTime($dateTimeString);
 
+                    // Vérifier la disponibilité du créneau dans Google Agenda
                     if (in_array($dateTime->format('Y-m-d H:i:s'), $googleCalendarSlots)) {
                         $appointment = new Appointements();
                         $appointment->setStatus('confirmed');
                         $appointment->setUsers($user);
                         $appointment->setDateTime($dateTime);
 
-                        // Ajout de logs pour déboguer
                         try {
                             $entityManager->persist($appointment);
                             $entityManager->flush();
-                            // Debugging
                             error_log("Appointment saved to database with ID: " . $appointment->getId());
                         } catch (\Exception $e) {
                             error_log("Error saving appointment: " . $e->getMessage());
+                            continue;
                         }
 
-                        // Commenter l'intégration de Google Calendar pour le test
+                        if ($appointment->getId()) {
+                            // Retirer le service du panier si le rendez-vous est enregistré
+                            if (($key = array_search($serviceId, $cart)) !== false) {
+                                unset($cart[$key]);
+                            }
+                            $session->set('cart', array_values($cart));
+                            $this->addFlash('success', "Rendez-vous confirmé et retiré du panier.");
+                        }
+
+                        // Tenter d'ajouter l'événement à Google Agenda
                         try {
                             $this->googleCalendarService->createEvent($dateTime, $service->getName(), $userName, $userPhone, 'description');
                             $this->addFlash('success', "Appointment confirmed for " . $dateTime->format('Y-m-d H:i'));
@@ -88,25 +105,26 @@ class CartController extends AbstractController
                     }
                 }
             } else {
-                // Aucune date n'a été sélectionnée, affichez un message flash
                 $this->addFlash('error', "Sélectionnez au moins une date avant de soumettre le formulaire.");
             }
         }
 
+        // Préparer la liste des services pour la vue
+        $servicesWithForms = [];
         foreach ($cart as $id) {
             $service = $serviceRepository->find($id);
             if ($service) {
-                $servicesWithForms[] = [
-                    'service' => $service,
-                ];
+                $servicesWithForms[] = ['service' => $service];
             }
         }
 
-        return $this->render('cart/index.html.twig', [
+        // Rendre la vue avec les données mises à jour
+        return $this->render('page/cart.html.twig', [
             'servicesWithForms' => $servicesWithForms,
             'googleCalendarSlots' => $googleCalendarSlots,
         ]);
     }
+
 
 
 

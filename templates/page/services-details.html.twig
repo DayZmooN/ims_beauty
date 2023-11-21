@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Services de la catégorie {{ category.name }}{% endblock %}
+
+{% block body %}
+{% include './components/page-header.html.twig' with {'page_name': page_name, 'breadcrumbs': breadcrumbs} %}
+<section class="category-row">
+    <aside class="category-details-aside">
+        <div class="services-liste-container">
+            <div class="category-title">
+                <h1>{{ category.name }}</h1>
+            </div>
+            <div class="category-services">
+                <ul>
+                    {% for service in services %}
+                        <li class="service-name" id="service-name-{{ service.id }}" data-service-id="{{ service.id }}">
+                            {{ service.name }}
+                        </li>
+                    {% else %}
+                        <p>Aucun service à afficher pour cette catégorie.</p>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {# Insérer ici aussi la carte de réduction #}
+    </aside>
+
+    <section class="service-details">
+        {% for service in services %}
+            <div id="service-detail-{{ service.id }}" class="service-detail-content">
+                <figure class="service-thumbnail">
+                    <img src="{{ asset('asset/media/banners/' ~ category.thumbnail) }}" alt="">
+                </figure>
+                <div class="service-info">
+                    <div class="service-name-price">
+                        <h2>{{ service.name }}</h2>
+                        <p>{{ service.price }} €</p>
+                    </div>
+                    <p>{{ service.description }}</p>
+                    <p>Durée : {{ service.duration }}</p>
+                </div>
+                <div class="animated-btn btn-two">
+					<a href="{{path('cart_add', {id: service.id}) }}">
+						<span>Réservez</span>
+						<img src="{{asset('asset/media/icons/deco/lotus.svg')}}" alt="">
+					</a>
+				</div>
+            </div>
+        {% else %}
+            <p>Ce service n'a pas encore de description rédiger.</p>
+        {% endfor %}
+          <h2>Choisissez votre créneau horaire</h2>
+
+
+          
+         {# {{ form_start(appointmentForm) }}
+{{ form_widget(appointmentForm.DateTime) }}
+{{ form_end(appointmentForm) }} #}
+{# {% for slot in availableSlots %}
+    <div>
+        <p>Créneau disponible : {{ slot.date | date('d M Y H:i') }}</p>
+    </div>
+{% endfor %} #}
+
+  {# Intégration de Google Agenda #}
+ 
+  {# <iframe src="https://calendar.google.com/calendar/embed?src=eb4ac0e920b14d60786c94f71092fdcbd873e34be3814d00d3fbcd8cd737f844@group.calendar.google.com&ctz=Europe%2FParis" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+
+    </section> #}
+</section>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const datetimePicker = document.querySelector('.datetimepicker');
+
+    if (datetimePicker) {
+        datetimePicker.addEventListener('change', function () {
+            const selectedDate = new Date(this.value);
+            const hoursSelect = this.querySelector('select[id$=_hour]'); // Modifier l'ID selon votre structure HTML
+
+            if (hoursSelect) {
+                adjustTimeOptions(hoursSelect, selectedDate);
+            }
+        });
+    }
+
+    function adjustTimeOptions(hoursSelect, selectedDate) {
+        const hours = Array.from(hoursSelect.options).map(option => parseInt(option.value));
+
+        hours.forEach(hour => {
+            const option = hoursSelect.querySelector(`option[value="${hour}"]`);
+            if (hour < 8 || hour > 17 || (hour >= 12 && hour < 13.5)) {
+                option.disabled = true;
+            } else {
+                option.disabled = false;
+            }
+        });
+    }
+});
+
+</script>
+{% endblock %}
