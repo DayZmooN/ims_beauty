@@ -122,129 +122,9 @@ class CartController extends AbstractController
         return $this->render('page/cart.html.twig', [
             'servicesWithForms' => $servicesWithForms,
             'googleCalendarSlots' => $googleCalendarSlots,
+            'cartItemCount' => count($cart), // Add this line
         ]);
     }
-
-
-
-
-
-
-    // private function getAvailableTimeSlots($selectedMonth = null)
-    // {
-    //     $googleCalendarSlots = $this->googleCalendarService->getAvailableSlotsGoogle();
-    //     $formattedSlots = [];
-    //     foreach ($googleCalendarSlots as $slot) {
-    //         $dateTime = new DateTime($slot);
-    //         $date = $dateTime->format('Y-m-d');
-    //         $time = $dateTime->format('H:i');
-    //         $formattedSlots[$date][] = $time;
-    //     }
-    //     return $formattedSlots;
-    // }
-
-
-
-
-
-
-
-    // private function isDateTimeAvailable($dateTime, $googleCalendarSlots)
-    // {
-    //     $currentDateTime = new DateTime();
-    //     $currentHour = $currentDateTime->format('H:i');
-    //     $formattedDateTime = $dateTime->format('Y-m-d H:i:s');
-
-    //     if (in_array($formattedDateTime, $googleCalendarSlots)) {
-    //         return false; // Le créneau est occupé dans Google Agenda
-    //     }
-
-    //     if ($dateTime->format('H:i') <= $currentHour) {
-    //         return false; // Le créneau est déjà passé
-    //     }
-
-    //     $dateTimeWithBuffer = clone $dateTime;
-    //     $dateTimeWithBuffer->modify('-1 hour');
-    //     if ($dateTimeWithBuffer <= $currentDateTime) {
-    //         return false; // L'heure actuelle est moins d'une heure avant le rendez-vous
-    //     }
-
-    //     return true; // Le créneau est disponible
-    // }
-
-    // private function isDateTimeAvailable($dateTime, $googleCalendarSlots)
-    // {
-    //     $currentDateTime = new DateTime();
-    //     $formattedDateTime = $dateTime->format('Y-m-d H:i:s');
-
-    //     if (in_array($formattedDateTime, $googleCalendarSlots)) {
-    //         return false; // Le créneau est occupé dans Google Agenda
-    //     }
-
-    //     // Vérifiez si le créneau est dans le futur
-    //     return $dateTime > $currentDateTime;
-    // }
-
-
-    // private function getLocalAvailableTimeSlots($googleCalendarSlots, $selectedMonth = null)
-    // {
-    //     $datesWithTimeSlots = [];
-    //     $currentYear = date('Y');
-
-    //     if ($selectedMonth) {
-    //         $startDate = new \DateTime($currentYear . '-' . $selectedMonth . '-01');
-    //         $endDate = (clone $startDate)->modify('+1 month');
-    //     } else {
-    //         $startDate = new \DateTime(); // Aujourd'hui
-    //         $endDate = (clone $startDate)->modify('+5 days'); // 5 jours à partir d'aujourd'hui
-    //     }
-
-    //     for ($date = clone $startDate; $date < $endDate; $date->modify('+1 day')) {
-    //         $timeSlotsForDate = [];
-    //         foreach (range(8, 17) as $hour) {
-    //             $dateTime = (clone $date)->setTime($hour, 0); // Chaque heure pleine
-
-    //             if ($this->isDateTimeAvailable($dateTime, $googleCalendarSlots)) {
-    //                 $timeSlotsForDate[] = $dateTime->format('H:i');
-    //             }
-    //         }
-    //         if (!empty($timeSlotsForDate)) {
-    //             $datesWithTimeSlots[$date->format('Y-m-d')] = $timeSlotsForDate;
-    //         }
-    //     }
-
-    //     return $datesWithTimeSlots;
-    // }
-
-
-    // private function mergeTimeSlots($dbSlots, $googleCalendarSlots)
-    // {
-    //     $mergedSlots = [];
-
-    //     // Convertir les créneaux de Google Calendar en un format comparable
-    //     $formattedGoogleSlots = [];
-    //     foreach ($googleCalendarSlots as $slot) {
-    //         $dateTime = new DateTime($slot);
-    //         $formattedGoogleSlots[] = $dateTime->format('Y-m-d H:i:s');
-    //     }
-
-    //     // Parcourir et fusionner les créneaux de la BDD avec ceux de Google Calendar
-    //     foreach ($dbSlots as $date => $timeSlots) {
-    //         foreach ($timeSlots as $timeSlot) {
-    //             $dateTimeString = $date . ' ' . $timeSlot;
-
-    //             // Ajouter le créneau si ce n'est pas en conflit avec ceux de Google Calendar
-    //             if (!in_array($dateTimeString, $formattedGoogleSlots)) {
-    //                 if (!isset($mergedSlots[$date])) {
-    //                     $mergedSlots[$date] = [];
-    //                 }
-    //                 $mergedSlots[$date][] = $timeSlot;
-    //             }
-    //         }
-    //     }
-
-    //     return $mergedSlots;
-    // }
 
 
     //route for add service 
@@ -255,67 +135,48 @@ class CartController extends AbstractController
 
         if (!in_array($id, $cart)) {
             $cart[] = $id;
+            $session->set('cart', $cart); // Update the cart before counting items
+            $session->set('cartItemCount', count($cart)); // Update the item count
         }
 
-        $session->set('cart', $cart);
-
-        $this->addFlash('success', 'Service ajouté au panier avec succès!');
-
-        return $this->redirect($request->headers->get('referer'));
+        if ($request->isXmlHttpRequest()) {
+            // For AJAX request, return JSON response
+            return $this->json([
+                'success' => true,
+                'message' => 'Service ajouté au panier avec succès!',
+                'cartItemCount' => count($cart) // Send the updated count
+            ]);
+        } else {
+            // For regular request, redirect
+            $this->addFlash('success', 'Service ajouté au panier avec succès!');
+            return $this->redirect($request->headers->get('referer'));
+        }
     }
 
-    // #[Route('/cart/checkout', name: 'cart_checkout')]
-    // public function checkout(Request $request, SessionInterface $session, ServicesRepository $servicesRepository): Response
-    // {
-    //     // Créez et gérez le formulaire de disponibilité
-    //     $form = $this->createForm(AvailabilityType::class);
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         // Ici, vous traiterez la prise de rendez-vous après soumission du formulaire
-    //         // Par exemple, enregistrez les données en base de données et videz le panier
-    //     }
-
-    //     // Récupérez les services du panier pour les afficher sur la page de paiement
-    //     $cart = $session->get('cart', []);
-    //     $servicesWithDetails = [];
-    //     foreach ($cart as $id) {
-    //         $service = $servicesRepository->find($id);
-    //         if ($service) {
-    //             $servicesWithDetails[] = $service; // On suppose qu'il s'agit d'un tableau d'objets Service
-    //         }
-    //     }
-
-    //     // Retournez la vue avec le panier et le formulaire
-    //     return $this->render('cart/index.html.twig', [
-    //         'services' => $servicesWithDetails,
-    //         'availabilityForm' => $form->createView(),
-    //     ]);
-    // }
 
     // route for delete service
     #[Route('/cart/remove/{id}', name: 'cart_remove')]
-    public function remove($id, SessionInterface $session): Response
+    public function remove($id, SessionInterface $session, Request $request): Response
     {
-        // Récupérez le panier de la session
         $cart = $session->get('cart', []);
 
-        // Trouvez l'index de l'élément dans le tableau
         if (($key = array_search($id, $cart)) !== false) {
-            // Si l'article est dans le panier, retirez-le
             unset($cart[$key]);
+            $session->set('cart', $cart); // Update the cart before counting items
+            $session->set('cartItemCount', count($cart)); // Update the item count
         }
 
-        // Ré-indexez le tableau après la suppression
-        $cart = array_values($cart);
-
-        // Enregistrez le panier mis à jour dans la session
-        $session->set('cart', $cart);
-
-        // Ajoutez un message flash pour confirmer la suppression
-        $this->addFlash('success', 'Service retiré du panier avec succès.');
-
-        // Redirigez l'utilisateur vers la vue du panier
-        return $this->redirectToRoute('app_cart');
+        if ($request->isXmlHttpRequest()) {
+            // For AJAX request, return JSON response
+            return $this->json([
+                'success' => true,
+                'message' => 'Service ajouté au panier avec succès!',
+                'cartItemCount' => count($cart) // Send the updated count
+            ]);
+        } else {
+            // For regular request, redirect
+            $this->addFlash('success', 'Service ajouté au panier avec succès!');
+            return $this->redirect($request->headers->get('referer'));
+        }
     }
 }

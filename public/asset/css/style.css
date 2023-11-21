@@ -102,8 +102,11 @@ body {
   scroll-behavior: smooth;
   line-height: 1.6rem;
   min-height: 100vh;
-  transition: all 0.3s;
   background-color: #F8F8F8;
+}
+
+main {
+  position: relative;
 }
 
 img {
@@ -195,6 +198,19 @@ input, textarea {
   border-radius: 5px;
 }
 
+/* Change checkbox color */
+input[type=checkbox] {
+  accent-color: #BFAE9F; /* Your preferred color */
+}
+
+input[type=radio] {
+  accent-color: #BFAE9F; /* Your preferred color */
+}
+
+input[type=date]::-webkit-calendar-picker-indicator {
+  filter: invert(51%) sepia(24%) saturate(499%) hue-rotate(347deg) brightness(90%) contrast(79%);
+}
+
 .alt-animated-btn {
   position: relative;
   display: flex;
@@ -222,6 +238,9 @@ input, textarea {
   border: 1px solid #978178;
   transform: rotate(50deg);
   z-index: 0;
+}
+.alt-animated-btn > a {
+  z-index: 9;
 }
 .alt-animated-btn > a > img {
   width: 35px;
@@ -322,6 +341,90 @@ input, textarea {
   transform: scale(1.1);
 }
 
+.promotion-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  max-width: 600px;
+  width: 100%;
+  height: 240px;
+  margin: 15px 0;
+  overflow: hidden;
+  border-radius: 5px;
+  background: url("../media/promo-bg.webp") center center/cover no-repeat;
+}
+.promotion-box .background-image {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.promotion-box .content-border {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+  width: 90%;
+  height: 80%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #F5EFE8;
+}
+.promotion-box .content-border > span {
+  font-family: "Alex Brush";
+  color: #937962;
+  font-size: 3rem;
+}
+.promotion-box .content-border > p {
+  color: #4D4D4D;
+}
+
+/* Flash message fade out animation */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.flash-messages-container {
+  position: fixed;
+  /* Fixed position */
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  overflow: auto;
+  gap: 5px;
+  bottom: 10px;
+  /* Positioned at the bottom */
+  right: 15px;
+  /* Positioned to the right */
+  z-index: 5;
+  /* High z-index to ensure it's on top */
+  width: 300px;
+  /* Adjust as needed */
+  height: 50%;
+}
+
+.alert {
+  background-color: #F5EFE8;
+  border: 1px solid #978178;
+  border-radius: 15px;
+  color: #937962;
+  font-family: "Poppins";
+  padding: 15px;
+  margin-top: 10px;
+  /* Spacing between messages */
+  animation: fadeOut ease 2s;
+  /* Adjust the duration as needed */
+  animation-fill-mode: forwards;
+  animation-delay: 5s;
+}
+
 header {
   z-index: 999;
   display: flex;
@@ -381,7 +484,7 @@ header > .nav-menu > nav > ul > li > a {
 header > .nav-menu > nav > ul > li > a:hover {
   color: #4D4D4D;
 }
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 865px) {
   header > .nav-menu > nav > ul {
     display: none;
     justify-content: center;
@@ -396,8 +499,50 @@ header > .nav-menu > figure {
   gap: 10px;
   padding: 0 10px;
 }
-header > .nav-menu > figure > a > img {
+header > .nav-menu > figure a > img {
   height: 35px;
+}
+header > .nav-menu > figure .user-dropdown {
+  position: relative;
+  display: inline-block;
+}
+header > .nav-menu > figure .user-dropdown:hover .dropdown-content {
+  display: block;
+}
+header > .nav-menu > figure .user-dropdown .dropdown-content {
+  z-index: 1;
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4D4D4D;
+  border: 1px solid #BFAE9F;
+  border-radius: 5px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+header > .nav-menu > figure .user-dropdown .dropdown-content > a {
+  display: block;
+  font-family: "Marcellus";
+  color: #F5EFE8;
+  border-bottom: 1px solid #978178;
+  padding: 12px 16px;
+}
+header > .nav-menu > figure .user-dropdown .dropdown-content > a:hover {
+  background-color: #F5EFE8;
+  color: #4D4D4D;
+}
+header > .nav-menu > figure .cart-item-count {
+  color: #BFAE9F;
+  font-size: 1.2rem;
+}
+header > .nav-menu > figure .responsive-menu {
+  display: none;
+}
+@media screen and (max-width: 865px) {
+  header > .nav-menu > figure .responsive-menu {
+    display: block;
+  }
 }
 header > a > img {
   padding-left: 25px;
@@ -1115,8 +1260,17 @@ footer > .copyrights > p > a:hover {
   font-weight: 600;
   font-size: 2.1rem;
 }
+.category-row > .service-details > .service-detail-content > .service-info .description-service {
+  font-size: 0.85rem;
+  max-width: 800px;
+}
 .category-row > .service-details > .service-detail-content > .service-info p {
   font-size: 1.125rem;
+  padding-bottom: 15px;
+}
+.category-row > .service-details > .service-detail-content > .service-info p > span {
+  font-family: "Poppins";
+  color: #937962;
 }
 .category-row > .service-details > .service-detail-content > .service-info > .btn {
   position: absolute;
@@ -1412,6 +1566,7 @@ footer > .copyrights > p > a:hover {
   flex-direction: row;
   flex-wrap: wrap;
   gap: 15px;
+  width: 90%;
 }
 .dashboard .appointment {
   display: flex;
@@ -1523,6 +1678,159 @@ footer > .copyrights > p > a:hover {
   background-color: #AB4545;
 }
 
+.cart-page {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.cart-page > form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 15px;
+  max-width: 1200px;
+  width: 90%;
+  padding: 25px;
+  border: 1px solid #937962;
+  border-radius: 15px;
+}
+.cart-page > form h1 {
+  display: block;
+  width: 100%;
+  padding: 15px 5px;
+  margin: 15px 0;
+  border-bottom: 1px solid #978178;
+}
+.cart-page > form .submit-button {
+  padding: 10px;
+  border: 1px solid #937962;
+  border-radius: 5px;
+  color: #937962;
+  font-family: "Poppins";
+  transition: all 3ms ease-in-out;
+}
+.cart-page > form .submit-button:hover {
+  background-color: #937962;
+  color: #F5EFE8;
+}
+.cart-page > form .services-container {
+  padding: 5px 15px;
+}
+.cart-page > form .services-container .service-info {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #978178;
+}
+.cart-page > form .services-container .service-info .info p {
+  white-space: nowrap; /* Prevents the text from wrapping to the next line */
+  overflow: hidden; /* Hides the overflow text */
+  text-overflow: ellipsis;
+  width: 130px;
+  font-size: 0.8rem;
+}
+.cart-page > form .services-container .service-info .info span {
+  font-size: 0.875rem;
+  color: #937962;
+  font-family: "Poppins-SemiBold";
+}
+.cart-page > form .services-container .buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+}
+.cart-page > form .services-container .buttons .icons-button {
+  filter: invert(55%) sepia(9%) saturate(664%) hue-rotate(332deg) brightness(94%) contrast(93%);
+}
+.cart-page > form .calendar-options {
+  display: flex;
+  gap: 15px;
+  width: 95%;
+  min-height: 350px;
+  height: 100%;
+  padding: 15px 0;
+}
+.cart-page > form .calendar-options h4 {
+  display: block;
+  width: 90%;
+  margin: 15px 0;
+  border-bottom: 1px solid #978178;
+}
+.cart-page > form .calendar-options .calendar-container {
+  overflow-y: scroll;
+  scrollbar-color: #EEE3D7 #978178;
+  scrollbar-width: thin;
+}
+.cart-page > form .calendar-options .calendar-container::-webkit-scrollbar {
+  width: 12px;
+}
+.cart-page > form .calendar-options .calendar-container::-webkit-scrollbar-track {
+  background: #978178;
+  border-radius: 5px;
+}
+.cart-page > form .calendar-options .calendar-container::-webkit-scrollbar-thumb {
+  background: #EEE3D7;
+  border-radius: 5px;
+}
+.cart-page > form .calendar-options .calendar-container::-webkit-scrollbar-thumb:hover {
+  background: #dfcab3;
+}
+.cart-page > form .calendar-options .months {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+.cart-page > form .calendar-options .months .month {
+  padding: 10px 5px;
+  border: 1px solid #937962;
+  border-radius: 15px;
+  cursor: pointer;
+}
+.cart-page > form .calendar-options .months .month:hover {
+  background-color: #937962;
+  color: #F5EFE8;
+}
+.cart-page > form .calendar-options .week {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+.cart-page > form .calendar-options .week .day-slots .day {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  border-radius: 5px;
+  padding: 10px 5px;
+  border-bottom: 1px solid #937962;
+}
+.cart-page > form .calendar-options .week .day-slots .available-slots {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+.cart-page > form .calendar-options .week .day-slots .available-slots .slot {
+  padding: 5px;
+  background-color: #EEE3D7;
+  border-radius: 5px;
+}
+@media screen and (max-width: 500px) {
+  .cart-page > form .calendar-options .months, .cart-page > form .calendar-options .week {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 .error404 {
   display: flex;
   align-items: center;
@@ -1553,4 +1861,43 @@ footer > .copyrights > p > a:hover {
 .error404 button:hover {
   background-color: #937962;
   color: #EEE3D7;
+}
+
+.mentions-legales {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  gap: 25px;
+  margin: 25px 0;
+  padding: 25px;
+  max-width: 1200px;
+  width: 100%;
+  border: 1px solid #BFAE9F;
+  border-radius: 15px;
+}
+.mentions-legales p,
+.mentions-legales a {
+  font-size: 0.8rem;
+}
+.mentions-legales a {
+  color: #978178;
+}
+.mentions-legales .website .contact-info {
+  padding: 15px;
+}
+.mentions-legales .website .contact-info > figure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.mentions-legales .website .contact-info > figure > img {
+  filter: invert(55%) sepia(8%) saturate(838%) hue-rotate(332deg) brightness(94%) contrast(83%);
+  height: 20px;
+}
+.mentions-legales .website .contact-info > figure > figcaption > p,
+.mentions-legales .website .contact-info > figure > figcaption a {
+  color: #937962;
 }/*# sourceMappingURL=style.css.map */

@@ -16,10 +16,11 @@ body {
   scroll-behavior: smooth;
   line-height: 1.6rem;
   min-height: 100vh;
-  transition: all 0.3s;
   background-color: $default-White;
 }
-
+main{
+  position: relative;
+}
 img {
   display: inline-block;
   max-width: 100%;
@@ -103,3 +104,18 @@ input,textarea{
   font-family: $lighterText;
   border-radius: $radius-5;
 }
+
+/* Change checkbox color */
+input[type="checkbox"] {
+  accent-color: $Khaki; /* Your preferred color */
+}
+
+input[type="radio"] {
+  accent-color: $Khaki; /* Your preferred color */
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(51%) sepia(24%) saturate(499%) hue-rotate(347deg) brightness(90%) contrast(79%);
+}
+
+

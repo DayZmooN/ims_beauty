@@ -30,8 +30,8 @@ class ServicesCrudController extends AbstractCrudController
             TextEditorField::new('description'),
 
             ImageField::new('thumbnail')
-                ->setBasePath('uploads/')
-                ->setUploadDir('public/uploads'),
+                ->setBasePath('asset/media/banners/')
+                ->setUploadDir('public/asset/media/banners'),
         ];
     }
 }

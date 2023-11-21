@@ -38,6 +38,14 @@
     width: 35px;
     height: 35px;
   }
+  & > a {
+    z-index: 9;
+
+    & > img {
+      width: 35px;
+      height: 35px;
+    }
+  }
 }
 
 .alt-animated-btn:hover::after {
@@ -148,6 +156,98 @@
   transform: scale(1.1);
 }
 
+//~ ------------ PROMO DIV ------------ //
+.promotion-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  max-width: 600px;
+  width: 100%;
+  height: 240px;
+  margin: 15px 0;
+  overflow: hidden;
+  border-radius: $radius-5;
+  background: url("../media/promo-bg.webp") center center / cover no-repeat;
+
+  .background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .content-border {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+    width: 90%;
+    height: 80%;
+    padding: 10px;
+    border-radius: $radius-5;
+    border: 1px solid $primary-Alabaster;
+
+    & > span {
+      font-family: $titleFont;
+      color: $accent-BrownShadow;
+      font-size: 3rem;
+    }
+
+    & > p {
+      color: $light-Black;
+    }
+  }
+}
+
+//~ ------------ FLASH MESSAGES ------------ //
+
+/* Flash message fade out animation */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.flash-messages-container {
+  position: fixed;
+  /* Fixed position */
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  overflow: auto;
+  gap: 5px;
+  bottom: 10px;
+  /* Positioned at the bottom */
+  right: 15px;
+  /* Positioned to the right */
+  z-index: 5;
+  /* High z-index to ensure it's on top */
+  width: 300px;
+  /* Adjust as needed */
+  height: 50%;
+}
+
+.alert {
+  background-color: $primary-Alabaster;
+  border: 1px solid $Cinereous;
+  border-radius: $radius-15;
+  color: $accent-BrownShadow;
+  font-family: $textFont;
+  padding: 15px;
+  margin-top: 10px;
+  /* Spacing between messages */
+  animation: fadeOut ease 2s;
+  /* Adjust the duration as needed */
+  animation-fill-mode: forwards;
+  animation-delay: 5s;
+}
+
 //& -------------------- STYLING -------------------- //
 //~ ------------HEADER & FOOTER------------ //
 //? -------- HEADER -------- //
@@ -216,7 +316,7 @@ header {
         }
       }
 
-      @media screen and (max-width: 850px) {
+      @media screen and (max-width: 865px) {
         display: none;
         justify-content: center;
       }
@@ -233,6 +333,55 @@ header {
 
       & > a > img {
         height: 35px;
+      }
+
+      .user-dropdown {
+        position: relative;
+        display: inline-block;
+        &:hover .dropdown-content {
+          display: block;
+        }
+
+        .dropdown-content {
+          z-index: 1;
+          display: none;
+          position: absolute;
+          min-width: 160px;
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: $light-Black;
+          border: 1px solid $Khaki;
+          border-radius: $radius-5;
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+
+          & > a {
+            display: block;
+            font-family: $bonusFont;
+            color: $primary-Alabaster;
+            border-bottom: 1px solid $Cinereous;
+            padding: 12px 16px;
+
+            &:hover {
+              background-color: $primary-Alabaster;
+              color: $light-Black;
+            }
+          }
+        }
+      }
+
+      .cart-item-count {
+        color: $Khaki;
+        font-size: 1.2rem;
+      }
+
+      .responsive-menu {
+        display: none;
+      }
+
+      @media screen and (max-width: 865px) {
+        .responsive-menu {
+          display: block;
+        }
       }
     }
   }
@@ -1080,8 +1229,19 @@ footer {
           }
         }
 
+        .description-service {
+          font-size: 0.85rem;
+          max-width: 800px;
+        }
+
         p {
           font-size: 1.125rem;
+          padding-bottom: 15px;
+
+          & > span {
+            font-family: $textFont;
+            color: $accent-BrownShadow;
+          }
         }
 
         & > .btn {
@@ -1349,7 +1509,6 @@ footer {
   }
 }
 
-//~ ------------ ADMIN DASHBOARD ------------ //
 //~ ------------ USER DASHBOARD ------------ //
 
 .dashboard {
@@ -1443,6 +1602,7 @@ footer {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 15px;
+    width: 90%;
   }
 
   .appointment {
@@ -1576,6 +1736,187 @@ footer {
           &:hover {
             background-color: $error-Red;
           }
+        }
+      }
+    }
+  }
+}
+
+//~ ------------ CART ------------ //
+.cart-page {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  & > form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+    max-width: 1200px;
+    width: 90%;
+    padding: 25px;
+    border: 1px solid $accent-BrownShadow;
+    border-radius: $radius-15;
+
+    h1 {
+      display: block;
+      width: 100%;
+      padding: 15px 5px;
+      margin: 15px 0;
+      border-bottom: 1px solid $Cinereous;
+    }
+
+    .submit-button {
+      padding: 10px;
+      border: 1px solid $accent-BrownShadow;
+      border-radius: $radius-5;
+      color: $accent-BrownShadow;
+      font-family: $textFont;
+      transition: all 3ms ease-in-out;
+      &:hover {
+        background-color: $accent-BrownShadow;
+        color: $primary-Alabaster;
+      }
+    }
+
+    .services-container {
+      padding: 5px 15px;
+
+      .service-info {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid $Cinereous;
+
+        .info {
+          p {
+            white-space: nowrap; /* Prevents the text from wrapping to the next line */
+            overflow: hidden; /* Hides the overflow text */
+            text-overflow: ellipsis;
+            width: 130px;
+            font-size: 0.8rem;
+          }
+          span {
+            font-size: 0.875rem;
+            color: $accent-BrownShadow;
+            font-family: $semiBoldText;
+          }
+        }
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 35px;
+
+        .icons-button {
+          filter: invert(55%) sepia(9%) saturate(664%) hue-rotate(332deg)
+            brightness(94%) contrast(93%);
+        }
+      }
+    }
+
+    .calendar-options {
+      display: flex;
+      gap: 15px;
+      width: 95%;
+      min-height: 350px;
+      height: 100%;
+      padding: 15px 0;
+
+      h4 {
+        display: block;
+        width: 90%;
+        margin: 15px 0;
+        border-bottom: 1px solid $Cinereous;
+      }
+
+      .calendar-container {
+        overflow-y: scroll;
+        scrollbar-color: $secondary-WhiteChocolate $Cinereous;
+        scrollbar-width: thin;
+        &::-webkit-scrollbar {
+          width: 12px;
+        }
+
+        &::-webkit-scrollbar-track {
+          background: $Cinereous;
+          border-radius: $radius-5;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: $secondary-WhiteChocolate;
+          border-radius: $radius-5;
+
+          &:hover {
+            background: darken($secondary-WhiteChocolate, 10%);
+          }
+        }
+      }
+
+      .months {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 20px;
+
+        .month {
+          padding: 10px 5px;
+          border: 1px solid $accent-BrownShadow;
+          border-radius: $radius-15;
+          cursor: pointer;
+          &:hover {
+            background-color: $accent-BrownShadow;
+            color: $primary-Alabaster;
+          }
+        }
+      }
+
+      .week {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 25px;
+
+        .day-slots {
+          .day {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            border-radius: $radius-5;
+            padding: 10px 5px;
+            border-bottom: 1px solid $accent-BrownShadow;
+          }
+
+          .available-slots {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+
+            .slot {
+              padding: 5px;
+              background-color: $secondary-WhiteChocolate;
+              border-radius: $radius-5;
+            }
+          }
+        }
+      }
+
+      @media screen and (max-width: 500px) {
+        .months,
+        .week {
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
         }
       }
     }
