@@ -1871,14 +1871,17 @@ footer > .copyrights > p > a:hover {
 
 .error404 {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   align-self: center;
-  gap: 25px;
+  height: 80vh;
+  gap: 15px;
 }
 .error404 h1 {
   color: #937962;
   font-size: 15rem;
+  line-height: 13rem;
 }
 .error404 h1 > span {
   color: #C9BEB9;
@@ -1892,9 +1895,11 @@ footer > .copyrights > p > a:hover {
 }
 .error404 button {
   background-color: #BFAE9F;
-  color: #F5EFE8;
   border-radius: 5px;
   padding: 15px 25px;
+}
+.error404 button > a {
+  color: #F5EFE8;
 }
 .error404 button:hover {
   background-color: #937962;

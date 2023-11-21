@@ -4,10 +4,14 @@
 {% endblock %}
 
 {% block body %}
-<section class="error404">
-<h1>4<span>0</span>4</h1>
-<h2>Cette n'est pas disponible . . .</h2>
-<p>Mieux vaut peut-être faire demi-tour ?</p>
-<button href="{{ path('app_page') }}"> Accueil </button>
-</section>
+	<section class="error404">
+		<h1>4<span>0</span>4</h1>
+		<h2>Cette n'est pas disponible . . .</h2>
+		<p>Mieux vaut peut-être faire demi-tour ?</p>
+		<button>
+			<a href="{{ path('app_page') }}">
+				Accueil
+			</a>
+		</button>
+	</section>
 {% endblock %}
