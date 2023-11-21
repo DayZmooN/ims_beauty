@@ -18,13 +18,13 @@
 			<figure>
 				<img src="{{asset('asset/media/icons/contactMail.svg')}}" alt="" class="icons">
 				<figcaption>
-					<a href="mailto: ims-beauty@gmail.com">ims-beauty@gmail.com</a>
+					<a href="mailto: ims-beauty@gmail.com">{{aboutUs.email}}</a>
 				</figcaption>
 			</figure>
 			<figure>
 				<img src="{{asset('asset/media/icons/contactPhone.svg')}}" alt="" class="icons">
 				<figcaption>
-					<p>07.56.88.15.08</p>
+					<p>{{aboutUs.phone}}</p>
 				</figcaption>
 			</figure>
 		</div>
@@ -56,4 +56,5 @@
 		<p>Le site IMS Beauty utilise des cookies pour améliorer l'expérience utilisateur. Ces cookies sont destinés à optimiser la navigation sur le site et ne sont pas utilisés à des fins de collecte de données personnelles.</p>
         </div>
 
-</section>{% endblock %}
+</section>
+{% endblock %}
