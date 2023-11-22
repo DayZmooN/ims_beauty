@@ -239,6 +239,10 @@ input[type=date]::-webkit-calendar-picker-indicator {
   transform: rotate(50deg);
   z-index: 0;
 }
+.alt-animated-btn > a > img {
+  width: 35px;
+  height: 35px;
+}
 .alt-animated-btn > a {
   z-index: 9;
 }
@@ -499,7 +503,7 @@ header > .nav-menu > figure {
   gap: 10px;
   padding: 0 10px;
 }
-header > .nav-menu > figure a > img {
+header > .nav-menu > figure > a > img {
   height: 35px;
 }
 header > .nav-menu > figure .user-dropdown {
@@ -1824,7 +1828,8 @@ footer > .copyrights > p > a:hover {
   border-radius: 5px;
 }
 @media screen and (max-width: 500px) {
-  .cart-page > form .calendar-options .months, .cart-page > form .calendar-options .week {
+  .cart-page > form .calendar-options .months,
+  .cart-page > form .calendar-options .week {
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -1861,43 +1866,4 @@ footer > .copyrights > p > a:hover {
 .error404 button:hover {
   background-color: #937962;
   color: #EEE3D7;
-}
-
-.mentions-legales {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
-  gap: 25px;
-  margin: 25px 0;
-  padding: 25px;
-  max-width: 1200px;
-  width: 100%;
-  border: 1px solid #BFAE9F;
-  border-radius: 15px;
-}
-.mentions-legales p,
-.mentions-legales a {
-  font-size: 0.8rem;
-}
-.mentions-legales a {
-  color: #978178;
-}
-.mentions-legales .website .contact-info {
-  padding: 15px;
-}
-.mentions-legales .website .contact-info > figure {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-}
-.mentions-legales .website .contact-info > figure > img {
-  filter: invert(55%) sepia(8%) saturate(838%) hue-rotate(332deg) brightness(94%) contrast(83%);
-  height: 20px;
-}
-.mentions-legales .website .contact-info > figure > figcaption > p,
-.mentions-legales .website .contact-info > figure > figcaption a {
-  color: #937962;
 }/*# sourceMappingURL=style.css.map */
