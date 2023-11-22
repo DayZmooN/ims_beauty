@@ -1,4 +1,8 @@
 {% extends 'base.html.twig' %}
+
+{% block title %} Bienvenue, {{ app.user.firstname }}{% endblock %}
+{% block description %}Espace utilisateur du site IMS Beauty; consulter vos rendez-vous et modifier vos informations ou supprimer votre compte depuis cette page.{% endblock %}
+
 {% block body %}
 	<section class="dashboard">
 		<section class="welcome-dashboard">
@@ -9,19 +13,19 @@
 			<div class="user-menu">
 				<div class="menu">
 					<a href="#my-appointments" id="show-appointments">
-						<img src="{{asset('asset/media/icons/calendar.svg')}}" alt="Mes Rendez-vous">
+						<img src="{{asset('asset/media/icons/calendar.svg')}}" alt="Icône calendrier - Afficher Mes Rendez-vous">
 						<p>Mes Rendez-vous</p>
 					</a>
 				</div>
 				<div class="menu">
 					<a href="#settings" id="show-settings">
-						<img src="{{asset('asset/media/icons/settings.svg')}}" alt="Paramètres">
+						<img src="{{asset('asset/media/icons/settings.svg')}}" alt="Icône paramètres - Mes Paramètres">
 						<p>Paramètres</p>
 					</a>
 				</div>
 				<div class="menu">
 					<a href="{{path('app_logout')}}">
-						<img src="{{asset('asset/media/icons/logOut.svg')}}" alt="Se Déconnecter">
+						<img src="{{asset('asset/media/icons/logOut.svg')}}" alt="Icône Se Déconnecter">
 						<p>Se Déconnecter</p>
 					</a>
 				</div>
@@ -34,7 +38,7 @@
 				<div class="app-container">
 					<div class="appointment">
 						<figure class="datetime">
-							<img src="{{asset('asset/media/icons/deco/agenda.svg')}}" alt="">
+							<img src="{{asset('asset/media/icons/deco/agenda.svg')}}" alt="Icône agenda pour rendez(vous)">
 							<figcaption>
 								<p class="date">Date •
 									<span class="date-hour">Heure</span>
@@ -42,7 +46,7 @@
 							</figcaption>
 						</figure>
 						<figure class="service-price">
-							<img src="{{asset('asset/media/icons/deco/chair.svg')}}" alt="">
+							<img src="{{asset('asset/media/icons/deco/chair.svg')}}" alt="Icône décorative - chaise salon de beauté">
 							<figcaption>
 								<p class="service">Service
 									<span class="price">• Price</span>
@@ -61,16 +65,16 @@
 		</section>
 
 		<section id="settings">
-			<form action="{{ path('update_user_data') }}" method="POST" class="form-container" id="update-user-form">
+			<form action="{{ path('update_user_data') }}" method="POST" class="form-container" id="update-user-form" data-update-url="{{ path('update_user_data') }}">
 				<div class="user-names">
 					<figure class="form-input">
-						<img src="{{ asset('asset/media/icons/deco/lotus.svg') }}" alt="">
+						<img src="{{ asset('asset/media/icons/deco/lotus.svg') }}" alt="Icône décorative lotus">
 						<figcaption>
 							<input type="text" placeholder="Nom" name="last_name" value="{{ user.getLastName() }}">
 						</figcaption>
 					</figure>
 					<figure class="form-input">
-						<img src="{{ asset('asset/media/icons/deco/lotus.svg') }}" alt="">
+						<img src="{{ asset('asset/media/icons/deco/lotus.svg') }}" alt="Icône décorative lotus">
 						<figcaption>
 							<input type="text" placeholder="Prénom" name="first_name" value="{{ user.getFirstName() }}">
 						</figcaption>
@@ -78,19 +82,19 @@
 				</div>
 
 				<figure class="form-input long-input">
-					<img src="{{ asset('asset/media/icons/contactPhone.svg') }}" alt="">
+					<img src="{{ asset('asset/media/icons/contactPhone.svg') }}" alt="Icône décorative information utilisateur Téléphone">
 					<figcaption>
 						<input type="text" placeholder="Mobile" name="phone" value="{{ user.getPhone() }}">
 					</figcaption>
 				</figure>
 				<figure class="form-input long-input">
-					<img src="{{ asset('asset/media/icons/contactMail.svg') }}" alt="">
+					<img src="{{ asset('asset/media/icons/contactMail.svg') }}" alt="Icône décorative information utilisateur Mail">
 					<figcaption>
 						<input type="text" placeholder="Email" name="email" value="{{ user.getEmail() }}">
 					</figcaption>
 				</figure>
 				<figure class="form-input long-input">
-					<img src="{{ asset('asset/media/icons/calendar.svg') }}" alt="">
+					<img src="{{ asset('asset/media/icons/calendar.svg') }}" alt="Icône décorative information utilisateur Calendrier">
 					<figcaption>
 						<input type="date" name="date_of_birth" value="{{ user.getDateOfBith()|date('Y-m-d') }}">
 					</figcaption>
@@ -103,21 +107,5 @@
 			</form>
 		</section>
 	{% include './flash_messages/flash_messages.html.twig' %}
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var updateButton = document.getElementById('update-user-button');
-
-    updateButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        var formData = new FormData(document.getElementById('update-user-form'));
-
-        handleAjaxRequest('{{ path('update_user_data') }}', { method: 'POST', body: formData }, function(data) {
-            window.location.reload(); // Force reload regardless of the response
-        }, function(error) {
-            console.error("Update error:", error); // Error log
-        });
-    });
-});
-</script>
-	</section>
+</section>
 {% endblock %}

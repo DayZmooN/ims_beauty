@@ -3,89 +3,110 @@
 @font-face {
   font-family: "Brown Sugar";
   src: url(../fonts/BrownSugar/BrownSugar.ttf);
+  font-display: swap;
 }
 /* * Title Fonts */
 @font-face {
   font-family: "Alex Brush";
   src: url(../fonts/AlexBrush-Regular.ttf);
+  font-display: swap;
 }
 /* * Bonus Font */
 @font-face {
   font-family: "Marcellus";
   src: url(../fonts/Marcellus-Regular.ttf);
+  font-display: swap;
 }
 /* * Text Content Font */
 @font-face {
   font-family: "Poppins-Black";
   src: url(../fonts/Poppins/Poppins-Black.ttf);
+  font-display: swap;
 }
 @font-face {
   font-family: "Poppins-BlackItalic";
   src: url(../fonts/Poppins/Poppins-BlackItalic.ttf);
+  font-display: swap;
 }
 @font-face {
   font-family: "Poppins-Bold";
   src: url(../fonts/Poppins/Poppins-Bold.ttf);
+  font-display: swap;
 }
 @font-face {
   font-family: "Poppins-BoldItalic";
   src: url(../fonts/Poppins/Poppins-BoldItalic.ttf);
+  font-display: swap;
 }
 @font-face {
   font-family: "Poppins-BoldX";
   src: url(../fonts/Poppins/Poppins-ExtraBold.ttf);
+  font-display: swap;
 }
 @font-face {
   font-family: "Poppins-BoldXitalic";
   src: url(../fonts/Poppins/Poppins-ExtraBoldItalic.ttf);
+  font-display: swap;
 }
 @font-face {
   font-family: "Poppins-LightX";
   src: url(../fonts/Poppins/Poppins-ExtraLight.ttf);
+  font-display: swap;
 }
 @font-face {
   font-family: "Poppins-LightXItalic";
   src: url(../fonts/Poppins/Poppins-ExtraLightItalic.ttf);
+  font-display: swap;
 }
 @font-face {
   font-family: "Poppins-Italic";
   src: url(../fonts/Poppins/Poppins-Italic.ttf);
+  font-display: swap;
 }
 @font-face {
   font-family: "Poppins-Light";
   src: url(../fonts/Poppins/Poppins-Light.ttf);
+  font-display: swap;
 }
 @font-face {
   font-family: "Poppins-LightItalic";
   src: url(../fonts/Poppins/Poppins-LightItalic.ttf);
+  font-display: swap;
 }
 @font-face {
   font-family: "Poppins-Medium";
   src: url(../fonts/Poppins/Poppins-Medium.ttf);
+  font-display: swap;
 }
 @font-face {
   font-family: "Poppins-MediumItalic";
   src: url(../fonts/Poppins/Poppins-MediumItalic.ttf);
+  font-display: swap;
 }
 @font-face {
   font-family: "Poppins";
   src: url(../fonts/Poppins/Poppins-Regular.ttf);
+  font-display: swap;
 }
 @font-face {
   font-family: "Poppins-SemiBold";
   src: url(../fonts/Poppins/Poppins-SemiBold.ttf);
+  font-display: swap;
 }
 @font-face {
   font-family: "Poppins-SemiBoldItalic";
   src: url(../fonts/Poppins/Poppins-SemiBoldItalic.ttf);
+  font-display: swap;
 }
 @font-face {
   font-family: "Poppins-Thin";
   src: url(../fonts/Poppins/Poppins-Thin.ttf);
+  font-display: swap;
 }
 @font-face {
   font-family: "Poppins-ThinItalic";
   src: url(../fonts/Poppins/Poppins-ThinItalic.ttf);
+  font-display: swap;
 }
 *,
 *::before,
@@ -501,6 +522,7 @@ header > .nav-menu > figure {
 }
 header > .nav-menu > figure a > img {
   height: 35px;
+  width: auto;
 }
 header > .nav-menu > figure .user-dropdown {
   position: relative;
@@ -532,9 +554,15 @@ header > .nav-menu > figure .user-dropdown .dropdown-content > a:hover {
   background-color: #F5EFE8;
   color: #4D4D4D;
 }
-header > .nav-menu > figure .cart-item-count {
+header > .nav-menu > figure .cart-link {
+  position: relative;
+}
+header > .nav-menu > figure .cart-link .cart-item-count {
+  position: absolute;
+  bottom: 3px;
+  right: -13px;
   color: #BFAE9F;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 header > .nav-menu > figure .responsive-menu {
   display: none;
@@ -590,21 +618,22 @@ footer > div.salon-infos > .map-infos > div.categories-links > .title {
 }
 footer > div.salon-infos > .map-infos > div.categories-links > .title > img {
   width: 50px;
+  height: auto;
 }
 footer > div.salon-infos > .map-infos > div.categories-links > .title > h3 {
   font-family: "Marcellus";
   color: #F8F8F8;
   font-size: 1.3rem;
 }
-footer > div.salon-infos > .map-infos > div.categories-links > li {
+footer > div.salon-infos > .map-infos > div.categories-links > ul > li {
   list-style: disc;
 }
-footer > div.salon-infos > .map-infos > div.categories-links > li > a {
+footer > div.salon-infos > .map-infos > div.categories-links > ul > li > a {
   color: #F8F8F8;
   font-family: "Poppins-LightX";
   font-size: 0.875rem;
 }
-footer > div.salon-infos > .map-infos > div.categories-links > li > a:hover {
+footer > div.salon-infos > .map-infos > div.categories-links > ul > li > a:hover {
   color: #BFAE9F;
 }
 footer > div.salon-infos > .map-infos > div.schedule {
@@ -625,6 +654,7 @@ footer > div.salon-infos > .map-infos > div.schedule > .title {
 }
 footer > div.salon-infos > .map-infos > div.schedule > .title > img {
   width: 50px;
+  height: auto;
 }
 footer > div.salon-infos > .map-infos > div.schedule > .title > h3 {
   font-family: "Marcellus";
@@ -704,6 +734,7 @@ footer > .copyrights > p > a:hover {
 .page-header > ul {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 15px;
@@ -780,6 +811,7 @@ footer > .copyrights > p > a:hover {
 }
 .homepage-CTA .cta-ims .logo-cta > img {
   width: 200px;
+  height: auto;
 }
 .homepage-CTA .cta-ims .logo-cta > figcaption > p {
   font-size: 0.7rem;
@@ -874,6 +906,7 @@ footer > .copyrights > p > a:hover {
 }
 .about-us-presentation > figure > figcaption > a > .icons {
   width: 65px;
+  height: auto;
 }
 .about-us-presentation .presentation {
   display: flex;
@@ -1040,6 +1073,7 @@ footer > .copyrights > p > a:hover {
   }
   .about-us-presentation > figure > figcaption > a > .icons {
     width: 35px;
+    height: auto;
   }
   .about-us-presentation .presentation > blockquote {
     width: 80%;
@@ -1327,7 +1361,7 @@ footer > .copyrights > p > a:hover {
   filter: invert(80%) sepia(6%) saturate(372%) hue-rotate(334deg) brightness(96%) contrast(91%);
 }
 .tarifs .tarif-category .services-container {
-  display: flex;
+  display: none;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 15px;
@@ -1922,11 +1956,8 @@ footer > .copyrights > p > a:hover {
   align-items: center;
   text-align: center;
   gap: 25px;
-  margin: 25px 0;
-  padding: 25px;
   max-width: 1200px;
   width: 100%;
-  border: 1px solid #BFAE9F;
   border-radius: 15px;
 }
 .mentions-legales p,
@@ -1934,7 +1965,7 @@ footer > .copyrights > p > a:hover {
   font-size: 0.8rem;
 }
 .mentions-legales a {
-  color: #978178;
+  color: #937962;
 }
 .mentions-legales .website .contact-info {
   padding: 15px;
@@ -1948,6 +1979,7 @@ footer > .copyrights > p > a:hover {
 .mentions-legales .website .contact-info > figure > img {
   filter: invert(55%) sepia(8%) saturate(838%) hue-rotate(332deg) brightness(94%) contrast(83%);
   height: 20px;
+  width: auto;
 }
 .mentions-legales .website .contact-info > figure > figcaption > p,
 .mentions-legales .website .contact-info > figure > figcaption a {

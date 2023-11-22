@@ -1,5 +1,8 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Mon Panier{% endblock %}
+{% block description %}Liste de vos soins en attentes de dates de rendez-vous. Aucun paiement n'est transmis en ligne, réservez simplement et profitez de votre soins à la date choisie.{% endblock %}
+
 {% block body %}
 	<section class="cart-page">
 		{% if servicesWithForms is not empty %}
@@ -16,10 +19,10 @@
 								</div>
 								<div class="buttons">
 									<a href="#" class="open-calendar">
-										<img src="{{asset('asset/media/icons/calendar.svg')}}" alt="" class="icons-button icons">
+										<img src="{{asset('asset/media/icons/calendar.svg')}}" alt="Icône calendrier pour réservation" class="icons-button icons">
 									</a>
 									<a href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger remove-from-cart-link">
-										<img src="{{asset('asset/media/icons/shopRemove.svg')}}" alt="" class="icons-button icons">
+										<img src="{{asset('asset/media/icons/shopRemove.svg')}}" alt="Icône panier soustraction pour retirer du panier" class="icons-button icons">
 									</a>
 								</div>
 							</div>
@@ -128,54 +131,4 @@
 		{% endif %}
 	</section>
 	{% include './flash_messages/flash_messages.html.twig' %}
-	<script>
-	document.addEventListener('DOMContentLoaded', function () { // Event listener for opening calendar
-		document.querySelectorAll('.open-calendar').forEach(function (button) {
-			button.addEventListener('click', function (e) {
-			e.preventDefault();
-			e.stopPropagation(); // Prevent event from bubbling up to parent elements
-			var serviceId = e.currentTarget.closest('.service-item').dataset.serviceId;
-			toggleCalendar(serviceId);
-			});
-		});
-	});
-
-// Event listener for removing items from cart
-document.querySelectorAll('.remove-from-cart-link').forEach(function (link) {
-	link.addEventListener('click', function (e) {
-		e.preventDefault();
-		var url = e.currentTarget.href;
-		var serviceId = e.currentTarget.closest('.service-item').dataset.serviceId;
-
-		handleAjaxRequest(url, {
-			method: 'GET'
-			}, function (data) {
-				if (data.success) { // Remove the corresponding service item
-					var itemToRemove = document.querySelector('.service-item[data-service-id="' + serviceId + '"]');
-					if (itemToRemove) {
-						itemToRemove.remove();
-						updateCartItemCount(-1); // Decrement cart count
-					}
-				}
-			});
-		});
-});
-
-function updateCartItemCount(change) {
-var cartItemCountElement = document.querySelector('.cart-item-count');
-if (cartItemCountElement) {
-var currentCount = parseInt(cartItemCountElement.textContent) || 0;
-var newCount = Math.max(currentCount + change, 0); // Ensure count doesn't go negative
-cartItemCountElement.textContent = newCount > 0 ? newCount : '';
-}
-}
-
-
-function toggleCalendar(serviceId) {
-var calendar = document.getElementById('calendar-' + serviceId);
-if (calendar) {
-calendar.style.display = calendar.style.display === 'none' ? 'block' : 'none';
-}
-}
-</script>
-		{% endblock %}
+{% endblock %}

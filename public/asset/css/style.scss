@@ -332,6 +332,7 @@ header {
 
       a>img {
         height: 35px;
+        width: auto;
       }
 
       .user-dropdown {
@@ -368,9 +369,16 @@ header {
         }
       }
 
-      .cart-item-count{
-        color: $Khaki;
-        font-size: 1.2rem;
+      .cart-link{
+        position: relative;
+
+        .cart-item-count{
+          position: absolute;
+          bottom: 3px;
+          right: -13px;
+          color: $Khaki;
+          font-size: 1rem;
+        }
       }
 
       .responsive-menu{
@@ -433,6 +441,7 @@ footer {
 
           &>img {
             width: 50px;
+            height: auto;
           }
 
           &>h3 {
@@ -442,7 +451,7 @@ footer {
           }
         }
 
-        &>li {
+        &>ul>li {
           list-style: disc;
 
           &>a {
@@ -475,6 +484,7 @@ footer {
 
           &>img {
             width: 50px;
+            height: auto;
           }
 
           &>h3 {
@@ -579,6 +589,7 @@ footer {
   &>ul {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     gap: 15px;
@@ -662,6 +673,7 @@ footer {
     .logo-cta {
       &>img {
         width: 200px;
+        height: auto;
       }
 
       &>figcaption {
@@ -773,6 +785,7 @@ footer {
 
       &>a>.icons {
         width: 65px;
+        height: auto;
       }
     }
   }
@@ -966,6 +979,7 @@ footer {
 
         &>a>.icons {
           width: 35px;
+          height: auto;
         }
       }
     }
@@ -1312,7 +1326,7 @@ footer {
     }
 
     .services-container {
-      display: flex;
+      display: none;
       flex-direction: row;
       flex-wrap: wrap;
       gap: 15px;
@@ -2023,11 +2037,8 @@ footer {
   align-items: center;
   text-align: center;
   gap: 25px;
-  margin: 25px 0;
-  padding: 25px;
   max-width: 1200px;
   width: 100%;
-  border: 1px solid $Khaki;
   border-radius: $radius-15;
 
   p,
@@ -2036,7 +2047,7 @@ footer {
   }
 
   a {
-    color: $Cinereous;
+    color: $accent-BrownShadow;
   }
 
   .website {
@@ -2053,6 +2064,7 @@ footer {
         &>img {
           filter: invert(55%) sepia(8%) saturate(838%) hue-rotate(332deg) brightness(94%) contrast(83%);
           height: 20px;
+          width: auto;
         }
 
         &>figcaption {

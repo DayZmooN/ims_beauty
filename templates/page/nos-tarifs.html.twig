@@ -1,25 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nos Tarifs
-{% endblock %}
+{% block title %}Nos tarifs chez IMS Beauty{% endblock %}
+{% block description %}Accéder à la listes de nos soins et leurs tarifs directement afin de réservez rapidement et éfficacement.{% endblock %}
 
 {% block body %}
 	{% include './components/page-header.html.twig' with {'page_name': page_name, 'breadcrumbs': breadcrumbs} %}
 	<section class="tarifs">
 		{% for category in categories %}
 			<div class="tarif-category">
-				<div class="category-header" data-category-id="{{ loop.index }}" onclick="toggleServices('{{ loop.index }}')">
+				<div class="category-header" data-category-id="{{ loop.index }}">
 					<div class="category-title">
-						<img src="{{asset('asset/media/icons/deco/laurel.svg')}}" alt="">
+						<img src="{{asset('asset/media/icons/deco/laurel.svg')}}" alt="Icône décoratif de {{ category.name }}">
 						<h2>{{ category.name }}</h2>
 					</div>
-					<img src="{{asset('asset/media/icons/navigator/minus.svg')}}" alt="" id="icon-{{ loop.index }}" class="icons">
+					<img src="{{asset('asset/media/icons/navigator/minus.svg')}}" alt="Icône symbole pour ouvrir menu des soins" id="icon-{{ loop.index }}" class="icons">
 				</div>
 
 				<div id="services-{{ loop.index }}" class="services-container">
 					{% for service in category.services %}
 						<div class="service-card">
-							<img src="{{asset('asset/media/icons/deco/massage-stones.svg')}}" alt="" class="icon-desktop">
+							<img src="{{asset('asset/media/icons/deco/massage-stones.svg')}}" alt="Icône décorative pierres et orchidés massage et bien être" class="icon-desktop">
 							<div class="service-details">
 								<h4>{{ service.name }}</h4>
 								<h6>({{ service.duration }})</h6>
@@ -27,7 +27,7 @@
 							<span>{{ service.price }}€</span>
 							<div class="alt-animated-btn">
 								<a href="{{path('cart_add', {id: service.id}) }}" class="add-to-cart-link">
-									<img src="{{asset('asset/media/icons/shopAdd.svg')}}" alt="">
+									<img src="{{asset('asset/media/icons/shopAdd.svg')}}" alt="Icône panier avec symbole addition pour ajouter ajouter au panier">
 								</a>
 							</div>
 						</div>
@@ -37,16 +37,4 @@
 		{% endfor %}
 	</section>
 	{% include './flash_messages/flash_messages.html.twig' %}
-<script>
-	document.querySelectorAll('.add-to-cart-link').forEach(function(link) {
-		link.addEventListener('click', function(e) {
-			e.preventDefault();
-			handleAjaxRequest(e.currentTarget.href, { method: 'GET' }, function(data) {
-				if (data.success) {
-					updateCartItemCount(1); // Increment cart count
-				}
-			});
-		});
-	});
-</script>
 {% endblock %}

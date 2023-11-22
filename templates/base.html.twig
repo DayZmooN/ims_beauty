@@ -1,32 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 	<head>
 		<meta charset="UTF-8">
-		<title>
-			{% block title %}Welcome!
-			{% endblock %}
-		</title>
-		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-		{% block stylesheets %}
-			<link rel="stylesheet" href="{{ asset('asset/css/style.css') }}">
-		{% endblock %}
+		<title>{% block title %}Bienvenue chez IMS Beauty - Salon de beauté Viriati{% endblock %}</title>
+		<meta name="description" content="{% block description %}IMS Beauty, votre salon de beauté à Viriat, offrant des services de qualité pour vos soins et rendez-vous beauté.{% endblock %}">
+		<link rel="canonical" href="{% block canonical %}http://www.imsbeautyviriat.com{% endblock %}">
+		<meta name="theme-color" content="#937962"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="icon" href="{{asset('asset/media/logo/LogoKhakiText.svg')}}">
+
+		<!-- Social Media Meta Tags -->
+		<meta property="og:title" content="{% block og_title %}Bienvenue chez IMS Beauty - Viriat{% endblock %}">
+		<meta property="og:description" content="{% block og_description %}Découvrez IMS Beauty, un salon de beauté à Viriat spécialisé dans les soins personnalisés et les rendez-vous beauté.{% endblock %}">
+		<meta property="og:image" content="{{asset('asset/media/logo/LogoKhakiText.svg')}}">
+		<meta property="og:url" content="{% block og_url %}http://www.imsbeautyviriat.com{% endblock %}">
+		<meta name="twitter:card" content="summary_large_image">
+
+		{% block stylesheets %}
+		<link rel="stylesheet" href="{{ asset('asset/css/style.css') }}">
+		{% endblock %}
 	</head>
+
 	<body>
 		{% include "./components/header.html.twig" %}
 
 		<main>
 			{% block body %}
-			{% include './flash_messages/flash_messages.html.twig' %}
 
+			{% include './flash_messages/flash_messages.html.twig' %}
 			{% endblock %}
 		</main>
 
 		{% include './components/footer.html.twig' %}
-
 		{% block javascripts %}
-			<script src="{{asset('/asset/js/main.js')}}"></script>
-			<script src="{{ asset('/asset/js/flashMessageHandler.js') }}"></script>
+		<script src="{{asset('/asset/js/main.js')}}"></script>
+		<script src="{{ asset('/asset/js/flashMessageHandler.js') }}"></script>
 		{% endblock %}
 	</body>
 </html>

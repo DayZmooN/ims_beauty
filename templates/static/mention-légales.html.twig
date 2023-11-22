@@ -1,58 +1,61 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Mentions Légales - IMS Beauty{% endblock %}
+{% block description %} Mention Légales du site IMS Beauty, informations de l'éditeur, l'hébergement ainsi que les déclarations de propriété intellectuelle, protection des données personnelles et politique de cookies.{% endblock %}
+
 {% block body %}
 	<section class="mentions-legales">
 		<h1>Mentions Légales</h1>
 		<div class="website">
-			<h3>Éditeur du Site :
-			</h3>
+			<h2>Éditeur du Site :
+			</h2>
 			<p>Le site IMS Beauty est co-créé par
-				<a href="https://www.linkedin.com/in/ang%C3%A9line-gillot/" target="_blank">Angéline Gillot</a>
+				<a href="https://www.linkedin.com/in/ang%C3%A9line-gillot/" target="_blank" rel="noopener noreferrer">Angéline Gillot</a>
 				et
-				<a href="https://www.linkedin.com/in/karim-ryahi-858a13215/" target="_blank">Karim Ryahi</a>, 
+				<a href="https://www.linkedin.com/in/karim-ryahi-858a13215/" target="_blank" rel="noopener noreferrer">Karim Ryahi</a>, 
 					        en tant que stagiaires. La gestion et l'édition du site sont désormais assurées par l'entreprise
 				<span>IMS Beauty</span>.</p>
 		</p>
 		<div class="contact-info">
-			<h3>Contact de l'Éditeur :</h3>
+			<h2>Contact de l'Éditeur :</h2>
 			<figure>
-				<img src="{{asset('asset/media/icons/contactMail.svg')}}" alt="" class="icons">
+				<img src="{{asset('asset/media/icons/contactMail.svg')}}" alt="Icône de contact Email" class="icons">
 				<figcaption>
 					<a href="mailto: ims-beauty@gmail.com">{{aboutUs.email}}</a>
 				</figcaption>
 			</figure>
 			<figure>
-				<img src="{{asset('asset/media/icons/contactPhone.svg')}}" alt="" class="icons">
+				<img src="{{asset('asset/media/icons/contactPhone.svg')}}" alt="Icône de contact téléphone" class="icons">
 				<figcaption>
 					<p>{{aboutUs.phone}}</p>
 				</figcaption>
 			</figure>
 		</div>
 		<div class="hebergeur">
-			<h3>Hébergement :</h3>
+			<h2>Hébergement :</h2>
 			<p>Le site est hébergé par
-				<a href="https://www.hostinger.fr/hebergement-web">Hostinger</a>.</p>
+				<a href="https://www.hostinger.fr/hebergement-web" rel="noopener noreferrer">Hostinger</a>.</p>
 		</div>
 	</div>
 
 
 	<div class="propriete-intell">
-		<h3>Propriété Intellectuelle :
-		</h3>
+		<h2>Propriété Intellectuelle :
+		</h2>
 		<p>
 			Le contenu du site, comprenant notamment les textes, images, graphismes et logo, a été créé par les auteurs du site ou provient de sources de libre service telles que Freepik, Unsplash et Pexels. Le logo de IMS Beauty a été créé sur Canva premium par
-			<a href="https://www.linkedin.com/in/ang%C3%A9line-gillot/" target="_blank">Angéline Gillot</a>. Tous les éléments de propriété intellectuelle sont protégés par les lois en vigueur sur les droits d'auteur et ne peuvent être reproduits sans l'autorisation expresse des auteurs.</p>
+			<a href="https://www.linkedin.com/in/ang%C3%A9line-gillot/" target="_blank" rel="noopener noreferrer">Angéline Gillot</a>. Tous les éléments de propriété intellectuelle sont protégés par les lois en vigueur sur les droits d'auteur et ne peuvent être reproduits sans l'autorisation expresse des auteurs.</p>
 	</div>
 
 	<div class="personnal-datas">
-		<h3>Protection des Données Personnelles :
-		</h3>
+		<h2>Protection des Données Personnelles :
+		</h2>
 		<p>Le site recueille des données personnelles fournies volontairement lors de l'utilisation du formulaire de contact et de l'inscription au site. Ces données incluent l'email, le nom, le prénom, la date de naissance et le numéro de téléphone, nécessaires pour la prise de rendez-vous avec l'institut. IMS Beauty s'engage à ne pas divulguer ces informations à des tiers et à les utiliser exclusivement dans le cadre des services proposés par le site. Les utilisateurs disposent d'un droit d'accès, de modification et de suppression de leurs données personnelles.
 		</p>
 	</div>
     <div class="cookies">
-    <h3>Cookies :
-		</h3>
+    <h2>Cookies :
+		</h2>
 		<p>Le site IMS Beauty utilise des cookies pour améliorer l'expérience utilisateur. Ces cookies sont destinés à optimiser la navigation sur le site et ne sont pas utilisés à des fins de collecte de données personnelles.</p>
         </div>
 

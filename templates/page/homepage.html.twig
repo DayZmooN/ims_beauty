@@ -1,20 +1,24 @@
 {% extends 'base.html.twig' %}
+
+{% block title %}IMS Beauty - Insitut de Beauté Viriati{% endblock %}
+{% block description %}IMS Beauty, votre salon de beauté à Viriat, offrant des services de qualité pour vos soins et rendez-vous beauté.{% endblock %}
+
 {% block body %}
 	<section class="homepage-CTA">
 		<figure class="CTA-banner">
-			<img src="{{asset('asset/media/banners/skincare-banner.webp')}}" alt="">
-			<img src="{{asset('asset/media/deco/flower-bg-deco.svg')}}" alt="" class="banner-deco">
+			<img src="{{asset('asset/media/banners/skincare-banner.webp')}}" alt="Bannière page d'Accueil - femme recevant un soin du visage. Bien être, masque du visage, soin.">
+			<img src="{{asset('asset/media/deco/flower-bg-deco.svg')}}" alt="Fond d'écran décoratif floral" class="banner-deco">
 		</figure>
 
 		<div class="cta-ims">
 			<figure class="logo-cta">
-				<img src="{{asset('asset/media/logo/logoKhakiText.svg')}}" alt="">
+				<img src="{{asset('asset/media/logo/logoKhakiText.svg')}}" alt="IMS Beauty - Logo couleur texte Alternatif">
 				<figcaption>
 					<p>Eveillez votre beauté, révélez votre éclat.</p>
 				</figcaption>
 			</figure>
 			<figure class="adress-cta">
-				<img src="{{asset('asset/media/icons/contactLocation.svg')}}" alt="">
+				<img src="{{asset('asset/media/icons/contactLocation.svg')}}" alt="Icône de location pour contact">
 				<figcaption>
 					<p>{{aboutUs.adress}}</p>
 				</figcaption>
@@ -22,7 +26,7 @@
 			<div class="animated-btn btn-two">
 				<a href="{{path('app_our_prices')}}">
 					<span>Réservez maintenant</span>
-					<img src="{{asset('asset/media/icons/deco/lotus.svg')}}" alt="">
+					<img src="{{asset('asset/media/icons/deco/lotus.svg')}}" alt="Icône décoratif lotus pour bouton de redirection">
 				</a>
 			</div>
 		</div>
@@ -38,7 +42,7 @@
             {% if loop.index <= 4 %}
                 <div class="category-card">
                     <figure class="category-thumbnail">
-                        <img src="{{ asset('asset/media/banners/' ~ category.thumbnail) }}" alt="" class="category-banner">
+                        <img src="{{ asset('asset/media/banners/' ~ category.thumbnail) }}" alt="Banières représentant le soin {{ category.name }} par IMS Beauty" class="category-banner">
                         <figcaption>
                             <h3>{{ category.name }}</h3>
                         </figcaption>
@@ -55,7 +59,7 @@
                         <div class="animated-btn btn-two">
                             <a href="{{ path('category_list_services', {'id': category.id}) }}">
                                 <span>Savoir plus</span>
-                                <img src="{{ asset('asset/media/icons/deco/lotus.svg') }}" alt="">
+                                <img src="{{ asset('asset/media/icons/deco/lotus.svg') }}" alt="Icône décoratif lotus pour bouton de redirection">
                             </a>
                         </div>
                     </div>

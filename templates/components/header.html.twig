@@ -1,16 +1,16 @@
 {% block header %}
 	<header>
 		<a href="{{ path('app_page') }}">
-			<img src="{{ asset('asset/media/logo/LogoWhiteText.svg') }}" alt="">
+			<img src="{{ asset('asset/media/logo/LogoWhiteText.svg') }}" alt="IMS Beauty - Logo d'une femme de dos avec IMS écrit en écriture majuscule blanche">
 		</a>
 
 		<div class="nav-menu">
 			<nav>
 				<ul>
-					<li><a href="{{ path('app_page') }}" "">Accueil</a></li>
+					<li><a href="{{ path('app_page') }}">Accueil</a></li>
 					<li><a href="{{ path('app_categories') }}">Nos Soins</a></li>
 					<li><a href="{{ path('app_our_prices') }}">Nos Tarifs</a></li>
-					<li><a href="{{ path('app_about_us') }} ">À Propos</a></li>
+					<li><a href="{{ path('app_about_us') }}">À Propos</a></li>
 					<li><a href="{{ path('app_about_us') }}#contact">Contact</a></li>
 				</ul>
 			</nav>
@@ -18,7 +18,7 @@
 				{% if app.user %}
 					<div class="user-dropdown">
 						<a href="{{path('app_dashboard')}}" class="user-icon">
-							<img src="{{ asset('asset/media/icons/UserF.svg') }}" alt="Page Utilisateur">
+							<img src="{{ asset('asset/media/icons/UserF.svg') }}" alt="Icône Utilisateur Femmes - Redirection vers page Utilisateur">
 						</a>
 						<div class="dropdown-content">
 							<a href="{{ path('app_dashboard') }}#my-appointments">Mes Rendez-vous</a>
@@ -29,7 +29,7 @@
 				{% else %}
 					<div class="user-dropdown">
 						<a href="{{path('app_login')}}">
-						<img src="{{ asset('asset/media/icons/UserF.svg') }}" alt="Page connexion">
+						<img src="{{ asset('asset/media/icons/UserF.svg') }}" alt="Icône utilisateur féminin - Redirection vers page connexion">
 						</a>
 						<div class="dropdown-content">
 							<a href="{{path('app_login')}}">Se Connecter</a>
@@ -37,13 +37,13 @@
 						</div>
 					</div>
 				{% endif %}
-				<a href="{{ path('app_cart') }}">
-                    <img src="{{ asset('asset/media/icons/shopIcon.svg') }}" alt="Cart">
+				<a href="{{ path('app_cart') }}" class="cart-link">
+                    <img src="{{ asset('asset/media/icons/shopIcon.svg') }}" alt="Icône de panier de shopping - Redirection vers page Panier">
                     <span class="cart-item-count">{{ app.session.get('cartItemCount', 0) }}</span>
                 </a>
 				<div class="user-dropdown responsive-menu">
 					<a href="#" class="menu-icon">
-						<img src="{{ asset('asset/media/icons/navigator/menu-icon.svg') }}" alt="Open Menu Icon">
+						<img src="{{ asset('asset/media/icons/navigator/menu-icon.svg') }}" alt="Icône menu pour ouverture du menu sur mobile">
 					</a>
 					<div class="dropdown-content">
 						<a href="{{ path('app_page') }}" "">Accueil</a>
@@ -56,31 +56,4 @@
 			</figure>
 		</div>
 	</header>
-
-<script>
-	document.addEventListener('DOMContentLoaded', function() {
-		// Handle user dropdown interaction
-	var userIcon = document.querySelector('.user-icon');
-	if (userIcon) {
-		userIcon.addEventListener('click', function(e) {
-			e.preventDefault();
-			var dropdownContent = this.nextElementSibling;
-			dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
-		});
-	}
-
-	// Optionally, close the dropdown when clicking outside
-	window.addEventListener('click', function(e) {
-		if (!e.target.matches('.user-icon, .user-icon *')) {
-			var dropdowns = document.getElementsByClassName("dropdown-content");
-			for (var i = 0; i < dropdowns.length; i++) {
-				var openDropdown = dropdowns[i];
-				if (openDropdown.style.display === 'block') {
-					openDropdown.style.display = 'none';
-				}
-			}
-		}
-	});
-});
-</script>
 {% endblock %}
