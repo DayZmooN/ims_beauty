@@ -1,99 +1,105 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<section class="cart-page"> 
-    <h1>Mon Panier</h1>
-    {% if servicesWithForms is not empty %}
+	<section class="cart-page">
+		{% if servicesWithForms is not empty %}
+			<h1>Mon Panier</h1>
 
-        {% for index, item in servicesWithForms %}
-            <form action="{{ path('cart_submit') }}" method="POST">
-                <div class="service-item" data-service-id="{{ item.service.id }}">
-                    <div class="service-info">
-                        <div class="info">
-                            <p>{{ item.service.name }}/ Catégorie Name</p>
-                            <span>{{ item.service.price }}€</span>
-                            <span data-service-duration="{{ item.service.duration }}">{{ item.service.duration }}</span>
-                        </div>
-                        <div class="buttons">
-                            <a href="#" class="open-calendar">
-                                <img src="{{asset('asset/media/icons/calendar.svg')}}" alt="" class="icons-button icons">
-                            </a>
-                            <a href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger remove-from-cart-link">
-                                <img src="{{asset('asset/media/icons/shopRemove.svg')}}" alt="" class="icons-button icons">
-                            </a>
-                        </div>
-                    </div>
-                    <div id="calendar-{{ item.service.id }}" class="calendar-options" style="display: none;">
-                        <h4>Réserver:</h4>
-                        <div class="calendar-container">
-                            <div class="months">
-                                {# Votre code pour les mois ici s'il est nécessaire #}
-                            </div>
-                            <div class="week">
-                                <div class="available-slots">
-                                    <h2>{{ item.service.name }}</h2>
-                                    {% for date, heures in googleCalendarSlots %}
-                                        <p>Date : {{ date }}</p>
-                                        <div class="slots-for-date">
-                                            {% for heure in heures %}
-                                                <div class="slot">
-                                                    <input type="radio" id="slot_{{ date }}_{{ heure }}_{{ index }}" 
-                                                        name="selectedTimeSlot[{{ item.service.id }}][{{ index }}]" 
-                                                        value="{{ date }} {{ heure }}" required>
-                                                    <label for="slot_{{ date }}_{{ heure }}_{{ index }}">{{ heure }}</label>
-                                                </div>
-                                            {% endfor %}
-                                        </div>
-                                    {% endfor %}
-                                    <input type="hidden" name="service_id[{{ index }}]" value="{{ item.service.id }}">
-                                    <button type="submit" class="submit-button">Réserver</button>
-                                    <button>
-                                    <a href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger">Retirer</a>
-                                 </button>
+			<form action="{{ path('cart_submit') }}" method="POST">
+				<div class="services-container">
+					{% for index, item in servicesWithForms %}
+						<div class="service-item" data-service-id="{{ item.service.id }}">
+							<div class="service-info">
+								<div class="info">
+									<p>{{ item.service.name }}/ Catégorie Name</p>
+									<span>{{ item.service.price }}€</span>
+									<span data-service-duration="{{ item.service.duration }}">{{ item.service.duration }}</span>
+								</div>
+								<div class="buttons">
+									<a href="#" class="open-calendar">
+										<img src="{{asset('asset/media/icons/calendar.svg')}}" alt="" class="icons-button icons">
+									</a>
+									<a href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger remove-from-cart-link">
+										<img src="{{asset('asset/media/icons/shopRemove.svg')}}" alt="" class="icons-button icons">
+									</a>
+								</div>
+							</div>
+							<div id="calendar-{{ item.service.id }}" class="calendar-options" style="display: none;">
+								<h4>Réserver:</h4>
+								<div class="calendar-container">
+									<div
+										class="months">{# Votre code pour les mois ici s'il est nécessaire #}
+									</div>
+									<div class="week">
+										<h2>{{ item.service.name }}</h2>
+										<div class="day-slots">
+											{% for date, heures in googleCalendarSlots %}
+												<div class="container-day">
+													<div class="day">
+														<span>Date :</span>
+														<p>{{ date }}</p>
+													</div>
+													<div class="available-slots">
+														{% for heure in heures %}
+															<div class="slot">
+																<input type="radio" id="slot_{{ date }}_{{ heure }}_{{ index }}" name="selectedTimeSlot[{{ item.service.id }}][{{ index }}]" value="{{ date }} {{ heure }}" required>
+																<label for="slot_{{ date }}_{{ heure }}_{{ index }}">{{ heure }}</label>
+															</div>
+														{% endfor %}
+													</div>
+												</div>
+											{% endfor %}
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        {% endfor %}
-    {% else %}
-        <p>Votre panier est vide.</p>
-    {% endif %}
-</section>
-{% include './flash_messages/flash_messages.html.twig' %}
-<script>
-	document.addEventListener('DOMContentLoaded', function () { // Event listener for opening calendar
-		document.querySelectorAll('.open-calendar').forEach(function (button) {
-			button.addEventListener('click', function (e) {
-			e.preventDefault();
-			e.stopPropagation(); // Prevent event from bubbling up to parent elements
-			var serviceId = e.currentTarget.closest('.service-item').dataset.serviceId;
-			toggleCalendar(serviceId);
-			});
-		});
-	});
+										</div>
+									</div>
+									<div class="btn_submit_form">
+										<input type="hidden" name="service_id[{{ index }}]" value="{{ item.service.id }}">
+										<button type="submit" class="submit-button">Réserver</button>
+										<a class="delete-btn" href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger">Retirer
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					{% endfor %}
+				</div>
+			</form>
+		{% else %}
+			<p>Votre panier est vide.</p>
+		{% endif %}
+	</section>
+	{% include './flash_messages/flash_messages.html.twig' %}<script>
+		document.addEventListener('DOMContentLoaded', function () { // Event listener for opening calendar
+document.querySelectorAll('.open-calendar').forEach(function (button) {
+button.addEventListener('click', function (e) {
+e.preventDefault();
+e.stopPropagation(); // Prevent event from bubbling up to parent elements
+var serviceId = e.currentTarget.closest('.service-item').dataset.serviceId;
+toggleCalendar(serviceId);
+});
+});
+});
 
 // Event listener for removing items from cart
 document.querySelectorAll('.remove-from-cart-link').forEach(function (link) {
-	link.addEventListener('click', function (e) {
-		e.preventDefault();
-		var url = e.currentTarget.href;
-		var serviceId = e.currentTarget.closest('.service-item').dataset.serviceId;
+link.addEventListener('click', function (e) {
+e.preventDefault();
+var url = e.currentTarget.href;
+var serviceId = e.currentTarget.closest('.service-item').dataset.serviceId;
 
-		handleAjaxRequest(url, {
-			method: 'GET'
-			}, function (data) {
-				if (data.success) { // Remove the corresponding service item
-					var itemToRemove = document.querySelector('.service-item[data-service-id="' + serviceId + '"]');
-					if (itemToRemove) {
-						itemToRemove.remove();
-						updateCartItemCount(-1); // Decrement cart count
-					}
-				}
-			});
-		});
+handleAjaxRequest(url, {
+method: 'GET'
+}, function (data) {
+if (data.success) { // Remove the corresponding service item
+var itemToRemove = document.querySelector('.service-item[data-service-id="' + serviceId + '"]');
+if (itemToRemove) {
+itemToRemove.remove();
+updateCartItemCount(-1); // Decrement cart count
+}
+}
+});
+});
 });
 
 function updateCartItemCount(change) {
@@ -113,66 +119,66 @@ calendar.style.display = calendar.style.display === 'none' ? 'block' : 'none';
 }
 }
 
-document.querySelectorAll('.month').forEach(function(monthElement) {
-    monthElement.addEventListener('click', function() {
-        var selectedMonth = monthElement.getAttribute('data-month'); // Assurez-vous que cette ligne est correcte
-        loadDaysForMonth(selectedMonth);
-    });
+document.querySelectorAll('.month').forEach(function (monthElement) {
+monthElement.addEventListener('click', function () {
+var selectedMonth = monthElement.getAttribute('data-month'); // Assurez-vous que cette ligne est correcte
+loadDaysForMonth(selectedMonth);
+});
 });
 
 
 function loadDaysForMonth(month) {
-    fetch('/ajax/month-data?month=' + encodeURIComponent(month))
-        .then(response => response.json())
-        .then(data => {
-            updateDaysContainer(data.days);
-        })
-        .catch(error => console.error('Error:', error));
-        console.log("Selected month:", selectedMonth);
+fetch('/ajax/month-data?month=' + encodeURIComponent(month)).then(response => response.json()).then(data => {
+updateDaysContainer(data.days);
+}).catch(error => console.error('Error:', error));
+console.log("Selected month:", selectedMonth);
 
 }
 
 
 function updateDaysContainer(days) {
-    var weekContainer = document.querySelector('.week');
-    if (!weekContainer) {
-        console.error("Week container not found");
-        return;
-    }
-
-    weekContainer.innerHTML = ''; // Nettoyer le contenu précédent
-
-    days.forEach(day => {
-        var daySlotsDiv = document.createElement('div');
-        daySlotsDiv.className = 'day-slots';
-
-        var dayDiv = document.createElement('div');
-        dayDiv.className = 'day';
-        dayDiv.innerHTML = `<p>${day.name}</p><span>${day.date}</span>`;
-
-        var slotsDiv = document.createElement('div');
-        slotsDiv.className = 'available-slots';
-
-        // Ici, récupérez les créneaux disponibles pour le jour spécifique
-        var daySlots = getSlotsForDay(day.date); // Cette fonction doit être définie
-
-        daySlots.forEach(slot => {
-            var slotDiv = document.createElement('div');
-            slotDiv.className = 'slot';
-            slotDiv.innerHTML = `<input type="radio" id="slot_${day.date}_${slot}" name="selectedTimeSlot" value="${slot}">
-                                 <label for="slot_${day.date}_${slot}">${slot}</label>`;
-            slotsDiv.appendChild(slotDiv);
-        });
-
-        daySlotsDiv.appendChild(dayDiv);
-        daySlotsDiv.appendChild(slotsDiv);
-        weekContainer.appendChild(daySlotsDiv);
-    });
+var weekContainer = document.querySelector('.week');
+if (! weekContainer) {
+console.error("Week container not found");
+return;
 }
 
+weekContainer.innerHTML = ''; // Nettoyer le contenu précédent
 
+days.forEach(day => {
+var daySlotsDiv = document.createElement('div');
+daySlotsDiv.className = 'day-slots';
 
+var dayDiv = document.createElement('div');
+dayDiv.className = 'day';
+dayDiv.innerHTML = `<p>${
+day.name
+}</p><span>${
+day.date
+}</span>`;
 
-</script>
+var slotsDiv = document.createElement('div');
+slotsDiv.className = 'available-slots';
+
+// Ici, récupérez les créneaux disponibles pour le jour spécifique
+var daySlots = getSlotsForDay(day.date); // Cette fonction doit être définie
+
+daySlots.forEach(slot => {
+var slotDiv = document.createElement('div');
+slotDiv.className = 'slot';
+slotDiv.innerHTML = `<input type="radio" id="slot_${
+day.date
+}_${slot}" name="selectedTimeSlot" value="${slot}">
+                                 <label for="slot_${
+day.date
+}_${slot}">${slot}</label>`;
+slotsDiv.appendChild(slotDiv);
+});
+
+daySlotsDiv.appendChild(dayDiv);
+daySlotsDiv.appendChild(slotsDiv);
+weekContainer.appendChild(daySlotsDiv);
+});
+}
+	</script>
 {% endblock %}
-

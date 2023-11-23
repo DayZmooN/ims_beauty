@@ -1746,7 +1746,9 @@ footer {
 .cart-page {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   width: 100%;
+  align-items: center;
 
   & > form {
     display: flex;
@@ -1758,6 +1760,7 @@ footer {
     padding: 25px;
     border: 1px solid $accent-BrownShadow;
     border-radius: $radius-15;
+    margin: 10px auto;
 
     h1 {
       display: block;
@@ -1853,6 +1856,24 @@ footer {
             background: darken($secondary-WhiteChocolate, 10%);
           }
         }
+        .btn_submit_form {
+          display: flex;
+          justify-content: right;
+          margin-right: 48px;
+          gap: 10px;
+
+          .delete-btn {
+            border: 1px solid $error-Red;
+            color: $error-Red;
+            border-radius: 8px;
+            padding: 8px;
+
+            &:hover {
+              color: #f5efe8;
+              background-color: $error-Red;
+            }
+          }
+        }
       }
 
       .months {
@@ -1880,37 +1901,44 @@ footer {
         justify-content: center;
         align-items: flex-start;
         flex-wrap: wrap;
+        flex-direction: column;
         gap: 25px;
 
         .day-slots {
-          .day {
+          display: flex;
+          gap: 10px;
+          .container-day {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            border-radius: $radius-5;
-            padding: 10px 5px;
-            border-bottom: 1px solid $accent-BrownShadow;
-          }
-
-          .available-slots {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 25px;
-
-            .slot {
-              padding: 5px;
-              background-color: $secondary-WhiteChocolate;
+            .day {
+              display: flex;
+              // flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              flex-wrap: wrap;
               border-radius: $radius-5;
+              padding: 10px 5px;
+              border-bottom: 1px solid $accent-BrownShadow;
+            }
+
+            .available-slots {
+              // flex-grow: 1;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              gap: 25px;
+              margin-top: 10px;
+
+              .slot {
+                padding: 5px;
+                background-color: $secondary-WhiteChocolate;
+                border-radius: $radius-5;
+              }
             }
           }
         }
       }
-
       @media screen and (max-width: 500px) {
         .months,
         .week {

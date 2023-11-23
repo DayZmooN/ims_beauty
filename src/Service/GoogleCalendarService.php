@@ -74,15 +74,11 @@ class GoogleCalendarService
         $client = $this->googleClientService->getClient();
         return $client->createAuthUrl();
     }
-    private $workHours = [
-        'morning' => ['start' => '09:00', 'end' => '12:00'],
-        'afternoon' => ['start' => '14:00', 'end' => '18:00']
-    ];
 
     private function calculateAvailableSlots($events)
     {
         $startDate = new \DateTime();
-        $endDate = new \DateTime('+3 days');
+        $endDate = new \DateTime('+5 days');
         $interval = new \DateInterval('P1D');
         $period = new \DatePeriod($startDate, $interval, $endDate);
 
