@@ -55,7 +55,7 @@ class RegistrationController extends AbstractController
                 (new TemplatedEmail())
                     ->from(new Address('ims-beauty@gmail.com', 'IMS Beauty'))
                     ->to($user->getEmail())
-                    ->subject('Please Confirm your Email')
+                    ->subject('Veuillez confirmer votre email')
                     ->htmlTemplate('security/confirmation_email.html.twig')
             );
             // do anything else you need here, like send an email
@@ -100,7 +100,7 @@ class RegistrationController extends AbstractController
 
         // Check if the user is already verified
         if ($user->isVerified()) {
-            $this->addFlash('info', 'Your email is already verified.');
+            $this->addFlash('info', 'Votre adresse email a déjà été vérifier.');
             return $this->redirectToRoute('app_dashboard');
         }
 
@@ -112,14 +112,14 @@ class RegistrationController extends AbstractController
                 (new TemplatedEmail())
                     ->from(new Address('ims-beauty@gmail.com', 'IMS Beauty'))
                     ->to($user->getEmail())
-                    ->subject('Please Confirm your Email')
+                    ->subject('Veuillez confirmer votre adresse email')
                     ->htmlTemplate('security/confirmation_email.html.twig')
             );
 
-            $this->addFlash('success', 'Verification email resent. Please check your inbox.');
+            $this->addFlash('success', 'Email de confirmation envoyer. Veuillez vérifier votre boîte mail.');
         } catch (\Exception $e) {
             // Handle exceptions (e.g., email service not available)
-            $this->addFlash('error', 'Error sending verification email: ' . $e->getMessage());
+            $this->addFlash('error', 'Erreur lors de l\'envoie: ' . $e->getMessage());
         }
 
         return $this->redirectToRoute('app_dashboard');
