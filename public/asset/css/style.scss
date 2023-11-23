@@ -304,7 +304,7 @@ header {
           }
         }
 
-        &>a { 
+        &>a {
           color: $default-White;
           font-family: $bonusFont;
           line-height: 100px;
@@ -338,10 +338,11 @@ header {
       .user-dropdown {
         position: relative;
         display: inline-block;
-        &:hover .dropdown-content{
+
+        &:hover .dropdown-content {
           display: block;
         }
-      
+
         .dropdown-content {
           z-index: 1;
           display: none;
@@ -352,16 +353,16 @@ header {
           background-color: $light-Black;
           border: 1px solid $Khaki;
           border-radius: $radius-5;
-          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+
           &>a {
             display: block;
             font-family: $bonusFont;
             color: $primary-Alabaster;
             border-bottom: 1px solid $Cinereous;
             padding: 12px 16px;
-        
-            &:hover{
+
+            &:hover {
               background-color: $primary-Alabaster;
               color: $light-Black;
             }
@@ -369,10 +370,10 @@ header {
         }
       }
 
-      .cart-link{
+      .cart-link {
         position: relative;
 
-        .cart-item-count{
+        .cart-item-count {
           position: absolute;
           bottom: 3px;
           right: -13px;
@@ -381,12 +382,12 @@ header {
         }
       }
 
-      .responsive-menu{
+      .responsive-menu {
         display: none;
       }
 
       @media screen and (max-width: 865px) {
-        .responsive-menu{
+        .responsive-menu {
           display: block;
         }
       }
@@ -1064,10 +1065,12 @@ footer {
       color: $light-Black;
     }
   }
-  .btn-two{
+
+  .btn-two {
     position: absolute;
     bottom: 20px;
   }
+
   &:hover {
     transform: scale(1.01);
   }
@@ -1400,7 +1403,7 @@ footer {
     gap: 10px;
     border: 1px solid $Cinereous;
     border-radius: $radius-5;
-    background: url("../media/deco/massage-flip.svg") bottom right / 150px  no-repeat;
+    background: url("../media/deco/massage-flip.svg") bottom right / 150px no-repeat;
 
     &>input {
       width: 90%;
@@ -1491,7 +1494,7 @@ footer {
     padding: 50px 15px;
     border: 1px solid $Cinereous;
     border-radius: $radius-5;
-    background: url("../media/deco/massage-flip.svg") bottom right / 200px  no-repeat;
+    background: url("../media/deco/massage-flip.svg") bottom right / 200px no-repeat;
 
     .register {
       max-width: 550px;
@@ -1502,23 +1505,24 @@ footer {
       flex-wrap: wrap;
       gap: 20px;
     }
+
     .rgpd {
       width: 100%;
-    
-      & > div {
+
+      &>div {
         display: flex;
         flex-direction: row-reverse;
         justify-content: center;
         align-items: center;
         gap: 10px;
         width: 100%;
-    
-        & > input {
+
+        &>input {
           height: 18px;
           width: fit-content;
         }
-    
-        & > label {
+
+        &>label {
           font-size: 0.8rem;
           line-height: normal;
           width: 100%;
@@ -1526,10 +1530,11 @@ footer {
         }
       }
     }
-    
+
     div {
       width: 250px;
       min-height: 45px;
+
       &>input {
         width: 100%;
       }
@@ -1548,16 +1553,18 @@ footer {
     }
   }
 }
+
 @media screen and (max-width: 750px) {
-  .register{
+  .register {
     width: 80%;
 
-    .register{
+    .register {
       justify-content: center;
       align-items: center;
     }
   }
 }
+
 //~ ------------ USER DASHBOARD ------------ //
 
 .dashboard {
@@ -1815,14 +1822,15 @@ footer {
       border-bottom: 1px solid $Cinereous;
     }
 
-    .submit-button{
+    .submit-button {
       padding: 10px;
       border: 1px solid $accent-BrownShadow;
       border-radius: $radius-5;
       color: $accent-BrownShadow;
       font-family: $textFont;
       transition: all 3ms ease-in-out;
-      &:hover{
+
+      &:hover {
         background-color: $accent-BrownShadow;
         color: $primary-Alabaster;
       }
@@ -1838,16 +1846,26 @@ footer {
 
         .info {
           p {
-            white-space: nowrap; /* Prevents the text from wrapping to the next line */
-            overflow: hidden; /* Hides the overflow text */
-            text-overflow: ellipsis;
-            width: 130px;
             font-size: .8rem;
           }
+
           span {
             font-size: .875rem;
             color: $accent-BrownShadow;
             font-family: $semiBoldText;
+          }
+        }
+
+        @media screen and (max-width: 500px) {
+          .info {
+            p {
+              white-space: nowrap;
+              /* Prevents the text from wrapping to the next line */
+              overflow: hidden;
+              /* Hides the overflow text */
+              text-overflow: ellipsis;
+              width: 130px;
+            }
           }
         }
       }
@@ -1879,30 +1897,31 @@ footer {
         border-bottom: 1px solid $Cinereous;
       }
 
-      .calendar-container{
+      .calendar-container {
         overflow-y: scroll;
         scrollbar-color: $secondary-WhiteChocolate $Cinereous;
         scrollbar-width: thin;
+
         &::-webkit-scrollbar {
           width: 12px;
         }
-    
+
         &::-webkit-scrollbar-track {
           background: $Cinereous;
           border-radius: $radius-5;
         }
-    
+
         &::-webkit-scrollbar-thumb {
           background: $secondary-WhiteChocolate;
           border-radius: $radius-5;
-    
+
           &:hover {
             background: darken($secondary-WhiteChocolate, 10%);
           }
         }
       }
 
-      .months{
+      .months {
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -1910,27 +1929,28 @@ footer {
         gap: 15px;
         margin-bottom: 20px;
 
-        .month{
+        .month {
           padding: 10px 5px;
           border: 1px solid $accent-BrownShadow;
           border-radius: $radius-15;
           cursor: pointer;
-          &:hover{
+
+          &:hover {
             background-color: $accent-BrownShadow;
             color: $primary-Alabaster;
           }
         }
       }
 
-      .week{
+      .week {
         display: flex;
         justify-content: center;
         align-items: flex-start;
         flex-wrap: wrap;
         gap: 25px;
 
-        .day-slots{
-          .day{
+        .day-slots {
+          .day {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -1941,7 +1961,7 @@ footer {
             border-bottom: 1px solid $accent-BrownShadow;
           }
 
-          .available-slots{
+          .available-slots {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -1949,7 +1969,7 @@ footer {
             align-items: center;
             gap: 25px;
 
-            .slot{
+            .slot {
               padding: 5px;
               background-color: $secondary-WhiteChocolate;
               border-radius: $radius-5;
@@ -1960,7 +1980,9 @@ footer {
       }
 
       @media screen and (max-width: 500px) {
-        .months,.week{
+
+        .months,
+        .week {
           flex-direction: column;
           justify-content: center;
           align-items: center;
@@ -2004,9 +2026,11 @@ footer {
     background-color: $Khaki;
     border-radius: $radius-5;
     padding: 15px 25px;
-    &>a{
+
+    &>a {
       color: $primary-Alabaster;
     }
+
     &:hover {
       background-color: $accent-BrownShadow;
       color: $secondary-WhiteChocolate;
@@ -2017,12 +2041,12 @@ footer {
 @media screen and (max-width: 750px) {
   .error404 {
 
-  
+
     h1 {
       font-size: 10rem;
       line-height: 8rem;
     }
-  
+
     h2 {
       font-size: 1rem;
     }

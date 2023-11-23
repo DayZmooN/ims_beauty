@@ -153,12 +153,12 @@ class CartController extends AbstractController
             // For AJAX request, return JSON response
             return $this->json([
                 'success' => true,
-                'message' => 'Service ajouté au panier avec succès!',
+                'message' => 'Service retiré du panier avec succès!',
                 'cartItemCount' => count($cart) // Send the updated count
             ]);
         } else {
             // For regular request, redirect
-            $this->addFlash('success', 'Service ajouté au panier avec succès!');
+            $this->addFlash('success', 'Service retiré du panier avec succès!');
             return $this->redirect($request->headers->get('referer'));
         }
     }

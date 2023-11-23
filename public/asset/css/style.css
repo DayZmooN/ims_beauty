@@ -1794,16 +1794,22 @@ footer > .copyrights > p > a:hover {
   border-bottom: 1px solid #978178;
 }
 .cart-page > form .services-container .service-info .info p {
-  white-space: nowrap; /* Prevents the text from wrapping to the next line */
-  overflow: hidden; /* Hides the overflow text */
-  text-overflow: ellipsis;
-  width: 130px;
   font-size: 0.8rem;
 }
 .cart-page > form .services-container .service-info .info span {
   font-size: 0.875rem;
   color: #937962;
   font-family: "Poppins-SemiBold";
+}
+@media screen and (max-width: 500px) {
+  .cart-page > form .services-container .service-info .info p {
+    white-space: nowrap;
+    /* Prevents the text from wrapping to the next line */
+    overflow: hidden;
+    /* Hides the overflow text */
+    text-overflow: ellipsis;
+    width: 130px;
+  }
 }
 .cart-page > form .services-container .buttons {
   display: flex;
@@ -1896,7 +1902,8 @@ footer > .copyrights > p > a:hover {
   border-radius: 5px;
 }
 @media screen and (max-width: 500px) {
-  .cart-page > form .calendar-options .months, .cart-page > form .calendar-options .week {
+  .cart-page > form .calendar-options .months,
+  .cart-page > form .calendar-options .week {
     flex-direction: column;
     justify-content: center;
     align-items: center;

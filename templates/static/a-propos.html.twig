@@ -39,11 +39,11 @@
 
 			</div>
 			<div class="form-container">
-				<form action="" method="post">
-					<input type="text" placeholder="Votre prénom">
-					<input type="text" placeholder="Votre email">
-					<input type="text" placeholder="Votre numéro">
-					<textarea name="contact-message" id="contact-message" cols="10" rows="10" placeholder="Votre message"></textarea>
+				<form action="{{ path('contact_send') }}" method="POST">
+					<input type="text" name="name" placeholder="Votre prénom" required>
+					<input type="text" name="email" placeholder="Votre email" required>
+					<input type="text" name="phone" placeholder="Votre numéro" required>
+					<textarea name="contact-message" id="contact-message" cols="10" rows="10" placeholder="Votre message" required></textarea>
 					<button type="submit">Envoyer</button>
 				</form>
 			</div>
