@@ -1,79 +1,68 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<section class="cart-page">
+<section class="cart-page"> 
+    <h1>Mon Panier</h1>
     {% if servicesWithForms is not empty %}
-        <form action="{{ path('cart_submit') }}" method="POST">
-            <h1>Mon Panier</h1>
-            <div class="services-container">
-                {% for item in servicesWithForms %}
-                    <div class="service-item" data-service-id="{{ item.service.id }}">
-                        <div class="service-info">
-                            <div class="info">
-                                <p>{{ item.service.name }}/ Catégorie Name</p>
-                                <span>{{ item.service.price }}€</span>
-                                <span data-service-duration="{{ item.service.duration }}">{{ item.service.duration }}</span>
-                            </div>
-                            <div class="buttons">
-                                <a href="#" class="open-calendar">
-                                    <img src="{{asset('asset/media/icons/calendar.svg')}}" alt="" class="icons-button icons">
-                                </a>
-                                <a href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger remove-from-cart-link">
-                                    <img src="{{asset('asset/media/icons/shopRemove.svg')}}" alt="" class="icons-button icons">
-                                </a>
-                            </div>
+
+        {% for index, item in servicesWithForms %}
+            <form action="{{ path('cart_submit') }}" method="POST">
+                <div class="service-item" data-service-id="{{ item.service.id }}">
+                    <div class="service-info">
+                        <div class="info">
+                            <p>{{ item.service.name }}/ Catégorie Name</p>
+                            <span>{{ item.service.price }}€</span>
+                            <span data-service-duration="{{ item.service.duration }}">{{ item.service.duration }}</span>
                         </div>
-                        <div id="calendar-{{ item.service.id }}" class="calendar-options" style="display: none;">
-                            <h4>Réserver:</h4>
-                            <div class="calendar-container">
-                                <div class="months">
-                                        <div class="months">
-                                        {# {% for month in months %}
-                                            <div class="month" data-month="{{ month }}">
-                                                <p>{{ month }}</p>
-                                            </div>
-                                        {% endfor %} #}
-                                    </div>
-   
-
- {% for service in servicesWithForms %}
-    <h2>{{ service.service.name }}</h2>
-        <div class="week">
-            <div class="available-slots">
-                {% for date, heures in googleCalendarSlots %}
-                    <p>Date : {{ date }}</p>
-                    <div class="slots-for-date">
-                        {% for heure in heures %}
-                            <div class="slot">
-                                <input type="radio" id="slot_{{ date }}_{{ heure }}" 
-                                       name="selectedTimeSlot[{{ service.service.id }}]" 
-                                       value="{{ date }} {{ heure }}" required>
-                                <label for="slot_{{ date }}_{{ heure }}">{{ heure }}</label>
-                            </div>
-                        {% endfor %}
+                        <div class="buttons">
+                            <a href="#" class="open-calendar">
+                                <img src="{{asset('asset/media/icons/calendar.svg')}}" alt="" class="icons-button icons">
+                            </a>
+                            <a href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger remove-from-cart-link">
+                                <img src="{{asset('asset/media/icons/shopRemove.svg')}}" alt="" class="icons-button icons">
+                            </a>
+                        </div>
                     </div>
-                {% endfor %}
-            </div>
-        </div>
-        <input type="hidden" name="service_id" value="{{ service.service.id }}">
-        <button type="submit">Réserver</button>
-{% endfor %}
+                    <div id="calendar-{{ item.service.id }}" class="calendar-options" style="display: none;">
+                        <h4>Réserver:</h4>
+                        <div class="calendar-container">
+                            <div class="months">
+                                {# Votre code pour les mois ici s'il est nécessaire #}
+                            </div>
+                            <div class="week">
+                                <div class="available-slots">
+                                    <h2>{{ item.service.name }}</h2>
+                                    {% for date, heures in googleCalendarSlots %}
+                                        <p>Date : {{ date }}</p>
+                                        <div class="slots-for-date">
+                                            {% for heure in heures %}
+                                                <div class="slot">
+                                                    <input type="radio" id="slot_{{ date }}_{{ heure }}_{{ index }}" 
+                                                        name="selectedTimeSlot[{{ item.service.id }}][{{ index }}]" 
+                                                        value="{{ date }} {{ heure }}" required>
+                                                    <label for="slot_{{ date }}_{{ heure }}_{{ index }}">{{ heure }}</label>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endfor %}
+                                    <input type="hidden" name="service_id[{{ index }}]" value="{{ item.service.id }}">
+                                    <button type="submit" class="submit-button">Réserver</button>
+                                    <button>
+                                    <a href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger">Retirer</a>
+                                 </button>
 
-
-
-
+                                </div>
                             </div>
                         </div>
                     </div>
-                {% endfor %}
-            </div>
-            <button type="submit" class="submit-button">Confirmer les Rendez-vous</button>
-        </form>
+                </div>
+            </form>
+        {% endfor %}
     {% else %}
         <p>Votre panier est vide.</p>
     {% endif %}
 </section>
-	{% include './flash_messages/flash_messages.html.twig' %}
+{% include './flash_messages/flash_messages.html.twig' %}
 <script>
 	document.addEventListener('DOMContentLoaded', function () { // Event listener for opening calendar
 		document.querySelectorAll('.open-calendar').forEach(function (button) {

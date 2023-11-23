@@ -76,7 +76,6 @@ class CartController extends AbstractController
             return $this->json(['error' => 'User not authenticated'], 403);
         }
         /** @var \App\Entity\Users $user */
-
         $userName = $user->getFirstName() . ' ' . $user->getLastName();
         $userPhone = $user->getPhone();
         $selectedTimeSlotData = $request->request->all('selectedTimeSlot');
@@ -84,17 +83,11 @@ class CartController extends AbstractController
         $googleCalendarSlots = $googleCalendarService->getAvailableSlotsGoogle();
         $datesSelected = false;
 
-        foreach ($selectedTimeSlotData as $dateTimeString) {
-            $dateTime = new \DateTime($dateTimeString);
-            if (in_array($dateTime->format('Y-m-d H:i:s'), $googleCalendarSlots)) {
-                $datesSelected = true;
-                break;
-            }
-        }
+        foreach ($selectedTimeSlotData as $serviceId => $dateTimes) {
+            $service = $serviceRepository->find($serviceId);
 
-        if ($datesSelected) {
-            foreach ($selectedTimeSlotData as $serviceId => $dateTimeString) {
-                $service = $serviceRepository->find($serviceId);
+            foreach ($dateTimes as $dateTimeString) {
+                // Traitez chaque date et heure individuellement ici
                 $dateTime = new \DateTime($dateTimeString);
 
                 // Vérifier la disponibilité du créneau dans Google Agenda
@@ -133,12 +126,15 @@ class CartController extends AbstractController
                     $this->addFlash('error', "Selected date and time are not available.");
                 }
             }
-        } else {
+        }
+
+        if (!$datesSelected) {
             $this->addFlash('error', "Sélectionnez au moins une date avant de soumettre le formulaire.");
         }
 
         return $this->redirectToRoute('app_cart');
     }
+
 
 
 
