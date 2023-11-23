@@ -43,6 +43,15 @@ class CartController extends AbstractController
         $cart = $session->get('cart', []);
         $googleCalendarSlots = $googleCalendarService->getAvailableSlotsGoogle();
 
+        $creneauxParDate = [];
+        foreach ($googleCalendarSlots as $slot) {
+            $dateTime = new \DateTime($slot);
+            $date = $dateTime->format('Y-m-d');
+            $heure = $dateTime->format('H:i');
+
+            $creneauxParDate[$date][] = $heure;
+        }
+
         $servicesWithForms = [];
         foreach ($cart as $id) {
             $service = $serviceRepository->find($id);
@@ -53,10 +62,11 @@ class CartController extends AbstractController
 
         return $this->render('page/cart.html.twig', [
             'servicesWithForms' => $servicesWithForms,
-            'googleCalendarSlots' => $googleCalendarSlots,
+            'googleCalendarSlots' => $creneauxParDate,
             'cartItemCount' => count($cart),
         ]);
     }
+
 
     #[Route('/cart/submit', name: 'cart_submit', methods: ['POST'])]
     public function handleCartSubmission(Request $request, SessionInterface $session, ServicesRepository $serviceRepository, EntityManagerInterface $entityManager, GoogleCalendarService $googleCalendarService): Response

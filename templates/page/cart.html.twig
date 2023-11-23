@@ -34,20 +34,33 @@
                                             </div>
                                         {% endfor %} #}
                                     </div>
-                                <div class="week">
-                                  
-                                            <div class="available-slots">
-                                                {% for slot in googleCalendarSlots %}
-                                                    <div class="slot">
-                                                        <input type="radio" id="google_slot_{{ item.service.id }}_{{ loop.index }}" 
-                                                               name="selectedTimeSlot[{{ item.service.id }}]" 
-                                                               value="{{ slot }}" required>
-                                                        <label for="google_slot_{{ item.service.id }}_{{ loop.index }}">{{ slot }}</label>
-                                                    </div>
-                                                {% endfor %}
-                                            </div>
-                                        </div>
-                                </div>
+   
+
+ {% for service in servicesWithForms %}
+    <h2>{{ service.service.name }}</h2>
+        <div class="week">
+            <div class="available-slots">
+                {% for date, heures in googleCalendarSlots %}
+                    <p>Date : {{ date }}</p>
+                    <div class="slots-for-date">
+                        {% for heure in heures %}
+                            <div class="slot">
+                                <input type="radio" id="slot_{{ date }}_{{ heure }}" 
+                                       name="selectedTimeSlot[{{ service.service.id }}]" 
+                                       value="{{ date }} {{ heure }}" required>
+                                <label for="slot_{{ date }}_{{ heure }}">{{ heure }}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <input type="hidden" name="service_id" value="{{ service.service.id }}">
+        <button type="submit">Réserver</button>
+{% endfor %}
+
+
+
 
                             </div>
                         </div>
