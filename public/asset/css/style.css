@@ -1700,6 +1700,7 @@ footer > .copyrights > p > a:hover {
   gap: 10px;
 }
 .dashboard #settings .form-container .form-input {
+  position: relative;
   display: flex;
   gap: 10px;
   padding: 5px;
@@ -1713,9 +1714,20 @@ footer > .copyrights > p > a:hover {
 .dashboard #settings .form-container .form-input > img {
   filter: invert(51%) sepia(35%) saturate(320%) hue-rotate(346deg) brightness(88%) contrast(87%);
 }
+.dashboard #settings .form-container .form-input .verify-icon {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  filter: unset;
+}
 .dashboard #settings .form-container .form-input > figcaption > input {
   background-color: transparent;
   color: #1E1E1E;
+}
+.dashboard #settings .form-container .verification-link {
+  color: #937962;
+  font-size: 0.8rem;
+  font-family: "Marcellus";
 }
 .dashboard #settings .form-container .long-input {
   max-width: 300px;

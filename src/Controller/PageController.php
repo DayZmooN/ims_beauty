@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Categories;
 use App\Entity\AboutUs;
 use App\Repository\CategoriesRepository;
-use App\Repository\AboutUsRepository; // Import AboutUsRepository
+use App\Repository\AboutUsRepository;
 use App\Repository\ServicesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

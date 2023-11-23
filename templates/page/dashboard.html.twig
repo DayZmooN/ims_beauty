@@ -92,7 +92,17 @@
 					<figcaption>
 						<input type="text" placeholder="Email" name="email" value="{{ user.getEmail() }}">
 					</figcaption>
+					{% if app.user.isVerified %}
+					<img src="{{ asset('asset/media/icons/verified.svg') }}" alt="Email vérifiée" class="verify-icon">
+					{% else %}
+					<img src="{{ asset('asset/media/icons/not-verified.svg') }}" alt="Email non vérifiée" class="verify-icon">
+					{% endif %}
 				</figure>
+				{% if app.user.isVerified %}
+					
+					{% else %}
+					<a href="{{ path('dashboard_resend_verification') }}" class="verification-link">Renvoyer le mail de confirmation</a>
+					{% endif %}
 				<figure class="form-input long-input">
 					<img src="{{ asset('asset/media/icons/calendar.svg') }}" alt="Icône décorative information utilisateur Calendrier">
 					<figcaption>

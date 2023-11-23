@@ -3,13 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Users;
+use App\Repository\UsersRepository;
 use App\Form\RegistrationFormType;
 use App\Security\EmailVerifier;
+use Symfony\Component\HttpFoundation\Request;
 use App\Security\UsersAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -64,6 +65,8 @@ class RegistrationController extends AbstractController
                 $authenticator,
                 $request
             );
+
+            return $this->redirectToRoute('app_dashboard');
         }
 
         return $this->render('security/inscription.html.twig', [
@@ -86,8 +89,40 @@ class RegistrationController extends AbstractController
         }
 
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
-        $this->addFlash('success', 'Your email address has been verified.');
+        $this->addFlash('success', 'Félicitations ! Votre adresse email a bien été verifier.');
 
         return $this->redirectToRoute('app_register');
     }
+
+    #[Route('/dashboard/resend-verification', name: 'dashboard_resend_verification')]
+    public function resendVerificationEmail(Request $request, EmailVerifier $emailVerifier): Response {
+        $user = $this->getUser();
+
+        // Check if the user is already verified
+        if ($user->isVerified()) {
+            $this->addFlash('info', 'Your email is already verified.');
+            return $this->redirectToRoute('app_dashboard');
+        }
+
+        try {
+            // Resend the verification email
+            $emailVerifier->sendEmailConfirmation(
+                'app_verify_email',
+                $user,
+                (new TemplatedEmail())
+                    ->from(new Address('ims-beauty@gmail.com', 'IMS Beauty'))
+                    ->to($user->getEmail())
+                    ->subject('Please Confirm your Email')
+                    ->htmlTemplate('security/confirmation_email.html.twig')
+            );
+
+            $this->addFlash('success', 'Verification email resent. Please check your inbox.');
+        } catch (\Exception $e) {
+            // Handle exceptions (e.g., email service not available)
+            $this->addFlash('error', 'Error sending verification email: ' . $e->getMessage());
+        }
+
+        return $this->redirectToRoute('app_dashboard');
+    }
+
 }
