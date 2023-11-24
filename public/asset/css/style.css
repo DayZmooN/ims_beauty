@@ -152,6 +152,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Alex Brush";
   font-weight: normal;
   font-style: normal;
+  letter-spacing: -1%;
 }
 
 ::-moz-selection {
@@ -915,7 +916,7 @@ footer > .copyrights > p > a:hover {
   align-items: center;
   text-align: center;
   gap: 25px;
-  max-width: 740px;
+  max-width: 650px;
   width: 100%;
 }
 .about-us-presentation .presentation > blockquote {
