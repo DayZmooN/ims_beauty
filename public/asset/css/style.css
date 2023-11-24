@@ -1482,7 +1482,6 @@ footer > .copyrights > p > a:hover {
   align-self: center;
   align-items: center;
   justify-content: center;
-  gap: 25px;
   width: 100%;
 }
 .register > h1 {
@@ -1507,7 +1506,7 @@ footer > .copyrights > p > a:hover {
   flex-direction: row;
   justify-content: flex-start;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 0 20px;
 }
 .register > .form-registration .rgpd {
   width: 100%;
@@ -1536,6 +1535,7 @@ footer > .copyrights > p > a:hover {
   min-height: 45px;
 }
 .register > .form-registration div > input {
+  max-width: 280px;
   width: 100%;
 }
 .register > .form-registration button {
