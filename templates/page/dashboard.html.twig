@@ -36,30 +36,59 @@
 			<div class="upcoming-app">
 				<h2>Vos Rendez-vous à venir</h2>
 				<div class="app-container">
-					<div class="appointment">
-						<figure class="datetime">
-							<img src="{{asset('asset/media/icons/deco/agenda.svg')}}" alt="Icône agenda pour rendez(vous)">
-							<figcaption>
-								<p class="date">Date •
-									<span class="date-hour">Heure</span>
-								</p>
-							</figcaption>
-						</figure>
-						<figure class="service-price">
-							<img src="{{asset('asset/media/icons/deco/chair.svg')}}" alt="Icône décorative - chaise salon de beauté">
-							<figcaption>
-								<p class="service">Service
-									<span class="price">• Price</span>
-								</p>
-							</figcaption>
-						</figure>
-					</div>
+					{% for appointment in upcomingAppointments %}
+                        <div class="appointment">
+                            <figure class="datetime">
+                                <img src="{{asset('asset/media/icons/deco/agenda.svg')}}" alt="Icône agenda pour rendez-vous">
+                                <figcaption>
+                                    <p class="date">{{ appointment.getDateTime()|format_datetime(pattern="EEE dd MMM", locale='fr')|replace({'\.': ''})|title }} •
+                                        <span class="date-hour">{{ appointment.getDateTime()|date('H:i') }}</span>
+                                    </p>
+                                </figcaption>
+                            </figure>
+                            <figure class="service-price">
+                                <img src="{{asset('asset/media/icons/deco/chair.svg')}}" alt="Icône décorative - chaise salon de beauté">
+                                <figcaption>
+								{% for service in appointment.getServices() %}
+                                    <p class="service">{{ service.getName() }}
+                                        <span class="price">• {{ (service.getPrice() == service.getPrice()|round) ? service.getPrice()|round : service.getPrice() }}€</span>
+                                    </p>
+								{% endfor %}
+                                </figcaption>
+                            </figure>
+                        </div>
+                    {% else %}
+                        <p>Vous n'avez pas de rendez-vous à venir.</p>
+                    {% endfor %}
 				</div>
 			</div>
 			<div class="past-app">
 				<h2>Vos Rendez-vous passer</h2>
 				<div class="app-container">
-					<p>Vous n'avez pas encore de rendez-vous.</p>
+					{% for appointment in pastAppointments %}
+                        <div class="appointment">
+                            <figure class="datetime">
+                                <img src="{{asset('asset/media/icons/deco/agenda.svg')}}" alt="Icône agenda pour rendez-vous">
+                                <figcaption>
+                                    <p class="date">{{ appointment.getDateTime()|format_datetime(pattern="EEE dd MMM", locale='fr')|replace({'\.': ''})|title }} •
+                                        <span class="date-hour">{{ appointment.getDateTime()|date('H:i') }}</span>
+                                    </p>
+                                </figcaption>
+                            </figure>
+                            <figure class="service-price">
+                                <img src="{{asset('asset/media/icons/deco/chair.svg')}}" alt="Icône décorative - chaise salon de beauté">
+                                <figcaption>
+								{% for service in appointment.getServices() %}
+                                    <p class="service">{{ service.getName() }}
+                                        <span class="price">• {{ (service.getPrice() == service.getPrice()|round) ? service.getPrice()|round : service.getPrice() }}€</span>
+                                    </p>
+								{% endfor %}
+                                </figcaption>
+                            </figure>
+                        </div>
+                    {% else %}
+                        <p>Vous n'avez pas de rendez-vous à venir.</p>
+                    {% endfor %}
 				</div>
 			</div>
 		</section>

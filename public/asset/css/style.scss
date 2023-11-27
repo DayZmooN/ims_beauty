@@ -281,6 +281,10 @@ header {
         align-items: center;
         justify-content: center;
         height: 100px;
+<<<<<<< HEAD
+=======
+        padding-right: 5px;
+>>>>>>> 786e5b8e3d9b158d1a69e44335f7c99f11360278
         cursor: pointer;
 
         &::before {
@@ -315,7 +319,7 @@ header {
         }
       }
 
-      @media screen and (max-width: 865px) {
+      @media screen and (max-width: 790px) {
         display: none;
         justify-content: center;
       }
@@ -378,7 +382,7 @@ header {
         display: none;
       }
 
-      @media screen and (max-width: 865px) {
+      @media screen and (max-width: 790px) {
         .responsive-menu {
           display: block;
         }

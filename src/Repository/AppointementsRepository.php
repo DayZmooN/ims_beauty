@@ -1,19 +1,15 @@
 <?php
 
+// src/Repository/AppointementsRepository.php
+
 namespace App\Repository;
 
 use App\Entity\Appointements;
+use App\Entity\Users;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\QueryBuilder;
 
-/**
- * @extends ServiceEntityRepository<Appointements>
- *
- * @method Appointements|null find($id, $lockMode = null, $lockVersion = null)
- * @method Appointements|null findOneBy(array $criteria, array $orderBy = null)
- * @method Appointements[]    findAll()
- * @method Appointements[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
 class AppointementsRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -21,28 +17,31 @@ class AppointementsRepository extends ServiceEntityRepository
         parent::__construct($registry, Appointements::class);
     }
 
-//    /**
-//     * @return Appointements[] Returns an array of Appointements objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findUpcomingByUser(Users $user): array
+    {
+        return $this->getUserAppointmentsQueryBuilder($user)
+            ->andWhere('a.DateTime >= :now')
+            ->setParameter('now', new \DateTime())
+            ->getQuery()
+            ->getResult();
+    }
 
-//    public function findOneBySomeField($value): ?Appointements
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findPastByUser(Users $user): array
+    {
+        return $this->getUserAppointmentsQueryBuilder($user)
+            ->andWhere('a.DateTime < :now')
+            ->setParameter('now', new \DateTime())
+            ->getQuery()
+            ->getResult();
+    }
+
+    private function getUserAppointmentsQueryBuilder(Users $user): QueryBuilder
+    {
+        return $this->createQueryBuilder('a')
+            ->leftJoin('a.services', 's')
+            ->addSelect('s')
+            ->where('a.users = :user')
+            ->setParameter('user', $user);
+    }
 }
+
