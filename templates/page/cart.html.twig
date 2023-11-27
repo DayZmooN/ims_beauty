@@ -1,126 +1,80 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	<section class="shopping-cart">
-		<h1>Mon Panier</h1>
-		<section class="cart-page">
-			{% if servicesWithForms is not empty %}
-				<h1>Mon Panier</h1>
+	<section class="cart-page">
+		{% if servicesWithForms is not empty %}
+			<h1>Mon Panier</h1>
 
-				{% if servicesWithForms is not empty %}
-					<form action="{{ path('app_cart') }}" method="POST">
-						<table class="table">
-							<thead>
-								<tr>
-									<th>Nom du service</th>
-									<th>Description</th>
-									<th>Prix</th>
-									<th>Sélectionnez un créneau</th>
-								</tr>
-							</thead>
-							<tbody>
-								{% for item in servicesWithForms %}
-									<tr>
-										<td>{{ item.service.name }}</td>
-										<td>{{ item.service.description }}</td>
-										<td>{{ item.service.price }}</td>
-										<td data-service-duration="{{ item.service.duration }}">{{ item.service.duration }}</td>
-										<td>
-											{% if googleCalendarSlots is not empty %}
-												<div class="available-slots">
-													<h3>Créneaux Disponibles (Google Agenda)</h3>
-													{% for slot in googleCalendarSlots %}
-														<div>
-															<input type="radio" id="google_slot_{{ item.service.id }}_{{ loop.index }}" name="selectedTimeSlot[{{ item.service.id }}]" value="{{ slot }}" required>
-															<label for="google_slot_{{ item.service.id }}_{{ loop.index }}">{{ slot }}</label>
-														</div>
-													{% endfor %}
-												</div>
-											{% endif %}
-										</td>
-									</tr>
-									<tr>
-										<td colspan="4">
-											<a href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger">Retirer</a>
-										</td>
-									</tr>
-								{% endfor %}
-							</tbody>
-						</table>
-						<button type="submit">Confirmer les Rendez-vous</button>
-					</form>
-				{% else %}
-					<p>Votre panier est vide.</p>
-				{% endif %}
-			</section>
-		{% endblock %}
-		<form action="{{ path('cart_submit') }}" method="POST">
-			<div class="services-container">
-				{% for index, item in servicesWithForms %}
-					<div class="service-item" data-service-id="{{ item.service.id }}">
-						<div class="service-info">
-							<div class="info">
-								<p>{{ item.service.name }}/ Catégorie Name</p>
-								<span>{{ item.service.price }}€</span>
-								<span data-service-duration="{{ item.service.duration }}">{{ item.service.duration }}</span>
-							</div>
-							<div class="buttons">
-								<a href="#" class="open-calendar">
-									<img src="{{asset('asset/media/icons/calendar.svg')}}" alt="" class="icons-button icons">
-								</a>
-								<a href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger remove-from-cart-link">
-									<img src="{{asset('asset/media/icons/shopRemove.svg')}}" alt="" class="icons-button icons">
-								</a>
-							</div>
-						</div>
-						<div id="calendar-{{ item.service.id }}" class="calendar-options" style="display: none;">
-							<h4>Réserver:</h4>
-							<div class="calendar-container">
-								<div
-									class="months">{# Votre code pour les mois ici s'il est nécessaire #}
+			<form action="{{ path('cart_submit') }}" method="POST">
+				<div class="services-container">
+					{% for index, item in servicesWithForms %}
+						<div class="service-item" data-service-id="{{ item.service.id }}">
+							<div class="service-info">
+								<div class="info">
+									<p>{{ item.service.name }}/ Catégorie Name</p>
+									<span>{{ item.service.price }}€</span>
+									<span data-service-duration="{{ item.service.duration }}">{{ item.service.duration }}</span>
 								</div>
-								<div class="week">
-									<h2>{{ item.service.name }}</h2>
-									<div class="day-slots">
-										{% for date, heures in creneauxParService[item.service.id] %}
-											<div class="container-day">
-												<div class="day">
-													<span>Date :</span>
-													<p>{{ date }}</p>
-												</div>
-												<div class="available-slots">
-													{% for creneau in heures %}
-														<div class="slot">
-															<input type="radio" id="slot_{{ date }}_{{ creneau.start }}_{{ index }}" name="selectedTimeSlot[{{ item.service.id }}][{{ index }}]" value="{{ date }} {{ creneau.start }}">
-															<label for="slot_{{ date }}_{{ creneau.start }}_{{ index }}">{{ creneau.start }}
-																-
-																{{ creneau.end }}</label>
-														</div>
-													{% endfor %}
-												</div>
-											</div>
-										{% endfor %}
+								<div class="buttons">
+									<a href="#" class="open-calendar">
+										<img src="{{asset('asset/media/icons/calendar.svg')}}" alt="" class="icons-button icons">
+									</a>
+									<a href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger remove-from-cart-link">
+										<img src="{{asset('asset/media/icons/shopRemove.svg')}}" alt="" class="icons-button icons">
+									</a>
+								</div>
+							</div>
+							<div id="calendar-{{ item.service.id }}" class="calendar-options" style="display: none;">
+								<h4>Réserver:</h4>
+								<div class="calendar-container">
+									<div
+										class="months">{# Votre code pour les mois ici s'il est nécessaire #}
 									</div>
-								</div>
+									<div class="week">
+										<h2>{{ item.service.name }}</h2>
+										<div class="day-slots">
+											{% for date, heures in creneauxParService[item.service.id] %}
+												<div class="container-day">
+													<div class="day">
+														<span>Date :</span>
+														<p>{{ date }}</p>
+													</div>
+													<div class="available-slots">
+														{% for creneau in heures %}
+															<div class="slot">
+																<input type="radio" id="slot_{{ date }}_{{ creneau.start }}_{{ index }}" name="selectedTimeSlot[{{ item.service.id }}][{{ index }}]" value="{{ date }} {{ creneau.start }}">
+																<label for="slot_{{ date }}_{{ creneau.start }}_{{ index }}">{{ creneau.start }}
+																	-
+																	{{ creneau.end }}</label>
+															</div>
+														{% endfor %}
+													</div>
+												</div>
+											{% endfor %}
+										</div>
+									</div>
 
-							</div>
-							<div class="btn_submit_form">
-								<input type="hidden" name="service_id[{{ index }}]" value="{{ item.service.id }}">
-								<button type="submit" class="submit-button">Réserver</button>
-								<a class="delete-btn" href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger">Retirer</a>
+								</div>
+								<div class="btn_submit_form">
+									<input type="hidden" name="service_id[{{ index }}]" value="{{ item.service.id }}">
+									<button type="submit" class="submit-button">Réserver</button>
+									<a class="delete-btn" href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger">Retirer</a>
+								</div>
 							</div>
 						</div>
-					</div>
 
 
-				{% endfor %}
+					{% endfor %}
+				</div>
 			</div>
-		</div>
-	</form>
-{% else %}
-	<p>Votre panier est vide.</p>
-{% endif %}</section>{% include './flash_messages/flash_messages.html.twig' %}<script>
-document.addEventListener('DOMContentLoaded', function () { // Event listener for opening calendar
+		</form>
+	{% else %}
+		<p>Votre panier est vide.</p>
+	{% endif %}
+</section>
+
+{% include './flash_messages/flash_messages.html.twig' %}<script>
+	document.addEventListener('DOMContentLoaded', function () { // Event listener for opening calendar
 document.querySelectorAll('.open-calendar').forEach(function (button) {
 button.addEventListener('click', function (e) {
 e.preventDefault();
@@ -325,4 +279,5 @@ container.appendChild(containerDay);
 });
 }
 
-}</script>{% endblock %}
+}
+</script>{% endblock %}
