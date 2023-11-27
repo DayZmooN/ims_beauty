@@ -13,7 +13,6 @@ class GoogleClientService
     {
         $this->client = new Google_Client();
         $this->client->setAuthConfig($credentialsPath);
-        // dd($credentialsPath);
         $this->client->addScope(Google_Service_Calendar::CALENDAR);
         $this->client->setAccessType('offline');
     }

@@ -3,51 +3,326 @@
 {% block body %}
 	<section class="shopping-cart">
 		<h1>Mon Panier</h1>
+		<section class="cart-page">
+			{% if servicesWithForms is not empty %}
+				<h1>Mon Panier</h1>
 
-		{% if servicesWithForms is not empty %}
-			<form action="{{ path('app_cart') }}" method="POST">
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Nom du service</th>
-							<th>Description</th>
-							<th>Prix</th>
-							<th>Sélectionnez un créneau</th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for item in servicesWithForms %}
-							<tr>
-								<td>{{ item.service.name }}</td>
-								<td>{{ item.service.description }}</td>
-								<td>{{ item.service.price }}</td>
-								<td data-service-duration="{{ item.service.duration }}">{{ item.service.duration }}</td>
-								<td>
-									{% if googleCalendarSlots is not empty %}
-										<div class="available-slots">
-											<h3>Créneaux Disponibles (Google Agenda)</h3>
-											{% for slot in googleCalendarSlots %}
-												<div>
-													<input type="radio" id="google_slot_{{ item.service.id }}_{{ loop.index }}" name="selectedTimeSlot[{{ item.service.id }}]" value="{{ slot }}" required>
-													<label for="google_slot_{{ item.service.id }}_{{ loop.index }}">{{ slot }}</label>
+				{% if servicesWithForms is not empty %}
+					<form action="{{ path('app_cart') }}" method="POST">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Nom du service</th>
+									<th>Description</th>
+									<th>Prix</th>
+									<th>Sélectionnez un créneau</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for item in servicesWithForms %}
+									<tr>
+										<td>{{ item.service.name }}</td>
+										<td>{{ item.service.description }}</td>
+										<td>{{ item.service.price }}</td>
+										<td data-service-duration="{{ item.service.duration }}">{{ item.service.duration }}</td>
+										<td>
+											{% if googleCalendarSlots is not empty %}
+												<div class="available-slots">
+													<h3>Créneaux Disponibles (Google Agenda)</h3>
+													{% for slot in googleCalendarSlots %}
+														<div>
+															<input type="radio" id="google_slot_{{ item.service.id }}_{{ loop.index }}" name="selectedTimeSlot[{{ item.service.id }}]" value="{{ slot }}" required>
+															<label for="google_slot_{{ item.service.id }}_{{ loop.index }}">{{ slot }}</label>
+														</div>
+													{% endfor %}
 												</div>
-											{% endfor %}
-										</div>
-									{% endif %}
-								</td>
-							</tr>
-							<tr>
-								<td colspan="4">
-									<a href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger">Retirer</a>
-								</td>
-							</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-				<button type="submit">Confirmer les Rendez-vous</button>
-			</form>
-		{% else %}
-			<p>Votre panier est vide.</p>
-		{% endif %}
-	</section>
-{% endblock %}
+											{% endif %}
+										</td>
+									</tr>
+									<tr>
+										<td colspan="4">
+											<a href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger">Retirer</a>
+										</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+						<button type="submit">Confirmer les Rendez-vous</button>
+					</form>
+				{% else %}
+					<p>Votre panier est vide.</p>
+				{% endif %}
+			</section>
+		{% endblock %}
+		<form action="{{ path('cart_submit') }}" method="POST">
+			<div class="services-container">
+				{% for index, item in servicesWithForms %}
+					<div class="service-item" data-service-id="{{ item.service.id }}">
+						<div class="service-info">
+							<div class="info">
+								<p>{{ item.service.name }}/ Catégorie Name</p>
+								<span>{{ item.service.price }}€</span>
+								<span data-service-duration="{{ item.service.duration }}">{{ item.service.duration }}</span>
+							</div>
+							<div class="buttons">
+								<a href="#" class="open-calendar">
+									<img src="{{asset('asset/media/icons/calendar.svg')}}" alt="" class="icons-button icons">
+								</a>
+								<a href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger remove-from-cart-link">
+									<img src="{{asset('asset/media/icons/shopRemove.svg')}}" alt="" class="icons-button icons">
+								</a>
+							</div>
+						</div>
+						<div id="calendar-{{ item.service.id }}" class="calendar-options" style="display: none;">
+							<h4>Réserver:</h4>
+							<div class="calendar-container">
+								<div
+									class="months">{# Votre code pour les mois ici s'il est nécessaire #}
+								</div>
+								<div class="week">
+									<h2>{{ item.service.name }}</h2>
+									<div class="day-slots">
+										{% for date, heures in creneauxParService[item.service.id] %}
+											<div class="container-day">
+												<div class="day">
+													<span>Date :</span>
+													<p>{{ date }}</p>
+												</div>
+												<div class="available-slots">
+													{% for creneau in heures %}
+														<div class="slot">
+															<input type="radio" id="slot_{{ date }}_{{ creneau.start }}_{{ index }}" name="selectedTimeSlot[{{ item.service.id }}][{{ index }}]" value="{{ date }} {{ creneau.start }}">
+															<label for="slot_{{ date }}_{{ creneau.start }}_{{ index }}">{{ creneau.start }}
+																-
+																{{ creneau.end }}</label>
+														</div>
+													{% endfor %}
+												</div>
+											</div>
+										{% endfor %}
+									</div>
+								</div>
+
+							</div>
+							<div class="btn_submit_form">
+								<input type="hidden" name="service_id[{{ index }}]" value="{{ item.service.id }}">
+								<button type="submit" class="submit-button">Réserver</button>
+								<a class="delete-btn" href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger">Retirer</a>
+							</div>
+						</div>
+					</div>
+
+
+				{% endfor %}
+			</div>
+		</div>
+	</form>
+{% else %}
+	<p>Votre panier est vide.</p>
+{% endif %}</section>{% include './flash_messages/flash_messages.html.twig' %}<script>
+document.addEventListener('DOMContentLoaded', function () { // Event listener for opening calendar
+document.querySelectorAll('.open-calendar').forEach(function (button) {
+button.addEventListener('click', function (e) {
+e.preventDefault();
+e.stopPropagation(); // Prevent event from bubbling up to parent elements
+var serviceId = e.currentTarget.closest('.service-item').dataset.serviceId;
+toggleCalendar(serviceId);
+});
+});
+});
+
+// Event listener for removing items from cart
+document.querySelectorAll('.remove-from-cart-link').forEach(function (link) {
+link.addEventListener('click', function (e) {
+e.preventDefault();
+var url = e.currentTarget.href;
+var serviceId = e.currentTarget.closest('.service-item').dataset.serviceId;
+
+handleAjaxRequest(url, {
+method: 'GET'
+}, function (data) {
+if (data.success) { // Remove the corresponding service item
+var itemToRemove = document.querySelector('.service-item[data-service-id="' + serviceId + '"]');
+if (itemToRemove) {
+itemToRemove.remove();
+updateCartItemCount(-1); // Decrement cart count
+}
+}
+});
+});
+});
+
+function updateCartItemCount(change) {
+var cartItemCountElement = document.querySelector('.cart-item-count');
+if (cartItemCountElement) {
+var currentCount = parseInt(cartItemCountElement.textContent) || 0;
+var newCount = Math.max(currentCount + change, 0); // Ensure count doesn't go negative
+cartItemCountElement.textContent = newCount > 0 ? newCount : '';
+}
+}
+
+
+function toggleCalendar(serviceId) {
+var calendar = document.getElementById('calendar-' + serviceId);
+if (calendar) {
+calendar.style.display = calendar.style.display === 'none' ? 'block' : 'none';
+}
+}
+
+document.querySelectorAll('.month').forEach(function (monthElement) {
+monthElement.addEventListener('click', function () {
+var selectedMonth = monthElement.getAttribute('data-month'); // Assurez-vous que cette ligne est correcte
+loadDaysForMonth(selectedMonth);
+});
+});
+
+
+function loadDaysForMonth(month) {
+fetch('/ajax/month-data?month=' + encodeURIComponent(month)).then(response => response.json()).then(data => {
+updateDaysContainer(data.days);
+}).catch(error => console.error('Error:', error));
+console.log("Selected month:", selectedMonth);
+
+}
+
+
+function updateDaysContainer(days) {
+var weekContainer = document.querySelector('.week');
+if (! weekContainer) {
+console.error("Week container not found");
+return;
+}
+
+weekContainer.innerHTML = ''; // Nettoyer le contenu précédent
+
+days.forEach(day => {
+var daySlotsDiv = document.createElement('div');
+daySlotsDiv.className = 'day-slots';
+
+var dayDiv = document.createElement('div');
+dayDiv.className = 'day';
+dayDiv.innerHTML = `<p>${
+day.name
+}</p><span>${
+day.date
+}</span>`;
+
+var slotsDiv = document.createElement('div');
+slotsDiv.className = 'available-slots';
+
+// Ici, récupérez les créneaux disponibles pour le jour spécifique
+var daySlots = getSlotsForDay(day.date); // Cette fonction doit être définie
+
+daySlots.forEach(slot => {
+var slotDiv = document.createElement('div');
+slotDiv.className = 'slot';
+slotDiv.innerHTML = `<input type="radio" id="slot_${
+day.date
+}_${slot}" name="selectedTimeSlot" value="${slot}">
+                                 <label for="slot_${
+day.date
+}_${slot}">${slot}</label>`;
+slotsDiv.appendChild(slotDiv);
+});
+
+daySlotsDiv.appendChild(dayDiv);
+daySlotsDiv.appendChild(slotsDiv);
+weekContainer.appendChild(daySlotsDiv);
+});
+}
+
+
+// / code pour la pagination
+// Variable globale pour suivre la page actuelle
+var currentPage = 1;
+
+// Event listener for "Page suivante" button
+// Event listener for "Page suivante" button
+document.getElementById('next-page-button').addEventListener('click', function (e) {
+e.preventDefault();
+
+// Récupérez la page suivante depuis la requête actuelle
+var nextPage = currentPage + 1;
+
+// Effectuez une requête AJAX vers la route Symfony pour charger les créneaux horaires de la page suivante
+var xhr = new XMLHttpRequest();
+xhr.open('GET', '{{ path('load_slots') }}?page=' + nextPage, true);
+
+xhr.onload = function () {
+if (xhr.status === 200) {
+var data = JSON.parse(xhr.responseText);
+console.log(data); // Pour le diagnostic
+if (data && data.slots) {
+updateDaysContainer(data.slots);
+currentPage = nextPage;
+} else {
+console.error('Format de données inattendu:', data);
+}
+} else {
+console.error('Erreur lors de la requête AJAX:', xhr.status);
+}
+};
+
+
+xhr.send();
+});
+
+
+// /html slot container
+{
+function updateDaysContainer(slots) {
+var container = document.querySelector('.day-slots');
+if (! container) {
+console.error('Element .day-slots non trouvé');
+return;
+}
+
+container.innerHTML = ''; // Vide les créneaux horaires actuels
+
+slots.forEach(function (slot) { // Pour chaque créneau horaire, créez les éléments HTML correspondants
+var date = slot.date; // Assurez-vous que la structure de 'slot' correspond à vos données
+var heures = slot.heures;
+
+var containerDay = document.createElement('div');
+containerDay.classList.add('container-day');
+
+var dayDiv = document.createElement('div');
+dayDiv.classList.add('day');
+
+var dateSpan = document.createElement('span');
+dateSpan.textContent = 'Date :';
+var dateP = document.createElement('p');
+dateP.textContent = date;
+
+dayDiv.appendChild(dateSpan);
+dayDiv.appendChild(dateP);
+containerDay.appendChild(dayDiv);
+
+var availableSlotsDiv = document.createElement('div');
+availableSlotsDiv.classList.add('available-slots');
+
+heures.forEach(function (heure) {
+var slotDiv = document.createElement('div');
+slotDiv.classList.add('slot');
+
+var input = document.createElement('input');
+input.type = 'radio';
+input.id = 'slot_' + date + '_' + heure; // Assurez-vous que cet ID est unique
+input.name = 'selectedTimeSlot'; // Mettez à jour selon la logique de votre formulaire
+input.value = date + ' ' + heure;
+
+var label = document.createElement('label');
+label.htmlFor = input.id;
+label.textContent = heure;
+
+slotDiv.appendChild(input);
+slotDiv.appendChild(label);
+availableSlotsDiv.appendChild(slotDiv);
+});
+
+containerDay.appendChild(availableSlotsDiv);
+container.appendChild(containerDay);
+});
+}
+
+}</script>{% endblock %}

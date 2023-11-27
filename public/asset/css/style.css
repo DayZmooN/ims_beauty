@@ -261,6 +261,10 @@ input[type=date]::-webkit-calendar-picker-indicator {
   transform: rotate(50deg);
   z-index: 0;
 }
+.alt-animated-btn > a > img {
+  width: 35px;
+  height: 35px;
+}
 .alt-animated-btn > a {
   z-index: 9;
 }
@@ -521,7 +525,7 @@ header > .nav-menu > figure {
   gap: 10px;
   padding: 0 10px;
 }
-header > .nav-menu > figure a > img {
+header > .nav-menu > figure > a > img {
   height: 35px;
   width: auto;
 }
@@ -1766,7 +1770,9 @@ footer > .copyrights > p > a:hover {
 .cart-page {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   width: 100%;
+  align-items: center;
 }
 .cart-page > form {
   display: flex;
@@ -1778,6 +1784,7 @@ footer > .copyrights > p > a:hover {
   padding: 25px;
   border: 1px solid #937962;
   border-radius: 15px;
+  margin: 10px auto;
 }
 .cart-page > form h1 {
   display: block;
@@ -1866,6 +1873,22 @@ footer > .copyrights > p > a:hover {
 .cart-page > form .calendar-options .calendar-container::-webkit-scrollbar-thumb:hover {
   background: #dfcab3;
 }
+.cart-page > form .calendar-options .calendar-container .btn_submit_form {
+  display: flex;
+  justify-content: right;
+  margin-right: 48px;
+  gap: 10px;
+}
+.cart-page > form .calendar-options .calendar-container .btn_submit_form .delete-btn {
+  border: 1px solid #AB4545;
+  color: #AB4545;
+  border-radius: 8px;
+  padding: 8px;
+}
+.cart-page > form .calendar-options .calendar-container .btn_submit_form .delete-btn:hover {
+  color: #f5efe8;
+  background-color: #AB4545;
+}
 .cart-page > form .calendar-options .months {
   display: flex;
   flex-direction: row;
@@ -1889,11 +1912,19 @@ footer > .copyrights > p > a:hover {
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
+  flex-direction: column;
   gap: 25px;
 }
-.cart-page > form .calendar-options .week .day-slots .day {
+.cart-page > form .calendar-options .week .day-slots {
+  display: flex;
+  gap: 10px;
+}
+.cart-page > form .calendar-options .week .day-slots .container-day {
   display: flex;
   flex-direction: column;
+}
+.cart-page > form .calendar-options .week .day-slots .container-day .day {
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
@@ -1901,15 +1932,15 @@ footer > .copyrights > p > a:hover {
   padding: 10px 5px;
   border-bottom: 1px solid #937962;
 }
-.cart-page > form .calendar-options .week .day-slots .available-slots {
-  flex-grow: 1;
+.cart-page > form .calendar-options .week .day-slots .container-day .available-slots {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 25px;
+  margin-top: 10px;
 }
-.cart-page > form .calendar-options .week .day-slots .available-slots .slot {
+.cart-page > form .calendar-options .week .day-slots .container-day .available-slots .slot {
   padding: 5px;
   background-color: #EEE3D7;
   border-radius: 5px;
@@ -1958,6 +1989,7 @@ footer > .copyrights > p > a:hover {
 .error404 button:hover {
   background-color: #937962;
   color: #EEE3D7;
+<<<<<<< HEAD
 }
 
 @media screen and (max-width: 750px) {
@@ -2004,4 +2036,6 @@ footer > .copyrights > p > a:hover {
 .mentions-legales .website .contact-info > figure > figcaption > p,
 .mentions-legales .website .contact-info > figure > figcaption a {
   color: #937962;
+=======
+>>>>>>> 300c5e432d2f48271ca52f3da93469cb5f057277
 }/*# sourceMappingURL=style.css.map */
