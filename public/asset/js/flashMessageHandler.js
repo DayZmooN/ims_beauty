@@ -47,12 +47,26 @@ function handleAjaxRequest(url, options, onSuccess, onError) {
         var alertHtml = document.createElement('div');
         alertHtml.className = 'alert ' + alertClass;
         alertHtml.textContent = message;
-
-        document.querySelector('.flash-messages-container').appendChild(alertHtml);
+    
+        var flashMessagesContainer = document.querySelector('.flash-messages-container');
+        flashMessagesContainer.appendChild(alertHtml);
+        flashMessagesContainer.style.display = 'flex'; // Show container when a new message is added
+    
         setTimeout(function() {
             alertHtml.style.opacity = '0'; // Trigger fade out
             setTimeout(function() {
                 alertHtml.remove();
+                if (!flashMessagesContainer.hasChildNodes()) {
+                    flashMessagesContainer.style.display = 'none'; // Hide container if no messages
+                }
             }, 2000); // Time for fade-out effect to complete
         }, 15000);
-    }
+    }    
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var flashMessagesContainer = document.querySelector('.flash-messages-container');
+        if (!flashMessagesContainer.hasChildNodes()) {
+            flashMessagesContainer.style.display = 'none';
+        }
+    });
+    
