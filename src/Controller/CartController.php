@@ -132,17 +132,22 @@ class CartController extends AbstractController
 
                 if ($creneauValideTrouve) {
                     // Le créneau est valide, continuez avec le reste du code
-
+                    // Après la création de l'objet $appointment
                     $appointment = new Appointements();
                     $appointment->setStatus('confirmed');
                     $appointment->setUsers($user);
                     $appointment->setDateTime($dateTime);
 
+                    // Associer le service au rendez-vous
+                    $appointment->addService($service);
+
+                    // Maintenant, persister l'objet $appointment
                     try {
                         $entityManager->persist($appointment);
                         $entityManager->flush();
                     } catch (\Exception $e) {
-                        continue; // Log error or handle it as required
+                        // Gérer l'exception
+                        continue;
                     }
 
                     if ($appointment->getId()) {
