@@ -20,6 +20,12 @@
 					{% for service in category.services %}
 						<div class="service-card">
 							<img src="{{asset('asset/media/icons/deco/massage-stones.svg')}}" alt="Icône décorative pierres et orchidés massage et bien être" class="icon-desktop">
+							{% if service.promotions|length > 0 %}
+                        {% set promotion = service.promotions.first() %}
+                        	<div class="promotion-info">
+								<p>-{{ promotion.discount|round ? promotion.discount|round : promotion.discount }}%</p>
+							</div>
+                    	{% endif %}
 							<div class="service-details">
 								<h4>{{ service.name }}</h4>
 								<h6>({{ service.duration }} minutes)</h6>

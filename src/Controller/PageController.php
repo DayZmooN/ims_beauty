@@ -74,6 +74,7 @@ class PageController extends AbstractController
         $breadcrumbs = $breadcrumbService->getBreadcrumbs();
         $categories = $categoryRepository->findAll();
         $services = $servicesRepository->findBy(['category' => $categories]);
+        $promotions = $servicesRepository->findServicesWithPromotions();
 
         return $this->render('page/nos-tarifs.html.twig', [
             'controller_name' => 'OurPricesController',
@@ -81,6 +82,7 @@ class PageController extends AbstractController
             'page_name' => 'Nos Tarifs',
             'categories' => $categories,
             'services' => $services,
+            'promotion' => $promotions,
         ]);
     }
 
@@ -95,13 +97,15 @@ class PageController extends AbstractController
 
         // Fetch services related to the category
         $services = $servicesRepository->findBy(['category' => $category]);
+        $promotions = $servicesRepository->findServicesWithPromotions($categoryId);
 
         return $this->render('page/services-details.html.twig', [
             'controller_name' => 'ServicesController',
             'breadcrumbs' => $breadcrumbs,
             'page_name' => $categoryName, // Dynamic page name based on category
             'category' => $category,
-            'services' => $services, // Pass the services variable to the template
+            'services' => $services,
+            'promotion' => $promotions,
         ]);
     }
 }
