@@ -1,70 +1,79 @@
-// SHOW SERVICE DETAILS ON SOINS PAGE
-document.addEventListener('DOMContentLoaded', function () {
-    // Function to toggle the service detail and active class
-    function toggleServiceDetail(serviceId) {
-        // Hide all the service details
-        document.querySelectorAll('.service-detail-content').forEach(function (detail) {
-            detail.style.display = 'none';
-        });
+document.addEventListener('DOMContentLoaded', function() {
+    // Dropdown Menu Interactions
+    handleDropdownMenus();
 
-        // Remove 'active' class from all service names
-        document.querySelectorAll('.service-name').forEach(function (serviceName) {
-            serviceName.classList.remove('active');
-        });
+    // Services Detail Toggle on Soins Page
+    handleServiceDetails();
 
-        // Show the selected service detail
-        var detailToShow = document.getElementById('service-detail-' + serviceId);
-        if (detailToShow) {
-            detailToShow.style.display = 'block';
-        }
+    // Accordion Effect on Tarifs Page
+    handleAccordionEffect();
 
-        // Add 'active' class to the selected service name
-        var serviceNameToShow = document.getElementById('service-name-' + serviceId);
-        if (serviceNameToShow) {
-            serviceNameToShow.classList.add('active');
-        }
-    }
+    // Dashboard Section Toggle
+    handleDashboardSections();
 
-    // Activate the first service detail and name, if available
-    let firstService = document.querySelector('.service-name');
-    if (firstService) {
-        firstService.classList.add('active'); // Set the first element as active
-        let firstServiceId = firstService.dataset.serviceId;
-        toggleServiceDetail(firstServiceId);
+    // New function for User Dashboard Update
+    handleUserDashboardUpdate();
 
-        // Attach the click event to each service name
-        document.querySelectorAll('.service-name').forEach(function (serviceName) {
-            serviceName.addEventListener('click', function () {
-                toggleServiceDetail(serviceName.dataset.serviceId);
-            });
-        });
-    }
+    handleCartInteractions();
+    
+    //Handle Add to cart on Détails & Tarifs pages
+    handleCartAddition();
 });
 
-// ACCORDEON EFFECT TARIFS PAGE
-document.addEventListener('DOMContentLoaded', function () {
-    // Toggle services for categories
-    function toggleServices(categoryId) {
-        var servicesDiv = document.getElementById('services-' + categoryId);
-        var icon = document.getElementById('icon-' + categoryId);
-
-        if (servicesDiv) {
-            servicesDiv.style.display = servicesDiv.style.display === 'none' || servicesDiv.style.display === '' ? 'flex' : 'none';
-        }
+function handleDropdownMenus() {
+    const userIcon = document.querySelector('.user-icon');
+    if (userIcon) {
+        userIcon.addEventListener('click', function(e) {
+            e.preventDefault();
+            this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';
+        });
     }
 
-    // Attach the click event to each category header
-    document.querySelectorAll('.category-header').forEach(function (header) {
-        header.addEventListener('click', function () {
-            toggleServices(header.getAttribute('data-category-id'));
+    window.addEventListener('click', function(e) {
+        if (!e.target.matches('.user-icon, .user-icon *')) {
+            document.querySelectorAll(".dropdown-content").forEach(dropdown => {
+                if (dropdown.style.display === 'block') {
+                    dropdown.style.display = 'none';
+                }
+            });
+        }
+    });
+}
+
+function handleServiceDetails() {
+    const toggleServiceDetail = (serviceId) => {
+        document.querySelectorAll('.service-detail-content').forEach(detail => detail.style.display = 'none');
+        document.querySelectorAll('.service-name').forEach(serviceName => serviceName.classList.remove('active'));
+
+        const detailToShow = document.getElementById('service-detail-' + serviceId);
+        const serviceNameToShow = document.getElementById('service-name-' + serviceId);
+        if (detailToShow) detailToShow.style.display = 'block';
+        if (serviceNameToShow) serviceNameToShow.classList.add('active');
+    };
+
+    const firstService = document.querySelector('.service-name');
+    if (firstService) {
+        firstService.classList.add('active');
+        toggleServiceDetail(firstService.dataset.serviceId);
+        document.querySelectorAll('.service-name').forEach(serviceName => {
+            serviceName.addEventListener('click', () => toggleServiceDetail(serviceName.dataset.serviceId));
+        });
+    }
+}
+
+function handleAccordionEffect() {
+    document.querySelectorAll('.category-header').forEach(header => {
+        header.addEventListener('click', () => {
+            const servicesDiv = document.getElementById('services-' + header.getAttribute('data-category-id'));
+            if (servicesDiv) {
+                servicesDiv.style.display = servicesDiv.style.display === 'none' || servicesDiv.style.display === '' ? 'flex' : 'none';
+            }
         });
     });
-});
+}
 
-// DASHBOARD
-document.addEventListener('DOMContentLoaded', function () {
-    // Function to show/hide appointments and settings and toggle the active class
-    function toggleSections(showAppointments, showSettings) {
+function handleDashboardSections() {
+    const toggleSections = (showAppointments, showSettings) => {
         const appointmentsSection = document.getElementById('my-appointments');
         const settingsSection = document.getElementById('settings');
         const showAppointmentsLink = document.getElementById('show-appointments');
@@ -76,42 +85,113 @@ document.addEventListener('DOMContentLoaded', function () {
             showAppointmentsLink.parentElement.classList.toggle('active', showAppointments);
             showSettingsLink.parentElement.classList.toggle('active', showSettings);
         }
-    }
+    };
 
-    // Function to display the correct section based on URL hash
-    function displaySectionBasedOnHash() {
+    const displaySectionBasedOnHash = () => {
         const hash = window.location.hash;
         if (hash === '#my-appointments') {
             toggleSections(true, false);
         } else if (hash === '#settings') {
             toggleSections(false, true);
         } else {
-            // Default view
             toggleSections(true, false);
         }
-    }
+    };
 
-    // Attach click events to internal navigation links
     const showAppointmentsLink = document.getElementById('show-appointments');
     const showSettingsLink = document.getElementById('show-settings');
 
     if (showAppointmentsLink) {
-        showAppointmentsLink.addEventListener('click', function (e) {
+        showAppointmentsLink.addEventListener('click', function(e) {
             e.preventDefault();
             window.location.hash = 'my-appointments';
         });
     }
 
     if (showSettingsLink) {
-        showSettingsLink.addEventListener('click', function (e) {
+        showSettingsLink.addEventListener('click', function(e) {
             e.preventDefault();
             window.location.hash = 'settings';
         });
     }
 
-    // Display the correct section based on the URL hash when the page loads
     displaySectionBasedOnHash();
-
-    // Update content when hash changes (e.g., when user clicks header links)
     window.addEventListener('hashchange', displaySectionBasedOnHash);
-});
+}
+
+
+function handleUserDashboardUpdate() {
+    var updateButton = document.getElementById('update-user-button');
+    var userForm = document.getElementById('update-user-form');
+
+    if (updateButton && userForm) {
+        var updateUrl = userForm.getAttribute('data-update-url');
+
+        updateButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            var formData = new FormData(userForm);
+
+            handleAjaxRequest(updateUrl, { method: 'POST', body: formData }, function(data) {
+                window.location.reload(); // Force reload regardless of the response
+            }, function(error) {
+                console.error("Update error:", error); // Error log
+            });
+        });
+    }
+}
+
+function handleCartInteractions() {
+    // Toggle calendar display
+    document.querySelectorAll('.open-calendar').forEach(button => {
+        button.addEventListener('click', e => {
+            e.preventDefault();
+            const serviceId = e.currentTarget.closest('.service-item').dataset.serviceId;
+            toggleCalendar(serviceId);
+        });
+    });
+
+    // Remove items from cart
+    document.querySelectorAll('.remove-from-cart-link').forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            const url = e.currentTarget.href;
+            const serviceId = e.currentTarget.closest('.service-item').dataset.serviceId;
+
+            handleAjaxRequest(url, { method: 'GET' }, data => {
+                if (data.success) {
+                    document.querySelector(`.service-item[data-service-id="${serviceId}"]`).remove();
+                    updateCartItemCount(-1);
+                }
+            });
+        });
+    });
+}
+
+function toggleCalendar(serviceId) {
+    const calendar = document.getElementById(`calendar-${serviceId}`);
+    if (calendar) {
+        calendar.style.display = calendar.style.display === 'none' ? 'block' : 'none';
+    }
+}
+
+function updateCartItemCount(change) {
+    const cartItemCountElement = document.querySelector('.cart-item-count');
+    if (cartItemCountElement) {
+        const currentCount = parseInt(cartItemCountElement.textContent) || 0;
+        const newCount = Math.max(currentCount + change, 0);
+        cartItemCountElement.textContent = newCount > 0 ? newCount : '';
+    }
+}
+
+function handleCartAddition() {
+    document.querySelectorAll('.add-to-cart-link').forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            handleAjaxRequest(e.currentTarget.href, { method: 'GET' }, data => {
+                if (data.success) {
+                    updateCartItemCount(1);
+                }
+            });
+        });
+    });
+}

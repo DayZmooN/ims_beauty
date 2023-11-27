@@ -59,7 +59,7 @@ class DashboardController extends AbstractController
                 // Include other user data fields as needed
             ];
 
-            return new JsonResponse(['message' => 'User data updated successfully', 'user_data' => $userData], JsonResponse::HTTP_OK);
+            return new JsonResponse(['message' => 'Vos informations ont été changer avec succès !', 'user_data' => $userData], JsonResponse::HTTP_OK);
         }
 
 

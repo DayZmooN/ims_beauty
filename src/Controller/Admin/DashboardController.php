@@ -8,6 +8,7 @@ use App\Entity\Notifications;
 use App\Entity\Promotions;
 use App\Entity\Services;
 use App\Entity\Users;
+use App\Entity\AboutUs;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
@@ -58,13 +59,13 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToRoute('Accueil', 'fas fa-home', 'app_page');
-        // yield MenuItem::linkToDashboard('Dashboard', 'fas fa-dashboard');
-        yield MenuItem::linkToCrud('Users', 'fas fa-user', Users::class);
+        yield MenuItem::linkToCrud('A propos', 'fas fa-address-card', AboutUs::class);
         yield MenuItem::linkToCrud('Reservations', 'fas fa-calendar-day', Appointements::class);
         yield MenuItem::linkToCrud('Services', 'fas fa-cart-shopping', Services::class);
         yield MenuItem::linkToCrud('Categories', 'fas fa-folder', Categories::class);
         yield MenuItem::linkToCrud('Notifications', 'fas fa-envelope', Notifications::class);
         yield MenuItem::linkToCrud('Promotions', 'fa-brands fa-shopify', Promotions::class);
+        yield MenuItem::linkToCrud('Clients', 'fas fa-users', Users::class);
     }
     public function configureActions(): Actions
     {

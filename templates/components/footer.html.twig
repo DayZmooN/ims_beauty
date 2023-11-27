@@ -2,31 +2,29 @@
 	<div class="salon-infos">
 		<div class="contact-socials">
 			<figure>
-				<img class="footer-logo" src="{{asset('asset/media/logo/LogoWhiteText.svg')}}" alt="">
+				<img class="footer-logo" src="{{asset('asset/media/logo/LogoWhiteText.svg')}}" alt="IMS Beauty - Logo footer">
 			</figure>
 			<figcaption>
 				<p class="catchphrase">Éveillez votre beauté; révélez votre éclat.</p>
 				<figure class="footer-contact">
-					<img src="{{asset('asset/media/icons/contactLocation.svg')}}" alt="">
+					<img src="{{asset('asset/media/icons/contactLocation.svg')}}" alt="Icône de localisation pour contact">
 					<figcaption>
-						<p>135 Avenue de Macon
-							<br>
-							01440 VIRIAT</p>
+						<p>{{aboutUs.adress}}</p>
 					</figcaption>
 				</figure>
 				<figure class="footer-contact">
-					<img src="{{asset('asset/media/icons/contactPhone.svg')}}" alt="">
+					<img src="{{asset('asset/media/icons/contactPhone.svg')}}" alt="Icône de téléphone pour contact">
 					<figcaption>
-						<p>07 56 88 15 08</p>
+						<p>{{aboutUs.phone}}</p>
 					</figcaption>
 				</figure>
 				<figure class="socials">
-					<a href="https://www.instagram.com/imsbeauty01/" target="_blank">
-						<img src="{{asset('asset/media/icons/socialInstagram.svg')}}" alt="" class="icons"></a>
+					<a href="https://www.instagram.com/imsbeauty01/" target="_blank" rel="noopener noreferrer">
+						<img src="{{asset('asset/media/icons/socialInstagram.svg')}}" alt="Icône réseaux sociaux Instagram" class="icons"></a>
 					<a href="mailto:someone@example.com">
-						<img src="{{asset('asset/media/icons/contactMail.svg')}}" alt="" class="icons"></a>
-					<a href="https://www.facebook.com/imsbeauty01/" target="_blank">
-						<img src="{{asset('asset/media/icons/socialFacebook.svg')}}" alt="" class="icons"></a>
+						<img src="{{asset('asset/media/icons/contactMail.svg')}}" alt="Icône de contact Email" class="icons"></a>
+					<a href="https://www.facebook.com/imsbeauty01/" target="_blank" rel="noopener noreferrer">
+						<img src="{{asset('asset/media/icons/socialFacebook.svg')}}" alt="Icône de réseaux sociaux Facebook" class="icons"></a>
 				</figure>
 			</figcaption>
 		</div>
@@ -34,10 +32,10 @@
 		<div class="map-infos">
 			<div class="categories-links">
 				<div class="title">
-					<img src="{{asset('asset/media/icons/deco/candle-leaf.svg')}}" alt="">
+					<img src="{{asset('asset/media/icons/deco/candle-leaf.svg')}}" alt="Icône décoratif d'une bougie fleurie">
 					<h3>Nos Soins</h3>
 				</div>
-
+				<ul>				
 				{% for category in categories %}
 					<li>
 						<a href="{{ path('category_list_services', {'id': category.id}) }}">
@@ -45,20 +43,21 @@
 						</a>
 					</li>
 				{% endfor %}
+				</ul>
 			</div>
 
 			<div class="schedule">
 				<div class="title">
-					<img src="{{asset('asset/media/icons/deco/agenda.svg')}}" alt="">
+					<img src="{{asset('asset/media/icons/deco/agenda.svg')}}" alt="Icône de calendrier pour les Horaires">
 					<h3>Horaires</h3>
 				</div>
 				<div>
 					<p class="schedule-days">Lundi - vendredi</p>
-					<p class="schedule-hours">09:00 - 18:00</p>
+					<p class="schedule-hours">{{aboutUs.scheduleWeekdays}}</p>
 					<p class="schedule-days">Samedi</p>
-					<p class="schedule-hours">Fermé</p>
+					<p class="schedule-hours">{{aboutUs.scheduleSat}}</p>
 					<p class="schedule-days">Dimanche</p>
-					<p class="schedule-hours">Fermé</p>
+					<p class="schedule-hours">{{aboutUs.scheduleSun}}</p>
 				</div>
 			</div>
 			{# Insérer ici component card réduction #}

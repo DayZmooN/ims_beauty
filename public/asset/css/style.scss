@@ -333,6 +333,7 @@ header {
 
       & > a > img {
         height: 35px;
+        width: auto;
       }
 
       .user-dropdown {
@@ -434,6 +435,7 @@ footer {
 
           & > img {
             width: 50px;
+            height: auto;
           }
 
           & > h3 {
@@ -476,6 +478,7 @@ footer {
 
           & > img {
             width: 50px;
+            height: auto;
           }
 
           & > h3 {
@@ -580,6 +583,7 @@ footer {
   & > ul {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     gap: 15px;
@@ -664,6 +668,7 @@ footer {
     .logo-cta {
       & > img {
         width: 200px;
+        height: auto;
       }
 
       & > figcaption {
@@ -776,6 +781,7 @@ footer {
 
       & > a > .icons {
         width: 65px;
+        height: auto;
       }
     }
   }
@@ -787,7 +793,7 @@ footer {
     align-items: center;
     text-align: center;
     gap: 25px;
-    max-width: 740px;
+    max-width: 650px;
     width: 100%;
 
     & > blockquote {
@@ -969,6 +975,7 @@ footer {
 
         & > a > .icons {
           width: 35px;
+          height: auto;
         }
       }
     }
@@ -1051,6 +1058,11 @@ footer {
     & > p {
       color: $light-Black;
     }
+  }
+
+  .btn-two {
+    position: absolute;
+    bottom: 20px;
   }
 
   &:hover {
@@ -1311,7 +1323,7 @@ footer {
     }
 
     .services-container {
-      display: flex;
+      display: none;
       flex-direction: row;
       flex-wrap: wrap;
       gap: 15px;
@@ -1386,6 +1398,8 @@ footer {
     gap: 10px;
     border: 1px solid $Cinereous;
     border-radius: $radius-5;
+    background: url("../media/deco/massage-flip.svg") bottom right / 150px
+      no-repeat;
 
     & > input {
       width: 90%;
@@ -1459,8 +1473,7 @@ footer {
   align-self: center;
   align-items: center;
   justify-content: center;
-  gap: 25px;
-  width: 50%;
+  width: 100%;
 
   & > h1 {
     color: $Cinereous;
@@ -1473,26 +1486,55 @@ footer {
     justify-content: center;
     max-width: 650px;
     width: 100%;
-    padding: 50px;
-    gap: 50px;
+    padding: 50px 15px;
     border: 1px solid $Cinereous;
     border-radius: $radius-5;
+    background: url("../media/deco/massage-flip.svg") bottom right / 200px
+      no-repeat;
 
-    .name-register,
-    .user-info {
+    .register {
+      max-width: 550px;
+      width: 100%;
       display: flex;
       flex-direction: row;
+      justify-content: flex-start;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-right: 10px;
+      gap: 0 20px;
     }
 
-    input {
+    .rgpd {
       width: 100%;
+
+      & > div {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+
+        & > input {
+          height: 18px;
+          width: fit-content;
+        }
+
+        & > label {
+          font-size: 0.8rem;
+          line-height: normal;
+          width: 100%;
+          text-align: left;
+        }
+      }
     }
 
     div {
-      margin: 10px 0;
+      width: 250px;
+      min-height: 45px;
+
+      & > input {
+        max-width: 280px;
+        width: 100%;
+      }
     }
 
     button {
@@ -1505,6 +1547,17 @@ footer {
         background-color: $accent-BrownShadow;
         color: $secondary-WhiteChocolate;
       }
+    }
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .register {
+    width: 80%;
+
+    .register {
+      justify-content: center;
+      align-items: center;
     }
   }
 }
@@ -1677,6 +1730,7 @@ footer {
       }
 
       .form-input {
+        position: relative;
         display: flex;
         gap: 10px;
         padding: 5px;
@@ -1693,12 +1747,23 @@ footer {
             brightness(88%) contrast(87%);
         }
 
+        .verify-icon {
+          position: absolute;
+          right: 10px;
+          bottom: 10px;
+          filter: unset;
+        }
+
         & > figcaption > input {
           background-color: transparent;
           color: $default-Black;
         }
       }
-
+      .verification-link {
+        color: $accent-BrownShadow;
+        font-size: 0.8rem;
+        font-family: $bonusFont;
+      }
       .long-input {
         max-width: 300px;
         width: 80%;
@@ -1796,10 +1861,24 @@ footer {
             width: 130px;
             font-size: 0.8rem;
           }
+
           span {
             font-size: 0.875rem;
             color: $accent-BrownShadow;
             font-family: $semiBoldText;
+          }
+        }
+
+        @media screen and (max-width: 500px) {
+          .info {
+            p {
+              white-space: nowrap;
+              /* Prevents the text from wrapping to the next line */
+              overflow: hidden;
+              /* Hides the overflow text */
+              text-overflow: ellipsis;
+              width: 130px;
+            }
           }
         }
       }
@@ -1836,6 +1915,7 @@ footer {
         overflow-y: scroll;
         scrollbar-color: $secondary-WhiteChocolate $Cinereous;
         scrollbar-width: thin;
+
         &::-webkit-scrollbar {
           width: 12px;
         }
@@ -1926,14 +2006,17 @@ footer {
 //~ ------------ ERROR 404 ------------ //
 .error404 {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   align-self: center;
-  gap: 25px;
+  height: 80vh;
+  gap: 15px;
 
   h1 {
     color: $accent-BrownShadow;
     font-size: 15rem;
+    line-height: 13rem;
 
     & > span {
       color: $PaleSilver;
@@ -1951,13 +2034,80 @@ footer {
 
   button {
     background-color: $Khaki;
-    color: $primary-Alabaster;
     border-radius: $radius-5;
     padding: 15px 25px;
+
+    & > a {
+      color: $primary-Alabaster;
+    }
 
     &:hover {
       background-color: $accent-BrownShadow;
       color: $secondary-WhiteChocolate;
+    }
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .error404 {
+    h1 {
+      font-size: 10rem;
+      line-height: 8rem;
+    }
+
+    h2 {
+      font-size: 1rem;
+    }
+  }
+}
+
+//~ ------------MENTION LEGALES ------------ //
+.mentions-legales {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  gap: 25px;
+  margin: 25px 0;
+  padding: 25px;
+  max-width: 1200px;
+  width: 100%;
+  border: 1px solid $Khaki;
+  border-radius: $radius-15;
+
+  p,
+  a {
+    font-size: 0.8rem;
+  }
+
+  a {
+    color: $Cinereous;
+  }
+
+  .website {
+    .contact-info {
+      padding: 15px;
+
+      & > figure {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+
+        & > img {
+          filter: invert(55%) sepia(8%) saturate(838%) hue-rotate(332deg)
+            brightness(94%) contrast(83%);
+          height: 20px;
+        }
+
+        & > figcaption {
+          & > p,
+          a {
+            color: $accent-BrownShadow;
+          }
+        }
+      }
     }
   }
 }

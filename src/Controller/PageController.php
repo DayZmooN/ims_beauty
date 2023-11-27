@@ -1,15 +1,17 @@
 <?php
 
 namespace App\Controller;
+
 use App\Entity\Categories;
+use App\Entity\AboutUs;
 use App\Repository\CategoriesRepository;
+use App\Repository\AboutUsRepository;
 use App\Repository\ServicesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\BreadcrumbService;
-
 
 class PageController extends AbstractController
 {
@@ -29,7 +31,7 @@ class PageController extends AbstractController
 
         return $this->render('page/homepage.html.twig', [
             'controller_name' => 'PageController',
-            'categories' => $categories,
+            'categories' => $categories
         ]);
     }
 
@@ -42,14 +44,14 @@ class PageController extends AbstractController
     }
 
     #[Route('/a-propos', name: 'app_about_us')]
-    public function aboutUs(BreadcrumbService $breadcrumbService): Response
+    public function aboutUs( BreadcrumbService $breadcrumbService): Response
     {
         $breadcrumbs = $breadcrumbService->getBreadcrumbs();
 
         return $this->render('/static/a-propos.html.twig', [
             'controller_name' => 'PageController',
             'breadcrumbs' => $breadcrumbs,
-            'page_name' => 'À Propos',
+            'page_name' => 'À Propos'
         ]);
     }
 

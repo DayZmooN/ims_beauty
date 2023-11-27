@@ -28,6 +28,9 @@ class Categories
     #[ORM\Column(length: 500)]
     private ?string $thumbnail = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $description = null;
+
     public function __construct()
     {
         $this->services = new ArrayCollection();
@@ -95,5 +98,17 @@ class Categories
     public function __toString()
     {
         return $this->name; // ou tout autre champ que vous souhaitez utiliser comme représentation en chaîne
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): static
+    {
+        $this->description = $description;
+
+        return $this;
     }
 }

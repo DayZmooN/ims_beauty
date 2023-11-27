@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des catégories{% endblock %}
+{% block title %}Nos Soins chez IMS Beauty{% endblock %}
+{% block description %}Venez découvrir notre listes de soins chez IMS Beauty. De manucure aux massage et bien-être nous offrons une large catégories de services pour votre bien-être.{% endblock %}
 
 {% block body %}
 {% include './components/page-header.html.twig' with {'page_name': page_name, 'breadcrumbs': breadcrumbs} %}
@@ -9,19 +10,24 @@
 			{% for category in categories %}	
 				<div class="category-card">
 					<figure class="category-thumbnail">
-						<img src="{{ asset('asset/media/banners/' ~ category.thumbnail) }}" alt="" class="category-banner">
+						<img src="{{ asset('asset/media/banners/' ~ category.thumbnail) }}" alt="Bannière pour {{ category.name }}" class="category-banner">
 						<figcaption>
 							<h3>{{ category.name }}</h3>
 						</figcaption>
 					</figure>
 
 					<div class="card-desc">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt vitae maxime facilis quibusdam ea quia eaque repellendus perferendis totam corrupti, asperiores exercitationem! Veritatis nulla maiores unde perspiciatis, eaque ratione, enim fuga ipsum vel laboriosam similique?</p>
+						<p>{{ category.description
+                            |replace({'<div>': '', '</div>': '', '<br>': 'PLACEHOLDER_BR', '<br/>': 'PLACEHOLDER_BR'})
+                            |escape('html')
+                            |replace({'PLACEHOLDER_BR': '<br>'})
+                            |raw 
+                        }}</p>
 
 						<div class="animated-btn btn-two">
-					<a href="{{ path('category_list_services', {'id': category.id}) }}">
+						<a href="{{ path('category_list_services', {'id': category.id}) }}">
 						<span>Savoir plus</span>
-						<img src="{{asset('asset/media/icons/deco/lotus.svg')}}" alt="">
+						<img src="{{asset('asset/media/icons/deco/lotus.svg')}}" alt="Icône décorative lotus pour bouton de redirection">
 					</a>
 				</div>
 					</div>
@@ -30,5 +36,4 @@
 			{% endfor %}
 		</div>
 </section>
-	
 {% endblock %}

@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Services de la catégorie
-	{{ category.name }}
-{% endblock %}
+{% block title %}{{ category.name }}{% endblock %}
+{% block description %}{{ category.description
+                            |replace({'<div>': '', '</div>': '' })
+                            |escape('html')
+                            |raw  }}{% endblock %}
 
 {% block body %}
 	{% include './components/page-header.html.twig' with {'page_name': page_name, 'breadcrumbs': breadcrumbs} %}
@@ -35,9 +37,9 @@
 						class="service-thumbnail">
 						{# Check if the service has a thumbnail; if not, use the default image #}
 						{% if service.thumbnail %}
-							<img src="{{ asset('asset/media/banners/' ~ service.thumbnail) }}" alt="{{ service.name }}">
+							<img src="{{ asset('asset/media/banners/' ~ service.thumbnail) }}" alt="Bannières pour {{ service.name }}">
 						{% else %}
-							<img src="{{ asset('asset/media/banners/' ~ category.thumbnail) }}" alt="">
+							<img src="{{ asset('asset/media/banners/' ~ category.thumbnail) }}" alt="Bannières pour {{ category.name }}">
 						{% endif %}
 					</figure>
 					<div class="service-info">
@@ -56,12 +58,13 @@
 						</p>
 						<p>Durée :
 							<span>{{ service.duration }}</span>
+							minutes
 						</p>
 					</div>
 					<div class="animated-btn btn-two">
 						<a href="{{path('cart_add', {id: service.id}) }}" class="add-to-cart-link">
 							<span>Réservez</span>
-							<img src="{{asset('asset/media/icons/deco/lotus.svg')}}" alt="">
+							<img src="{{asset('asset/media/icons/deco/lotus.svg')}}" alt="Icône décoratif de lotus pour bouton de redirection">
 						</a>
 					</div>
 				</div>
@@ -70,46 +73,4 @@
 			{% endfor %}
 			{% include './flash_messages/flash_messages.html.twig' %}
 		</section>
-		<script>
-			document.addEventListener('DOMContentLoaded', function () {
-			const datetimePicker = document.querySelector('.datetimepicker');
-
-			if (datetimePicker) {
-				datetimePicker.addEventListener('change', function () {
-				const selectedDate = new Date(this.value);
-				const hoursSelect = this.querySelector('select[id$=_hour]'); // Modifier l'ID selon votre structure HTML
-
-				if (hoursSelect) {
-					adjustTimeOptions(hoursSelect, selectedDate);
-				}
-				});
-			}
-
-			function adjustTimeOptions(hoursSelect, selectedDate) {
-			const hours = Array.from(hoursSelect.options).map(option => parseInt(option.value));
-
-			hours.forEach(hour => {
-			const option = hoursSelect.querySelector (`option[value="${hour}"]`);
-			if (hour < 8 || hour > 17 || (hour >= 12 && hour < 13.5)) {
-			option.disabled = true;
-			} else {
-			option.disabled = false;
-			}
-			});
-			}
-			});
-
-			//flash messages
-document.querySelectorAll('.add-to-cart-link').forEach(function(link) {
-		link.addEventListener('click', function(e) {
-			e.preventDefault();
-			handleAjaxRequest(e.currentTarget.href, { method: 'GET' }, function(data) {
-				if (data.success) {
-					updateCartItemCount(1); // Increment cart count
-				}
-			});
-		});
-	});
-
-		</script>
 	{% endblock %}

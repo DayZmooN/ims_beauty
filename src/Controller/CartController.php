@@ -96,12 +96,12 @@ class CartController extends AbstractController
                         // Tenter d'ajouter l'événement à Google Agenda
                         try {
                             $this->googleCalendarService->createEvent($dateTime, $service->getName(), $userName, $userPhone, 'description');
-                            $this->addFlash('success', "Appointment confirmed for " . $dateTime->format('Y-m-d H:i'));
+                            $this->addFlash('success', "Rendez-vous confirmer pour le " . $dateTime->format('Y-m-d H:i'));
                         } catch (\Exception $e) {
-                            $this->addFlash('error', "Failed to add event to Google Calendar for " . $service->getName());
+                            $this->addFlash('error', "Une erreur s'est produit lors de l'ajout : " . $service->getName());
                         }
                     } else {
-                        $this->addFlash('error', "Selected date and time are not available.");
+                        $this->addFlash('error', "Désolé, la date selectionner n'est plus disponible.");
                     }
                 }
             } else {
@@ -118,7 +118,6 @@ class CartController extends AbstractController
             }
         }
 
-        // Rendre la vue avec les données mises à jour
         return $this->render('page/cart.html.twig', [
             'servicesWithForms' => $servicesWithForms,
             'googleCalendarSlots' => $googleCalendarSlots,
@@ -170,12 +169,12 @@ class CartController extends AbstractController
             // For AJAX request, return JSON response
             return $this->json([
                 'success' => true,
-                'message' => 'Service ajouté au panier avec succès!',
+                'message' => 'Service retiré du panier avec succès!',
                 'cartItemCount' => count($cart) // Send the updated count
             ]);
         } else {
             // For regular request, redirect
-            $this->addFlash('success', 'Service ajouté au panier avec succès!');
+            $this->addFlash('success', 'Service retiré du panier avec succès!');
             return $this->redirect($request->headers->get('referer'));
         }
     }
