@@ -481,7 +481,6 @@ header > .nav-menu > nav > ul > li {
   align-items: center;
   justify-content: center;
   height: 100px;
-  padding: 0 10px;
   cursor: pointer;
 }
 header > .nav-menu > nav > ul > li::before {
@@ -559,15 +558,9 @@ header > .nav-menu > figure .user-dropdown .dropdown-content > a:hover {
   background-color: #F5EFE8;
   color: #4D4D4D;
 }
-header > .nav-menu > figure .cart-link {
-  position: relative;
-}
-header > .nav-menu > figure .cart-link .cart-item-count {
-  position: absolute;
-  bottom: 3px;
-  right: -13px;
+header > .nav-menu > figure .cart-item-count {
   color: #BFAE9F;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 header > .nav-menu > figure .responsive-menu {
   display: none;
@@ -630,15 +623,15 @@ footer > div.salon-infos > .map-infos > div.categories-links > .title > h3 {
   color: #F8F8F8;
   font-size: 1.3rem;
 }
-footer > div.salon-infos > .map-infos > div.categories-links > ul > li {
+footer > div.salon-infos > .map-infos > div.categories-links > li {
   list-style: disc;
 }
-footer > div.salon-infos > .map-infos > div.categories-links > ul > li > a {
+footer > div.salon-infos > .map-infos > div.categories-links > li > a {
   color: #F8F8F8;
   font-family: "Poppins-LightX";
   font-size: 0.875rem;
 }
-footer > div.salon-infos > .map-infos > div.categories-links > ul > li > a:hover {
+footer > div.salon-infos > .map-infos > div.categories-links > li > a:hover {
   color: #BFAE9F;
 }
 footer > div.salon-infos > .map-infos > div.schedule {
@@ -1814,6 +1807,10 @@ footer > .copyrights > p > a:hover {
   border-bottom: 1px solid #978178;
 }
 .cart-page > form .services-container .service-info .info p {
+  white-space: nowrap; /* Prevents the text from wrapping to the next line */
+  overflow: hidden; /* Hides the overflow text */
+  text-overflow: ellipsis;
+  width: 130px;
   font-size: 0.8rem;
 }
 .cart-page > form .services-container .service-info .info span {
@@ -1989,7 +1986,6 @@ footer > .copyrights > p > a:hover {
 .error404 button:hover {
   background-color: #937962;
   color: #EEE3D7;
-<<<<<<< HEAD
 }
 
 @media screen and (max-width: 750px) {
@@ -2008,8 +2004,11 @@ footer > .copyrights > p > a:hover {
   align-items: center;
   text-align: center;
   gap: 25px;
+  margin: 25px 0;
+  padding: 25px;
   max-width: 1200px;
   width: 100%;
+  border: 1px solid #BFAE9F;
   border-radius: 15px;
 }
 .mentions-legales p,
@@ -2017,7 +2016,7 @@ footer > .copyrights > p > a:hover {
   font-size: 0.8rem;
 }
 .mentions-legales a {
-  color: #937962;
+  color: #978178;
 }
 .mentions-legales .website .contact-info {
   padding: 15px;
@@ -2031,11 +2030,8 @@ footer > .copyrights > p > a:hover {
 .mentions-legales .website .contact-info > figure > img {
   filter: invert(55%) sepia(8%) saturate(838%) hue-rotate(332deg) brightness(94%) contrast(83%);
   height: 20px;
-  width: auto;
 }
 .mentions-legales .website .contact-info > figure > figcaption > p,
 .mentions-legales .website .contact-info > figure > figcaption a {
   color: #937962;
-=======
->>>>>>> 300c5e432d2f48271ca52f3da93469cb5f057277
 }/*# sourceMappingURL=style.css.map */
