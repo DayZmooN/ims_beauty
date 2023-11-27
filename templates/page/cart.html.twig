@@ -33,44 +33,48 @@
 									<div class="week">
 										<h2>{{ item.service.name }}</h2>
 										<div class="day-slots">
-											{% for date, heures in googleCalendarSlots %}
+											{% for date, heures in creneauxParService[item.service.id] %}
 												<div class="container-day">
 													<div class="day">
 														<span>Date :</span>
 														<p>{{ date }}</p>
 													</div>
 													<div class="available-slots">
-														{% for heure in heures %}
+														{% for creneau in heures %}
 															<div class="slot">
-																<input type="radio" id="slot_{{ date }}_{{ heure }}_{{ index }}" name="selectedTimeSlot[{{ item.service.id }}][{{ index }}]" value="{{ date }} {{ heure }}" required>
-																<label for="slot_{{ date }}_{{ heure }}_{{ index }}">{{ heure }}</label>
+																<input type="radio" id="slot_{{ date }}_{{ creneau.start }}_{{ index }}" name="selectedTimeSlot[{{ item.service.id }}][{{ index }}]" value="{{ date }} {{ creneau.start }}">
+																<label for="slot_{{ date }}_{{ creneau.start }}_{{ index }}">{{ creneau.start }}
+																	-
+																	{{ creneau.end }}</label>
 															</div>
 														{% endfor %}
 													</div>
 												</div>
 											{% endfor %}
-
 										</div>
 									</div>
-									<div class="btn_submit_form">
-										<input type="hidden" name="service_id[{{ index }}]" value="{{ item.service.id }}">
-										<button type="submit" class="submit-button">Réserver</button>
-										<a class="delete-btn" href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger">Retirer
-										</a>
-									</div>
+
+								</div>
+								<div class="btn_submit_form">
+									<input type="hidden" name="service_id[{{ index }}]" value="{{ item.service.id }}">
+									<button type="submit" class="submit-button">Réserver</button>
+									<a class="delete-btn" href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger">Retirer</a>
 								</div>
 							</div>
 						</div>
 
+
 					{% endfor %}
 				</div>
-			</form>
-		{% else %}
-			<p>Votre panier est vide.</p>
-		{% endif %}
-	</section>
-	{% include './flash_messages/flash_messages.html.twig' %}<script>
-		document.addEventListener('DOMContentLoaded', function () { // Event listener for opening calendar
+			</div>
+		</form>
+	{% else %}
+		<p>Votre panier est vide.</p>
+	{% endif %}
+</section>
+
+{% include './flash_messages/flash_messages.html.twig' %}<script>
+	document.addEventListener('DOMContentLoaded', function () { // Event listener for opening calendar
 document.querySelectorAll('.open-calendar').forEach(function (button) {
 button.addEventListener('click', function (e) {
 e.preventDefault();
@@ -180,5 +184,100 @@ daySlotsDiv.appendChild(slotsDiv);
 weekContainer.appendChild(daySlotsDiv);
 });
 }
-	</script>
-{% endblock %}
+
+
+// / code pour la pagination
+// Variable globale pour suivre la page actuelle
+var currentPage = 1;
+
+// Event listener for "Page suivante" button
+// Event listener for "Page suivante" button
+document.getElementById('next-page-button').addEventListener('click', function (e) {
+e.preventDefault();
+
+// Récupérez la page suivante depuis la requête actuelle
+var nextPage = currentPage + 1;
+
+// Effectuez une requête AJAX vers la route Symfony pour charger les créneaux horaires de la page suivante
+var xhr = new XMLHttpRequest();
+xhr.open('GET', '{{ path('load_slots') }}?page=' + nextPage, true);
+
+xhr.onload = function () {
+if (xhr.status === 200) {
+var data = JSON.parse(xhr.responseText);
+console.log(data); // Pour le diagnostic
+if (data && data.slots) {
+updateDaysContainer(data.slots);
+currentPage = nextPage;
+} else {
+console.error('Format de données inattendu:', data);
+}
+} else {
+console.error('Erreur lors de la requête AJAX:', xhr.status);
+}
+};
+
+
+xhr.send();
+});
+
+
+// /html slot container
+{
+function updateDaysContainer(slots) {
+var container = document.querySelector('.day-slots');
+if (! container) {
+console.error('Element .day-slots non trouvé');
+return;
+}
+
+container.innerHTML = ''; // Vide les créneaux horaires actuels
+
+slots.forEach(function (slot) { // Pour chaque créneau horaire, créez les éléments HTML correspondants
+var date = slot.date; // Assurez-vous que la structure de 'slot' correspond à vos données
+var heures = slot.heures;
+
+var containerDay = document.createElement('div');
+containerDay.classList.add('container-day');
+
+var dayDiv = document.createElement('div');
+dayDiv.classList.add('day');
+
+var dateSpan = document.createElement('span');
+dateSpan.textContent = 'Date :';
+var dateP = document.createElement('p');
+dateP.textContent = date;
+
+dayDiv.appendChild(dateSpan);
+dayDiv.appendChild(dateP);
+containerDay.appendChild(dayDiv);
+
+var availableSlotsDiv = document.createElement('div');
+availableSlotsDiv.classList.add('available-slots');
+
+heures.forEach(function (heure) {
+var slotDiv = document.createElement('div');
+slotDiv.classList.add('slot');
+
+var input = document.createElement('input');
+input.type = 'radio';
+input.id = 'slot_' + date + '_' + heure; // Assurez-vous que cet ID est unique
+input.name = 'selectedTimeSlot'; // Mettez à jour selon la logique de votre formulaire
+input.value = date + ' ' + heure;
+
+var label = document.createElement('label');
+label.htmlFor = input.id;
+label.textContent = heure;
+
+slotDiv.appendChild(input);
+slotDiv.appendChild(label);
+availableSlotsDiv.appendChild(slotDiv);
+});
+
+containerDay.appendChild(availableSlotsDiv);
+container.appendChild(containerDay);
+});
+}
+
+}
+</script>{% endblock %}
