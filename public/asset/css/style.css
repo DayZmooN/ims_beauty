@@ -623,15 +623,15 @@ footer > div.salon-infos > .map-infos > div.categories-links > .title > h3 {
   color: #F8F8F8;
   font-size: 1.3rem;
 }
-footer > div.salon-infos > .map-infos > div.categories-links > li {
+footer > div.salon-infos > .map-infos > div.categories-links > ul > li {
   list-style: disc;
 }
-footer > div.salon-infos > .map-infos > div.categories-links > li > a {
+footer > div.salon-infos > .map-infos > div.categories-links > ul > li > a {
   color: #F8F8F8;
   font-family: "Poppins-LightX";
   font-size: 0.875rem;
 }
-footer > div.salon-infos > .map-infos > div.categories-links > li > a:hover {
+footer > div.salon-infos > .map-infos > div.categories-links > ul > li > a:hover {
   color: #BFAE9F;
 }
 footer > div.salon-infos > .map-infos > div.schedule {
