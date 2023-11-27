@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Users; // Import the Users entity
 use App\Repository\UsersRepository;
+use App\Repository\AppointementsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,14 +14,30 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractController
 {
+    private $appointementsRepository;
+    public function __construct(AppointementsRepository $appointementsRepository)
+    {
+        $this->appointementsRepository = $appointementsRepository;
+    }
+
     #[Route('/dashboard', name: 'app_dashboard')]
     public function dashboard(): Response
     {
+        /** @var Users $user */
         $user = $this->getUser();
-
+    
+        if (!$user) {
+            throw $this->createNotFoundException('User not found.');
+        }
+    
+        $upcomingAppointments = $this->appointementsRepository->findUpcomingByUser($user);       
+        $pastAppointments = $this->appointementsRepository->findPastByUser($user);
+        
         return $this->render('page/dashboard.html.twig', [
             'controller_name' => 'DashboardController',
             'user' => $user,
+            'upcomingAppointments' => $upcomingAppointments,
+            'pastAppointments' => $pastAppointments,
         ]);
     }
 

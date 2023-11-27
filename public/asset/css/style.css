@@ -420,7 +420,7 @@ input[type=date]::-webkit-calendar-picker-indicator {
 .flash-messages-container {
   position: fixed;
   /* Fixed position */
-  display: flex;
+  display: none;
   flex-direction: column-reverse;
   align-items: flex-start;
   overflow: auto;
@@ -481,6 +481,10 @@ header > .nav-menu > nav > ul > li {
   align-items: center;
   justify-content: center;
   height: 100px;
+<<<<<<< HEAD
+=======
+  padding-right: 5px;
+>>>>>>> 786e5b8e3d9b158d1a69e44335f7c99f11360278
   cursor: pointer;
 }
 header > .nav-menu > nav > ul > li::before {
@@ -509,7 +513,7 @@ header > .nav-menu > nav > ul > li > a {
 header > .nav-menu > nav > ul > li > a:hover {
   color: #4D4D4D;
 }
-@media screen and (max-width: 865px) {
+@media screen and (max-width: 790px) {
   header > .nav-menu > nav > ul {
     display: none;
     justify-content: center;
@@ -565,7 +569,7 @@ header > .nav-menu > figure .cart-item-count {
 header > .nav-menu > figure .responsive-menu {
   display: none;
 }
-@media screen and (max-width: 865px) {
+@media screen and (max-width: 790px) {
   header > .nav-menu > figure .responsive-menu {
     display: block;
   }
