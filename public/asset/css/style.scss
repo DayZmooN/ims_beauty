@@ -280,7 +280,7 @@ header {
         align-items: center;
         justify-content: center;
         height: 100px;
-        padding: 0 10px;
+        padding-right: 5px;
         cursor: pointer;
 
         &::before {
@@ -315,7 +315,7 @@ header {
         }
       }
 
-      @media screen and (max-width: 865px) {
+      @media screen and (max-width: 790px) {
         display: none;
         justify-content: center;
       }
@@ -386,7 +386,7 @@ header {
         display: none;
       }
 
-      @media screen and (max-width: 865px) {
+      @media screen and (max-width: 790px) {
         .responsive-menu {
           display: block;
         }

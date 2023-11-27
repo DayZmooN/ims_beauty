@@ -477,7 +477,7 @@ header > .nav-menu > nav > ul > li {
   align-items: center;
   justify-content: center;
   height: 100px;
-  padding: 0 10px;
+  padding-right: 5px;
   cursor: pointer;
 }
 header > .nav-menu > nav > ul > li::before {
@@ -506,7 +506,7 @@ header > .nav-menu > nav > ul > li > a {
 header > .nav-menu > nav > ul > li > a:hover {
   color: #4D4D4D;
 }
-@media screen and (max-width: 865px) {
+@media screen and (max-width: 790px) {
   header > .nav-menu > nav > ul {
     display: none;
     justify-content: center;
@@ -568,7 +568,7 @@ header > .nav-menu > figure .cart-link .cart-item-count {
 header > .nav-menu > figure .responsive-menu {
   display: none;
 }
-@media screen and (max-width: 865px) {
+@media screen and (max-width: 790px) {
   header > .nav-menu > figure .responsive-menu {
     display: block;
   }
