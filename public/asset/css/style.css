@@ -481,6 +481,7 @@ header > .nav-menu > nav > ul > li {
   align-items: center;
   justify-content: center;
   height: 100px;
+  padding-right: 5px;
   cursor: pointer;
 }
 header > .nav-menu > nav > ul > li::before {
