@@ -1,134 +1,76 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon Panier{% endblock %}
-{% block description %}Liste de vos soins en attentes de dates de rendez-vous. Aucun paiement n'est transmis en ligne, réservez simplement et profitez de votre soins à la date choisie.{% endblock %}
-
 {% block body %}
 	<section class="cart-page">
 		{% if servicesWithForms is not empty %}
-			<form action="{{ path('app_cart') }}" method="POST">
-				<h1>Mon Panier</h1>
+			<h1>Mon Panier</h1>
+
+			<form action="{{ path('cart_submit') }}" method="POST">
 				<div class="services-container">
-					{% for item in servicesWithForms %}
+					{% for index, item in servicesWithForms %}
 						<div class="service-item" data-service-id="{{ item.service.id }}">
 							<div class="service-info">
 								<div class="info">
-									<p>{{ item.service.name }}
-										/ Catégorie Name</p>
+									<p>{{ item.service.name }}/ Catégorie Name</p>
 									<span>{{ item.service.price }}€</span>
+									<span data-service-duration="{{ item.service.duration }}">{{ item.service.duration }}</span>
 								</div>
 								<div class="buttons">
 									<a href="#" class="open-calendar">
-										<img src="{{asset('asset/media/icons/calendar.svg')}}" alt="Icône calendrier pour réservation" class="icons-button icons">
+										<img src="{{asset('asset/media/icons/calendar.svg')}}" alt="" class="icons-button icons">
 									</a>
 									<a href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger remove-from-cart-link">
-										<img src="{{asset('asset/media/icons/shopRemove.svg')}}" alt="Icône panier soustraction pour retirer du panier" class="icons-button icons">
+										<img src="{{asset('asset/media/icons/shopRemove.svg')}}" alt="" class="icons-button icons">
 									</a>
 								</div>
 							</div>
 							<div id="calendar-{{ item.service.id }}" class="calendar-options" style="display: none;">
 								<h4>Réserver:</h4>
 								<div class="calendar-container">
-									<div class="months">
-										<div class="month" id="month-calendar">
-											<p>Décembre 2023</p>
-										</div>
-										<div class="month">
-											<p>Janvier 2024</p>
-										</div>
-										<div class="month">
-											<p>Février 2024</p>
-										</div>
+									<div
+										class="months">{# Votre code pour les mois ici s'il est nécessaire #}
 									</div>
 									<div class="week">
+										<h2>{{ item.service.name }}</h2>
 										<div class="day-slots">
-											<div class="day">
-												<p>Lun</p>
-												<span>2</span>
-											</div>
-											<div class="available-slots">
-												<div class="slot">
-													<input type="radio" name="available-slot" id="available-slot">
-													<label for="available-slot">16:00</label>
+											{% for date, heures in creneauxParService[item.service.id] %}
+												<div class="container-day">
+													<div class="day">
+														<span>Date :</span>
+														<p>{{ date }}</p>
+													</div>
+													<div class="available-slots">
+														{% for creneau in heures %}
+															<div class="slot">
+																<input type="radio" id="slot_{{ date }}_{{ creneau.start }}_{{ index }}" name="selectedTimeSlot[{{ item.service.id }}][{{ index }}]" value="{{ date }} {{ creneau.start }}">
+																<label for="slot_{{ date }}_{{ creneau.start }}_{{ index }}">{{ creneau.start }}
+																	-
+																	{{ creneau.end }}</label>
+															</div>
+														{% endfor %}
+													</div>
 												</div>
-												<div class="slot">
-													<input type="radio" name="available-slot" id="available-slot">
-													<label for="available-slot">16:00</label>
-												</div>
-												<div class="slot">
-													<input type="radio" name="available-slot" id="available-slot">
-													<label for="available-slot">16:00</label>
-												</div>
-											</div>
-										</div>
-										<div class="day-slots">
-											<div class="day">
-												<p>Mar</p>
-												<span>2</span>
-											</div>
-
-											<div class="available-slots">
-												<div class="slot">
-													<input type="radio" name="available-slot" id="available-slot">
-													<label for="available-slot">16:00</label>
-												</div>
-											</div>
-										</div>
-										<div class="day-slots">
-											<div class="day">
-												<p>Mer</p>
-												<span>3</span>
-											</div>
-
-											<div class="available-slots">
-												<div class="slot">
-													<input type="radio" name="available-slot" id="available-slot">
-													<label for="available-slot">16:00</label>
-												</div>
-											</div>
-										</div>
-										<div class="day-slots">
-											<div class="day">
-												<p>Jeu</p>
-												<span>4</span>
-											</div>
-
-											<div class="available-slots">
-												<div class="slot">
-													<input type="radio" name="available-slot" id="available-slot">
-													<label for="available-slot">16:00</label>
-												</div>
-											</div>
-										</div>
-										<div class="day-slots">
-											<div class="day">
-												<p>Ven</p>
-												<span>5</span>
-											</div>
-
-											<div class="available-slots">
-												<div class="slot">
-													<input type="radio" name="available-slot" id="available-slot">
-													<label for="available-slot">16:00</label>
-												</div>
-											</div>
+											{% endfor %}
 										</div>
 									</div>
+
+								</div>
+								<div class="btn_submit_form">
+									<input type="hidden" name="service_id[{{ index }}]" value="{{ item.service.id }}">
+									<button type="submit" class="submit-button">Réserver</button>
+									<a class="delete-btn" href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger">Retirer</a>
 								</div>
 							</div>
 						</div>
+
+
 					{% endfor %}
 				</div>
-				<button type="submit" class="submit-button">Confirmer les Rendez-vous</button>
-			</form>
-		{% else %}
-			<form action="{{ path('app_cart') }}" method="POST">
-				<h1>Mon Panier</h1>
-				<div class="services-container">
-					<p>Votre panier est vide.</p>
-				</div>
-			</form>
-		{% endif %}
-	</section>
-	{% include './flash_messages/flash_messages.html.twig' %}
-{% endblock %}
+			</div>
+		</form>
+	{% else %}
+		<p>Votre panier est vide.</p>
+	{% endif %}
+</section>
+
+{% include './flash_messages/flash_messages.html.twig' %}{% endblock %}

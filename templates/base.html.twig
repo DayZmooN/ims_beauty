@@ -2,12 +2,16 @@
 <html lang="fr">
 	<head>
 		<meta charset="UTF-8">
-		<title>{% block title %}Bienvenue chez IMS Beauty - Salon de beauté Viriati{% endblock %}</title>
+		<title>
+			{% block title %}Bienvenue chez IMS Beauty - Salon de beauté Viriati
+			{% endblock %}
+		</title>
 		<meta name="description" content="{% block description %}IMS Beauty, votre salon de beauté à Viriat, offrant des services de qualité pour vos soins et rendez-vous beauté.{% endblock %}">
 		<link rel="canonical" href="{% block canonical %}http://www.imsbeautyviriat.com{% endblock %}">
 		<meta name="theme-color" content="#937962"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="icon" href="{{asset('asset/media/logo/LogoKhakiText.svg')}}">
+		<link
+		rel="icon" href="{{asset('asset/media/logo/LogoKhakiText.svg')}}">
 
 		<!-- Social Media Meta Tags -->
 		<meta property="og:title" content="{% block og_title %}Bienvenue chez IMS Beauty - Viriat{% endblock %}">
@@ -17,7 +21,7 @@
 		<meta name="twitter:card" content="summary_large_image">
 
 		{% block stylesheets %}
-		<link rel="stylesheet" href="{{ asset('asset/css/style.css') }}">
+			<link rel="stylesheet" href="{{ asset('asset/css/style.css') }}">
 		{% endblock %}
 	</head>
 
@@ -26,8 +30,10 @@
 
 		<main>
 			{% block body %}
+				{% include './flash_messages/flash_messages.html.twig' %}
 
-			{% include './flash_messages/flash_messages.html.twig' %}
+
+				{% include './flash_messages/flash_messages.html.twig' %}
 			{% endblock %}
 			<div id="cookieConsentContainer" class="cookie-consent-container" style="display: none;">
 				<p>This website uses cookies to ensure you get the best experience on our website.</p>
@@ -38,8 +44,10 @@
 
 		{% include './components/footer.html.twig' %}
 		{% block javascripts %}
-		<script src="{{asset('/asset/js/main.js')}}"></script>
-		<script src="{{ asset('/asset/js/flashMessageHandler.js') }}"></script>
+			<script src="{{asset('/asset/js/main.js')}}"></script>
+			<script src="{{ asset('/asset/js/flashMessageHandler.js') }}"></script>
+			<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 		{% endblock %}
 	</body>
 </html>

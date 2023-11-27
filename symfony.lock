@@ -36,16 +36,13 @@
         }
     },
     "google/apiclient": {
-        "version": "2.9",
+        "version": "2.15",
         "recipe": {
             "repo": "github.com/symfony/recipes-contrib",
             "branch": "main",
-            "version": "2.0",
-            "ref": "49c5d7a66d863d28513979bf0666dc77599100c0"
-        },
-        "files": [
-            "./config/packages/google_apiclient.yaml"
-        ]
+            "version": "2.10",
+            "ref": "07a97ec434d43b7903c78069a04c92adb6442e52"
+        }
     },
     "phpunit/phpunit": {
         "version": "9.6",
