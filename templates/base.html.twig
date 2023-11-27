@@ -29,6 +29,11 @@
 
 			{% include './flash_messages/flash_messages.html.twig' %}
 			{% endblock %}
+			<div id="cookieConsentContainer" class="cookie-consent-container" style="display: none;">
+				<p>This website uses cookies to ensure you get the best experience on our website.</p>
+				<button id="acceptCookies">Accept</button>
+				<button id="declineCookies">Decline</button>
+			</div>
 		</main>
 
 		{% include './components/footer.html.twig' %}

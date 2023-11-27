@@ -447,6 +447,27 @@ input[type=date]::-webkit-calendar-picker-indicator {
   animation-delay: 5s;
 }
 
+.cookie-consent-container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #f4f4f4;
+  color: #937962;
+  padding: 10px;
+  text-align: center;
+}
+.cookie-consent-container > button {
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+  color: #937962;
+  border: 1px solid #BFAE9F;
+}
+.cookie-consent-container > button:hover {
+  background-color: #BFAE9F;
+  color: #F5EFE8;
+}
+
 header {
   z-index: 999;
   display: flex;

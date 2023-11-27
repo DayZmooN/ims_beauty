@@ -20,6 +20,24 @@ document.addEventListener('DOMContentLoaded', function() {
     handleCartAddition();
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    var consentGiven = localStorage.getItem('cookieConsent');
+    if (!consentGiven) {
+        document.getElementById('cookieConsentContainer').style.display = 'block';
+    }
+
+    document.getElementById('acceptCookies').addEventListener('click', function() {
+        localStorage.setItem('cookieConsent', 'true');
+        document.getElementById('cookieConsentContainer').style.display = 'none';
+    });
+
+    document.getElementById('declineCookies').addEventListener('click', function() {
+        document.getElementById('cookieConsentContainer').style.display = 'none';
+        // Implement what happens when cookies are declined (optional)
+    });
+});
+
+
 function handleDropdownMenus() {
     const userIcon = document.querySelector('.user-icon');
     if (userIcon) {

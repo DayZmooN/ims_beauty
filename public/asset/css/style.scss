@@ -246,6 +246,30 @@
   animation-delay: 5s;
 }
 
+//~ ------------ COOKIE POPUP ------------ //
+
+.cookie-consent-container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #f4f4f4;
+  color: $accent-BrownShadow;
+  padding: 10px;
+  text-align: center;
+
+  &>button{
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    color: $accent-BrownShadow;
+    border: 1px solid $Khaki;
+    &:hover{
+      background-color: $Khaki;
+      color: $primary-Alabaster;
+    }
+  }
+}
+
 
 //& -------------------- STYLING -------------------- //
 //~ ------------HEADER & FOOTER------------ //
