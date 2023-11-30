@@ -48,6 +48,11 @@ class Services
         $this->promotions = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        return $this->getName(); // This will return the service's name
+    }
+
     public function getId(): ?int
     {
         return $this->id;
