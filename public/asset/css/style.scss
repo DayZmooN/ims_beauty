@@ -1873,7 +1873,7 @@ footer {
     gap: 15px;
     max-width: 1200px;
     width: 90%;
-    padding: 25px;
+    padding: 25px 5px;
     border: 1px solid $accent-BrownShadow;
     border-radius: $radius-15;
     margin: 10px auto;
@@ -1909,10 +1909,6 @@ footer {
 
         .info {
           p {
-            white-space: nowrap; /* Prevents the text from wrapping to the next line */
-            overflow: hidden; /* Hides the overflow text */
-            text-overflow: ellipsis;
-            width: 130px;
             font-size: 0.8rem;
           }
 

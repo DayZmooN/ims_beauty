@@ -1823,7 +1823,7 @@ footer > .copyrights > p > a:hover {
   gap: 15px;
   max-width: 1200px;
   width: 90%;
-  padding: 25px;
+  padding: 25px 5px;
   border: 1px solid #937962;
   border-radius: 15px;
   margin: 10px auto;
@@ -1856,10 +1856,6 @@ footer > .copyrights > p > a:hover {
   border-bottom: 1px solid #978178;
 }
 .cart-page > form .services-container .service-info .info p {
-  white-space: nowrap; /* Prevents the text from wrapping to the next line */
-  overflow: hidden; /* Hides the overflow text */
-  text-overflow: ellipsis;
-  width: 130px;
   font-size: 0.8rem;
 }
 .cart-page > form .services-container .service-info .info span {
