@@ -26,6 +26,20 @@ class ServicesRepository extends ServiceEntityRepository
         return $service ? $service->getDuration() : null;
     }
 
+    public function findServicesWithPromotions($categoryId = null)
+{
+    $queryBuilder = $this->createQueryBuilder('s')
+        ->leftJoin('s.promotions', 'p')
+        ->addSelect('p');
+
+    if ($categoryId !== null) {
+        $queryBuilder->andWhere('s.category = :categoryId')
+            ->setParameter('categoryId', $categoryId);
+    }
+
+    return $queryBuilder->getQuery()->getResult();
+}
+
     //    /**
     //     * @return Services[] Returns an array of Services objects
     //     */

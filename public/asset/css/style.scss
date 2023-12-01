@@ -248,6 +248,56 @@
   animation-delay: 5s;
 }
 
+//~ ------------ COOKIE POPUP ------------ //
+
+.cookie-consent-container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #f4f4f4;
+  color: $accent-BrownShadow;
+  padding: 10px;
+  text-align: center;
+
+  &>button{
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    color: $accent-BrownShadow;
+    border: 1px solid $Khaki;
+    &:hover{
+      background-color: $Khaki;
+      color: $primary-Alabaster;
+    }
+  }
+}
+
+
+//~ ------------ PROMOTION TAG ------------ //
+
+.promotion-info{
+  z-index: 1;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  padding: 5px;
+  color: $primary-Alabaster;
+  background-color: $Cinereous;
+  border-radius: $radius-5;
+  border: 1px solid $accent-BrownShadow;
+  transform: rotate(-15deg);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); /* Adding a subtle shadow */
+  transition: transform 0.3s ease-in-out;
+  &:hover{
+    transform: rotate(0deg) scale(1.1);
+  }
+}
+
 //& -------------------- STYLING -------------------- //
 //~ ------------HEADER & FOOTER------------ //
 //? -------- HEADER -------- //
@@ -1204,6 +1254,7 @@ footer {
 
     & > .service-detail-content {
       & > .service-thumbnail {
+        position: relative;
         & > img {
           height: 350px;
           width: 100%;
@@ -1330,6 +1381,7 @@ footer {
     }
 
     .service-card {
+      position: relative;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-evenly;
