@@ -5,6 +5,8 @@ namespace App\Service;
 use App\Repository\ServicesRepository;
 
 use App\Service\GoogleClientService;
+use DateInterval;
+use DatePeriod;
 use DateTime;
 use DateTimeZone;
 use Exception;
@@ -86,29 +88,41 @@ class GoogleCalendarService
 
     private function calculateAvailableSlots($events, $serviceDuration)
     {
-        $startDate = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
-        $endDate = new \DateTime('+5 days');
-        $interval = new \DateInterval('P1D');
-        $period = new \DatePeriod($startDate, $interval, $endDate);
+        $startDate = new DateTime('now', new DateTimeZone('Europe/Paris'));
+        $endDate = new DateTime('+5 days');
+        $interval = new DateInterval('P1D');
+        $period = new DatePeriod($startDate, $interval, $endDate);
 
         $busyTimes = [];
         foreach ($events->getItems() as $event) {
-            $start = new \DateTime($event->start->dateTime);
-            $end = new \DateTime($event->end->dateTime);
-            $busyTimes[] = ['start' => $start, 'end' => $end];
+            $busyTimes[] = [
+                'start' => new DateTime($event->start->dateTime),
+                'end' => new DateTime($event->end->dateTime)
+            ];
         }
 
         $availableSlots = [];
         foreach ($period as $date) {
-            // Génération de créneaux de 9h à 17h avec une pause de 11h à 14h
             for ($hour = 9; $hour <= 17; $hour++) {
-                // Vérifie si l'heure actuelle est dans la plage de pause
-                if ($hour >= 11 && $hour < 14) {
-                    continue; // Saute la plage horaire de pause
-                }
-
+                if ($hour >= 11 && $hour < 14) continue;
                 for ($minute = 0; $minute < 60; $minute += $serviceDuration) {
-                    $this->addSlotIfAvailable($date, $hour, $minute, $busyTimes, $availableSlots, $serviceDuration);
+                    $slotStart = (clone $date)->setTime($hour, $minute);
+                    $slotEnd = (clone $slotStart)->modify('+' . $serviceDuration . ' minutes');
+
+                    $isAvailable = true;
+                    foreach ($busyTimes as $busyTime) {
+                        if ($slotStart < $busyTime['end'] && $slotEnd > $busyTime['start']) {
+                            $isAvailable = false;
+                            break;
+                        }
+                    }
+
+                    if ($isAvailable) {
+                        $availableSlots[] = [
+                            'start' => $slotStart->format('Y-m-d H:i:s'),
+                            'end' => $slotEnd->format('Y-m-d H:i:s')
+                        ];
+                    }
                 }
             }
         }
@@ -116,44 +130,43 @@ class GoogleCalendarService
         return $availableSlots;
     }
 
-
-
-    private function addSlotIfAvailable($date, $hour, $minute, $busyTimes, &$availableSlots, $serviceDuration)
-    {
-        $slotStart = clone $date;
-        $slotStart->setTime($hour, $minute);
-        $slotEnd = (clone $slotStart)->modify('+' . $serviceDuration . ' minutes');
-
-        $isAvailable = true;
-        foreach ($busyTimes as $busyTime) {
-            if ($slotStart < $busyTime['end'] && $slotEnd > $busyTime['start']) {
-                $isAvailable = false;
-                break;
-            }
-        }
-
-        if ($isAvailable) {
-            $availableSlots[] = [
-                'start' => $slotStart->format('Y-m-d H:i:s'),
-                'end' => $slotEnd->format('Y-m-d H:i:s')
-            ];
-        }
-    }
 
     public function updateAvailableSlots($serviceId, $reservedDateTime)
     {
-        // Récupérer la liste des créneaux disponibles actuelle
-        $availableSlots = $this->getAvailableSlotsGoogle($serviceId);
+        $service = new Google_Service_Calendar($this->client);
+        $optParams = [
+            'timeMin' => $reservedDateTime->format('c'),
+            'timeMax' => (clone $reservedDateTime)->modify('+1 day')->format('c'),
+            'singleEvents' => true,
+            'orderBy' => 'startTime',
+        ];
 
-        // Supprimer le créneau réservé de la liste des créneaux disponibles
-        $formattedReservedDateTime = $reservedDateTime->format('Y-m-d H:i:s');
-        $availableSlots = array_filter($availableSlots, function ($slot) use ($formattedReservedDateTime) {
-            return $slot['start'] !== $formattedReservedDateTime;
-        });
+        try {
+            $events = $service->events->listEvents($this->calendarId, $optParams);
 
+            foreach ($events->getItems() as $event) {
+                $eventStart = new DateTime($event->start->dateTime);
+                $eventEnd = new DateTime($event->end->dateTime);
 
-        return $availableSlots;
+                if ($eventStart == $reservedDateTime) {
+                    // Supprimer l'événement ou le marquer comme occupé
+                    $service->events->delete($this->calendarId, $event->getId());
+                    // Vous pouvez également choisir de mettre à jour l'événement au lieu de le supprimer
+                    // $event->setTransparency('opaque');
+                    // $service->events->update($this->calendarId, $event->getId(), $event);
+                    break; // Sortir de la boucle après avoir traité l'événement
+                }
+            }
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            // Gérer l'exception
+        }
+
+        // Recharger et retourner les créneaux disponibles mis à jour
+        return $this->getAvailableSlotsGoogle($serviceId);
     }
+
+
 
 
 
