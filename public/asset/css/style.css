@@ -420,7 +420,6 @@ input[type=date]::-webkit-calendar-picker-indicator {
 .flash-messages-container {
   position: fixed;
   /* Fixed position */
-  display: none;
   flex-direction: column-reverse;
   align-items: flex-start;
   overflow: auto;
@@ -2078,5 +2077,83 @@ footer > .copyrights > p > a:hover {
 }
 .mentions-legales .website .contact-info > figure > figcaption > p,
 .mentions-legales .website .contact-info > figure > figcaption a {
+  color: #937962;
+}
+
+.request_password_container,
+.reset_password {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 650px;
+  width: 90%;
+  padding: 50px;
+  gap: 10px;
+  row-gap: 20px;
+  border: 1px solid #978178;
+  border-radius: 5px;
+  background: url("../media/deco/massage-flip.svg") bottom right/150px no-repeat;
+  text-align: center;
+}
+.request_password_container #password_reset_request_form_email,
+.request_password_container #password_reset_form_plainPassword,
+.request_password_container #password_reset_form_password,
+.reset_password #password_reset_request_form_email,
+.reset_password #password_reset_form_plainPassword,
+.reset_password #password_reset_form_password {
+  width: -webkit-fill-available;
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+}
+.request_password_container > h1,
+.reset_password > h1 {
+  color: #978178;
+  padding: 15px 5px;
+  text-align: center;
+}
+@media screen and (max-width: 530px) {
+  .request_password_container > h1,
+  .reset_password > h1 {
+    font-size: 2.1rem;
+  }
+}
+.request_password_container > .error-login,
+.reset_password > .error-login {
+  color: #AB4545;
+}
+.request_password_container .button-links-request_email,
+.reset_password .button-links-request_email {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+  width: 100%;
+  background-color: #BFAE9F;
+  color: #F5EFE8;
+  border-radius: 5px;
+  padding: 15px 25px;
+}
+.request_password_container .button-links-request_email:hover,
+.reset_password .button-links-request_email:hover {
+  background-color: #937962;
+  color: #EEE3D7;
+}
+.request_password_container .button-links-request_email > .login-troubleshooting,
+.reset_password .button-links-request_email > .login-troubleshooting {
+  display: flex;
+  flex-direction: column;
+}
+.request_password_container .button-links-request_email > .login-troubleshooting > a,
+.reset_password .button-links-request_email > .login-troubleshooting > a {
+  font-size: 0.75rem;
+  color: #9E9E9E;
+}
+.request_password_container .button-links-request_email > .login-troubleshooting > a:hover,
+.reset_password .button-links-request_email > .login-troubleshooting > a:hover {
   color: #937962;
 }/*# sourceMappingURL=style.css.map */

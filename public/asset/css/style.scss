@@ -217,7 +217,6 @@
 .flash-messages-container {
   position: fixed;
   /* Fixed position */
-  display: none;
   flex-direction: column-reverse;
   align-items: flex-start;
   overflow: auto;
@@ -2181,6 +2180,81 @@ footer {
           a {
             color: $accent-BrownShadow;
           }
+        }
+      }
+    }
+  }
+}
+
+//~ ------------MENTION pass ------------ //
+.request_password_container,
+.reset_password {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 650px;
+  width: 90%;
+  padding: 50px;
+  gap: 10px;
+  row-gap: 20px;
+  border: 1px solid $Cinereous;
+  border-radius: $radius-5;
+  background: url("../media/deco/massage-flip.svg") bottom right / 150px
+    no-repeat;
+  text-align: center;
+
+  #password_reset_request_form_email,
+  #password_reset_form_plainPassword,
+  #password_reset_form_password {
+    width: -webkit-fill-available;
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+  }
+  & > h1 {
+    color: $Cinereous;
+    padding: 15px 5px;
+    text-align: center;
+
+    @media screen and (max-width: 530px) {
+      font-size: 2.1rem;
+    }
+  }
+
+  & > .error-login {
+    color: $error-Red;
+  }
+  .button-links-request_email {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+    width: 100%;
+
+    background-color: $Khaki;
+    color: $primary-Alabaster;
+    border-radius: $radius-5;
+    padding: 15px 25px;
+
+    &:hover {
+      background-color: $accent-BrownShadow;
+      color: $secondary-WhiteChocolate;
+    }
+
+    & > .login-troubleshooting {
+      display: flex;
+      flex-direction: column;
+
+      & > a {
+        font-size: 0.75rem;
+        color: $default-grey;
+
+        &:hover {
+          color: $accent-BrownShadow;
         }
       }
     }

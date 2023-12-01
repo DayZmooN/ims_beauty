@@ -15,8 +15,13 @@ class PasswordResetRequestFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class)
-            ->add('send', SubmitType::class);
+            ->add('email', EmailType::class, [
+                'attr' => [
+                    'label' => 'Votre adresse e-mail',
+                    'placeholder' => 'Votre adresse e-mail',
+                ],
+            ]);
+        // ->add('send', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
