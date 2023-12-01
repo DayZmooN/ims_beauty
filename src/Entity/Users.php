@@ -12,6 +12,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Model\VerifyEmailInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
 
 #[UniqueEntity(fields: ['email'], message: 'Cet email est déjà utilisé.')]
@@ -31,6 +32,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      */
+
     #[ORM\Column]
     private ?string $password = null;
 
@@ -57,6 +59,14 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
+
+
+    #[ORM\Column(type: "string", length: 255, nullable: true)]
+    private $resetToken;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $resetTokenExpiration = null;
+
 
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
@@ -256,6 +266,61 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCreatedAt(\DateTimeImmutable $created_at): static
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+    public function getResetToken(): ?string
+    {
+        return $this->resetToken;
+    }
+
+    public function setResetToken(?string $resetToken): self
+    {
+        $this->resetToken = $resetToken;
+        return $this;
+    }
+    // Dans votre entité Users
+
+    public function setResetTokenExpiration(\DateTimeInterface $resetTokenExpiration): self
+    {
+        $this->resetTokenExpiration = $resetTokenExpiration;
+        return $this;
+    }
+
+    public function isPasswordResetTokenExpired(): bool
+    {
+        if ($this->resetToken === null || $this->resetTokenExpiration === null) {
+            return true; // Le token n'a pas été défini, donc il est expiré.
+        }
+
+        if ($this->resetTokenExpiration instanceof \DateTime) {
+            // Récupérez la date actuelle
+            $now = new \DateTime();
+
+            // Calculez la date d'expiration en ajoutant 30 minutes à la date de création du token
+            $expirationTime = clone $this->resetTokenExpiration;
+            $expirationTime->add(new \DateInterval('PT30M'));
+
+            // Comparez la date actuelle avec la date d'expiration
+            if ($now > $expirationTime) {
+                return true; // Le token a expiré.
+            }
+
+            return false; // Le token est toujours valide.
+        } else {
+            return true; // En cas d'erreur, considérez que le token a expiré
+        }
+    }
+    private $plainPassword;
+
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword(string $plainPassword): self
+    {
+        $this->plainPassword = $plainPassword;
 
         return $this;
     }

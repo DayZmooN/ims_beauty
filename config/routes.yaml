@@ -36,3 +36,8 @@ category_list_services:
     defaults:
         controller: 'App\Controller\BookingServicesController::listServices'
         googleApiKey: 'AIzaSyAJOE5ji9Sz-bj7ksBG8kWV9BXc1y_wk7E' # Remplacez par votre clé API Google réelle
+
+reset_password:
+    path: '/reset-password/{token}'
+    controller: App\Controller\PasswordResetController::reset
+    methods: ['GET', 'POST']

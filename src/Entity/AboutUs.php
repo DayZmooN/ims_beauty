@@ -6,6 +6,7 @@ use App\Repository\AboutUsRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+
 #[ORM\Entity(repositoryClass: AboutUsRepository::class)]
 class AboutUs
 {
@@ -20,7 +21,7 @@ class AboutUs
     #[ORM\Column(length: 1000, nullable: true)]
     private ?string $quote = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(length: 1000)]
     private ?string $description = null;
 
     #[ORM\Column(length: 1000, nullable: true)]
