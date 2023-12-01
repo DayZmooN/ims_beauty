@@ -51,11 +51,10 @@ class PasswordResetController extends AbstractController
                     ->html("Pour réinitialiser votre mot de passe, veuillez cliquer sur ce lien : <a href=\"$url\">$url</a>");
 
                 $mailer->send($email);
-
-                // Afficher un message ou rediriger l'utilisateur
+                $this->addFlash('success', 'Un e-mail de réinitialisation de mot de passe a été envoyé à votre adresse.');
             } else {
                 // Gérer le cas où l'e-mail n'est pas trouvé
-                $this->addFlash('danger', 'Adresse e-mail introuvable.');
+                $this->addFlash('error', 'Adresse e-mail introuvable.');
             }
         }
 
