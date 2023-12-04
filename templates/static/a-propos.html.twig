@@ -40,6 +40,7 @@
 			</div>
 			<div class="form-container">
 				<form action="{{ path('contact_send') }}" method="POST">
+				<input type="hidden" name="_csrf_token" value="{{ csrf_token('contact_form') }}">
 					<input type="text" name="name" placeholder="Votre prénom" required>
 					<input type="text" name="email" placeholder="Votre email" required>
 					<input type="text" name="phone" placeholder="Votre numéro" required>

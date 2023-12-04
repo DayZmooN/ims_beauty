@@ -8,6 +8,8 @@
   padding: 0;
 }
 
+//* --- Blocks Styling ---  //
+
 body {
   box-sizing: border-box;
   display: flex;
@@ -18,13 +20,22 @@ body {
   min-height: 100vh;
   background-color: $default-White;
 }
+
 main{
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
 }
+
 img {
   display: inline-block;
   max-width: 100%;
 }
+
+//* --- Text Styling ---  //
 
 a,
 p,
@@ -47,8 +58,9 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 ::selection {
-  background: $Khaki; /* Background color of the selection */
-  color: $primary-Alabaster; /* Color of the text during selection */
+  /* Ce qui est selectionné par l'utilisateur, surligné */
+  background: $Khaki;
+  color: $primary-Alabaster;
 }
 
 h1 {
@@ -78,6 +90,8 @@ h6{
     font-size: 1.25rem;
 }
 
+//* --- Inputs Styling ---  //
+
 button {
   outline: transparent;
   border: none;
@@ -87,15 +101,7 @@ button {
   font-size: 1.1rem;
 }
 
-main{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 80vh;
-}
-
-input,textarea{
+input,textarea {
   padding: 10px 5px;
   background-color: $secondary-WhiteChocolate;
   color: $default-grey;
@@ -106,13 +112,12 @@ input,textarea{
   border-radius: $radius-5;
 }
 
-/* Change checkbox color */
 input[type="checkbox"] {
-  accent-color: $Khaki; /* Your preferred color */
+  accent-color: $Khaki;
 }
 
 input[type="radio"] {
-  accent-color: $Khaki; /* Your preferred color */
+  accent-color: $Khaki;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
