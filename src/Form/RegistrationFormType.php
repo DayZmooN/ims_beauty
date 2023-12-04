@@ -33,7 +33,6 @@ class RegistrationFormType extends AbstractType
                 'label' => false,
                 'attr' => ['placeholder' => 'Votre numero de téléphone'],
                 'required' => true,
-                // Autres options de configuration du champ TelType
             ])->add('date_of_bith', DateType::class, [
                 'widget' => 'single_text',
                 'label' => false,
@@ -45,18 +44,15 @@ class RegistrationFormType extends AbstractType
                 'attr' => ['placeholder' => 'Votre adresse email*'],
             ])
             ->add('RGPDConsent', CheckboxType::class, [
-                'label' => 'J’acceptes les Termes & conditions d’utilisations',
+                -'label' => 'J’acceptes les Termes & conditions d’utilisations',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
                         'message' => 'Vous devez accepter nos conditions.',
                     ]),
                 ],
-                
             ])
             ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
                 'mapped' => false,
                 'label' => false,
                 'attr' => [
@@ -70,7 +66,6 @@ class RegistrationFormType extends AbstractType
                     new Length([
                         'min' => 6,
                         'minMessage' => 'Votre mot de passe doit faire minimum {{ limit }} lettres',
-                        // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
                 ],
