@@ -4,9 +4,11 @@
         {% for breadcrumb in breadcrumbs %}
             <li>
                 <a href="{{ breadcrumb.url }}" {% if loop.last %}class="last-link"{% endif %}>{{ breadcrumb.label }}</a>
+                <!-- Crée un lien pour chaque breadcrumb -->
             </li>
             {% if not loop.last %}
                 <li>/</li>
+                <!-- Ajoute "/" entre les breadcrumb, sauf après la dernière -->
             {% endif %}
         {% endfor %}
     </ul>

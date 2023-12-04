@@ -17,7 +17,7 @@ class ContactController extends AbstractController
     #[Route('/contact/send', name: 'contact_send', methods: "POST")]
     public function sendContactEmail(Request $request, MailerInterface $mailer, ValidatorInterface $validator, CsrfTokenManagerInterface $csrfTokenManager)
     {
-        // Vérifiez le token CSRF
+        // Étape 1: Vérifiez le token CSRF
         $csrfToken = new CsrfToken('contact_form', $request->request->get('_csrf_token'));
         if (!$csrfTokenManager->isTokenValid($csrfToken)) {
             $this->addFlash('error', 'Invalid CSRF token.');
@@ -30,7 +30,7 @@ class ContactController extends AbstractController
             $phone = $request->request->get('phone');
             $message = $request->request->get('contact-message');
 
-            // Validez les données
+            // Étape 2: Validez les données
             $errors = $validator->validate([
                 'name' => $name,
                 'email' => $senderEmail,
@@ -38,7 +38,7 @@ class ContactController extends AbstractController
                 'message' => $message,
             ]);
 
-            // Vérifiez s'il y a des erreurs de validation
+            // Étape 3: Vérifiez s'il y a des erreurs de validation
             if (count($errors) > 0) {
                 foreach ($errors as $error) {
                     $this->addFlash('error', $error->getMessage());
@@ -46,7 +46,7 @@ class ContactController extends AbstractController
                 return $this->redirectToRoute('app_about_us');
             }
 
-            // Créez et envoyez l'e-mail
+            // Étape 4: Créez et envoyez l'e-mail
             try {
                 $email = (new Email())
                     ->from($senderEmail)

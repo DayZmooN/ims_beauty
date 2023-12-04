@@ -95,6 +95,8 @@
 
 		<section id="settings">
 			<form action="{{ path('update_user_data') }}" method="POST" class="form-container" id="update-user-form" data-update-url="{{ path('update_user_data') }}">
+				{# Insertion du token CSRF pour sécurité, type hidden #}
+			    <input type="hidden" name="_token" value="{{ csrf_token('update_user_data') }}">
 				<div class="user-names">
 					<figure class="form-input">
 						<img src="{{ asset('asset/media/icons/deco/lotus.svg') }}" alt="Icône décorative lotus">
@@ -145,6 +147,5 @@
 				</div>
 			</form>
 		</section>
-	{% include './flash_messages/flash_messages.html.twig' %}
 </section>
 {% endblock %}

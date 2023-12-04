@@ -128,6 +128,11 @@ body {
 
 main {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
 }
 
 img {
@@ -156,13 +161,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-moz-selection {
-  background: #BFAE9F; /* Background color of the selection */
-  color: #F5EFE8; /* Color of the text during selection */
+  /* Ce qui est selectionné par l'utilisateur, surligné */
+  background: #BFAE9F;
+  color: #F5EFE8;
 }
 
 ::selection {
-  background: #BFAE9F; /* Background color of the selection */
-  color: #F5EFE8; /* Color of the text during selection */
+  /* Ce qui est selectionné par l'utilisateur, surligné */
+  background: #BFAE9F;
+  color: #F5EFE8;
 }
 
 h1 {
@@ -201,14 +208,6 @@ button {
   font-size: 1.1rem;
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 80vh;
-}
-
 input, textarea {
   padding: 10px 5px;
   background-color: #EEE3D7;
@@ -220,13 +219,12 @@ input, textarea {
   border-radius: 5px;
 }
 
-/* Change checkbox color */
 input[type=checkbox] {
-  accent-color: #BFAE9F; /* Your preferred color */
+  accent-color: #BFAE9F;
 }
 
 input[type=radio] {
-  accent-color: #BFAE9F; /* Your preferred color */
+  accent-color: #BFAE9F;
 }
 
 input[type=date]::-webkit-calendar-picker-indicator {
