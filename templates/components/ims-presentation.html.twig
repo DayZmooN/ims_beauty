@@ -13,10 +13,7 @@
 			<h1>{{ aboutUs.name}}</h1>
 			<blockquote>{{ aboutUs.quote}}</blockquote>
 			
-			<p>{{ aboutUs.description|replace({'<div>': '', '</div>': '', '<br>': 'PLACEHOLDER_BR', '<br/>': 'PLACEHOLDER_BR'})
-                            |escape('html')
-                            |replace({'PLACEHOLDER_BR': '<br>'})
-                            |raw  }}</p>
+			<div id="description-about-us">{{ aboutUs.description|raw  }}</div>
 
 			<div class="redirection-buttons">
 				<div class="animated-btn btn-two">
