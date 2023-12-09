@@ -40,11 +40,9 @@ class CartController extends AbstractController
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }
-
         // Ajoutez le var_dump ici pour afficher l'heure actuelle
         // $dateTime = new DateTime('now', new DateTimeZone('Europe/Paris'));
         // var_dump($dateTime->format('H:i')); // Cela affichera l'heure actuelle au format 'H:i'
-
         $cart = $session->get('cart', []);
         $servicesWithForms = [];
         $creneauxParService = []; // Structure pour stocker les créneaux par service
@@ -65,7 +63,6 @@ class CartController extends AbstractController
                 }
             }
         }
-
         return $this->render('page/cart.html.twig', [
             'servicesWithForms' => $servicesWithForms,
             'creneauxParService' => $creneauxParService,
@@ -129,7 +126,6 @@ class CartController extends AbstractController
                         break; // Sortez de la boucle dès qu'un créneau valide est trouvé
                     }
                 }
-
                 if ($creneauValideTrouve) {
                     // Le créneau est valide, continuez avec le reste du code
                     // Après la création de l'objet $appointment
@@ -137,10 +133,8 @@ class CartController extends AbstractController
                     $appointment->setStatus('confirmed');
                     $appointment->setUsers($user);
                     $appointment->setDateTime($dateTime);
-
                     // Associer le service au rendez-vous
                     $appointment->addService($service);
-
                     // Maintenant, persister l'objet $appointment
                     try {
                         $entityManager->persist($appointment);
@@ -149,7 +143,6 @@ class CartController extends AbstractController
                         // Gérer l'exception
                         continue;
                     }
-
                     if ($appointment->getId()) {
                         if (($key = array_search($serviceId, $cart)) !== false) {
                             unset($cart[$key]);
@@ -157,7 +150,6 @@ class CartController extends AbstractController
                         $session->set('cart', array_values($cart));
                         $this->addFlash('success', "Rendez-vous confirmé et retiré du panier.");
                     }
-
                     try {
                         // Mettre à jour les créneaux disponibles après la réservation
                         $googleCalendarSlots = $googleCalendarService->updateAvailableSlots($serviceId, $dateTime);
@@ -179,7 +171,6 @@ class CartController extends AbstractController
                 }
             }
         }
-
         if (!$datesSelected) {
             $this->addFlash('error', "Sélectionnez au moins une date avant de soumettre le formulaire.");
         }
@@ -193,13 +184,11 @@ class CartController extends AbstractController
     public function add(int $id, SessionInterface $session, Request $request): Response
     {
         $cart = $session->get('cart', []);
-
         if (!in_array($id, $cart)) {
             $cart[] = $id;
             $session->set('cart', $cart); // Update the cart before counting items
             $session->set('cartItemCount', count($cart)); // Update the item count
         }
-
         if ($request->isXmlHttpRequest()) {
             // For AJAX request, return JSON response
             return $this->json([
@@ -220,13 +209,11 @@ class CartController extends AbstractController
     public function remove($id, SessionInterface $session, Request $request): Response
     {
         $cart = $session->get('cart', []);
-
         if (($key = array_search($id, $cart)) !== false) {
             unset($cart[$key]);
             $session->set('cart', $cart); // Update the cart before counting items
             $session->set('cartItemCount', count($cart)); // Update the item count
         }
-
         if ($request->isXmlHttpRequest()) {
             // For AJAX request, return JSON response
             return $this->json([

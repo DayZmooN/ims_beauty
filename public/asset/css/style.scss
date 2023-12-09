@@ -2186,7 +2186,7 @@ footer {
   }
 }
 
-//~ ------------MENTION pass ------------ //
+//~ ------------ password ------------ //
 .request_password_container,
 .reset_password {
   box-sizing: border-box;
@@ -2204,7 +2204,6 @@ footer {
   background: url("../media/deco/massage-flip.svg") bottom right / 150px
     no-repeat;
   text-align: center;
-
   #password_reset_request_form_email,
   #password_reset_form_plainPassword,
   #password_reset_form_password {
@@ -2222,7 +2221,6 @@ footer {
       font-size: 2.1rem;
     }
   }
-
   & > .error-login {
     color: $error-Red;
   }
