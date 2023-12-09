@@ -4,7 +4,6 @@
 	<section class="cart-page">
 		{% if servicesWithForms is not empty %}
 			<h1>Mon Panier</h1>
-
 			<form action="{{ path('cart_submit') }}" method="POST">
 				<div class="services-container">
 					{% for index, item in servicesWithForms %}
@@ -53,7 +52,6 @@
 											{% endfor %}
 										</div>
 									</div>
-
 								</div>
 								<div class="btn_submit_form">
 									<input type="hidden" name="service_id[{{ index }}]" value="{{ item.service.id }}">
@@ -62,15 +60,12 @@
 								</div>
 							</div>
 						</div>
-
-
 					{% endfor %}
 				</div>
-			</div>
-		</form>
-	{% else %}
-		<p>Votre panier est vide.</p>
-	{% endif %}
-</section>
+			</form>
+		{% else %}
+			<p>Votre panier est vide.</p>
+		{% endif %}
+	</section>
 
 {% endblock %}

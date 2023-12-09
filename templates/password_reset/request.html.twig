@@ -4,13 +4,12 @@
 {% endblock %}
 
 {% block body %}
-	<div class="request_password_container">
+	<section class="request_password_container">
 		<h1>Demande de Réinitialisation du Mot de Passe</h1>
 		<p>Veuillez entrer votre adresse e-mail pour recevoir un lien de réinitialisation de mot de passe.</p>
 		{{ form_start(requestForm) }}
-		{{ form_label(requestForm.email, 'Votre adresse email :') }}
 		{{ form_widget(requestForm.email, {'attr': {'placeholder': 'Écrivez ici Votre adresse email'}}) }}
 		<button type="submit" class="button-links-request_email">Envoyer le lien de réinitialisation</button>
 		{{ form_end(requestForm) }}
-	</div>
+	</section>
 {% endblock %}

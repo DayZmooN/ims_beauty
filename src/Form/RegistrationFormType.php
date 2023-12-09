@@ -44,7 +44,7 @@ class RegistrationFormType extends AbstractType
                 'attr' => ['placeholder' => 'Votre adresse email*'],
             ])
             ->add('RGPDConsent', CheckboxType::class, [
-                -'label' => 'J’acceptes les Termes & conditions d’utilisations',
+                'label' => 'J’acceptes les Termes & conditions d’utilisations',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([

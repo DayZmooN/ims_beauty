@@ -21,7 +21,6 @@ class PasswordResetRequestFormType extends AbstractType
                     'placeholder' => 'Votre adresse e-mail',
                 ],
             ]);
-        // ->add('send', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

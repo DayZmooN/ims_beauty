@@ -93,35 +93,35 @@ class RegistrationController extends AbstractController
         return $this->redirectToRoute('app_register');
     }
 
-    // #[Route('/dashboard/resend-verification', name: 'dashboard_resend_verification')]
-    // public function resendVerificationEmail(Request $request, EmailVerifier $emailVerifier): Response
-    // {
-    //     $user = $this->getUser();
+    #[Route('/dashboard/resend-verification', name: 'dashboard_resend_verification')]
+    public function resendVerificationEmail(Request $request, EmailVerifier $emailVerifier): Response
+    {
+        $user = $this->getUser();
 
-    //     // Check if the user is already verified
-    //     if ($user->isVerified()) {
-    //         $this->addFlash('info', 'Votre adresse email a déjà été vérifier.');
-    //         return $this->redirectToRoute('app_dashboard');
-    //     }
+        // Check if the user is already verified
+        if ($user->isVerified()) {
+            $this->addFlash('info', 'Votre adresse email a déjà été vérifier.');
+            return $this->redirectToRoute('app_dashboard');
+        }
 
-    //     try {
-    //         // Resend the verification email
-    //         $emailVerifier->sendEmailConfirmation(
-    //             'app_verify_email',
-    //             $user,
-    //             (new TemplatedEmail())
-    //                 ->from(new Address('ims-beauty@gmail.com', 'IMS Beauty'))
-    //                 ->to($user->getEmail())
-    //                 ->subject('Veuillez confirmer votre adresse email')
-    //                 ->htmlTemplate('security/confirmation_email.html.twig')
-    //         );
+        try {
+            // Resend the verification email
+            $emailVerifier->sendEmailConfirmation(
+                'app_verify_email',
+                $user,
+                (new TemplatedEmail())
+                    ->from(new Address('ims-beauty@gmail.com', 'IMS Beauty'))
+                    ->to($user->getEmail())
+                    ->subject('Veuillez confirmer votre adresse email')
+                    ->htmlTemplate('security/confirmation_email.html.twig')
+            );
 
-    //         $this->addFlash('success', 'Email de confirmation envoyer. Veuillez vérifier votre boîte mail.');
-    //     } catch (\Exception $e) {
-    //         // Handle exceptions (e.g., email service not available)
-    //         $this->addFlash('error', 'Erreur lors de l\'envoie: ' . $e->getMessage());
-    //     }
+            $this->addFlash('success', 'Email de confirmation envoyer. Veuillez vérifier votre boîte mail.');
+        } catch (\Exception $e) {
+            // Handle exceptions (e.g., email service not available)
+            $this->addFlash('error', 'Erreur lors de l\'envoie: ' . $e->getMessage());
+        }
 
-    //     return $this->redirectToRoute('app_dashboard');
-    // }
+        return $this->redirectToRoute('app_dashboard');
+    }
 }
