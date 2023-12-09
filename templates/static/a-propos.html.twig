@@ -36,21 +36,18 @@
 						</figcaption>
 					</figure>
 				</div>
-
 			</div>
+			
 			<div class="form-container">
 				<form action="{{ path('contact_send') }}" method="POST">
 				<input type="hidden" name="_csrf_token" value="{{ csrf_token('contact_form') }}">
 					<input type="text" name="name" placeholder="Votre prénom" required>
-					<input type="text" name="email" placeholder="Votre email" required>
+					<input type="email" name="email" placeholder="Votre email" required>
 					<input type="text" name="phone" placeholder="Votre numéro" required>
 					<textarea name="contact-message" id="contact-message" cols="10" rows="10" placeholder="Votre message" required></textarea>
 					<button type="submit">Envoyer</button>
 				</form>
 			</div>
-            <div class="contact-map">
-            
-            </div>
 		</div>
 	</section>
 	<section class="map-location">

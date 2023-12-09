@@ -844,6 +844,10 @@ footer {
     max-width: 650px;
     width: 100%;
 
+    #description-about-us{
+      font-family: $extraLight;
+    }
+
     & > blockquote {
       position: relative;
       font-family: $titleFont;

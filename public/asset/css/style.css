@@ -958,6 +958,9 @@ footer > .copyrights > p > a:hover {
   max-width: 650px;
   width: 100%;
 }
+.about-us-presentation .presentation #description-about-us {
+  font-family: "Poppins-LightX";
+}
 .about-us-presentation .presentation > blockquote {
   position: relative;
   font-family: "Alex Brush";
