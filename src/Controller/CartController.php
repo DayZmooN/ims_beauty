@@ -188,6 +188,10 @@ class CartController extends AbstractController
             $cart[] = $id;
             $session->set('cart', $cart); // Update the cart before counting items
             $session->set('cartItemCount', count($cart)); // Update the item count
+        } else {
+            // For regular request, redirect
+            $this->addFlash('success', 'Service ajouté au panier avec succès!');
+            return $this->redirect($request->headers->get('referer'));
         }
         if ($request->isXmlHttpRequest()) {
             // For AJAX request, return JSON response
@@ -196,10 +200,6 @@ class CartController extends AbstractController
                 'message' => 'Service ajouté au panier avec succès!',
                 'cartItemCount' => count($cart) // Send the updated count
             ]);
-        } else {
-            // For regular request, redirect
-            $this->addFlash('success', 'Service ajouté au panier avec succès!');
-            return $this->redirect($request->headers->get('referer'));
         }
     }
 
