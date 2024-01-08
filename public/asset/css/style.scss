@@ -1987,24 +1987,6 @@ footer {
             background: darken($secondary-WhiteChocolate, 10%);
           }
         }
-        .btn_submit_form {
-          display: flex;
-          justify-content: right;
-          margin-right: 48px;
-          gap: 10px;
-
-          .delete-btn {
-            border: 1px solid $error-Red;
-            color: $error-Red;
-            border-radius: 8px;
-            padding: 8px;
-
-            &:hover {
-              color: #f5efe8;
-              background-color: $error-Red;
-            }
-          }
-        }
       }
 
       .months {
@@ -2077,6 +2059,24 @@ footer {
           justify-content: center;
           align-items: center;
         }
+      }
+    }
+  }
+  .btn_submit_form {
+    display: flex;
+    justify-content: right;
+    margin: 10px 48px;
+    gap: 10px;
+
+    .delete-btn {
+      border: 1px solid $error-Red;
+      color: $error-Red;
+      border-radius: 8px;
+      padding: 8px;
+
+      &:hover {
+        color: #f5efe8;
+        background-color: $error-Red;
       }
     }
   }

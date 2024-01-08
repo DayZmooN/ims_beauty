@@ -1916,22 +1916,6 @@ footer > .copyrights > p > a:hover {
 .cart-page > form .calendar-options .calendar-container::-webkit-scrollbar-thumb:hover {
   background: #dfcab3;
 }
-.cart-page > form .calendar-options .calendar-container .btn_submit_form {
-  display: flex;
-  justify-content: right;
-  margin-right: 48px;
-  gap: 10px;
-}
-.cart-page > form .calendar-options .calendar-container .btn_submit_form .delete-btn {
-  border: 1px solid #AB4545;
-  color: #AB4545;
-  border-radius: 8px;
-  padding: 8px;
-}
-.cart-page > form .calendar-options .calendar-container .btn_submit_form .delete-btn:hover {
-  color: #f5efe8;
-  background-color: #AB4545;
-}
 .cart-page > form .calendar-options .months {
   display: flex;
   flex-direction: row;
@@ -1995,6 +1979,22 @@ footer > .copyrights > p > a:hover {
     justify-content: center;
     align-items: center;
   }
+}
+.cart-page .btn_submit_form {
+  display: flex;
+  justify-content: right;
+  margin: 10px 48px;
+  gap: 10px;
+}
+.cart-page .btn_submit_form .delete-btn {
+  border: 1px solid #AB4545;
+  color: #AB4545;
+  border-radius: 8px;
+  padding: 8px;
+}
+.cart-page .btn_submit_form .delete-btn:hover {
+  color: #f5efe8;
+  background-color: #AB4545;
 }
 
 .error404 {
