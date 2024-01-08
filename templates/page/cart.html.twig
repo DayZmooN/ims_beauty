@@ -17,10 +17,10 @@
 								</div>
 								<div class="buttons">
 									<a href="#" class="open-calendar">
-										<img src="{{asset('asset/media/icons/calendar.svg')}}" alt="" class="icons-button icons">
+										<img src="{{ asset('asset/media/icons/calendar.svg') }}" alt="" class="icons-button icons">
 									</a>
 									<a href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger remove-from-cart-link">
-										<img src="{{asset('asset/media/icons/shopRemove.svg')}}" alt="" class="icons-button icons">
+										<img src="{{ asset('asset/media/icons/shopRemove.svg') }}" alt="" class="icons-button icons">
 									</a>
 								</div>
 							</div>
@@ -36,22 +36,29 @@
 											{% for date, heures in creneauxParService[item.service.id] %}
 												<div class="container-day">
 													<div class="day">
-														<span>Date :</span>
-														<p>{{ date }}</p>
+														{{ heures[0].dayName|trans }}
+														{{ heures[0].dayNumber|default('') }}
 													</div>
+
 													<div class="available-slots">
-														{% for creneau in heures %}
-															<div class="slot">
-																<input type="radio" id="slot_{{ date }}_{{ creneau.start }}_{{ index }}" name="selectedTimeSlot[{{ item.service.id }}][{{ index }}]" value="{{ date }} {{ creneau.start }}">
-																<label for="slot_{{ date }}_{{ creneau.start }}_{{ index }}">{{ creneau.start }}
-																	-
-																	{{ creneau.end }}</label>
-															</div>
-														{% endfor %}
+														{% if heures|length > 0 %}
+															{% set dateSelectTimeSlot = heures[0].dateSelectTimeSlot %}
+															{% for creneau in heures %}
+																<div class="slot">
+																	<input type="radio" id="slot_{{ date }}_{{ creneau.start }}_{{ index }}" name="selectedTimeSlot[{{ item.service.id }}][{{ index }}]" value="{{ dateSelectTimeSlot }} {{ creneau.start }}">
+																	<label for="slot_{{ date }}_{{ creneau.start }}_{{ index }}">{{ creneau.start }}
+																		-
+																		{{ creneau.end }}</label>
+																</div>
+															{% endfor %}
+														{% else %}
+															<p>No slots available</p>
+														{% endif %}
 													</div>
 												</div>
 											{% endfor %}
 										</div>
+
 									</div>
 								</div>
 								<div class="btn_submit_form">
@@ -68,5 +75,6 @@
 			<p>Votre panier est vide.</p>
 		{% endif %}
 	</section>
+
 
 {% endblock %}

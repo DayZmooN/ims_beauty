@@ -16,7 +16,7 @@ use App\Service\GoogleCalendarService;
 use DateTime;
 use DateTimeZone;
 use Symfony\Component\HttpFoundation\JsonResponse;
-
+use Symfony\Contracts\Translation\TranslatorInterface;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
 class CartController extends AbstractController
@@ -32,20 +32,21 @@ class CartController extends AbstractController
         $this->googleCalendarService = $googleCalendarService;
     }
 
-
     #[Route('/cart', name: 'app_cart')]
-    public function showCart(SessionInterface $session, ServicesRepository $serviceRepository, GoogleCalendarService $googleCalendarService): Response
-    {
+    public function showCart(
+        SessionInterface $session,
+        ServicesRepository $serviceRepository,
+        GoogleCalendarService $googleCalendarService,
+        TranslatorInterface $translator
+    ): Response {
         $user = $this->security->getUser();
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }
-        // Ajoutez le var_dump ici pour afficher l'heure actuelle
-        // $dateTime = new DateTime('now', new DateTimeZone('Europe/Paris'));
-        // var_dump($dateTime->format('H:i')); // Cela affichera l'heure actuelle au format 'H:i'
+
         $cart = $session->get('cart', []);
         $servicesWithForms = [];
-        $creneauxParService = []; // Structure pour stocker les créneaux par service
+        $creneauxParService = [];
 
         foreach ($cart as $id) {
             $service = $serviceRepository->find($id);
@@ -53,16 +54,31 @@ class CartController extends AbstractController
                 $servicesWithForms[] = ['service' => $service];
                 $googleCalendarSlots = $googleCalendarService->getAvailableSlotsGoogle($id);
 
-                foreach ($googleCalendarSlots as $slot) {
-                    // Chaque 'slot' est maintenant un tableau associatif avec 'start' et 'end'
-                    $date = (new \DateTime($slot['start']))->format('Y-m-d');
-                    $heureDebut = (new \DateTime($slot['start']))->format('H:i:s');
-                    $heureFin = (new \DateTime($slot['end']))->format('H:i:s');
 
-                    $creneauxParService[$id][$date][] = ['start' => $heureDebut, 'end' => $heureFin];
+                foreach ($googleCalendarSlots as $slot) {
+                    // date complete  pour  dateSelectTimeSlot
+                    $dateSelectTimeSlot = (new \DateTime($slot['start']))->format('Y-m-d');
+                    //date pour affiche le jour en lettre 
+                    $date = new \DateTime($slot['start']);
+                    $dateFormatted = $translator->trans($date->format('l'), [], 'messages', 'fr');
+                    $dayNumber = $date->format('j'); // Récupérer le jour du mois
+
+
+                    $heureDebut = $date->format('H:i');
+                    $heureFin = (new \DateTime($slot['end']))->format('H:i');
+
+                    $creneauxParService[$id][$dateFormatted][] = [
+                        'dateSelectTimeSlot' => $dateSelectTimeSlot,
+                        'start' => $heureDebut,
+                        'end' => $heureFin,
+                        'dayName' => $dateFormatted,
+                        'dayNumber' => $dayNumber,
+                    ];
                 }
             }
         }
+
+
         return $this->render('page/cart.html.twig', [
             'servicesWithForms' => $servicesWithForms,
             'creneauxParService' => $creneauxParService,
@@ -71,21 +87,33 @@ class CartController extends AbstractController
     }
 
 
+    // #[Route('/load-next-days/{serviceId}', name: 'load_next_days', methods: ['POST'])]
+    // public function loadNextDays(Request $request, int $serviceId)
+    // {
+    //     $startDate = $request->request->get('startDate'); // Récupérez la date de début depuis la requête
+    //     $endDate = $request->request->get('endDate'); // Récupérez la date de fin depuis la requête
+
+    //     // Appelez votre méthode existante ou effectuez toute logique nécessaire pour obtenir les disponibilités
+    //     $availableSlots = $this->googleCalendarService->getAvailableSlotsGoogle($serviceId, $startDate, $endDate);
+
+    //     // Retournez les disponibilités au format JSON
+    //     return new JsonResponse($availableSlots);
+    // }
 
 
 
-    #[Route('/load-slots', name: 'load_slots')]
-    public function loadSlots(Request $request, GoogleCalendarService $googleCalendarService): JsonResponse
-    {
-        $currentPage = $request->query->getInt('page', 1);
-        $itemsPerPage = 7;
+    //pas fini pour afficher la semaine apres
+    // #[Route('/load-slots', name: 'load_slots')]
+    // public function loadSlots(Request $request, GoogleCalendarService $googleCalendarService): JsonResponse
+    // {
+    //     $currentPage = $request->query->getInt('page', 1);
+    //     $itemsPerPage = 7;
 
-        // Modifier cette fonction pour accepter les paramètres de pagination
-        $googleCalendarSlots = $googleCalendarService->getAvailableSlotsGoogle($currentPage, $itemsPerPage);
+    //     // Modifier cette fonction pour accepter les paramètres de pagination
+    //     $googleCalendarSlots = $googleCalendarService->getAvailableSlotsGoogle($currentPage, $itemsPerPage);
 
-        return $this->json(['slots' => $googleCalendarSlots]);
-    }
-
+    //     return $this->json(['slots' => $googleCalendarSlots]);
+    // }
 
     #[Route('/cart/submit', name: 'cart_submit', methods: ['POST'])]
     public function handleCartSubmission(Request $request, SessionInterface $session, ServicesRepository $serviceRepository, EntityManagerInterface $entityManager, GoogleCalendarService $googleCalendarService): Response
@@ -94,6 +122,7 @@ class CartController extends AbstractController
         if (!$user) {
             return $this->json(['error' => 'User not authenticated'], 403);
         }
+
         /** @var \App\Entity\Users $user */
         $userName = $user->getFirstName() . ' ' . $user->getLastName();
         $userPhone = $user->getPhone();
@@ -111,21 +140,23 @@ class CartController extends AbstractController
             $googleCalendarSlots = $googleCalendarService->getAvailableSlotsGoogle($serviceId);
 
             foreach ($slots as $index => $dateTimeString) {
-                $dateTime = new \DateTime(trim($dateTimeString));
+                // Spécifiez le fuseau horaire (par exemple, 'Europe/Paris')
+                $dateTime = new \DateTime(trim($dateTimeString), new \DateTimeZone('Europe/Paris'));
 
                 // Utilisez une variable pour suivre si un créneau valide a été trouvé pour ce dateTime
                 $creneauValideTrouve = false;
 
                 // Vérifiez si le dateTime est inclus dans les créneaux disponibles
                 foreach ($googleCalendarSlots as $slot) {
-                    $googleCalendarStart = new \DateTime($slot['start']);
-                    $googleCalendarEnd = new \DateTime($slot['end']);
+                    $googleCalendarStart = new \DateTime($slot['start'], new \DateTimeZone('Europe/Paris'));
+                    $googleCalendarEnd = new \DateTime($slot['end'], new \DateTimeZone('Europe/Paris'));
 
                     if ($dateTime >= $googleCalendarStart && $dateTime < $googleCalendarEnd) {
                         $creneauValideTrouve = true;
                         break; // Sortez de la boucle dès qu'un créneau valide est trouvé
                     }
                 }
+
                 if ($creneauValideTrouve) {
                     // Le créneau est valide, continuez avec le reste du code
                     // Après la création de l'objet $appointment
@@ -135,6 +166,8 @@ class CartController extends AbstractController
                     $appointment->setDateTime($dateTime);
                     // Associer le service au rendez-vous
                     $appointment->addService($service);
+                    $datesSelected = true; // Mettez à jour la variable pour indiquer qu'une date a été sélectionnée
+
                     // Maintenant, persister l'objet $appointment
                     try {
                         $entityManager->persist($appointment);
@@ -143,6 +176,7 @@ class CartController extends AbstractController
                         // Gérer l'exception
                         continue;
                     }
+
                     if ($appointment->getId()) {
                         if (($key = array_search($serviceId, $cart)) !== false) {
                             unset($cart[$key]);
@@ -150,6 +184,7 @@ class CartController extends AbstractController
                         $session->set('cart', array_values($cart));
                         $this->addFlash('success', "Rendez-vous confirmé et retiré du panier.");
                     }
+
                     try {
                         // Mettre à jour les créneaux disponibles après la réservation
                         $googleCalendarSlots = $googleCalendarService->updateAvailableSlots($serviceId, $dateTime);
@@ -162,6 +197,7 @@ class CartController extends AbstractController
                             'description',
                             $serviceDuration
                         );
+
                         $this->addFlash('success', "Appointment confirmed for " . $dateTime->format('Y-m-d H:i:s'));
                     } catch (\Exception $e) {
                         $this->addFlash('error', "Failed to add event to Google Calendar for " . $service->getName());
@@ -171,12 +207,14 @@ class CartController extends AbstractController
                 }
             }
         }
+
         if (!$datesSelected) {
             $this->addFlash('error', "Sélectionnez au moins une date avant de soumettre le formulaire.");
         }
 
         return $this->redirectToRoute('app_cart');
     }
+
 
 
     //route for add service 

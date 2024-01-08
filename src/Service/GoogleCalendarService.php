@@ -58,6 +58,15 @@ class GoogleCalendarService
         try {
             $events = $service->events->listEvents($this->calendarId, $optParams);
             $availableSlots = $this->calculateAvailableSlots($events, $serviceDuration);
+
+            // Filtrer les samedis et dimanches
+            $availableSlots = array_filter($availableSlots, function ($slot) {
+                $startDateTime = new DateTime($slot['start']);
+                $dayOfWeek = (int)$startDateTime->format('N'); // 1 (for Monday) through 7 (for Sunday)
+
+                // Exclure samedi (6) et dimanche (7)
+                return !in_array($dayOfWeek, [6, 7]);
+            });
         } catch (Exception $e) {
             error_log($e->getMessage());
             return []; // Gestion de l'erreur
@@ -76,6 +85,7 @@ class GoogleCalendarService
 
         return $availableSlotsFormatted;
     }
+
 
 
 
@@ -175,8 +185,12 @@ class GoogleCalendarService
     {
         $service = new Google_Service_Calendar($this->client);
         $calendarId = $this->calendarId;
-        $dateTime->setTimezone(new DateTimeZone('Europe/Paris'));
-        $eventStart = clone $dateTime; // Cloner pour garder l'heure de début originale
+
+        // Cloner pour garder l'heure de début originale
+        $eventStart = clone $dateTime;
+        $eventStart->setTimezone(new DateTimeZone('Europe/Paris'));
+
+        // Cloner pour garder l'heure de fin originale
         $eventEnd = clone $dateTime;
         $eventEnd->modify('+' . $serviceDuration . ' minutes');
         $eventEnd->setTimezone(new DateTimeZone('Europe/Paris'));
@@ -199,9 +213,15 @@ class GoogleCalendarService
 
         try {
             $createdEvent = $service->events->insert($calendarId, $event);
+
             if (!$createdEvent) {
                 throw new Exception("Échec de la création de l'événement dans Google Calendar.");
             }
+
+            // Ajoutez des logs pour suivre les dates
+            error_log('Event Start (Europe/Paris): ' . $eventStart->format(DateTime::RFC3339));
+            error_log('Event End (Europe/Paris): ' . $eventEnd->format(DateTime::RFC3339));
+
             return $createdEvent; // Retourne l'événement créé
         } catch (Exception $e) {
             // Gérer ici l'erreur, par exemple en journalisant ou en affichant un message
