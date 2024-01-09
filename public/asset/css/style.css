@@ -422,7 +422,6 @@ input[type=date]::-webkit-calendar-picker-indicator {
   align-items: flex-start;
   overflow: auto;
   gap: 5px;
-  display: none;
   bottom: 10px;
   /* Positioned at the bottom */
   right: 15px;
