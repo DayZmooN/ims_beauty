@@ -1875,8 +1875,8 @@ footer {
     justify-content: space-between;
     gap: 15px;
     max-width: 1200px;
-    width: 90%;
-    padding: 25px 5px;
+    width: 100%;
+    // padding: 25px 5px;
     border: 1px solid $accent-BrownShadow;
     border-radius: $radius-15;
     margin: 10px auto;
@@ -1903,7 +1903,8 @@ footer {
     }
 
     .services-container {
-      padding: 5px 15px;
+      padding: 25px 15px;
+      z-index: 10;
 
       .service-info {
         display: flex;
@@ -1952,41 +1953,40 @@ footer {
     .calendar-options {
       display: flex;
       gap: 15px;
-      width: 95%;
+      width: 100%;
       min-height: 350px;
       height: 100%;
-      padding: 15px 0;
+      // padding: 15px 0;
 
       h4 {
         display: block;
-        width: 90%;
+        width: 100%;
         margin: 15px 0;
         border-bottom: 1px solid $Cinereous;
       }
 
-      .calendar-container {
-        overflow-y: scroll;
-        scrollbar-color: $secondary-WhiteChocolate $Cinereous;
-        scrollbar-width: thin;
+      // .calendar-container {
+      //   scrollbar-color: $secondary-WhiteChocolate $Cinereous;
+      //   scrollbar-width: thin;
 
-        &::-webkit-scrollbar {
-          width: 12px;
-        }
+      //   &::-webkit-scrollbar {
+      //     width: 12px;
+      //   }
 
-        &::-webkit-scrollbar-track {
-          background: $Cinereous;
-          border-radius: $radius-5;
-        }
+      //   &::-webkit-scrollbar-track {
+      //     background: $Cinereous;
+      //     border-radius: $radius-5;
+      //   }
 
-        &::-webkit-scrollbar-thumb {
-          background: $secondary-WhiteChocolate;
-          border-radius: $radius-5;
+      //   &::-webkit-scrollbar-thumb {
+      //     background: $secondary-WhiteChocolate;
+      //     border-radius: $radius-5;
 
-          &:hover {
-            background: darken($secondary-WhiteChocolate, 10%);
-          }
-        }
-      }
+      //     &:hover {
+      //       background: darken($secondary-WhiteChocolate, 10%);
+      //     }
+      //   }
+      // }
 
       .months {
         display: flex;
@@ -2017,11 +2017,36 @@ footer {
         gap: 25px;
 
         .day-slots {
+          width: 100%;
+          height: 500px;
+          overflow: scroll;
           display: flex;
           gap: 10px;
+          scrollbar-color: $secondary-WhiteChocolate $Cinereous;
+          scrollbar-width: thin;
+          overflow-x: hidden;
+
+          &::-webkit-scrollbar {
+            width: 12px;
+          }
+
+          &::-webkit-scrollbar-track {
+            background: $Cinereous;
+            border-radius: $radius-5;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background: $secondary-WhiteChocolate;
+            border-radius: $radius-5;
+
+            &:hover {
+              background: darken($secondary-WhiteChocolate, 10%);
+            }
+          }
           .container-day {
             display: flex;
             flex-direction: column;
+            width: 100%;
             .day {
               display: flex;
               // flex-direction: column;
@@ -2066,6 +2091,7 @@ footer {
     justify-content: right;
     margin: 10px 48px;
     gap: 10px;
+    padding: 15px;
 
     .delete-btn {
       border: 1px solid $error-Red;

@@ -1822,8 +1822,7 @@ footer > .copyrights > p > a:hover {
   justify-content: space-between;
   gap: 15px;
   max-width: 1200px;
-  width: 90%;
-  padding: 25px 5px;
+  width: 100%;
   border: 1px solid #937962;
   border-radius: 15px;
   margin: 10px auto;
@@ -1848,7 +1847,8 @@ footer > .copyrights > p > a:hover {
   color: #F5EFE8;
 }
 .cart-page > form .services-container {
-  padding: 5px 15px;
+  padding: 25px 15px;
+  z-index: 10;
 }
 .cart-page > form .services-container .service-info {
   display: flex;
@@ -1885,35 +1885,15 @@ footer > .copyrights > p > a:hover {
 .cart-page > form .calendar-options {
   display: flex;
   gap: 15px;
-  width: 95%;
+  width: 100%;
   min-height: 350px;
   height: 100%;
-  padding: 15px 0;
 }
 .cart-page > form .calendar-options h4 {
   display: block;
-  width: 90%;
+  width: 100%;
   margin: 15px 0;
   border-bottom: 1px solid #978178;
-}
-.cart-page > form .calendar-options .calendar-container {
-  overflow-y: scroll;
-  scrollbar-color: #EEE3D7 #978178;
-  scrollbar-width: thin;
-}
-.cart-page > form .calendar-options .calendar-container::-webkit-scrollbar {
-  width: 12px;
-}
-.cart-page > form .calendar-options .calendar-container::-webkit-scrollbar-track {
-  background: #978178;
-  border-radius: 5px;
-}
-.cart-page > form .calendar-options .calendar-container::-webkit-scrollbar-thumb {
-  background: #EEE3D7;
-  border-radius: 5px;
-}
-.cart-page > form .calendar-options .calendar-container::-webkit-scrollbar-thumb:hover {
-  background: #dfcab3;
 }
 .cart-page > form .calendar-options .months {
   display: flex;
@@ -1942,12 +1922,33 @@ footer > .copyrights > p > a:hover {
   gap: 25px;
 }
 .cart-page > form .calendar-options .week .day-slots {
+  width: 100%;
+  height: 500px;
+  overflow: scroll;
   display: flex;
   gap: 10px;
+  scrollbar-color: #EEE3D7 #978178;
+  scrollbar-width: thin;
+  overflow-x: hidden;
+}
+.cart-page > form .calendar-options .week .day-slots::-webkit-scrollbar {
+  width: 12px;
+}
+.cart-page > form .calendar-options .week .day-slots::-webkit-scrollbar-track {
+  background: #978178;
+  border-radius: 5px;
+}
+.cart-page > form .calendar-options .week .day-slots::-webkit-scrollbar-thumb {
+  background: #EEE3D7;
+  border-radius: 5px;
+}
+.cart-page > form .calendar-options .week .day-slots::-webkit-scrollbar-thumb:hover {
+  background: #dfcab3;
 }
 .cart-page > form .calendar-options .week .day-slots .container-day {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 .cart-page > form .calendar-options .week .day-slots .container-day .day {
   display: flex;
@@ -1984,6 +1985,7 @@ footer > .copyrights > p > a:hover {
   justify-content: right;
   margin: 10px 48px;
   gap: 10px;
+  padding: 15px;
 }
 .cart-page .btn_submit_form .delete-btn {
   border: 1px solid #AB4545;

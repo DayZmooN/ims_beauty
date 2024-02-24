@@ -50,7 +50,7 @@ class GoogleCalendarService
         $service = new Google_Service_Calendar($this->client);
         $optParams = [
             'timeMin' => date('c'),  // Moment actuel
-            'timeMax' => date('c', strtotime('+5 days')),  // Les 5 prochains jours
+            'timeMax' => date('c', strtotime('+7 days')),  // Les 5 prochains jours
             'singleEvents' => true,
             'orderBy' => 'startTime',
         ];
@@ -72,19 +72,29 @@ class GoogleCalendarService
             return []; // Gestion de l'erreur
         }
 
-        $availableSlotsFormatted = [];
-        foreach ($availableSlots as $slot) {
-            $startDateTime = new DateTime($slot['start']);
-            $endDateTime = new DateTime($slot['end']);
+   $availableSlotsFormatted = [];
+foreach ($availableSlots as $slot) {
+    // Vérifier si le tableau $slot contient les clés nécessaires
+    if (isset($slot['start']) && isset($slot['end'])) {
+        $startDateTime = new DateTime($slot['start']);
+        $endDateTime = new DateTime($slot['end']);
 
-            $availableSlotsFormatted[] = [
-                'start' => $startDateTime->format('Y-m-d H:i:s'),
-                'end' => $endDateTime->format('Y-m-d H:i:s')
-            ];
-        }
+        $availableSlotsFormatted[] = [
+            'start' => $startDateTime->format('Y-m-d H:i'),
+            'end' => $endDateTime->format('Y-m-d H:i')
+        ];
+    } else {
+        // Gérer le cas où les clés 'start' et 'end' ne sont pas présentes dans le tableau $slot
+        // Vous pouvez ajouter une logique de gestion des erreurs ou ignorer l'élément problématique
+        error_log('Le tableau $slot ne contient pas les clés nécessaires.');
+    }
+}
+
 
         return $availableSlotsFormatted;
     }
+
+    
 
 
 
@@ -99,7 +109,7 @@ class GoogleCalendarService
     private function calculateAvailableSlots($events, $serviceDuration)
     {
         $startDate = new DateTime('now', new DateTimeZone('Europe/Paris'));
-        $endDate = new DateTime('+5 days');
+        $endDate = new DateTime('+7 day');
         $interval = new DateInterval('P1D');
         $period = new DatePeriod($startDate, $interval, $endDate);
 
@@ -129,8 +139,8 @@ class GoogleCalendarService
 
                     if ($isAvailable) {
                         $availableSlots[] = [
-                            'start' => $slotStart->format('Y-m-d H:i:s'),
-                            'end' => $slotEnd->format('Y-m-d H:i:s')
+                            'start' => $slotStart->format('Y-m-d H:i'),
+                            'end' => $slotEnd->format('Y-m-d H:i')
                         ];
                     }
                 }
@@ -161,10 +171,8 @@ class GoogleCalendarService
                 if ($eventStart == $reservedDateTime) {
                     // Supprimer l'événement ou le marquer comme occupé
                     $service->events->delete($this->calendarId, $event->getId());
-                    // Vous pouvez également choisir de mettre à jour l'événement au lieu de le supprimer
-                    // $event->setTransparency('opaque');
-                    // $service->events->update($this->calendarId, $event->getId(), $event);
-                    break; // Sortir de la boucle après avoir traité l'événement
+                
+                    break; 
                 }
             }
         } catch (Exception $e) {
@@ -178,7 +186,81 @@ class GoogleCalendarService
 
 
 
+//version complete pas terminer mais qui rasemble getavalide et calcul
+// public function getAvailableSlotsGoogle($serviceId)
+// {
+//     $serviceDuration = $this->serviceRepository->findDurationById($serviceId);
 
+//     $startDate = new DateTime('now', new DateTimeZone('Europe/Paris'));
+//     $endDate = new DateTime('+7 day');
+//     $interval = new DateInterval('P1D');
+//     $period = new DatePeriod($startDate, $interval, $endDate);
+
+//     $optParams = [
+//         'timeMin' => $startDate->format('c'),  // Moment actuel
+//         'timeMax' => $endDate->format('c'),  // 30 jours à partir d'aujourd'hui
+//         'singleEvents' => true,
+//         'orderBy' => 'startTime',
+//     ];
+
+//     $service = new Google_Service_Calendar($this->client);
+
+//     $availableSlotsFormatted = [];
+    
+//     try {
+//         $events = $service->events->listEvents($this->calendarId, $optParams);
+//     } catch (Exception $e) {
+//         error_log($e->getMessage());
+//         return $availableSlotsFormatted; // Gestion de l'erreur
+//     }
+
+//     foreach ($period as $date) {
+//         $busyTimes = [];
+//         foreach ($events->getItems() as $event) {
+//             $busyTimes[] = [
+//                 'start' => new DateTime($event->start->dateTime),
+//                 'end' => new DateTime($event->end->dateTime)
+//             ];
+//         }
+
+//         $availableSlots = [];
+
+//         for ($hour = 9; $hour <= 17; $hour++) {
+//             if ($hour >= 11 && $hour < 14) continue;
+//             for ($minute = 0; $minute < 60; $minute += $serviceDuration) {
+//                 $slotStart = (clone $date)->setTime($hour, $minute);
+//                 $slotEnd = (clone $slotStart)->modify('+' . $serviceDuration . ' minutes');
+
+//                 $isAvailable = true;
+//                 foreach ($busyTimes as $busyTime) {
+//                     if ($slotStart < $busyTime['end'] && $slotEnd > $busyTime['start']) {
+//                         $isAvailable = false;
+//                         break;
+//                     }
+//                 }
+
+//                 if ($isAvailable) {
+//                     $availableSlots[] = [
+//                         'start' => $slotStart->format('Y-m-d H:i:s'),
+//                         'end' => $slotEnd->format('Y-m-d H:i:s')
+//                     ];
+//                 }
+//             }
+//         }
+
+//         foreach ($availableSlots as $slot) {
+//             $startDateTime = new DateTime($slot['start']);
+//             $endDateTime = new DateTime($slot['end']);
+
+//             $availableSlotsFormatted[] = [
+//                 'start' => $startDateTime->format('Y-m-d H:i:s'),
+//                 'end' => $endDateTime->format('Y-m-d H:i:s')
+//             ];
+//         }
+//     }
+
+//     return $availableSlotsFormatted;
+// }
 
 
     public function createEvent(DateTime $dateTime, string $serviceName, string $userName, string $userPhone, string $description, int $serviceDuration)

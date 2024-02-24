@@ -41,40 +41,45 @@
 													</div>
 
 													<div class="available-slots">
-														{% if heures|length > 0 %}
-															{% set dateSelectTimeSlot = heures[0].dateSelectTimeSlot %}
-															{% for creneau in heures %}
-																<div class="slot">
-																	<input type="radio" id="slot_{{ date }}_{{ creneau.start }}_{{ index }}" name="selectedTimeSlot[{{ item.service.id }}][{{ index }}]" value="{{ dateSelectTimeSlot }} {{ creneau.start }}">
-																	<label for="slot_{{ date }}_{{ creneau.start }}_{{ index }}">{{ creneau.start }}
-																		-
-																		{{ creneau.end }}</label>
-																</div>
-															{% endfor %}
-														{% else %}
-															<p>No slots available</p>
-														{% endif %}
+														{% set displayedTimeSlots = [] %}
+
+														{% for creneau in heures %}
+															{% if creneau.dateSelectTimeSlot >= now|date('Y-m-d') %}
+																{% set timeSlotKey = creneau.dateSelectTimeSlot ~ '_' ~ creneau.start %}
+																{% if timeSlotKey not in displayedTimeSlots %}
+																	{% set displayedTimeSlots = displayedTimeSlots|merge([timeSlotKey]) %}
+
+																	<div class="slot">
+																		<input type="radio" id="slot_{{ date }}_{{ creneau.start }}_{{ index }}" name="selectedTimeSlot[{{ item.service.id }}][{{ index }}]" value="{{ creneau.dateSelectTimeSlot }} {{ creneau.start }}">
+																		<label for="slot_{{ date }}_{{ creneau.start }}_{{ index }}">{{ creneau.start }}
+																			-
+																			{{ creneau.end }}</label>
+																	</div>
+																{% endif %}
+															{% endif %}
+														{% endfor %}
 													</div>
 												</div>
 											{% endfor %}
+
+
 										</div>
 
 									</div>
-								</div>
-								<div class="btn_submit_form">
-									<input type="hidden" name="service_id[{{ index }}]" value="{{ item.service.id }}">
-									<button type="submit" class="submit-button">Réserver</button>
-									<a class="delete-btn" href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger">Retirer</a>
+									<div class="btn_submit_form">
+										<input type="hidden" name="service_id[{{ index }}]" value="{{ item.service.id }}">
+										<button type="submit" class="submit-button">Réserver</button>
+										<a class="delete-btn" href="{{ path('cart_remove', {'id': item.service.id}) }}" class="btn btn-danger">Retirer</a>
+									</div>
 								</div>
 							</div>
-						</div>
-					{% endfor %}
-				</div>
-			</form>
-		{% else %}
-			<p>Votre panier est vide.</p>
-		{% endif %}
-	</section>
+						{% endfor %}
+					</div>
+				</form>
+			{% else %}
+				<p>Votre panier est vide.</p>
+			{% endif %}
+		</section>
 
 
-{% endblock %}
+	{% endblock %}

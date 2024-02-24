@@ -43,48 +43,62 @@ class CartController extends AbstractController
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }
-
+        $now = new DateTime();
         $cart = $session->get('cart', []);
         $servicesWithForms = [];
         $creneauxParService = [];
-
+    
         foreach ($cart as $id) {
             $service = $serviceRepository->find($id);
             if ($service) {
                 $servicesWithForms[] = ['service' => $service];
                 $googleCalendarSlots = $googleCalendarService->getAvailableSlotsGoogle($id);
-
-
+    
+                // Utiliser un ensemble pour stocker les créneaux uniques
+                $uniqueSlots = [];
+    
                 foreach ($googleCalendarSlots as $slot) {
-                    // date complete  pour  dateSelectTimeSlot
-                    $dateSelectTimeSlot = (new \DateTime($slot['start']))->format('Y-m-d');
-                    //date pour affiche le jour en lettre 
                     $date = new \DateTime($slot['start']);
-                    $dateFormatted = $translator->trans($date->format('l'), [], 'messages', 'fr');
-                    $dayNumber = $date->format('j'); // Récupérer le jour du mois
-
-
-                    $heureDebut = $date->format('H:i');
-                    $heureFin = (new \DateTime($slot['end']))->format('H:i');
-
-                    $creneauxParService[$id][$dateFormatted][] = [
-                        'dateSelectTimeSlot' => $dateSelectTimeSlot,
-                        'start' => $heureDebut,
-                        'end' => $heureFin,
-                        'dayName' => $dateFormatted,
-                        'dayNumber' => $dayNumber,
-                    ];
+    
+                    // Filtrer pour ne prendre que les créneaux futurs ou actuels dans la journée
+                    if ($date >= $now) {
+                        $dateFormatted = $translator->trans($date->format('l'), [], 'messages', 'fr');
+                        $dayNumber = $date->format('j');
+                        $heureDebut = $date->format('H:i');
+                        $heureFin = (new \DateTime($slot['end']))->format('H:i');
+    
+                        // Utiliser une structure de tableau associatif pour stocker les créneaux uniques
+                        $key = $date->format('Y-m-d') . '_' . $heureDebut . '_' . $heureFin;
+    
+                        if (!isset($uniqueSlots[$key])) {
+                            $uniqueSlots[$key] = true;
+    
+                            $creneauxParService[$id][$dateFormatted][] = [
+                                'dateSelectTimeSlot' => $date->format('Y-m-d'),
+                                'start' => $heureDebut,
+                                'end' => $heureFin,
+                                'dayName' => $dateFormatted,
+                                'dayNumber' => $dayNumber,
+                            ];
+                        } else {
+                            // Ajoutez un message de débogage pour voir quand les doublons sont détectés
+                            error_log('Doublon détecté : ' . $key);
+                        }
+                    }
                 }
             }
         }
-
-
+    
         return $this->render('page/cart.html.twig', [
             'servicesWithForms' => $servicesWithForms,
             'creneauxParService' => $creneauxParService,
             'cartItemCount' => count($cart),
+            'now' => $now
         ]);
     }
+    
+
+
 
 
     // #[Route('/load-next-days/{serviceId}', name: 'load_next_days', methods: ['POST'])]
@@ -198,12 +212,12 @@ class CartController extends AbstractController
                             $serviceDuration
                         );
 
-                        $this->addFlash('success', "Appointment confirmed for " . $dateTime->format('Y-m-d H:i:s'));
+                        $this->addFlash('success', "Rendez-vous confirmé le " . $dateTime->format('Y-m-d H:i'));
                     } catch (\Exception $e) {
-                        $this->addFlash('error', "Failed to add event to Google Calendar for " . $service->getName());
+                        $this->addFlash('error', "Échec de l'ajout d'un événement à Google Agenda pour " . $service->getName());
                     }
                 } else {
-                    $this->addFlash('error', "Selected date and time are not available.");
+                    $this->addFlash('error', "La date et l'heure sélectionnées ne sont pas disponibles.");
                 }
             }
         }
@@ -214,7 +228,6 @@ class CartController extends AbstractController
 
         return $this->redirectToRoute('app_cart');
     }
-
 
 
     //route for add service 
@@ -239,6 +252,8 @@ class CartController extends AbstractController
                 'cartItemCount' => count($cart) // Send the updated count
             ]);
         }
+        return new Response(); // Vous pouvez personnaliser cette réponse en fonction de vos besoins
+
     }
 
 
