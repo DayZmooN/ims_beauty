@@ -25,11 +25,14 @@ class PasswordResetController extends AbstractController
     {
         $form = $this->createForm(PasswordResetRequestFormType::class);
         $form->handleRequest($request);
-
+        $emailAddress = 'ims-beauty@gmail.com'; // Change to your email address
+        $emailTemplate = 'security/request_password_reset_email.twig';
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $email = $data->getEmail();
             $user = $entityManager->getRepository(Users::class)->findOneByEmail($email);
+
+
 
             if ($user) {
                 $token = bin2hex(random_bytes(32));
@@ -38,6 +41,8 @@ class PasswordResetController extends AbstractController
                 // Calculez la date d'expiration en ajoutant 30 minutes à la date actuelle.
                 $expirationTime = new \DateTimeImmutable();
                 $expirationTime->add(new \DateInterval('PT30M'));
+                $expiresAtMessageKey = $expirationTime->format('d/m/Y H:i:s');
+
                 $user->setResetTokenExpiration($expirationTime);
 
                 $entityManager->flush();
@@ -45,11 +50,12 @@ class PasswordResetController extends AbstractController
                 $url = $this->generateUrl('app_reset_password', ['token' => $token], UrlGeneratorInterface::ABSOLUTE_URL);
 
                 $email = (new Email())
-                    ->from('noreply@example.com')
+                    ->from($emailAddress)
                     ->to($user->getEmail())
                     ->subject('Réinitialisation de votre mot de passe')
-                    ->html("Pour réinitialiser votre mot de passe, veuillez cliquer sur ce lien : <a href=\"$url\">$url</a>");
-
+                    ->html($this->renderView($emailTemplate, [
+                        'resetUrl' => $url,
+                        'expiresAtMessageKey' => '30 minutes',]));
                 $mailer->send($email);
                 $this->addFlash('success', 'Un e-mail de réinitialisation de mot de passe a été envoyé à votre adresse.');
             } else {
