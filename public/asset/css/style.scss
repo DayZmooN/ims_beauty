@@ -418,9 +418,17 @@ header {
         }
       }
 
+      .cart-link {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+      }
       .cart-item-count {
         color: $Khaki;
-        font-size: 1.2rem;
+        font-size: 0.9rem;
+        font: caption;
+        position: absolute;
       }
 
       .responsive-menu {

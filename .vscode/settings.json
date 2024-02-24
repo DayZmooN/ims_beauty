@@ -14,5 +14,6 @@
             "username": "root",
             "password": ""
         }
-    ]
+    ],
+    "php.version": "8.3"
 }

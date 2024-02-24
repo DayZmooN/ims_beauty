@@ -600,9 +600,17 @@ header > .nav-menu > figure .user-dropdown .dropdown-content > a:hover {
   background-color: #F5EFE8;
   color: #4D4D4D;
 }
+header > .nav-menu > figure .cart-link {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
 header > .nav-menu > figure .cart-item-count {
   color: #BFAE9F;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
+  font: caption;
+  position: absolute;
 }
 header > .nav-menu > figure .responsive-menu {
   display: none;
